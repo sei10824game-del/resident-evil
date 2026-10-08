@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+[[mods]]
+modId="reevil"
+version="${mod_version}"
+displayName="Resident Evil Creatures"
+description='''Resident Evil creatures for Minecraft. Bio 1 roster first.'''
+[[dependencies.reevil]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.reevil]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"
