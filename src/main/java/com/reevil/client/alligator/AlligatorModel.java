@@ -23,7 +23,7 @@ import static com.reevil.anim.K.*;
  */
 public class AlligatorModel extends BioModel<AlligatorEntity> {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "alligator"), "main");
-    private static final AnimClip SNAP = snap(), LUNGE = lunge(), ROLL = roll(), SWEEP = sweep(), AMBUSH = ambush();
+    private static final AnimClip C_SNAP = snap(), C_LUNGE = lunge(), C_ROLL = roll(), C_SWEEP = sweep(), C_AMBUSH = ambush();
 
     public AlligatorModel(ModelPart root) {
         super(root);
@@ -98,11 +98,11 @@ public class AlligatorModel extends BioModel<AlligatorEntity> {
     @Override
     protected AnimClip clip(AlligatorEntity e, int id) {
         switch (id) {
-            case AlligatorEntity.SNAP: return SNAP;
-            case AlligatorEntity.LUNGE: return LUNGE;
-            case AlligatorEntity.ROLL: return ROLL;
-            case AlligatorEntity.SWEEP: return SWEEP;
-            case AlligatorEntity.AMBUSH: return AMBUSH;
+            case AlligatorEntity.SNAP: return C_SNAP;
+            case AlligatorEntity.LUNGE: return C_LUNGE;
+            case AlligatorEntity.ROLL: return C_ROLL;
+            case AlligatorEntity.SWEEP: return C_SWEEP;
+            case AlligatorEntity.AMBUSH: return C_AMBUSH;
             default: return null;
         }
     }
