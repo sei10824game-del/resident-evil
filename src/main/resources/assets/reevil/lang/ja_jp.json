@@ -24,5 +24,7 @@
  "entity.reevil.tyrant": "タイラント",
  "item.reevil.tyrant_spawn_egg": "タイラントのスポーンエッグ",
  "entity.reevil.lisa_trevor": "リサ・トレヴァー",
- "item.reevil.lisa_trevor_spawn_egg": "リサ・トレヴァーのスポーンエッグ"
+ "item.reevil.lisa_trevor_spawn_egg": "リサ・トレヴァーのスポーンエッグ",
+ "entity.reevil.licker": "リッカー",
+ "item.reevil.licker_spawn_egg": "リッカーのスポーンエッグ"
 }

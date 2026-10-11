@@ -27,6 +27,8 @@ import com.reevil.client.tyrant.TyrantModel;
 import com.reevil.client.tyrant.TyrantRenderer;
 import com.reevil.client.lisatrevor.LisaTrevorModel;
 import com.reevil.client.lisatrevor.LisaTrevorRenderer;
+import com.reevil.client.licker.LickerModel;
+import com.reevil.client.licker.LickerRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -50,6 +52,7 @@ public final class ClientSetup {
         e.registerLayerDefinition(Plant42Model.LAYER, Plant42Model::createBodyLayer);
         e.registerLayerDefinition(TyrantModel.LAYER, TyrantModel::createBodyLayer);
         e.registerLayerDefinition(LisaTrevorModel.LAYER, LisaTrevorModel::createBodyLayer);
+        e.registerLayerDefinition(LickerModel.LAYER, LickerModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -67,6 +70,7 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.PLANT42.get(), Plant42Renderer::new);
         e.registerEntityRenderer(ModEntities.TYRANT.get(), TyrantRenderer::new);
         e.registerEntityRenderer(ModEntities.LISA_TREVOR.get(), LisaTrevorRenderer::new);
+        e.registerEntityRenderer(ModEntities.LICKER.get(), LickerRenderer::new);
     }
 
     private ClientSetup() {}
