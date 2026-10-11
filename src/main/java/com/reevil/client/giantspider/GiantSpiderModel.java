@@ -172,7 +172,7 @@ public class GiantSpiderModel extends SpiderRigModel<GiantSpiderEntity> {
         pair(b, "chel", k(0, 0, 0, 0), k(0.6f, 0, 0, 0), k(0.72f, -25, 0, 25), k(0.85f, -20, 0, 20), k(1, 0, 0, 0));
         pair(b, "palp", k(0, 0, 0, 0), k(0.6f, 10, 0, 0), k(0.72f, -40, 35, 0), k(0.8f, -30, 20, 0), k(0.88f, -45, 35, 0), k(1, 0, 0, 0));
         for (int i = 0; i < 4; i++) {
-            float[][] rows = new float[i == 0 ? 18 : 14][];
+            float[][] rows = new float[i == 0 ? 17 : 14][];
             int n = 0;
             rows[n++] = k(0, 0, 0, 0, 0);
             for (int j = 0; j < 10; j++) { // tremor: legs jitter harder as the abdomen swells

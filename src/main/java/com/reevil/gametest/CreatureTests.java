@@ -1,0 +1,77 @@
+package com.reevil.gametest;
+
+import com.reevil.entity.BioMonster;
+import com.reevil.registry.ModEntities;
+import net.minecraft.core.BlockPos;
+import net.minecraft.gametest.framework.GameTest;
+import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.gametest.GameTestHolder;
+import net.minecraftforge.gametest.PrefixGameTestTemplate;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+/** Dev-only smoke tests (excluded from the jar): every creature fights a mock player for 600 ticks; fails if no attack ever started or the mob dies of its own accord. */
+@GameTestHolder("reevil")
+@PrefixGameTestTemplate(false)
+public class CreatureTests {
+    private static void run(GameTestHelper h, EntityType<? extends BioMonster> type, boolean water, int dist) { run(h, type, water, dist, 1f); }
+
+    private static void run(GameTestHelper h, EntityType<? extends BioMonster> type, boolean water, int dist, float hpFrac) {
+        for (int x = 0; x < 24; x++) for (int z = 0; z < 24; z++) {
+            h.setBlock(new BlockPos(x, 0, z), Blocks.STONE);
+            for (int y = 1; y <= 3; y++) h.setBlock(new BlockPos(x, y, z), water ? Blocks.WATER : Blocks.AIR);
+        }
+        BioMonster mob = (BioMonster) h.spawn(type, new BlockPos(12, 1, 12 + dist));
+        Player p = h.makeMockPlayer();
+        Vec3 ppos = h.absoluteVec(new Vec3(12, 1, 12));
+        p.moveTo(ppos.x, ppos.y, ppos.z);
+        Set<Integer> seen = new TreeSet<>();
+        h.runAfterDelay(3, () -> { mob.hurt(mob.damageSources().generic(), 1f); if (hpFrac < 1f) mob.setHealth(Math.max(2f, mob.getMaxHealth() * hpFrac)); });
+        for (int t = 1; t <= 600; t++) {
+            final int tick = t;
+            h.runAfterDelay(t, () -> {
+                p.setHealth(20f);
+                p.moveTo(ppos.x, ppos.y, ppos.z);
+                if (mob.isAlive()) {
+                    if (tick % 10 == 0) mob.setTarget(p);
+                    if (mob.getMoveId() > 0) seen.add(mob.getMoveId());
+                }
+            });
+        }
+        h.runAfterDelay(601, () -> {
+            System.out.println("[REEVIL-TEST] " + (hpFrac < 1f ? "LOWHP " : "") + type.builtInRegistryHolder().key().location() + " moves seen=" + seen + " alive=" + mob.isAlive() + " hp=" + mob.getHealth());
+            if (!mob.isAlive()) h.fail("died unprovoked");
+            else if (seen.isEmpty()) h.fail("never started an attack");
+            else h.succeed();
+        });
+    }
+
+    @GameTest(template = "empty", timeoutTicks = 700) public static void zombie(GameTestHelper h) { run(h, ModEntities.ZOMBIE.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void crimsonHead(GameTestHelper h) { run(h, ModEntities.CRIMSON_HEAD.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void cerberus(GameTestHelper h) { run(h, ModEntities.CERBERUS.get(), false, 8); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void crow(GameTestHelper h) { run(h, ModEntities.CROW.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void hunter(GameTestHelper h) { run(h, ModEntities.HUNTER.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void chimera(GameTestHelper h) { run(h, ModEntities.CHIMERA.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void giantSpider(GameTestHelper h) { run(h, ModEntities.GIANT_SPIDER.get(), false, 7); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void webSpinner(GameTestHelper h) { run(h, ModEntities.WEB_SPINNER.get(), false, 5); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void neptune(GameTestHelper h) { run(h, ModEntities.NEPTUNE.get(), true, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void yawn(GameTestHelper h) { run(h, ModEntities.YAWN.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void plant42(GameTestHelper h) { run(h, ModEntities.PLANT42.get(), false, 5); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void tyrant(GameTestHelper h) { run(h, ModEntities.TYRANT.get(), false, 5); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void lisaTrevor(GameTestHelper h) { run(h, ModEntities.LISA_TREVOR.get(), false, 6); }
+
+    @GameTest(template = "empty", timeoutTicks = 700) public static void hunterLow(GameTestHelper h) { run(h, ModEntities.HUNTER.get(), false, 6, 0.3f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void giantSpiderLow(GameTestHelper h) { run(h, ModEntities.GIANT_SPIDER.get(), false, 7, 0.25f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void yawnLow(GameTestHelper h) { run(h, ModEntities.YAWN.get(), false, 6, 0.4f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void plant42Low(GameTestHelper h) { run(h, ModEntities.PLANT42.get(), false, 5, 0.4f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void tyrantLow(GameTestHelper h) { run(h, ModEntities.TYRANT.get(), false, 5, 0.5f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void tyrantLow2(GameTestHelper h) { run(h, ModEntities.TYRANT.get(), false, 5, 0.2f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void lisaLow(GameTestHelper h) { run(h, ModEntities.LISA_TREVOR.get(), false, 6, 0.4f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void neptuneLow(GameTestHelper h) { run(h, ModEntities.NEPTUNE.get(), true, 6, 0.2f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void zombieLow(GameTestHelper h) { run(h, ModEntities.ZOMBIE.get(), false, 4, 0.2f); }
+}

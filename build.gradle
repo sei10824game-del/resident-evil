@@ -20,7 +20,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
             mods { "reevil" { source sourceSets.main } }
         }
-        client { property 'forge.enabledGameTestNamespaces', 'reevil' }
+        client { property 'forge.enabledGameTestNamespaces', 'reevil'; args '--username', 'Dev', '--width', '1280', '--height', '720' }
         server { property 'forge.enabledGameTestNamespaces', 'reevil'; args '--nogui' }
     }
 }
@@ -36,6 +36,8 @@ tasks.named('processResources', ProcessResources).configure {
     inputs.properties props
     filesMatching(['META-INF/mods.toml']) { expand props }
 }
+
+jar { exclude 'com/reevil/gametest/**' }
 
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 
