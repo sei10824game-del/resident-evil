@@ -21,6 +21,7 @@ import com.reevil.entity.alligator.AlligatorEntity;
 import com.reevil.entity.ivy.IvyEntity;
 import com.reevil.entity.giantmoth.GiantMothEntity;
 import com.reevil.entity.larva.LarvaEntity;
+import com.reevil.entity.nemesis.NemesisEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -110,6 +111,10 @@ public final class ModEntities {
         () -> EntityType.Builder.of(LarvaEntity::new, MobCategory.MONSTER).sized(1.0f, 0.7f).clientTrackingRange(10).build("larva"));
     public static final RegistryObject<Item> LARVA_EGG = egg("larva", LARVA, 0xb8c070, 0x403020);
 
+    public static final RegistryObject<EntityType<NemesisEntity>> NEMESIS = ENTITIES.register("nemesis",
+        () -> EntityType.Builder.of(NemesisEntity::new, MobCategory.MONSTER).sized(1.0f, 2.7f).clientTrackingRange(10).build("nemesis"));
+    public static final RegistryObject<Item> NEMESIS_EGG = egg("nemesis", NEMESIS, 0x181818, 0xa02020);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -131,6 +136,7 @@ public final class ModEntities {
         e.put(IVY.get(), IvyEntity.createAttributes().build());
         e.put(GIANT_MOTH.get(), GiantMothEntity.createAttributes().build());
         e.put(LARVA.get(), LarvaEntity.createAttributes().build());
+        e.put(NEMESIS.get(), NemesisEntity.createAttributes().build());
     }
 
     private ModEntities() {}

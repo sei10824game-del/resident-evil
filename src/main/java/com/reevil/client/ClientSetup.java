@@ -41,6 +41,8 @@ import com.reevil.client.giantmoth.GiantMothModel;
 import com.reevil.client.giantmoth.GiantMothRenderer;
 import com.reevil.client.larva.LarvaModel;
 import com.reevil.client.larva.LarvaRenderer;
+import com.reevil.client.nemesis.NemesisModel;
+import com.reevil.client.nemesis.NemesisRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -71,6 +73,7 @@ public final class ClientSetup {
         e.registerLayerDefinition(IvyModel.LAYER, IvyModel::createBodyLayer);
         e.registerLayerDefinition(GiantMothModel.LAYER, GiantMothModel::createBodyLayer);
         e.registerLayerDefinition(LarvaModel.LAYER, LarvaModel::createBodyLayer);
+        e.registerLayerDefinition(NemesisModel.LAYER, NemesisModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -95,6 +98,7 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.IVY.get(), IvyRenderer::new);
         e.registerEntityRenderer(ModEntities.GIANT_MOTH.get(), GiantMothRenderer::new);
         e.registerEntityRenderer(ModEntities.LARVA.get(), LarvaRenderer::new);
+        e.registerEntityRenderer(ModEntities.NEMESIS.get(), NemesisRenderer::new);
     }
 
     private ClientSetup() {}

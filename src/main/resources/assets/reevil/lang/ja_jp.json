@@ -38,5 +38,7 @@
  "entity.reevil.giant_moth": "ジャイアントモス",
  "item.reevil.giant_moth_spawn_egg": "ジャイアントモスのスポーンエッグ",
  "entity.reevil.larva": "モスの幼虫",
- "item.reevil.larva_spawn_egg": "モスの幼虫のスポーンエッグ"
+ "item.reevil.larva_spawn_egg": "モスの幼虫のスポーンエッグ",
+ "entity.reevil.nemesis": "ネメシス",
+ "item.reevil.nemesis_spawn_egg": "ネメシスのスポーンエッグ"
 }

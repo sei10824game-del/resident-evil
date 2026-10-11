@@ -38,5 +38,7 @@
  "entity.reevil.giant_moth": "Giant Moth",
  "item.reevil.giant_moth_spawn_egg": "Giant Moth Spawn Egg",
  "entity.reevil.larva": "Moth Larva",
- "item.reevil.larva_spawn_egg": "Moth Larva Spawn Egg"
+ "item.reevil.larva_spawn_egg": "Moth Larva Spawn Egg",
+ "entity.reevil.nemesis": "Nemesis",
+ "item.reevil.nemesis_spawn_egg": "Nemesis Spawn Egg"
 }
