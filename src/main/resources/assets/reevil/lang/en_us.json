@@ -34,5 +34,9 @@
  "entity.reevil.alligator": "Giant Alligator",
  "item.reevil.alligator_spawn_egg": "Giant Alligator Spawn Egg",
  "entity.reevil.ivy": "Ivy",
- "item.reevil.ivy_spawn_egg": "Ivy Spawn Egg"
+ "item.reevil.ivy_spawn_egg": "Ivy Spawn Egg",
+ "entity.reevil.giant_moth": "Giant Moth",
+ "item.reevil.giant_moth_spawn_egg": "Giant Moth Spawn Egg",
+ "entity.reevil.larva": "Moth Larva",
+ "item.reevil.larva_spawn_egg": "Moth Larva Spawn Egg"
 }

@@ -34,5 +34,9 @@
  "entity.reevil.alligator": "ジャイアントアリゲーター",
  "item.reevil.alligator_spawn_egg": "ジャイアントアリゲーターのスポーンエッグ",
  "entity.reevil.ivy": "アイビー",
- "item.reevil.ivy_spawn_egg": "アイビーのスポーンエッグ"
+ "item.reevil.ivy_spawn_egg": "アイビーのスポーンエッグ",
+ "entity.reevil.giant_moth": "ジャイアントモス",
+ "item.reevil.giant_moth_spawn_egg": "ジャイアントモスのスポーンエッグ",
+ "entity.reevil.larva": "モスの幼虫",
+ "item.reevil.larva_spawn_egg": "モスの幼虫のスポーンエッグ"
 }

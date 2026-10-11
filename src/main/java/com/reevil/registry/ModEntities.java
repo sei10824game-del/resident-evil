@@ -19,6 +19,8 @@ import com.reevil.entity.mrx.MrXEntity;
 import com.reevil.entity.birkin.BirkinEntity;
 import com.reevil.entity.alligator.AlligatorEntity;
 import com.reevil.entity.ivy.IvyEntity;
+import com.reevil.entity.giantmoth.GiantMothEntity;
+import com.reevil.entity.larva.LarvaEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -100,6 +102,14 @@ public final class ModEntities {
         () -> EntityType.Builder.of(IvyEntity::new, MobCategory.MONSTER).sized(1.3f, 2.7f).clientTrackingRange(10).build("ivy"));
     public static final RegistryObject<Item> IVY_EGG = egg("ivy", IVY, 0x2a5a30, 0x9030a0);
 
+    public static final RegistryObject<EntityType<GiantMothEntity>> GIANT_MOTH = ENTITIES.register("giant_moth",
+        () -> EntityType.Builder.of(GiantMothEntity::new, MobCategory.MONSTER).sized(1.4f, 1.2f).clientTrackingRange(10).build("giant_moth"));
+    public static final RegistryObject<Item> GIANT_MOTH_EGG = egg("giant_moth", GIANT_MOTH, 0xc8b890, 0x504030);
+
+    public static final RegistryObject<EntityType<LarvaEntity>> LARVA = ENTITIES.register("larva",
+        () -> EntityType.Builder.of(LarvaEntity::new, MobCategory.MONSTER).sized(1.0f, 0.7f).clientTrackingRange(10).build("larva"));
+    public static final RegistryObject<Item> LARVA_EGG = egg("larva", LARVA, 0xb8c070, 0x403020);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -119,6 +129,8 @@ public final class ModEntities {
         e.put(BIRKIN.get(), BirkinEntity.createAttributes().build());
         e.put(ALLIGATOR.get(), AlligatorEntity.createAttributes().build());
         e.put(IVY.get(), IvyEntity.createAttributes().build());
+        e.put(GIANT_MOTH.get(), GiantMothEntity.createAttributes().build());
+        e.put(LARVA.get(), LarvaEntity.createAttributes().build());
     }
 
     private ModEntities() {}
