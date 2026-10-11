@@ -32,5 +32,7 @@
  "entity.reevil.birkin": "William Birkin (G)",
  "item.reevil.birkin_spawn_egg": "William Birkin (G) Spawn Egg",
  "entity.reevil.alligator": "Giant Alligator",
- "item.reevil.alligator_spawn_egg": "Giant Alligator Spawn Egg"
+ "item.reevil.alligator_spawn_egg": "Giant Alligator Spawn Egg",
+ "entity.reevil.ivy": "Ivy",
+ "item.reevil.ivy_spawn_egg": "Ivy Spawn Egg"
 }

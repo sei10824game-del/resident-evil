@@ -35,6 +35,8 @@ import com.reevil.client.birkin.BirkinModel;
 import com.reevil.client.birkin.BirkinRenderer;
 import com.reevil.client.alligator.AlligatorModel;
 import com.reevil.client.alligator.AlligatorRenderer;
+import com.reevil.client.ivy.IvyModel;
+import com.reevil.client.ivy.IvyRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -62,6 +64,7 @@ public final class ClientSetup {
         e.registerLayerDefinition(MrXModel.LAYER, MrXModel::createBodyLayer);
         e.registerLayerDefinition(BirkinModel.LAYER, BirkinModel::createBodyLayer);
         e.registerLayerDefinition(AlligatorModel.LAYER, AlligatorModel::createBodyLayer);
+        e.registerLayerDefinition(IvyModel.LAYER, IvyModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -83,6 +86,7 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.MR_X.get(), MrXRenderer::new);
         e.registerEntityRenderer(ModEntities.BIRKIN.get(), BirkinRenderer::new);
         e.registerEntityRenderer(ModEntities.ALLIGATOR.get(), AlligatorRenderer::new);
+        e.registerEntityRenderer(ModEntities.IVY.get(), IvyRenderer::new);
     }
 
     private ClientSetup() {}

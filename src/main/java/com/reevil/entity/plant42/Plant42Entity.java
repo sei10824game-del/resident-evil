@@ -94,7 +94,7 @@ public class Plant42Entity extends BioMonster {
         if (direct != null && direct != owner) hit = direct.position();
         else if (owner != null) hit = owner.getEyePosition().add(owner.getLookAngle().scale(owner.distanceTo(this)));
         if (hit != null && amount > 0) {
-            boolean weak = hit.y < getY() + 1.5;
+            boolean weak = hit.y < getY() + weakHeight();
             amount *= weak ? 2.0f : 0.6f;
             if (weak && level() instanceof ServerLevel sl) sl.sendParticles(ParticleTypes.CRIT, hit.x, hit.y, hit.z, 8, 0.3, 0.3, 0.3, 0.1);
         }
@@ -118,7 +118,12 @@ public class Plant42Entity extends BioMonster {
         }
     }
 
-    @Override public void startSeenByPlayer(ServerPlayer p) { super.startSeenByPlayer(p); bossEvent.addPlayer(p); }
+    /** hooks for the smaller Ivy subclass */
+    protected boolean bossBar() { return true; }
+    protected double weakHeight() { return 1.5; }
+    protected double mouthScale() { return 1.0; }
+
+    @Override public void startSeenByPlayer(ServerPlayer p) { super.startSeenByPlayer(p); if (bossBar()) bossEvent.addPlayer(p); }
     @Override public void stopSeenByPlayer(ServerPlayer p) { super.stopSeenByPlayer(p); bossEvent.removePlayer(p); }
 
     // ---- moves
@@ -149,7 +154,7 @@ public class Plant42Entity extends BioMonster {
 
     /** the mouth: ~2.9 blocks up, a little in front of the stem, in the facing direction. */
     private Vec3 mouthPos() {
-        return position().add(Vec3.directionFromRotation(0, getYRot()).scale(1.3)).add(0, 3.0, 0);
+        return position().add(Vec3.directionFromRotation(0, getYRot()).scale(1.3 * mouthScale())).add(0, 3.0 * mouthScale(), 0);
     }
 
     @Override

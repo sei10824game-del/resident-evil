@@ -32,5 +32,7 @@
  "entity.reevil.birkin": "ウィリアム・バーキン（Gウイルス）",
  "item.reevil.birkin_spawn_egg": "ウィリアム・バーキン（Gウイルス）のスポーンエッグ",
  "entity.reevil.alligator": "ジャイアントアリゲーター",
- "item.reevil.alligator_spawn_egg": "ジャイアントアリゲーターのスポーンエッグ"
+ "item.reevil.alligator_spawn_egg": "ジャイアントアリゲーターのスポーンエッグ",
+ "entity.reevil.ivy": "アイビー",
+ "item.reevil.ivy_spawn_egg": "アイビーのスポーンエッグ"
 }
