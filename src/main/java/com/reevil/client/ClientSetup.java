@@ -73,6 +73,30 @@ import com.reevil.client.elgigante.ElGiganteModel;
 import com.reevil.client.elgigante.ElGiganteRenderer;
 import com.reevil.client.dellago.DelLagoModel;
 import com.reevil.client.dellago.DelLagoRenderer;
+import com.reevil.client.majini.MajiniModel;
+import com.reevil.client.majini.MajiniRenderer;
+import com.reevil.client.zealot.ZealotModel;
+import com.reevil.client.zealot.ZealotRenderer;
+import com.reevil.client.chainsawmajini.ChainsawMajiniModel;
+import com.reevil.client.chainsawmajini.ChainsawMajiniRenderer;
+import com.reevil.client.armadura.ArmaduraModel;
+import com.reevil.client.armadura.ArmaduraRenderer;
+import com.reevil.client.kipepeo.KipepeoModel;
+import com.reevil.client.kipepeo.KipepeoRenderer;
+import com.reevil.client.reaper.ReaperModel;
+import com.reevil.client.reaper.ReaperRenderer;
+import com.reevil.client.verdugo.VerdugoModel;
+import com.reevil.client.verdugo.VerdugoRenderer;
+import com.reevil.client.wesker.WeskerModel;
+import com.reevil.client.wesker.WeskerRenderer;
+import com.reevil.client.adjule.AdjuleModel;
+import com.reevil.client.adjule.AdjuleRenderer;
+import com.reevil.client.ndesu.NdesuModel;
+import com.reevil.client.ndesu.NdesuRenderer;
+import com.reevil.client.executionermajini.ExecutionerMajiniModel;
+import com.reevil.client.executionermajini.ExecutionerMajiniRenderer;
+import com.reevil.client.krauser.KrauserModel;
+import com.reevil.client.krauser.KrauserRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -119,6 +143,18 @@ public final class ClientSetup {
         e.registerLayerDefinition(IronMaidenModel.LAYER, IronMaidenModel::createBodyLayer);
         e.registerLayerDefinition(ElGiganteModel.LAYER, ElGiganteModel::createBodyLayer);
         e.registerLayerDefinition(DelLagoModel.LAYER, DelLagoModel::createBodyLayer);
+        e.registerLayerDefinition(MajiniModel.LAYER, MajiniModel::createBodyLayer);
+        e.registerLayerDefinition(ZealotModel.LAYER, ZealotModel::createBodyLayer);
+        e.registerLayerDefinition(ChainsawMajiniModel.LAYER, ChainsawMajiniModel::createBodyLayer);
+        e.registerLayerDefinition(ArmaduraModel.LAYER, ArmaduraModel::createBodyLayer);
+        e.registerLayerDefinition(KipepeoModel.LAYER, KipepeoModel::createBodyLayer);
+        e.registerLayerDefinition(ReaperModel.LAYER, ReaperModel::createBodyLayer);
+        e.registerLayerDefinition(VerdugoModel.LAYER, VerdugoModel::createBodyLayer);
+        e.registerLayerDefinition(WeskerModel.LAYER, WeskerModel::createBodyLayer);
+        e.registerLayerDefinition(AdjuleModel.LAYER, AdjuleModel::createBodyLayer);
+        e.registerLayerDefinition(NdesuModel.LAYER, NdesuModel::createBodyLayer);
+        e.registerLayerDefinition(ExecutionerMajiniModel.LAYER, ExecutionerMajiniModel::createBodyLayer);
+        e.registerLayerDefinition(KrauserModel.LAYER, KrauserModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -159,6 +195,18 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.IRON_MAIDEN.get(), IronMaidenRenderer::new);
         e.registerEntityRenderer(ModEntities.EL_GIGANTE.get(), ElGiganteRenderer::new);
         e.registerEntityRenderer(ModEntities.DEL_LAGO.get(), DelLagoRenderer::new);
+        e.registerEntityRenderer(ModEntities.MAJINI.get(), MajiniRenderer::new);
+        e.registerEntityRenderer(ModEntities.ZEALOT.get(), ZealotRenderer::new);
+        e.registerEntityRenderer(ModEntities.CHAINSAW_MAJINI.get(), ChainsawMajiniRenderer::new);
+        e.registerEntityRenderer(ModEntities.ARMADURA.get(), ArmaduraRenderer::new);
+        e.registerEntityRenderer(ModEntities.KIPEPEO.get(), KipepeoRenderer::new);
+        e.registerEntityRenderer(ModEntities.REAPER.get(), ReaperRenderer::new);
+        e.registerEntityRenderer(ModEntities.VERDUGO.get(), VerdugoRenderer::new);
+        e.registerEntityRenderer(ModEntities.WESKER.get(), WeskerRenderer::new);
+        e.registerEntityRenderer(ModEntities.ADJULE.get(), AdjuleRenderer::new);
+        e.registerEntityRenderer(ModEntities.NDESU.get(), NdesuRenderer::new);
+        e.registerEntityRenderer(ModEntities.EXECUTIONER_MAJINI.get(), ExecutionerMajiniRenderer::new);
+        e.registerEntityRenderer(ModEntities.KRAUSER.get(), KrauserRenderer::new);
     }
 
     private ClientSetup() {}

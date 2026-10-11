@@ -24,8 +24,8 @@ import static com.reevil.anim.K.*;
 public class GanadoModel extends BioModel<GanadoEntity> {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "ganado"), "main");
     private static final float D = Mth.DEG_TO_RAD;
-    private static final String[] W = {"wPitch", "wAxe", "wSickle", "wTorch", "wSaw"};
-    private static final AnimClip C_SWING = swing(), C_STAB = stab(), C_GRAB = grab(), C_BURST = burst(), C_LASH = lash(), C_SCYTHE = scythe(), C_PIERCE = pierce(), C_DECAP = decap();
+    private static final String[] W = {"wPitch", "wAxe", "wSickle", "wTorch", "wSaw", "wBow"};
+    private static final AnimClip C_SWING = swing(), C_STAB = stab(), C_GRAB = grab(), C_BURST = burst(), C_LASH = lash(), C_SCYTHE = scythe(), C_PIERCE = pierce(), C_DECAP = decap(), C_SHOOT = shoot();
 
     public GanadoModel(ModelPart root) {
         super(root);
@@ -65,6 +65,7 @@ public class GanadoModel extends BioModel<GanadoEntity> {
                 hand.addOrReplaceChild("wAxe", CubeListBuilder.create().texOffs(54, 24).addBox(-0.5f, -4, -0.5f, 1, 16, 1).texOffs(66, 24).addBox(-0.5f, 9, -3.5f, 1, 5, 6), PartPose.offsetAndRotation(0, 2, 0, -1.3f, 0, 0));
                 hand.addOrReplaceChild("wSickle", CubeListBuilder.create().texOffs(54, 24).addBox(-0.5f, -3, -0.5f, 1, 10, 1).texOffs(82, 24).addBox(-0.5f, 6, -7, 1, 2, 8), PartPose.offsetAndRotation(0, 2, 0, -1.3f, 0, 0));
                 hand.addOrReplaceChild("wTorch", CubeListBuilder.create().texOffs(54, 24).addBox(-0.5f, -3, -0.5f, 1, 12, 1).texOffs(66, 32).addBox(-1.5f, 9, -1.5f, 3, 3, 3), PartPose.offsetAndRotation(0, 2, 0, -1.3f, 0, 0));
+                hand.addOrReplaceChild("wBow", CubeListBuilder.create().texOffs(54, 24).addBox(-0.5f, -9, -0.5f, 1, 18, 1).texOffs(60, 24).addBox(-0.5f, -9, -2.5f, 1, 2, 2).texOffs(60, 24).addBox(-0.5f, 7, -2.5f, 1, 2, 2), PartPose.offsetAndRotation(0, 2, 0, 0, 0, 0));
                 hand.addOrReplaceChild("wSaw", CubeListBuilder.create().texOffs(84, 38).addBox(-1.5f, -2, -2, 3, 4, 12).texOffs(100, 24).addBox(-0.5f, -1.5f, -14, 1, 3, 12), PartPose.offsetAndRotation(0, 2, 0, -0.3f, 0, 0));
             }
             PartDefinition th = base.addOrReplaceChild("thigh" + n, CubeListBuilder.create().texOffs(0, 38).addBox(-2, 0, -2, 4, 8, 4), PartPose.offset(sg * 2, 1.5f, 0));
@@ -144,6 +145,7 @@ public class GanadoModel extends BioModel<GanadoEntity> {
             case GanadoEntity.PIERCE: return C_PIERCE;
             case GanadoEntity.DECAP: return C_DECAP;
             case GanadoEntity.RUSH: return C_STAB;
+            case GanadoEntity.SHOOT: return C_SHOOT;
             default: return null;
         }
     }
@@ -273,6 +275,19 @@ public class GanadoModel extends BioModel<GanadoEntity> {
         pos(b, "base", k(0, 0, 0, 0), k(0.42f, 0, -1, 2), k(0.5f, 0, 2.5f, -4, SNAP), k(0.8f, 0, 1.5f, -2), k(1, 0, 0, 0));
         pair(b, "thigh", k(0, 0, 0, 0), k(0.5f, -26, 0, 0, SNAP), k(0.8f, -14, 0, 0), k(1, 0, 0, 0));
         pair(b, "shin", k(0, 0, 0, 0), k(0.5f, 30, 0, 0, SNAP), k(0.8f, 18, 0, 0), k(1, 0, 0, 0));
+        return b.build();
+    }
+
+    /** 34t, release @16 (.47): bow arm thrust out, the other hand draws to the cheek, hold, snap-release with a recoil in the shoulders. */
+    private static AnimClip shoot() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0, 0, 0, 0), k(0.25f, -88, 20, 8), k(0.47f, -92, 20, 6), k(0.52f, -88, 20, 6, SNAP), k(0.8f, -30, 0, 0), k(1, 0, 0, 0));
+        rot(b, "foreR", k(0, 0, 0, 0), k(0.25f, -4, 0, 0), k(1, 0, 0, 0));
+        rot(b, "armL", k(0, 0, 0, 0), k(0.15f, -60, -10, -20), k(0.3f, -96, -40, -30), k(0.47f, -100, -42, -34), k(0.52f, -70, -20, -20, SNAP), k(0.8f, -20, 0, 0), k(1, 0, 0, 0));
+        rot(b, "foreL", k(0, 0, 0, 0), k(0.3f, -110, 0, 0), k(0.47f, -118, 0, 0), k(0.52f, -60, 0, 0, SNAP), k(1, 0, 0, 0));
+        rot(b, "torso", k(0, 0, 0, 0), k(0.25f, 0, 36, 0), k(0.47f, 0, 38, 0), k(0.52f, -4, 30, 0, SNAP), k(1, 0, 0, 0));
+        rot(b, "head", k(0, 0, 0, 0), k(0.25f, 0, -30, 0), k(0.47f, 4, -32, 0), k(1, 0, 0, 0));
+        pair2(b, "thigh", k(0, 0, 0, 0), k(0.25f, 10, 0, 0), k(1, 0, 0, 0), k(0, 0, 0, 0), k(0.25f, -14, 0, 0), k(1, 0, 0, 0));
         return b.build();
     }
 }

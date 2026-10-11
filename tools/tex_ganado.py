@@ -7,7 +7,7 @@ CUBES = [('hips', 0, 0, 8, 3, 4), ('torso', 0, 8, 8, 10, 4), ('neck', 26, 0, 3, 
          ('shaft', 54, 24, 1, 22, 1), ('tine', 60, 24, 1, 6, 1), ('axehead', 66, 24, 1, 5, 6), ('sickle', 82, 24, 1, 2, 8), ('flame', 66, 32, 3, 3, 3), ('sawbody', 84, 38, 3, 4, 12), ('sawblade', 100, 24, 1, 3, 12),
          ('tent', 0, 50, 2, 2, 7), ('blade', 22, 50, 1, 13, 3), ('spiderleg', 34, 50, 2, 2, 9)]
 
-def build(name, skin, shirt, pants, hat, plaga, seed, saw_skin=None, sack=False):
+def build(name, skin, shirt, pants, hat, plaga, seed, saw_skin=None, sack=False, sack_col=(178, 150, 104)):
     class P(Paint):
         def __init__(self):
             self.W, self.H, self.skipped = 128, 64, []
@@ -23,7 +23,7 @@ def build(name, skin, shirt, pants, hat, plaga, seed, saw_skin=None, sack=False)
         return fn
     def head(pt, f, r, c):
         if sack:
-            pt.fill(r, (178, 150, 104), 0.1); pt.streak(r, (178, 150, 104), True, 0.12)
+            pt.fill(r, sack_col, 0.1); pt.streak(r, sack_col, True, 0.12)
             if f == 'front': pt.fill((r[0] + 1, r[1] + 2, 2, 1), (20, 16, 12), 0); pt.fill((r[0] + r[2] - 3, r[1] + 2, 2, 1), (20, 16, 12), 0); pt.t.line(r[0], r[1] + r[3] - 2, r[0] + r[2] - 1, r[1] + r[3] - 2, (90, 70, 46))
             return
         sk(pt, f, r, c); x, y, w, h = r
@@ -43,6 +43,6 @@ def build(name, skin, shirt, pants, hat, plaga, seed, saw_skin=None, sack=False)
              ('torso|hips', cloth(shirt)), ('thigh|shin', cloth(pants)), ('foot', cloth((46, 36, 28))), ('arm', cloth(shirt) if not plaga else sk), ('hand|neck', sk)], sk)
     p.save(name)
 
-build('ganado', (196, 156, 124), (130, 100, 64), (78, 70, 60), (196, 176, 110), False, 161)
-build('ganado_plaga', (186, 160, 150), (110, 84, 54), (70, 62, 54), (196, 176, 110), True, 162)
-build('salvador', (196, 156, 124), (92, 84, 76), (66, 74, 86), (196, 176, 110), False, 163, sack=True)
+if __name__ == "__main__": build('ganado', (196, 156, 124), (130, 100, 64), (78, 70, 60), (196, 176, 110), False, 161)
+if __name__ == "__main__": build('ganado_plaga', (186, 160, 150), (110, 84, 54), (70, 62, 54), (196, 176, 110), True, 162)
+if __name__ == "__main__": build('salvador', (196, 156, 124), (92, 84, 76), (66, 74, 86), (196, 176, 110), False, 163, sack=True)

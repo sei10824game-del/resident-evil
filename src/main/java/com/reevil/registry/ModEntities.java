@@ -37,6 +37,18 @@ import com.reevil.entity.regenerador.RegeneradorEntity;
 import com.reevil.entity.ironmaiden.IronMaidenEntity;
 import com.reevil.entity.elgigante.ElGiganteEntity;
 import com.reevil.entity.dellago.DelLagoEntity;
+import com.reevil.entity.majini.MajiniEntity;
+import com.reevil.entity.zealot.ZealotEntity;
+import com.reevil.entity.chainsawmajini.ChainsawMajiniEntity;
+import com.reevil.entity.armadura.ArmaduraEntity;
+import com.reevil.entity.kipepeo.KipepeoEntity;
+import com.reevil.entity.reaper.ReaperEntity;
+import com.reevil.entity.verdugo.VerdugoEntity;
+import com.reevil.entity.wesker.WeskerEntity;
+import com.reevil.entity.adjule.AdjuleEntity;
+import com.reevil.entity.ndesu.NdesuEntity;
+import com.reevil.entity.executionermajini.ExecutionerMajiniEntity;
+import com.reevil.entity.krauser.KrauserEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -190,6 +202,54 @@ public final class ModEntities {
         () -> EntityType.Builder.of(DelLagoEntity::new, MobCategory.MONSTER).sized(3.2f, 2.4f).clientTrackingRange(10).build("del_lago"));
     public static final RegistryObject<Item> DEL_LAGO_EGG = egg("del_lago", DEL_LAGO, 0x305048, 0xc0a060);
 
+    public static final RegistryObject<EntityType<MajiniEntity>> MAJINI = ENTITIES.register("majini",
+        () -> EntityType.Builder.of(MajiniEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("majini"));
+    public static final RegistryObject<Item> MAJINI_EGG = egg("majini", MAJINI, 0x4a3424, 0xa03020);
+
+    public static final RegistryObject<EntityType<ZealotEntity>> ZEALOT = ENTITIES.register("zealot",
+        () -> EntityType.Builder.of(ZealotEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("zealot"));
+    public static final RegistryObject<Item> ZEALOT_EGG = egg("zealot", ZEALOT, 0x602020, 0xc0a040);
+
+    public static final RegistryObject<EntityType<ChainsawMajiniEntity>> CHAINSAW_MAJINI = ENTITIES.register("chainsaw_majini",
+        () -> EntityType.Builder.of(ChainsawMajiniEntity::new, MobCategory.MONSTER).sized(0.8f, 2.3f).clientTrackingRange(10).build("chainsaw_majini"));
+    public static final RegistryObject<Item> CHAINSAW_MAJINI_EGG = egg("chainsaw_majini", CHAINSAW_MAJINI, 0x3a2c20, 0xc0a040);
+
+    public static final RegistryObject<EntityType<ArmaduraEntity>> ARMADURA = ENTITIES.register("armadura",
+        () -> EntityType.Builder.of(ArmaduraEntity::new, MobCategory.MONSTER).sized(0.8f, 2.2f).clientTrackingRange(10).build("armadura"));
+    public static final RegistryObject<Item> ARMADURA_EGG = egg("armadura", ARMADURA, 0x80848c, 0x303030);
+
+    public static final RegistryObject<EntityType<KipepeoEntity>> KIPEPEO = ENTITIES.register("kipepeo",
+        () -> EntityType.Builder.of(KipepeoEntity::new, MobCategory.MONSTER).sized(1.4f, 1.2f).clientTrackingRange(10).build("kipepeo"));
+    public static final RegistryObject<Item> KIPEPEO_EGG = egg("kipepeo", KIPEPEO, 0x607040, 0xe0d080);
+
+    public static final RegistryObject<EntityType<ReaperEntity>> REAPER = ENTITIES.register("reaper",
+        () -> EntityType.Builder.of(ReaperEntity::new, MobCategory.MONSTER).sized(1.0f, 1.6f).clientTrackingRange(10).build("reaper"));
+    public static final RegistryObject<Item> REAPER_EGG = egg("reaper", REAPER, 0x302030, 0xc03060);
+
+    public static final RegistryObject<EntityType<VerdugoEntity>> VERDUGO = ENTITIES.register("verdugo",
+        () -> EntityType.Builder.of(VerdugoEntity::new, MobCategory.MONSTER).sized(1.0f, 2.6f).clientTrackingRange(10).build("verdugo"));
+    public static final RegistryObject<Item> VERDUGO_EGG = egg("verdugo", VERDUGO, 0x806050, 0xa0a0a8);
+
+    public static final RegistryObject<EntityType<WeskerEntity>> WESKER = ENTITIES.register("wesker",
+        () -> EntityType.Builder.of(WeskerEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("wesker"));
+    public static final RegistryObject<Item> WESKER_EGG = egg("wesker", WESKER, 0x101010, 0xe0c040);
+
+    public static final RegistryObject<EntityType<AdjuleEntity>> ADJULE = ENTITIES.register("adjule",
+        () -> EntityType.Builder.of(AdjuleEntity::new, MobCategory.MONSTER).sized(0.9f, 2.5f).clientTrackingRange(10).build("adjule"));
+    public static final RegistryObject<Item> ADJULE_EGG = egg("adjule", ADJULE, 0x706050, 0xa04040);
+
+    public static final RegistryObject<EntityType<NdesuEntity>> NDESU = ENTITIES.register("ndesu",
+        () -> EntityType.Builder.of(NdesuEntity::new, MobCategory.MONSTER).sized(1.4f, 3.4f).clientTrackingRange(10).build("ndesu"));
+    public static final RegistryObject<Item> NDESU_EGG = egg("ndesu", NDESU, 0x605040, 0x80a040);
+
+    public static final RegistryObject<EntityType<ExecutionerMajiniEntity>> EXECUTIONER_MAJINI = ENTITIES.register("executioner_majini",
+        () -> EntityType.Builder.of(ExecutionerMajiniEntity::new, MobCategory.MONSTER).sized(1.5f, 3.8f).clientTrackingRange(10).build("executioner_majini"));
+    public static final RegistryObject<Item> EXECUTIONER_MAJINI_EGG = egg("executioner_majini", EXECUTIONER_MAJINI, 0x403028, 0xc03030);
+
+    public static final RegistryObject<EntityType<KrauserEntity>> KRAUSER = ENTITIES.register("krauser",
+        () -> EntityType.Builder.of(KrauserEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("krauser"));
+    public static final RegistryObject<Item> KRAUSER_EGG = egg("krauser", KRAUSER, 0x4a5a40, 0xc0a060);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -227,6 +287,18 @@ public final class ModEntities {
         e.put(IRON_MAIDEN.get(), IronMaidenEntity.createAttributes().build());
         e.put(EL_GIGANTE.get(), ElGiganteEntity.createAttributes().build());
         e.put(DEL_LAGO.get(), DelLagoEntity.createAttributes().build());
+        e.put(MAJINI.get(), MajiniEntity.createAttributes().build());
+        e.put(ZEALOT.get(), ZealotEntity.createAttributes().build());
+        e.put(CHAINSAW_MAJINI.get(), ChainsawMajiniEntity.createAttributes().build());
+        e.put(ARMADURA.get(), ArmaduraEntity.createAttributes().build());
+        e.put(KIPEPEO.get(), KipepeoEntity.createAttributes().build());
+        e.put(REAPER.get(), ReaperEntity.createAttributes().build());
+        e.put(VERDUGO.get(), VerdugoEntity.createAttributes().build());
+        e.put(WESKER.get(), WeskerEntity.createAttributes().build());
+        e.put(ADJULE.get(), AdjuleEntity.createAttributes().build());
+        e.put(NDESU.get(), NdesuEntity.createAttributes().build());
+        e.put(EXECUTIONER_MAJINI.get(), ExecutionerMajiniEntity.createAttributes().build());
+        e.put(KRAUSER.get(), KrauserEntity.createAttributes().build());
     }
 
     private ModEntities() {}

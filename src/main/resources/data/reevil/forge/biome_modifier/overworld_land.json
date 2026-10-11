@@ -151,6 +151,54 @@
    "weight": 2,
    "minCount": 1,
    "maxCount": 1
+  },
+  {
+   "type": "reevil:majini",
+   "weight": 14,
+   "minCount": 2,
+   "maxCount": 4
+  },
+  {
+   "type": "reevil:zealot",
+   "weight": 6,
+   "minCount": 2,
+   "maxCount": 3
+  },
+  {
+   "type": "reevil:chainsaw_majini",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:armadura",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:kipepeo",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:reaper",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:adjule",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:ndesu",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
   }
  ]
 }

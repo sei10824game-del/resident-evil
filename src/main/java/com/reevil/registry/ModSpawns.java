@@ -20,10 +20,10 @@ public final class ModSpawns {
     @SubscribeEvent
     public static void register(SpawnPlacementRegisterEvent e) {
         for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.ZOMBIE.get(), ModEntities.CRIMSON_HEAD.get(), ModEntities.CERBERUS.get(), ModEntities.HUNTER.get(),
-            ModEntities.CHIMERA.get(), ModEntities.GIANT_SPIDER.get(), ModEntities.WEB_SPINNER.get(), ModEntities.LICKER.get(), ModEntities.LARVA.get(), ModEntities.IVY.get(), ModEntities.GRAVE_DIGGER.get(), ModEntities.PALE_HEAD.get(), ModEntities.HUNTER_BETA.get(), ModEntities.HUNTER_GAMMA.get(), ModEntities.GANADO.get(), ModEntities.SALVADOR.get(), ModEntities.GARRADOR.get(), ModEntities.COLMILLOS.get(), ModEntities.REGENERADOR.get(), ModEntities.IRON_MAIDEN.get()}) {
+            ModEntities.CHIMERA.get(), ModEntities.GIANT_SPIDER.get(), ModEntities.WEB_SPINNER.get(), ModEntities.LICKER.get(), ModEntities.LARVA.get(), ModEntities.IVY.get(), ModEntities.GRAVE_DIGGER.get(), ModEntities.PALE_HEAD.get(), ModEntities.HUNTER_BETA.get(), ModEntities.HUNTER_GAMMA.get(), ModEntities.GANADO.get(), ModEntities.SALVADOR.get(), ModEntities.GARRADOR.get(), ModEntities.COLMILLOS.get(), ModEntities.REGENERADOR.get(), ModEntities.IRON_MAIDEN.get(), ModEntities.MAJINI.get(), ModEntities.ZEALOT.get(), ModEntities.CHAINSAW_MAJINI.get(), ModEntities.ARMADURA.get(), ModEntities.REAPER.get(), ModEntities.ADJULE.get(), ModEntities.NDESU.get()}) {
             reg(e, t);
         }
-        for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.CROW.get(), ModEntities.GIANT_MOTH.get(), ModEntities.DRAIN_DEIMOS.get(), ModEntities.BRAIN_SUCKER.get(), ModEntities.NOVISTADOR.get()}) {
+        for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.CROW.get(), ModEntities.GIANT_MOTH.get(), ModEntities.DRAIN_DEIMOS.get(), ModEntities.BRAIN_SUCKER.get(), ModEntities.NOVISTADOR.get(), ModEntities.KIPEPEO.get()}) {
             e.register(t, SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, (ty, l, r, p, rnd) -> p.getY() > l.getMinBuildHeight() && Monster.isDarkEnoughToSpawn(l, p, rnd), SpawnPlacementRegisterEvent.Operation.OR);
         }
         for (EntityType<? extends Mob> w : new EntityType[]{ModEntities.ALLIGATOR.get(), ModEntities.DEL_LAGO.get()}) e.register(w, SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
