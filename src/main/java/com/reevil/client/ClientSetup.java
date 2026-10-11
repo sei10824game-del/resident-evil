@@ -97,6 +97,28 @@ import com.reevil.client.executionermajini.ExecutionerMajiniModel;
 import com.reevil.client.executionermajini.ExecutionerMajiniRenderer;
 import com.reevil.client.krauser.KrauserModel;
 import com.reevil.client.krauser.KrauserRenderer;
+import com.reevil.client.saddler.SaddlerModel;
+import com.reevil.client.saddler.SaddlerRenderer;
+import com.reevil.client.simmons.SimmonsModel;
+import com.reevil.client.simmons.SimmonsRenderer;
+import com.reevil.client.salazar.SalazarModel;
+import com.reevil.client.salazar.SalazarRenderer;
+import com.reevil.client.uroboros.UroborosModel;
+import com.reevil.client.uroboros.UroborosRenderer;
+import com.reevil.client.mendez.MendezModel;
+import com.reevil.client.mendez.MendezRenderer;
+import com.reevil.client.ogroman.OgromanModel;
+import com.reevil.client.ogroman.OgromanRenderer;
+import com.reevil.client.jill.JillModel;
+import com.reevil.client.jill.JillRenderer;
+import com.reevil.client.ustanak.UstanakModel;
+import com.reevil.client.ustanak.UstanakRenderer;
+import com.reevil.client.napad.NapadModel;
+import com.reevil.client.napad.NapadRenderer;
+import com.reevil.client.javo.JavoModel;
+import com.reevil.client.javo.JavoRenderer;
+import com.reevil.client.gatlingmajini.GatlingMajiniModel;
+import com.reevil.client.gatlingmajini.GatlingMajiniRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -155,6 +177,17 @@ public final class ClientSetup {
         e.registerLayerDefinition(NdesuModel.LAYER, NdesuModel::createBodyLayer);
         e.registerLayerDefinition(ExecutionerMajiniModel.LAYER, ExecutionerMajiniModel::createBodyLayer);
         e.registerLayerDefinition(KrauserModel.LAYER, KrauserModel::createBodyLayer);
+        e.registerLayerDefinition(SaddlerModel.LAYER, SaddlerModel::createBodyLayer);
+        e.registerLayerDefinition(SimmonsModel.LAYER, SimmonsModel::createBodyLayer);
+        e.registerLayerDefinition(SalazarModel.LAYER, SalazarModel::createBodyLayer);
+        e.registerLayerDefinition(UroborosModel.LAYER, UroborosModel::createBodyLayer);
+        e.registerLayerDefinition(MendezModel.LAYER, MendezModel::createBodyLayer);
+        e.registerLayerDefinition(OgromanModel.LAYER, OgromanModel::createBodyLayer);
+        e.registerLayerDefinition(JillModel.LAYER, JillModel::createBodyLayer);
+        e.registerLayerDefinition(UstanakModel.LAYER, UstanakModel::createBodyLayer);
+        e.registerLayerDefinition(NapadModel.LAYER, NapadModel::createBodyLayer);
+        e.registerLayerDefinition(JavoModel.LAYER, JavoModel::createBodyLayer);
+        e.registerLayerDefinition(GatlingMajiniModel.LAYER, GatlingMajiniModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -207,6 +240,17 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.NDESU.get(), NdesuRenderer::new);
         e.registerEntityRenderer(ModEntities.EXECUTIONER_MAJINI.get(), ExecutionerMajiniRenderer::new);
         e.registerEntityRenderer(ModEntities.KRAUSER.get(), KrauserRenderer::new);
+        e.registerEntityRenderer(ModEntities.SADDLER.get(), SaddlerRenderer::new);
+        e.registerEntityRenderer(ModEntities.SIMMONS.get(), SimmonsRenderer::new);
+        e.registerEntityRenderer(ModEntities.SALAZAR.get(), SalazarRenderer::new);
+        e.registerEntityRenderer(ModEntities.UROBOROS.get(), UroborosRenderer::new);
+        e.registerEntityRenderer(ModEntities.MENDEZ.get(), MendezRenderer::new);
+        e.registerEntityRenderer(ModEntities.OGROMAN.get(), OgromanRenderer::new);
+        e.registerEntityRenderer(ModEntities.JILL.get(), JillRenderer::new);
+        e.registerEntityRenderer(ModEntities.USTANAK.get(), UstanakRenderer::new);
+        e.registerEntityRenderer(ModEntities.NAPAD.get(), NapadRenderer::new);
+        e.registerEntityRenderer(ModEntities.JAVO.get(), JavoRenderer::new);
+        e.registerEntityRenderer(ModEntities.GATLING_MAJINI.get(), GatlingMajiniRenderer::new);
     }
 
     private ClientSetup() {}

@@ -88,6 +88,8 @@ public class GanadoEntity extends BioMonster {
     }
 
     protected boolean canBurst() { return true; }
+    /** force the Plaga to erupt now (used by the aggressive J'avo). */
+    protected void triggerBurst() { if (getForm() == 0 && getMoveId() != BURST && !level().isClientSide) { cancelMove(); startMove(M_BURST); } }
     public boolean hasHat() { return true; }
 
     @Override

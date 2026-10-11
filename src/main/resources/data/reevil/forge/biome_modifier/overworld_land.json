@@ -199,6 +199,36 @@
    "weight": 1,
    "minCount": 1,
    "maxCount": 1
+  },
+  {
+   "type": "reevil:javo",
+   "weight": 10,
+   "minCount": 2,
+   "maxCount": 4
+  },
+  {
+   "type": "reevil:napad",
+   "weight": 3,
+   "minCount": 2,
+   "maxCount": 3
+  },
+  {
+   "type": "reevil:gatling_majini",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:mendez",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:ogroman",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
   }
  ]
 }

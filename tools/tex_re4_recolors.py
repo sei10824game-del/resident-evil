@@ -64,3 +64,26 @@ save(a, 'armadura')
 save(colorize(load('giant_moth'), (30, 30, 14), (226, 210, 120), (120, 120, 50)), 'kipepeo')
 # Reaper: sinewy dark purple-grey crawler
 save(colorize(load('hunter_gamma'), (16, 12, 22), (176, 150, 190), (70, 56, 84)), 'reaper')
+
+# ---- RE4/5/6 bosses and variants
+nem = load('nemesis')
+for sfx, (b, w, m) in {'': ((70, 66, 70), (246, 244, 240), (170, 164, 160)), '_mutated': ((60, 36, 44), (226, 196, 190), (150, 90, 100)), '_final': ((50, 24, 40), (210, 170, 190), (130, 60, 90))}.items():
+    save(colorize(load('nemesis' + sfx), b, w, m), 'saddler' + sfx)
+    save(colorize(load('nemesis' + sfx), (18, 16, 20), (170, 160, 170), (84, 70, 90)), 'simmons' + sfx)
+for sfx in ('', '_phase2'):
+    save(colorize(load('plant42' + sfx), (40, 22, 30), (236, 200, 190), (150, 90, 100)), 'salazar' + sfx)
+    save(colorize(load('plant42' + sfx), (14, 8, 10), (230, 150, 40), (90, 24, 24)), 'uroboros' + sfx)
+eg = load('el_gigante')
+save(colorize(eg, (50, 40, 30), (214, 180, 120), (130, 96, 64)), 'mendez')
+save(colorize(eg, (34, 40, 40), (168, 190, 170), (84, 110, 96)), 'ogroman')
+# Jill: Wesker frame, brown hair, no shades
+jw = load('wesker'); px = jw.load()
+for y in range(6, 17):
+    for x in range(30, 58):
+        r, g, b, a = px[x, y]
+        if (r, g, b) == (226, 214, 150): px[x, y] = (96, 70, 46, 255)
+        elif (r, g, b) == (12, 12, 14) and y >= 15: px[x, y] = (178, 150, 130, 255)
+save(jw, 'jill')
+# Ustanak: super-frame with steel claws, dark leather
+save(nohat(colorize(load('mr_x_super'), (28, 26, 26), (190, 180, 168), (92, 86, 80))), 'ustanak')
+save(colorize(load('reaper'), (40, 26, 12), (216, 170, 90), (120, 84, 40)), 'napad')

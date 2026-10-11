@@ -49,6 +49,17 @@ import com.reevil.entity.adjule.AdjuleEntity;
 import com.reevil.entity.ndesu.NdesuEntity;
 import com.reevil.entity.executionermajini.ExecutionerMajiniEntity;
 import com.reevil.entity.krauser.KrauserEntity;
+import com.reevil.entity.saddler.SaddlerEntity;
+import com.reevil.entity.simmons.SimmonsEntity;
+import com.reevil.entity.salazar.SalazarEntity;
+import com.reevil.entity.uroboros.UroborosEntity;
+import com.reevil.entity.mendez.MendezEntity;
+import com.reevil.entity.ogroman.OgromanEntity;
+import com.reevil.entity.jill.JillEntity;
+import com.reevil.entity.ustanak.UstanakEntity;
+import com.reevil.entity.napad.NapadEntity;
+import com.reevil.entity.javo.JavoEntity;
+import com.reevil.entity.gatlingmajini.GatlingMajiniEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -250,6 +261,50 @@ public final class ModEntities {
         () -> EntityType.Builder.of(KrauserEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("krauser"));
     public static final RegistryObject<Item> KRAUSER_EGG = egg("krauser", KRAUSER, 0x4a5a40, 0xc0a060);
 
+    public static final RegistryObject<EntityType<SaddlerEntity>> SADDLER = ENTITIES.register("saddler",
+        () -> EntityType.Builder.of(SaddlerEntity::new, MobCategory.MONSTER).sized(0.7f, 2.1f).clientTrackingRange(10).build("saddler"));
+    public static final RegistryObject<Item> SADDLER_EGG = egg("saddler", SADDLER, 0xe0e0e0, 0x704020);
+
+    public static final RegistryObject<EntityType<SimmonsEntity>> SIMMONS = ENTITIES.register("simmons",
+        () -> EntityType.Builder.of(SimmonsEntity::new, MobCategory.MONSTER).sized(0.9f, 2.5f).clientTrackingRange(10).build("simmons"));
+    public static final RegistryObject<Item> SIMMONS_EGG = egg("simmons", SIMMONS, 0x404040, 0xc02020);
+
+    public static final RegistryObject<EntityType<SalazarEntity>> SALAZAR = ENTITIES.register("salazar",
+        () -> EntityType.Builder.of(SalazarEntity::new, MobCategory.MONSTER).sized(2.4f, 4.0f).clientTrackingRange(10).build("salazar"));
+    public static final RegistryObject<Item> SALAZAR_EGG = egg("salazar", SALAZAR, 0xc0a0b0, 0x704050);
+
+    public static final RegistryObject<EntityType<UroborosEntity>> UROBOROS = ENTITIES.register("uroboros",
+        () -> EntityType.Builder.of(UroborosEntity::new, MobCategory.MONSTER).sized(2.8f, 4.8f).clientTrackingRange(10).build("uroboros"));
+    public static final RegistryObject<Item> UROBOROS_EGG = egg("uroboros", UROBOROS, 0x201010, 0xe0a020);
+
+    public static final RegistryObject<EntityType<MendezEntity>> MENDEZ = ENTITIES.register("mendez",
+        () -> EntityType.Builder.of(MendezEntity::new, MobCategory.MONSTER).sized(1.3f, 3.2f).clientTrackingRange(10).build("mendez"));
+    public static final RegistryObject<Item> MENDEZ_EGG = egg("mendez", MENDEZ, 0x706040, 0x802020);
+
+    public static final RegistryObject<EntityType<OgromanEntity>> OGROMAN = ENTITIES.register("ogroman",
+        () -> EntityType.Builder.of(OgromanEntity::new, MobCategory.MONSTER).sized(1.9f, 4.6f).clientTrackingRange(10).build("ogroman"));
+    public static final RegistryObject<Item> OGROMAN_EGG = egg("ogroman", OGROMAN, 0x504038, 0xa04030);
+
+    public static final RegistryObject<EntityType<JillEntity>> JILL = ENTITIES.register("jill",
+        () -> EntityType.Builder.of(JillEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("jill"));
+    public static final RegistryObject<Item> JILL_EGG = egg("jill", JILL, 0x101010, 0xe0c070);
+
+    public static final RegistryObject<EntityType<UstanakEntity>> USTANAK = ENTITIES.register("ustanak",
+        () -> EntityType.Builder.of(UstanakEntity::new, MobCategory.MONSTER).sized(1.1f, 2.9f).clientTrackingRange(10).build("ustanak"));
+    public static final RegistryObject<Item> USTANAK_EGG = egg("ustanak", USTANAK, 0x706860, 0xa02020);
+
+    public static final RegistryObject<EntityType<NapadEntity>> NAPAD = ENTITIES.register("napad",
+        () -> EntityType.Builder.of(NapadEntity::new, MobCategory.MONSTER).sized(0.8f, 1.2f).clientTrackingRange(10).build("napad"));
+    public static final RegistryObject<Item> NAPAD_EGG = egg("napad", NAPAD, 0x405030, 0xc0b060);
+
+    public static final RegistryObject<EntityType<JavoEntity>> JAVO = ENTITIES.register("javo",
+        () -> EntityType.Builder.of(JavoEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("javo"));
+    public static final RegistryObject<Item> JAVO_EGG = egg("javo", JAVO, 0x404850, 0xc03030);
+
+    public static final RegistryObject<EntityType<GatlingMajiniEntity>> GATLING_MAJINI = ENTITIES.register("gatling_majini",
+        () -> EntityType.Builder.of(GatlingMajiniEntity::new, MobCategory.MONSTER).sized(0.8f, 2.1f).clientTrackingRange(10).build("gatling_majini"));
+    public static final RegistryObject<Item> GATLING_MAJINI_EGG = egg("gatling_majini", GATLING_MAJINI, 0x3a2c20, 0x808080);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -299,6 +354,17 @@ public final class ModEntities {
         e.put(NDESU.get(), NdesuEntity.createAttributes().build());
         e.put(EXECUTIONER_MAJINI.get(), ExecutionerMajiniEntity.createAttributes().build());
         e.put(KRAUSER.get(), KrauserEntity.createAttributes().build());
+        e.put(SADDLER.get(), SaddlerEntity.createAttributes().build());
+        e.put(SIMMONS.get(), SimmonsEntity.createAttributes().build());
+        e.put(SALAZAR.get(), SalazarEntity.createAttributes().build());
+        e.put(UROBOROS.get(), UroborosEntity.createAttributes().build());
+        e.put(MENDEZ.get(), MendezEntity.createAttributes().build());
+        e.put(OGROMAN.get(), OgromanEntity.createAttributes().build());
+        e.put(JILL.get(), JillEntity.createAttributes().build());
+        e.put(USTANAK.get(), UstanakEntity.createAttributes().build());
+        e.put(NAPAD.get(), NapadEntity.createAttributes().build());
+        e.put(JAVO.get(), JavoEntity.createAttributes().build());
+        e.put(GATLING_MAJINI.get(), GatlingMajiniEntity.createAttributes().build());
     }
 
     private ModEntities() {}

@@ -119,4 +119,17 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void ndesu(GameTestHelper h) { run(h, ModEntities.NDESU.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void executionerMajini(GameTestHelper h) { run(h, ModEntities.EXECUTIONER_MAJINI.get(), false, 8); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void krauser(GameTestHelper h) { run(h, ModEntities.KRAUSER.get(), false, 9); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void saddler(GameTestHelper h) { run(h, ModEntities.SADDLER.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void saddlerLow(GameTestHelper h) { run(h, ModEntities.SADDLER.get(), false, 6, 0.5f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void simmons(GameTestHelper h) { run(h, ModEntities.SIMMONS.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void salazar(GameTestHelper h) { run(h, ModEntities.SALAZAR.get(), false, 5); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void uroboros(GameTestHelper h) { run(h, ModEntities.UROBOROS.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void mendez(GameTestHelper h) { run(h, ModEntities.MENDEZ.get(), false, 7); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void ogroman(GameTestHelper h) { run(h, ModEntities.OGROMAN.get(), false, 8); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void jill(GameTestHelper h) { run(h, ModEntities.JILL.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void ustanak(GameTestHelper h) { run(h, ModEntities.USTANAK.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void napad(GameTestHelper h) { run(h, ModEntities.NAPAD.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void javo(GameTestHelper h) { run(h, ModEntities.JAVO.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void javoLow(GameTestHelper h) { run(h, ModEntities.JAVO.get(), false, 4, 0.5f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void gatlingMajini(GameTestHelper h) { run(h, ModEntities.GATLING_MAJINI.get(), false, 9); }
 }
