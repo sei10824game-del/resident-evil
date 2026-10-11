@@ -1,0 +1,40 @@
+package com.reevil.registry;
+
+import com.reevil.ReEvilMod;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+
+/**
+ * Placement rules for natural spawning. Which biomes/weights: data/reevil/forge/biome_modifier/*.json (delete or override with a datapack to disable).
+ * Bosses (Tyrant, Lisa, Birkin, Mr. X, Plant 42, Yawn) never spawn naturally.
+ */
+@Mod.EventBusSubscriber(modid = ReEvilMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public final class ModSpawns {
+    @SubscribeEvent
+    public static void register(SpawnPlacementRegisterEvent e) {
+        for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.ZOMBIE.get(), ModEntities.CRIMSON_HEAD.get(), ModEntities.CERBERUS.get(), ModEntities.HUNTER.get(),
+            ModEntities.CHIMERA.get(), ModEntities.GIANT_SPIDER.get(), ModEntities.WEB_SPINNER.get(), ModEntities.LICKER.get(), ModEntities.LARVA.get(), ModEntities.IVY.get()}) {
+            reg(e, t);
+        }
+        for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.CROW.get(), ModEntities.GIANT_MOTH.get()}) {
+            e.register(t, SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, (ty, l, r, p, rnd) -> p.getY() > l.getMinBuildHeight() && Monster.isDarkEnoughToSpawn(l, p, rnd), SpawnPlacementRegisterEvent.Operation.OR);
+        }
+        e.register(ModEntities.ALLIGATOR.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+            (ty, l, r, p, rnd) -> l.getFluidState(p).is(FluidTags.WATER) || l.getFluidState(p.below()).is(FluidTags.WATER), SpawnPlacementRegisterEvent.Operation.OR);
+        e.register(ModEntities.NEPTUNE.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.OCEAN_FLOOR,
+            (ty, l, r, p, rnd) -> l.getFluidState(p).is(FluidTags.WATER) && p.getY() < l.getSeaLevel() - 6, SpawnPlacementRegisterEvent.Operation.OR);
+    }
+
+    private static void reg(SpawnPlacementRegisterEvent e, EntityType<? extends Mob> t) {
+        e.register(t, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (ty, l, r, p, rnd) -> Monster.isDarkEnoughToSpawn(l, p, rnd) && l.getBlockState(p.below()).isValidSpawn(l, p.below(), ty), SpawnPlacementRegisterEvent.Operation.OR);
+    }
+
+    private ModSpawns() {}
+}

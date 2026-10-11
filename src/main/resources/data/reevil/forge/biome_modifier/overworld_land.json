@@ -1,0 +1,78 @@
+{
+ "type": "forge:add_spawns",
+ "biomes": "#minecraft:is_overworld",
+ "spawners": [
+  {
+   "type": "reevil:zombie",
+   "weight": 14,
+   "minCount": 1,
+   "maxCount": 3
+  },
+  {
+   "type": "reevil:cerberus",
+   "weight": 5,
+   "minCount": 2,
+   "maxCount": 3
+  },
+  {
+   "type": "reevil:crow",
+   "weight": 6,
+   "minCount": 2,
+   "maxCount": 4
+  },
+  {
+   "type": "reevil:crimson_head",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:hunter",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:chimera",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:giant_spider",
+   "weight": 3,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:web_spinner",
+   "weight": 4,
+   "minCount": 2,
+   "maxCount": 4
+  },
+  {
+   "type": "reevil:licker",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 2
+  },
+  {
+   "type": "reevil:larva",
+   "weight": 3,
+   "minCount": 1,
+   "maxCount": 2
+  },
+  {
+   "type": "reevil:giant_moth",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:ivy",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  }
+ ]
+}
