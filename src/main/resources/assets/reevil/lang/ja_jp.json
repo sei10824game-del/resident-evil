@@ -30,5 +30,7 @@
  "entity.reevil.mr_x": "ミスターX（タイラントT-103）",
  "item.reevil.mr_x_spawn_egg": "ミスターX（タイラントT-103）のスポーンエッグ",
  "entity.reevil.birkin": "ウィリアム・バーキン（Gウイルス）",
- "item.reevil.birkin_spawn_egg": "ウィリアム・バーキン（Gウイルス）のスポーンエッグ"
+ "item.reevil.birkin_spawn_egg": "ウィリアム・バーキン（Gウイルス）のスポーンエッグ",
+ "entity.reevil.alligator": "ジャイアントアリゲーター",
+ "item.reevil.alligator_spawn_egg": "ジャイアントアリゲーターのスポーンエッグ"
 }

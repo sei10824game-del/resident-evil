@@ -30,5 +30,7 @@
  "entity.reevil.mr_x": "Mr. X (Tyrant T-103)",
  "item.reevil.mr_x_spawn_egg": "Mr. X (Tyrant T-103) Spawn Egg",
  "entity.reevil.birkin": "William Birkin (G)",
- "item.reevil.birkin_spawn_egg": "William Birkin (G) Spawn Egg"
+ "item.reevil.birkin_spawn_egg": "William Birkin (G) Spawn Egg",
+ "entity.reevil.alligator": "Giant Alligator",
+ "item.reevil.alligator_spawn_egg": "Giant Alligator Spawn Egg"
 }

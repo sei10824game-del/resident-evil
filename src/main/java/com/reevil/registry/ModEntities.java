@@ -17,6 +17,7 @@ import com.reevil.entity.lisatrevor.LisaTrevorEntity;
 import com.reevil.entity.licker.LickerEntity;
 import com.reevil.entity.mrx.MrXEntity;
 import com.reevil.entity.birkin.BirkinEntity;
+import com.reevil.entity.alligator.AlligatorEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -90,6 +91,10 @@ public final class ModEntities {
         () -> EntityType.Builder.of(BirkinEntity::new, MobCategory.MONSTER).sized(1.2f, 3.1f).clientTrackingRange(10).build("birkin"));
     public static final RegistryObject<Item> BIRKIN_EGG = egg("birkin", BIRKIN, 0x7a2a2a, 0xe0b060);
 
+    public static final RegistryObject<EntityType<AlligatorEntity>> ALLIGATOR = ENTITIES.register("alligator",
+        () -> EntityType.Builder.of(AlligatorEntity::new, MobCategory.MONSTER).sized(1.3f, 0.9f).clientTrackingRange(10).build("alligator"));
+    public static final RegistryObject<Item> ALLIGATOR_EGG = egg("alligator", ALLIGATOR, 0x3c5a2c, 0xd8d0a0);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -107,6 +112,7 @@ public final class ModEntities {
         e.put(LICKER.get(), LickerEntity.createAttributes().build());
         e.put(MR_X.get(), MrXEntity.createAttributes().build());
         e.put(BIRKIN.get(), BirkinEntity.createAttributes().build());
+        e.put(ALLIGATOR.get(), AlligatorEntity.createAttributes().build());
     }
 
     private ModEntities() {}
