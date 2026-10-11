@@ -15,6 +15,7 @@ import com.reevil.entity.plant42.Plant42Entity;
 import com.reevil.entity.tyrant.TyrantEntity;
 import com.reevil.entity.lisatrevor.LisaTrevorEntity;
 import com.reevil.entity.licker.LickerEntity;
+import com.reevil.entity.mrx.MrXEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -80,6 +81,10 @@ public final class ModEntities {
         () -> EntityType.Builder.of(LickerEntity::new, MobCategory.MONSTER).sized(0.8f, 1.0f).clientTrackingRange(10).build("licker"));
     public static final RegistryObject<Item> LICKER_EGG = egg("licker", LICKER, 0xb04040, 0xd8a0a0);
 
+    public static final RegistryObject<EntityType<MrXEntity>> MR_X = ENTITIES.register("mr_x",
+        () -> EntityType.Builder.of(MrXEntity::new, MobCategory.MONSTER).sized(0.9f, 2.5f).clientTrackingRange(10).build("mr_x"));
+    public static final RegistryObject<Item> MR_X_EGG = egg("mr_x", MR_X, 0x202020, 0x707070);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -95,6 +100,7 @@ public final class ModEntities {
         e.put(TYRANT.get(), TyrantEntity.createAttributes().build());
         e.put(LISA_TREVOR.get(), LisaTrevorEntity.createAttributes().build());
         e.put(LICKER.get(), LickerEntity.createAttributes().build());
+        e.put(MR_X.get(), MrXEntity.createAttributes().build());
     }
 
     private ModEntities() {}

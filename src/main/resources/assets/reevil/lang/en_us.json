@@ -26,5 +26,7 @@
  "entity.reevil.lisa_trevor": "Lisa Trevor",
  "item.reevil.lisa_trevor_spawn_egg": "Lisa Trevor Spawn Egg",
  "entity.reevil.licker": "Licker",
- "item.reevil.licker_spawn_egg": "Licker Spawn Egg"
+ "item.reevil.licker_spawn_egg": "Licker Spawn Egg",
+ "entity.reevil.mr_x": "Mr. X (Tyrant T-103)",
+ "item.reevil.mr_x_spawn_egg": "Mr. X (Tyrant T-103) Spawn Egg"
 }

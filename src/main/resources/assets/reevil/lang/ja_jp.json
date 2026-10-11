@@ -26,5 +26,7 @@
  "entity.reevil.lisa_trevor": "リサ・トレヴァー",
  "item.reevil.lisa_trevor_spawn_egg": "リサ・トレヴァーのスポーンエッグ",
  "entity.reevil.licker": "リッカー",
- "item.reevil.licker_spawn_egg": "リッカーのスポーンエッグ"
+ "item.reevil.licker_spawn_egg": "リッカーのスポーンエッグ",
+ "entity.reevil.mr_x": "ミスターX（タイラントT-103）",
+ "item.reevil.mr_x_spawn_egg": "ミスターX（タイラントT-103）のスポーンエッグ"
 }
