@@ -22,6 +22,8 @@ import com.reevil.entity.ivy.IvyEntity;
 import com.reevil.entity.giantmoth.GiantMothEntity;
 import com.reevil.entity.larva.LarvaEntity;
 import com.reevil.entity.nemesis.NemesisEntity;
+import com.reevil.entity.gravedigger.GraveDiggerEntity;
+import com.reevil.entity.draindeimos.DrainDeimosEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -115,6 +117,14 @@ public final class ModEntities {
         () -> EntityType.Builder.of(NemesisEntity::new, MobCategory.MONSTER).sized(1.0f, 2.7f).clientTrackingRange(10).build("nemesis"));
     public static final RegistryObject<Item> NEMESIS_EGG = egg("nemesis", NEMESIS, 0x181818, 0xa02020);
 
+    public static final RegistryObject<EntityType<GraveDiggerEntity>> GRAVE_DIGGER = ENTITIES.register("grave_digger",
+        () -> EntityType.Builder.of(GraveDiggerEntity::new, MobCategory.MONSTER).sized(1.8f, 1.6f).clientTrackingRange(10).build("grave_digger"));
+    public static final RegistryObject<Item> GRAVE_DIGGER_EGG = egg("grave_digger", GRAVE_DIGGER, 0x6a6256, 0xc8b890);
+
+    public static final RegistryObject<EntityType<DrainDeimosEntity>> DRAIN_DEIMOS = ENTITIES.register("drain_deimos",
+        () -> EntityType.Builder.of(DrainDeimosEntity::new, MobCategory.MONSTER).sized(1.0f, 1.0f).clientTrackingRange(10).build("drain_deimos"));
+    public static final RegistryObject<Item> DRAIN_DEIMOS_EGG = egg("drain_deimos", DRAIN_DEIMOS, 0x405040, 0xc03030);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -137,6 +147,8 @@ public final class ModEntities {
         e.put(GIANT_MOTH.get(), GiantMothEntity.createAttributes().build());
         e.put(LARVA.get(), LarvaEntity.createAttributes().build());
         e.put(NEMESIS.get(), NemesisEntity.createAttributes().build());
+        e.put(GRAVE_DIGGER.get(), GraveDiggerEntity.createAttributes().build());
+        e.put(DRAIN_DEIMOS.get(), DrainDeimosEntity.createAttributes().build());
     }
 
     private ModEntities() {}

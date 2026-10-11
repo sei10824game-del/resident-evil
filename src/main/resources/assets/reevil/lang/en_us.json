@@ -40,5 +40,9 @@
  "entity.reevil.larva": "Moth Larva",
  "item.reevil.larva_spawn_egg": "Moth Larva Spawn Egg",
  "entity.reevil.nemesis": "Nemesis",
- "item.reevil.nemesis_spawn_egg": "Nemesis Spawn Egg"
+ "item.reevil.nemesis_spawn_egg": "Nemesis Spawn Egg",
+ "entity.reevil.grave_digger": "Grave Digger",
+ "item.reevil.grave_digger_spawn_egg": "Grave Digger Spawn Egg",
+ "entity.reevil.drain_deimos": "Drain Deimos",
+ "item.reevil.drain_deimos_spawn_egg": "Drain Deimos Spawn Egg"
 }

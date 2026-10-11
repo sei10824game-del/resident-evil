@@ -40,5 +40,9 @@
  "entity.reevil.larva": "モスの幼虫",
  "item.reevil.larva_spawn_egg": "モスの幼虫のスポーンエッグ",
  "entity.reevil.nemesis": "ネメシス",
- "item.reevil.nemesis_spawn_egg": "ネメシスのスポーンエッグ"
+ "item.reevil.nemesis_spawn_egg": "ネメシスのスポーンエッグ",
+ "entity.reevil.grave_digger": "グレイブディガー",
+ "item.reevil.grave_digger_spawn_egg": "グレイブディガーのスポーンエッグ",
+ "entity.reevil.drain_deimos": "ドレインディモス",
+ "item.reevil.drain_deimos_spawn_egg": "ドレインディモスのスポーンエッグ"
 }

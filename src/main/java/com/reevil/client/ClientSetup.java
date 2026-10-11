@@ -43,6 +43,10 @@ import com.reevil.client.larva.LarvaModel;
 import com.reevil.client.larva.LarvaRenderer;
 import com.reevil.client.nemesis.NemesisModel;
 import com.reevil.client.nemesis.NemesisRenderer;
+import com.reevil.client.gravedigger.GraveDiggerModel;
+import com.reevil.client.gravedigger.GraveDiggerRenderer;
+import com.reevil.client.draindeimos.DrainDeimosModel;
+import com.reevil.client.draindeimos.DrainDeimosRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -74,6 +78,8 @@ public final class ClientSetup {
         e.registerLayerDefinition(GiantMothModel.LAYER, GiantMothModel::createBodyLayer);
         e.registerLayerDefinition(LarvaModel.LAYER, LarvaModel::createBodyLayer);
         e.registerLayerDefinition(NemesisModel.LAYER, NemesisModel::createBodyLayer);
+        e.registerLayerDefinition(GraveDiggerModel.LAYER, GraveDiggerModel::createBodyLayer);
+        e.registerLayerDefinition(DrainDeimosModel.LAYER, DrainDeimosModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -99,6 +105,8 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.GIANT_MOTH.get(), GiantMothRenderer::new);
         e.registerEntityRenderer(ModEntities.LARVA.get(), LarvaRenderer::new);
         e.registerEntityRenderer(ModEntities.NEMESIS.get(), NemesisRenderer::new);
+        e.registerEntityRenderer(ModEntities.GRAVE_DIGGER.get(), GraveDiggerRenderer::new);
+        e.registerEntityRenderer(ModEntities.DRAIN_DEIMOS.get(), DrainDeimosRenderer::new);
     }
 
     private ClientSetup() {}
