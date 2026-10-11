@@ -55,6 +55,8 @@ import com.reevil.client.hunterbeta.HunterBetaModel;
 import com.reevil.client.hunterbeta.HunterBetaRenderer;
 import com.reevil.client.huntergamma.HunterGammaModel;
 import com.reevil.client.huntergamma.HunterGammaRenderer;
+import com.reevil.client.ganado.GanadoModel;
+import com.reevil.client.ganado.GanadoRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -92,6 +94,7 @@ public final class ClientSetup {
         e.registerLayerDefinition(PaleHeadModel.LAYER, PaleHeadModel::createBodyLayer);
         e.registerLayerDefinition(HunterBetaModel.LAYER, HunterBetaModel::createBodyLayer);
         e.registerLayerDefinition(HunterGammaModel.LAYER, HunterGammaModel::createBodyLayer);
+        e.registerLayerDefinition(GanadoModel.LAYER, GanadoModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -123,6 +126,7 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.PALE_HEAD.get(), PaleHeadRenderer::new);
         e.registerEntityRenderer(ModEntities.HUNTER_BETA.get(), HunterBetaRenderer::new);
         e.registerEntityRenderer(ModEntities.HUNTER_GAMMA.get(), HunterGammaRenderer::new);
+        e.registerEntityRenderer(ModEntities.GANADO.get(), GanadoRenderer::new);
     }
 
     private ClientSetup() {}

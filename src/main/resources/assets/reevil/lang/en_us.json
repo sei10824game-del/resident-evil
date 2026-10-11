@@ -52,5 +52,7 @@
  "entity.reevil.hunter_beta": "Hunter Beta",
  "item.reevil.hunter_beta_spawn_egg": "Hunter Beta Spawn Egg",
  "entity.reevil.hunter_gamma": "Hunter Gamma",
- "item.reevil.hunter_gamma_spawn_egg": "Hunter Gamma Spawn Egg"
+ "item.reevil.hunter_gamma_spawn_egg": "Hunter Gamma Spawn Egg",
+ "entity.reevil.ganado": "Ganado",
+ "item.reevil.ganado_spawn_egg": "Ganado Spawn Egg"
 }

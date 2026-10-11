@@ -52,5 +52,7 @@
  "entity.reevil.hunter_beta": "ハンターβ",
  "item.reevil.hunter_beta_spawn_egg": "ハンターβのスポーンエッグ",
  "entity.reevil.hunter_gamma": "ハンターγ",
- "item.reevil.hunter_gamma_spawn_egg": "ハンターγのスポーンエッグ"
+ "item.reevil.hunter_gamma_spawn_egg": "ハンターγのスポーンエッグ",
+ "entity.reevil.ganado": "ガナード",
+ "item.reevil.ganado_spawn_egg": "ガナードのスポーンエッグ"
 }

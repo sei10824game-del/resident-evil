@@ -28,6 +28,7 @@ import com.reevil.entity.brainsucker.BrainSuckerEntity;
 import com.reevil.entity.palehead.PaleHeadEntity;
 import com.reevil.entity.hunterbeta.HunterBetaEntity;
 import com.reevil.entity.huntergamma.HunterGammaEntity;
+import com.reevil.entity.ganado.GanadoEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -145,6 +146,10 @@ public final class ModEntities {
         () -> EntityType.Builder.of(HunterGammaEntity::new, MobCategory.MONSTER).sized(1.0f, 1.2f).clientTrackingRange(10).build("hunter_gamma"));
     public static final RegistryObject<Item> HUNTER_GAMMA_EGG = egg("hunter_gamma", HUNTER_GAMMA, 0x6a8a30, 0xd0c040);
 
+    public static final RegistryObject<EntityType<GanadoEntity>> GANADO = ENTITIES.register("ganado",
+        () -> EntityType.Builder.of(GanadoEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("ganado"));
+    public static final RegistryObject<Item> GANADO_EGG = egg("ganado", GANADO, 0x7a5a3a, 0x8a2020);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -173,6 +178,7 @@ public final class ModEntities {
         e.put(PALE_HEAD.get(), PaleHeadEntity.createAttributes().build());
         e.put(HUNTER_BETA.get(), HunterBetaEntity.createAttributes().build());
         e.put(HUNTER_GAMMA.get(), HunterGammaEntity.createAttributes().build());
+        e.put(GANADO.get(), GanadoEntity.createAttributes().build());
     }
 
     private ModEntities() {}

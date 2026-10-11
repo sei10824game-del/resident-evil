@@ -97,4 +97,6 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void paleHead(GameTestHelper h) { run(h, ModEntities.PALE_HEAD.get(), false, 4); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void hunterBeta(GameTestHelper h) { run(h, ModEntities.HUNTER_BETA.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void hunterGamma(GameTestHelper h) { run(h, ModEntities.HUNTER_GAMMA.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void ganado(GameTestHelper h) { run(h, ModEntities.GANADO.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void ganadoLow(GameTestHelper h) { run(h, ModEntities.GANADO.get(), false, 4, 0.45f); }
 }
