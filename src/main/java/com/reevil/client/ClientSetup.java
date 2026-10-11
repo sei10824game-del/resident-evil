@@ -57,6 +57,10 @@ import com.reevil.client.huntergamma.HunterGammaModel;
 import com.reevil.client.huntergamma.HunterGammaRenderer;
 import com.reevil.client.ganado.GanadoModel;
 import com.reevil.client.ganado.GanadoRenderer;
+import com.reevil.client.salvador.SalvadorModel;
+import com.reevil.client.salvador.SalvadorRenderer;
+import com.reevil.client.garrador.GarradorModel;
+import com.reevil.client.garrador.GarradorRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -95,6 +99,8 @@ public final class ClientSetup {
         e.registerLayerDefinition(HunterBetaModel.LAYER, HunterBetaModel::createBodyLayer);
         e.registerLayerDefinition(HunterGammaModel.LAYER, HunterGammaModel::createBodyLayer);
         e.registerLayerDefinition(GanadoModel.LAYER, GanadoModel::createBodyLayer);
+        e.registerLayerDefinition(SalvadorModel.LAYER, SalvadorModel::createBodyLayer);
+        e.registerLayerDefinition(GarradorModel.LAYER, GarradorModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -127,6 +133,8 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.HUNTER_BETA.get(), HunterBetaRenderer::new);
         e.registerEntityRenderer(ModEntities.HUNTER_GAMMA.get(), HunterGammaRenderer::new);
         e.registerEntityRenderer(ModEntities.GANADO.get(), GanadoRenderer::new);
+        e.registerEntityRenderer(ModEntities.SALVADOR.get(), SalvadorRenderer::new);
+        e.registerEntityRenderer(ModEntities.GARRADOR.get(), GarradorRenderer::new);
     }
 
     private ClientSetup() {}

@@ -54,5 +54,9 @@
  "entity.reevil.hunter_gamma": "Hunter Gamma",
  "item.reevil.hunter_gamma_spawn_egg": "Hunter Gamma Spawn Egg",
  "entity.reevil.ganado": "Ganado",
- "item.reevil.ganado_spawn_egg": "Ganado Spawn Egg"
+ "item.reevil.ganado_spawn_egg": "Ganado Spawn Egg",
+ "entity.reevil.salvador": "Dr. Salvador (Chainsaw Ganado)",
+ "item.reevil.salvador_spawn_egg": "Dr. Salvador (Chainsaw Ganado) Spawn Egg",
+ "entity.reevil.garrador": "Garrador",
+ "item.reevil.garrador_spawn_egg": "Garrador Spawn Egg"
 }

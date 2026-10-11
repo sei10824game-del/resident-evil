@@ -28,7 +28,7 @@ import java.util.List;
  *  form 1 - whip tentacles (lash), form 2 - scythe arms (double slash), form 3 - spider legs (long piercing jabs).
  */
 public class GanadoEntity extends BioMonster {
-    public static final int SWING = 1, STAB = 2, GRAB = 3, BURST = 4, LASH = 5, SCYTHE = 6, PIERCE = 7;
+    public static final int SWING = 1, STAB = 2, GRAB = 3, BURST = 4, LASH = 5, SCYTHE = 6, PIERCE = 7, DECAP = 8, RUSH = 9;
     public static final int W_NONE = 0, W_PITCHFORK = 1, W_AXE = 2, W_SICKLE = 3, W_TORCH = 4, W_CHAINSAW = 5;
 
     protected static final EntityDataAccessor<Integer> DATA_WEAPON = SynchedEntityData.defineId(GanadoEntity.class, EntityDataSerializers.INT);

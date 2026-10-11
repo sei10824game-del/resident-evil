@@ -25,7 +25,7 @@ public class GanadoModel extends BioModel<GanadoEntity> {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "ganado"), "main");
     private static final float D = Mth.DEG_TO_RAD;
     private static final String[] W = {"wPitch", "wAxe", "wSickle", "wTorch", "wSaw"};
-    private static final AnimClip C_SWING = swing(), C_STAB = stab(), C_GRAB = grab(), C_BURST = burst(), C_LASH = lash(), C_SCYTHE = scythe(), C_PIERCE = pierce();
+    private static final AnimClip C_SWING = swing(), C_STAB = stab(), C_GRAB = grab(), C_BURST = burst(), C_LASH = lash(), C_SCYTHE = scythe(), C_PIERCE = pierce(), C_DECAP = decap();
 
     public GanadoModel(ModelPart root) {
         super(root);
@@ -141,6 +141,8 @@ public class GanadoModel extends BioModel<GanadoEntity> {
             case GanadoEntity.LASH: return C_LASH;
             case GanadoEntity.SCYTHE: return C_SCYTHE;
             case GanadoEntity.PIERCE: return C_PIERCE;
+            case GanadoEntity.DECAP: return C_DECAP;
+            case GanadoEntity.RUSH: return C_STAB;
             default: return null;
         }
     }
@@ -256,6 +258,20 @@ public class GanadoModel extends BioModel<GanadoEntity> {
         rot(b, "bulb", k(0, 0, 0, 0), k(0.3f, -26, 0, 0), k(0.47f, 24, 0, 0), k(1, 0, 0, 0));
         pos(b, "base", k(0, 0, 0, 0), k(0.3f, 0, 1.5f, 3), k(0.47f, 0, 2, -6, SNAP), k(0.85f, 0, 1, -2), k(1, 0, 0, 0));
         pair2(b, "thigh", k(0, 0, 0, 0), k(0.3f, 22, 0, 0), k(0.47f, -30, 0, 0), k(1, 0, 0, 0), k(0, 0, 0, 0), k(0.3f, -16, 0, 0), k(0.47f, 12, 0, 0), k(1, 0, 0, 0));
+        return b.build();
+    }
+
+    /** 40t, impact @20 (.5): the chainsaw is hauled up over the head in both hands with the whole body arched back, then a savage diagonal beheading cut. */
+    private static AnimClip decap() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0, 0, 0, 0), k(0.3f, -165, 6, 14), k(0.42f, -172, 6, 10), k(0.5f, -40, -30, 0, SNAP), k(0.72f, -30, -10, 0), k(1, 0, 0, 0));
+        rot(b, "armL", k(0, 0, 0, 0), k(0.3f, -150, 0, -14), k(0.42f, -160, 0, -10), k(0.5f, -50, 30, -6, SNAP), k(0.72f, -40, 10, 0), k(1, 0, 0, 0));
+        rot(b, "foreR", k(0, 0, 0, 0), k(0.3f, -20, 0, 0), k(0.5f, -6, 0, 0, SNAP), k(1, 0, 0, 0));
+        rot(b, "torso", k(0, 0, 0, 0), k(0.3f, -22, 10, 0), k(0.42f, -26, 10, 0), k(0.5f, 34, -24, 0, SNAP), k(0.75f, 20, -8, 0), k(1, 0, 0, 0));
+        rot(b, "head", k(0, 0, 0, 0), k(0.42f, -14, 0, 0), k(0.5f, 14, 0, 0), k(1, 0, 0, 0));
+        pos(b, "base", k(0, 0, 0, 0), k(0.42f, 0, -1, 2), k(0.5f, 0, 2.5f, -4, SNAP), k(0.8f, 0, 1.5f, -2), k(1, 0, 0, 0));
+        pair(b, "thigh", k(0, 0, 0, 0), k(0.5f, -26, 0, 0, SNAP), k(0.8f, -14, 0, 0), k(1, 0, 0, 0));
+        pair(b, "shin", k(0, 0, 0, 0), k(0.5f, 30, 0, 0, SNAP), k(0.8f, 18, 0, 0), k(1, 0, 0, 0));
         return b.build();
     }
 }

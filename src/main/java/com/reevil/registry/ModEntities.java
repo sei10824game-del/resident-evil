@@ -29,6 +29,8 @@ import com.reevil.entity.palehead.PaleHeadEntity;
 import com.reevil.entity.hunterbeta.HunterBetaEntity;
 import com.reevil.entity.huntergamma.HunterGammaEntity;
 import com.reevil.entity.ganado.GanadoEntity;
+import com.reevil.entity.salvador.SalvadorEntity;
+import com.reevil.entity.garrador.GarradorEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -150,6 +152,14 @@ public final class ModEntities {
         () -> EntityType.Builder.of(GanadoEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("ganado"));
     public static final RegistryObject<Item> GANADO_EGG = egg("ganado", GANADO, 0x7a5a3a, 0x8a2020);
 
+    public static final RegistryObject<EntityType<SalvadorEntity>> SALVADOR = ENTITIES.register("salvador",
+        () -> EntityType.Builder.of(SalvadorEntity::new, MobCategory.MONSTER).sized(0.8f, 2.3f).clientTrackingRange(10).build("salvador"));
+    public static final RegistryObject<Item> SALVADOR_EGG = egg("salvador", SALVADOR, 0xa09070, 0x802020);
+
+    public static final RegistryObject<EntityType<GarradorEntity>> GARRADOR = ENTITIES.register("garrador",
+        () -> EntityType.Builder.of(GarradorEntity::new, MobCategory.MONSTER).sized(1.0f, 2.5f).clientTrackingRange(10).build("garrador"));
+    public static final RegistryObject<Item> GARRADOR_EGG = egg("garrador", GARRADOR, 0x504030, 0xc0a050);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -179,6 +189,8 @@ public final class ModEntities {
         e.put(HUNTER_BETA.get(), HunterBetaEntity.createAttributes().build());
         e.put(HUNTER_GAMMA.get(), HunterGammaEntity.createAttributes().build());
         e.put(GANADO.get(), GanadoEntity.createAttributes().build());
+        e.put(SALVADOR.get(), SalvadorEntity.createAttributes().build());
+        e.put(GARRADOR.get(), GarradorEntity.createAttributes().build());
     }
 
     private ModEntities() {}

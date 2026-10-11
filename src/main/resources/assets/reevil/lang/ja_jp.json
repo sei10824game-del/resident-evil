@@ -54,5 +54,9 @@
  "entity.reevil.hunter_gamma": "ハンターγ",
  "item.reevil.hunter_gamma_spawn_egg": "ハンターγのスポーンエッグ",
  "entity.reevil.ganado": "ガナード",
- "item.reevil.ganado_spawn_egg": "ガナードのスポーンエッグ"
+ "item.reevil.ganado_spawn_egg": "ガナードのスポーンエッグ",
+ "entity.reevil.salvador": "ドクトル・サルバドール（チェーンソー男）",
+ "item.reevil.salvador_spawn_egg": "ドクトル・サルバドール（チェーンソー男）のスポーンエッグ",
+ "entity.reevil.garrador": "ガラドール",
+ "item.reevil.garrador_spawn_egg": "ガラドールのスポーンエッグ"
 }

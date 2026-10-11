@@ -45,3 +45,4 @@ def build(name, skin, shirt, pants, hat, plaga, seed, saw_skin=None, sack=False)
 
 build('ganado', (196, 156, 124), (130, 100, 64), (78, 70, 60), (196, 176, 110), False, 161)
 build('ganado_plaga', (186, 160, 150), (110, 84, 54), (70, 62, 54), (196, 176, 110), True, 162)
+build('salvador', (196, 156, 124), (92, 84, 76), (66, 74, 86), (196, 176, 110), False, 163, sack=True)
