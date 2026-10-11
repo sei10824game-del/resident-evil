@@ -119,6 +119,30 @@ import com.reevil.client.javo.JavoModel;
 import com.reevil.client.javo.JavoRenderer;
 import com.reevil.client.gatlingmajini.GatlingMajiniModel;
 import com.reevil.client.gatlingmajini.GatlingMajiniRenderer;
+import com.reevil.client.molded.MoldedModel;
+import com.reevil.client.molded.MoldedRenderer;
+import com.reevil.client.fatmolded.FatMoldedModel;
+import com.reevil.client.fatmolded.FatMoldedRenderer;
+import com.reevil.client.jackbaker.JackBakerModel;
+import com.reevil.client.jackbaker.JackBakerRenderer;
+import com.reevil.client.eveline.EvelineModel;
+import com.reevil.client.eveline.EvelineRenderer;
+import com.reevil.client.lycan.LycanModel;
+import com.reevil.client.lycan.LycanRenderer;
+import com.reevil.client.dimitrescu.DimitrescuModel;
+import com.reevil.client.dimitrescu.DimitrescuRenderer;
+import com.reevil.client.daughter.DaughterModel;
+import com.reevil.client.daughter.DaughterRenderer;
+import com.reevil.client.heisenberg.HeisenbergModel;
+import com.reevil.client.heisenberg.HeisenbergRenderer;
+import com.reevil.client.moreau.MoreauModel;
+import com.reevil.client.moreau.MoreauRenderer;
+import com.reevil.client.sturm.SturmModel;
+import com.reevil.client.sturm.SturmRenderer;
+import com.reevil.client.urias.UriasModel;
+import com.reevil.client.urias.UriasRenderer;
+import com.reevil.client.soldat.SoldatModel;
+import com.reevil.client.soldat.SoldatRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -188,6 +212,18 @@ public final class ClientSetup {
         e.registerLayerDefinition(NapadModel.LAYER, NapadModel::createBodyLayer);
         e.registerLayerDefinition(JavoModel.LAYER, JavoModel::createBodyLayer);
         e.registerLayerDefinition(GatlingMajiniModel.LAYER, GatlingMajiniModel::createBodyLayer);
+        e.registerLayerDefinition(MoldedModel.LAYER, MoldedModel::createBodyLayer);
+        e.registerLayerDefinition(FatMoldedModel.LAYER, FatMoldedModel::createBodyLayer);
+        e.registerLayerDefinition(JackBakerModel.LAYER, JackBakerModel::createBodyLayer);
+        e.registerLayerDefinition(EvelineModel.LAYER, EvelineModel::createBodyLayer);
+        e.registerLayerDefinition(LycanModel.LAYER, LycanModel::createBodyLayer);
+        e.registerLayerDefinition(DimitrescuModel.LAYER, DimitrescuModel::createBodyLayer);
+        e.registerLayerDefinition(DaughterModel.LAYER, DaughterModel::createBodyLayer);
+        e.registerLayerDefinition(HeisenbergModel.LAYER, HeisenbergModel::createBodyLayer);
+        e.registerLayerDefinition(MoreauModel.LAYER, MoreauModel::createBodyLayer);
+        e.registerLayerDefinition(SturmModel.LAYER, SturmModel::createBodyLayer);
+        e.registerLayerDefinition(UriasModel.LAYER, UriasModel::createBodyLayer);
+        e.registerLayerDefinition(SoldatModel.LAYER, SoldatModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -251,6 +287,18 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.NAPAD.get(), NapadRenderer::new);
         e.registerEntityRenderer(ModEntities.JAVO.get(), JavoRenderer::new);
         e.registerEntityRenderer(ModEntities.GATLING_MAJINI.get(), GatlingMajiniRenderer::new);
+        e.registerEntityRenderer(ModEntities.MOLDED.get(), MoldedRenderer::new);
+        e.registerEntityRenderer(ModEntities.FAT_MOLDED.get(), FatMoldedRenderer::new);
+        e.registerEntityRenderer(ModEntities.JACK_BAKER.get(), JackBakerRenderer::new);
+        e.registerEntityRenderer(ModEntities.EVELINE.get(), EvelineRenderer::new);
+        e.registerEntityRenderer(ModEntities.LYCAN.get(), LycanRenderer::new);
+        e.registerEntityRenderer(ModEntities.DIMITRESCU.get(), DimitrescuRenderer::new);
+        e.registerEntityRenderer(ModEntities.DAUGHTER.get(), DaughterRenderer::new);
+        e.registerEntityRenderer(ModEntities.HEISENBERG.get(), HeisenbergRenderer::new);
+        e.registerEntityRenderer(ModEntities.MOREAU.get(), MoreauRenderer::new);
+        e.registerEntityRenderer(ModEntities.STURM.get(), SturmRenderer::new);
+        e.registerEntityRenderer(ModEntities.URIAS.get(), UriasRenderer::new);
+        e.registerEntityRenderer(ModEntities.SOLDAT.get(), SoldatRenderer::new);
     }
 
     private ClientSetup() {}

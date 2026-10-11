@@ -60,6 +60,18 @@ import com.reevil.entity.ustanak.UstanakEntity;
 import com.reevil.entity.napad.NapadEntity;
 import com.reevil.entity.javo.JavoEntity;
 import com.reevil.entity.gatlingmajini.GatlingMajiniEntity;
+import com.reevil.entity.molded.MoldedEntity;
+import com.reevil.entity.fatmolded.FatMoldedEntity;
+import com.reevil.entity.jackbaker.JackBakerEntity;
+import com.reevil.entity.eveline.EvelineEntity;
+import com.reevil.entity.lycan.LycanEntity;
+import com.reevil.entity.dimitrescu.DimitrescuEntity;
+import com.reevil.entity.daughter.DaughterEntity;
+import com.reevil.entity.heisenberg.HeisenbergEntity;
+import com.reevil.entity.moreau.MoreauEntity;
+import com.reevil.entity.sturm.SturmEntity;
+import com.reevil.entity.urias.UriasEntity;
+import com.reevil.entity.soldat.SoldatEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -305,6 +317,54 @@ public final class ModEntities {
         () -> EntityType.Builder.of(GatlingMajiniEntity::new, MobCategory.MONSTER).sized(0.8f, 2.1f).clientTrackingRange(10).build("gatling_majini"));
     public static final RegistryObject<Item> GATLING_MAJINI_EGG = egg("gatling_majini", GATLING_MAJINI, 0x3a2c20, 0x808080);
 
+    public static final RegistryObject<EntityType<MoldedEntity>> MOLDED = ENTITIES.register("molded",
+        () -> EntityType.Builder.of(MoldedEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("molded"));
+    public static final RegistryObject<Item> MOLDED_EGG = egg("molded", MOLDED, 0x101010, 0x606060);
+
+    public static final RegistryObject<EntityType<FatMoldedEntity>> FAT_MOLDED = ENTITIES.register("fat_molded",
+        () -> EntityType.Builder.of(FatMoldedEntity::new, MobCategory.MONSTER).sized(1.0f, 2.2f).clientTrackingRange(10).build("fat_molded"));
+    public static final RegistryObject<Item> FAT_MOLDED_EGG = egg("fat_molded", FAT_MOLDED, 0x181818, 0x707070);
+
+    public static final RegistryObject<EntityType<JackBakerEntity>> JACK_BAKER = ENTITIES.register("jack_baker",
+        () -> EntityType.Builder.of(JackBakerEntity::new, MobCategory.MONSTER).sized(0.8f, 2.1f).clientTrackingRange(10).build("jack_baker"));
+    public static final RegistryObject<Item> JACK_BAKER_EGG = egg("jack_baker", JACK_BAKER, 0x403830, 0x907040);
+
+    public static final RegistryObject<EntityType<EvelineEntity>> EVELINE = ENTITIES.register("eveline",
+        () -> EntityType.Builder.of(EvelineEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("eveline"));
+    public static final RegistryObject<Item> EVELINE_EGG = egg("eveline", EVELINE, 0x203040, 0xc0d0e0);
+
+    public static final RegistryObject<EntityType<LycanEntity>> LYCAN = ENTITIES.register("lycan",
+        () -> EntityType.Builder.of(LycanEntity::new, MobCategory.MONSTER).sized(0.8f, 2.0f).clientTrackingRange(10).build("lycan"));
+    public static final RegistryObject<Item> LYCAN_EGG = egg("lycan", LYCAN, 0x504030, 0xc0b090);
+
+    public static final RegistryObject<EntityType<DimitrescuEntity>> DIMITRESCU = ENTITIES.register("dimitrescu",
+        () -> EntityType.Builder.of(DimitrescuEntity::new, MobCategory.MONSTER).sized(1.1f, 3.4f).clientTrackingRange(10).build("dimitrescu"));
+    public static final RegistryObject<Item> DIMITRESCU_EGG = egg("dimitrescu", DIMITRESCU, 0xe0e0e0, 0x601020);
+
+    public static final RegistryObject<EntityType<DaughterEntity>> DAUGHTER = ENTITIES.register("daughter",
+        () -> EntityType.Builder.of(DaughterEntity::new, MobCategory.MONSTER).sized(0.7f, 1.6f).clientTrackingRange(10).build("daughter"));
+    public static final RegistryObject<Item> DAUGHTER_EGG = egg("daughter", DAUGHTER, 0xd0d0d0, 0x501018);
+
+    public static final RegistryObject<EntityType<HeisenbergEntity>> HEISENBERG = ENTITIES.register("heisenberg",
+        () -> EntityType.Builder.of(HeisenbergEntity::new, MobCategory.MONSTER).sized(0.8f, 2.3f).clientTrackingRange(10).build("heisenberg"));
+    public static final RegistryObject<Item> HEISENBERG_EGG = egg("heisenberg", HEISENBERG, 0x503020, 0x909090);
+
+    public static final RegistryObject<EntityType<MoreauEntity>> MOREAU = ENTITIES.register("moreau",
+        () -> EntityType.Builder.of(MoreauEntity::new, MobCategory.MONSTER).sized(2.4f, 2.0f).clientTrackingRange(10).build("moreau"));
+    public static final RegistryObject<Item> MOREAU_EGG = egg("moreau", MOREAU, 0x305030, 0xa0c070);
+
+    public static final RegistryObject<EntityType<SturmEntity>> STURM = ENTITIES.register("sturm",
+        () -> EntityType.Builder.of(SturmEntity::new, MobCategory.MONSTER).sized(1.8f, 4.4f).clientTrackingRange(10).build("sturm"));
+    public static final RegistryObject<Item> STURM_EGG = egg("sturm", STURM, 0x404040, 0xa08040);
+
+    public static final RegistryObject<EntityType<UriasEntity>> URIAS = ENTITIES.register("urias",
+        () -> EntityType.Builder.of(UriasEntity::new, MobCategory.MONSTER).sized(1.2f, 3.0f).clientTrackingRange(10).build("urias"));
+    public static final RegistryObject<Item> URIAS_EGG = egg("urias", URIAS, 0x302828, 0xa04020);
+
+    public static final RegistryObject<EntityType<SoldatEntity>> SOLDAT = ENTITIES.register("soldat",
+        () -> EntityType.Builder.of(SoldatEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("soldat"));
+    public static final RegistryObject<Item> SOLDAT_EGG = egg("soldat", SOLDAT, 0x404840, 0xa0a0a0);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -365,6 +425,18 @@ public final class ModEntities {
         e.put(NAPAD.get(), NapadEntity.createAttributes().build());
         e.put(JAVO.get(), JavoEntity.createAttributes().build());
         e.put(GATLING_MAJINI.get(), GatlingMajiniEntity.createAttributes().build());
+        e.put(MOLDED.get(), MoldedEntity.createAttributes().build());
+        e.put(FAT_MOLDED.get(), FatMoldedEntity.createAttributes().build());
+        e.put(JACK_BAKER.get(), JackBakerEntity.createAttributes().build());
+        e.put(EVELINE.get(), EvelineEntity.createAttributes().build());
+        e.put(LYCAN.get(), LycanEntity.createAttributes().build());
+        e.put(DIMITRESCU.get(), DimitrescuEntity.createAttributes().build());
+        e.put(DAUGHTER.get(), DaughterEntity.createAttributes().build());
+        e.put(HEISENBERG.get(), HeisenbergEntity.createAttributes().build());
+        e.put(MOREAU.get(), MoreauEntity.createAttributes().build());
+        e.put(STURM.get(), SturmEntity.createAttributes().build());
+        e.put(URIAS.get(), UriasEntity.createAttributes().build());
+        e.put(SOLDAT.get(), SoldatEntity.createAttributes().build());
     }
 
     private ModEntities() {}

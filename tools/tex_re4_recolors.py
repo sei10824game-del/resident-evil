@@ -87,3 +87,19 @@ save(jw, 'jill')
 # Ustanak: super-frame with steel claws, dark leather
 save(nohat(colorize(load('mr_x_super'), (28, 26, 26), (190, 180, 168), (92, 86, 80))), 'ustanak')
 save(colorize(load('reaper'), (40, 26, 12), (216, 170, 90), (120, 84, 40)), 'napad')
+
+# ---- RE7 / RE8
+save(colorize(load('ganado'), (8, 8, 10), (110, 112, 120), (40, 40, 46)), 'molded')
+save(colorize(load('ganado_plaga'), (8, 8, 10), (120, 120, 130), (44, 44, 50)), 'molded_plaga')
+save(colorize(load('zombie_civilian'), (6, 6, 8), (96, 98, 106), (34, 34, 40)), 'fat_molded')
+save(nohat(colorize(mx, (46, 36, 28), (196, 168, 126), (118, 94, 70))), 'jack_baker')
+for sfx in ('', '_mutated', '_final'):
+    save(colorize(load('saddler' + sfx), (10, 14, 24), (176, 196, 220), (60, 80, 110)), 'eveline' + sfx)
+save(colorize(load('hunter'), (24, 18, 14), (186, 170, 146), (96, 82, 66)), 'lycan')
+save(nohat(colorize(load('ustanak'), (40, 24, 30), (240, 232, 230), (170, 130, 130))), 'dimitrescu')
+save(colorize(load('reaper'), (30, 16, 20), (230, 224, 222), (150, 120, 124)), 'daughter')
+save(nohat(colorize(mx, (38, 28, 24), (176, 150, 124), (112, 90, 72))), 'heisenberg')
+save(colorize(load('del_lago'), (10, 30, 16), (190, 214, 120), (70, 110, 50)), 'moreau')
+save(colorize(load('ogroman'), (30, 30, 34), (190, 192, 196), (110, 110, 116)), 'sturm')
+save(colorize(load('ustanak'), (30, 12, 10), (200, 120, 100), (120, 46, 36)), 'urias')
+save(colorize(load('krauser'), (26, 28, 26), (196, 198, 192), (110, 114, 106)), 'soldat')

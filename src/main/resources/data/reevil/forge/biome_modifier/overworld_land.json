@@ -229,6 +229,36 @@
    "weight": 1,
    "minCount": 1,
    "maxCount": 1
+  },
+  {
+   "type": "reevil:molded",
+   "weight": 12,
+   "minCount": 2,
+   "maxCount": 4
+  },
+  {
+   "type": "reevil:fat_molded",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:lycan",
+   "weight": 8,
+   "minCount": 2,
+   "maxCount": 4
+  },
+  {
+   "type": "reevil:daughter",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 2
+  },
+  {
+   "type": "reevil:soldat",
+   "weight": 3,
+   "minCount": 1,
+   "maxCount": 2
   }
  ]
 }
