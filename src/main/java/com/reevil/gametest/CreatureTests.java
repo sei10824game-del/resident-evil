@@ -74,4 +74,17 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void lisaLow(GameTestHelper h) { run(h, ModEntities.LISA_TREVOR.get(), false, 6, 0.4f); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void neptuneLow(GameTestHelper h) { run(h, ModEntities.NEPTUNE.get(), true, 6, 0.2f); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void zombieLow(GameTestHelper h) { run(h, ModEntities.ZOMBIE.get(), false, 4, 0.2f); }
+
+    @GameTest(template = "empty", timeoutTicks = 700) public static void licker(GameTestHelper h) { run(h, ModEntities.LICKER.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void mrX(GameTestHelper h) { run(h, ModEntities.MR_X.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void mrXLow(GameTestHelper h) { run(h, ModEntities.MR_X.get(), false, 6, 0.45f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void birkin(GameTestHelper h) { run(h, ModEntities.BIRKIN.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void birkinG2(GameTestHelper h) { run(h, ModEntities.BIRKIN.get(), false, 6, 0.6f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void birkinG3(GameTestHelper h) { run(h, ModEntities.BIRKIN.get(), false, 6, 0.25f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void alligator(GameTestHelper h) { run(h, ModEntities.ALLIGATOR.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void alligatorWet(GameTestHelper h) { run(h, ModEntities.ALLIGATOR.get(), true, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void ivy(GameTestHelper h) { run(h, ModEntities.IVY.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void ivyLow(GameTestHelper h) { run(h, ModEntities.IVY.get(), false, 4, 0.4f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void giantMoth(GameTestHelper h) { run(h, ModEntities.GIANT_MOTH.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void larva(GameTestHelper h) { run(h, ModEntities.LARVA.get(), false, 5); }
 }
