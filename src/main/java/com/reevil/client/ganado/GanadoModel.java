@@ -51,8 +51,8 @@ public class GanadoModel extends BioModel<GanadoEntity> {
         neck.addOrReplaceChild("bulb", CubeListBuilder.create().texOffs(100, 0).addBox(-2.5f, -5, -2.5f, 5, 5, 5), PartPose.offset(0, -1.5f, 0));
         for (int a = 0; a < 2; a++) {
             float sg = a == 0 ? 1 : -1; String n = a == 0 ? "A" : "B";
-            PartDefinition w = neck.addOrReplaceChild("whip" + n, CubeListBuilder.create(), PartPose.offsetAndRotation(sg * 1.5f, -2, 0, -0.9f, sg * 0.5f, 0));
-            for (int i = 1; i <= 3; i++) w = w.addOrReplaceChild("w" + n + i, CubeListBuilder.create().texOffs(0, 50).addBox(-1, -1, -7, 2, 2, 7), PartPose.offsetAndRotation(0, 0, i == 1 ? 0 : -7, -0.2f, 0, 0));
+            PartDefinition w = neck.addOrReplaceChild("whip" + n, CubeListBuilder.create(), PartPose.offsetAndRotation(sg * 1.5f, -2, 0, -0.35f, sg * 0.7f, 0));
+            for (int i = 1; i <= 3; i++) w = w.addOrReplaceChild("w" + n + i, CubeListBuilder.create().texOffs(0, 50).addBox(-1, -1, -7, 2, 2, 7), PartPose.offsetAndRotation(0, 0, i == 1 ? 0 : -7, 0.25f, 0, 0));
         }
         for (int s = 0; s < 2; s++) {
             boolean l = s == 0; float sg = l ? 1 : -1; String n = l ? "L" : "R";
@@ -107,6 +107,7 @@ public class GanadoModel extends BioModel<GanadoEntity> {
         if (f == 0) bone("armR").xRot += wp != 0 ? -0.6f : 0f;
         // plaga: head gone, bulb + limbs by form
         vis(bone("head"), f == 0);
+        vis(bone("hat"), e.hasHat());
         vis(bone("bulb"), f >= 1);
         if (f >= 1) { bone("bulb").xRot += Mth.sin(age * 0.3f) * 0.12f; bone("bulb").yScale *= 1f + Mth.sin(age * 0.4f) * 0.1f; }
         for (String sd : new String[]{"A", "B"}) {

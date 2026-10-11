@@ -105,7 +105,7 @@ public class MrXEntity extends BioMonster {
         boolean r = super.hurt(src, getMoveId() == STAGGER ? amount * 0.5f : amount);
         if (r && !level().isClientSide && isAlive() && getMoveId() != STAGGER && getMoveId() != TRANSFORM) {
             staggerAcc += before - getHealth();
-            if (staggerAcc >= getMaxHealth() * 0.2f && !(getForm() == 0 && getHealth() < getMaxHealth() * 0.5f)) {
+            if (staggerAcc >= getMaxHealth() * 0.2f && !(canTransform() && getForm() == 0 && getHealth() < getMaxHealth() * 0.5f)) {
                 staggerAcc = 0;
                 cancelMove();
                 startMove(M_STAGGER);
@@ -119,13 +119,16 @@ public class MrXEntity extends BioMonster {
         super.aiStep();
         if (level().isClientSide) return;
         bossEvent.setProgress(getHealth() / getMaxHealth());
-        if (isAlive() && getForm() == 0 && getHealth() < getMaxHealth() * 0.5f && getMoveId() != TRANSFORM) {
+        if (canTransform() && isAlive() && getForm() == 0 && getHealth() < getMaxHealth() * 0.5f && getMoveId() != TRANSFORM) {
             cancelMove();
             startMove(M_TRANSFORM);
         }
         if (doorCd > 0) doorCd--;
         if (getTarget() != null && horizontalCollision && doorCd <= 0 && !isMoving()) breakDoors();
     }
+
+    /** El Gigante never sheds into a Super Tyrant. */
+    protected boolean canTransform() { return true; }
 
     private void breakDoors() {
         if (!level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) return;

@@ -58,5 +58,17 @@
  "entity.reevil.salvador": "ドクトル・サルバドール（チェーンソー男）",
  "item.reevil.salvador_spawn_egg": "ドクトル・サルバドール（チェーンソー男）のスポーンエッグ",
  "entity.reevil.garrador": "ガラドール",
- "item.reevil.garrador_spawn_egg": "ガラドールのスポーンエッグ"
+ "item.reevil.garrador_spawn_egg": "ガラドールのスポーンエッグ",
+ "entity.reevil.colmillos": "コルミージョス",
+ "item.reevil.colmillos_spawn_egg": "コルミージョスのスポーンエッグ",
+ "entity.reevil.novistador": "ノビスタドール",
+ "item.reevil.novistador_spawn_egg": "ノビスタドールのスポーンエッグ",
+ "entity.reevil.regenerador": "レゲネラドール",
+ "item.reevil.regenerador_spawn_egg": "レゲネラドールのスポーンエッグ",
+ "entity.reevil.iron_maiden": "アイアンメイデン",
+ "item.reevil.iron_maiden_spawn_egg": "アイアンメイデンのスポーンエッグ",
+ "entity.reevil.el_gigante": "エル・ギガンテ",
+ "item.reevil.el_gigante_spawn_egg": "エル・ギガンテのスポーンエッグ",
+ "entity.reevil.del_lago": "デル・ラゴ",
+ "item.reevil.del_lago_spawn_egg": "デル・ラゴのスポーンエッグ"
 }

@@ -58,5 +58,17 @@
  "entity.reevil.salvador": "Dr. Salvador (Chainsaw Ganado)",
  "item.reevil.salvador_spawn_egg": "Dr. Salvador (Chainsaw Ganado) Spawn Egg",
  "entity.reevil.garrador": "Garrador",
- "item.reevil.garrador_spawn_egg": "Garrador Spawn Egg"
+ "item.reevil.garrador_spawn_egg": "Garrador Spawn Egg",
+ "entity.reevil.colmillos": "Colmillos",
+ "item.reevil.colmillos_spawn_egg": "Colmillos Spawn Egg",
+ "entity.reevil.novistador": "Novistador",
+ "item.reevil.novistador_spawn_egg": "Novistador Spawn Egg",
+ "entity.reevil.regenerador": "Regenerador",
+ "item.reevil.regenerador_spawn_egg": "Regenerador Spawn Egg",
+ "entity.reevil.iron_maiden": "Iron Maiden",
+ "item.reevil.iron_maiden_spawn_egg": "Iron Maiden Spawn Egg",
+ "entity.reevil.el_gigante": "El Gigante",
+ "item.reevil.el_gigante_spawn_egg": "El Gigante Spawn Egg",
+ "entity.reevil.del_lago": "Del Lago",
+ "item.reevil.del_lago_spawn_egg": "Del Lago Spawn Egg"
 }

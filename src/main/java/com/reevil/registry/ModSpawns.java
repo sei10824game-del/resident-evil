@@ -20,13 +20,13 @@ public final class ModSpawns {
     @SubscribeEvent
     public static void register(SpawnPlacementRegisterEvent e) {
         for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.ZOMBIE.get(), ModEntities.CRIMSON_HEAD.get(), ModEntities.CERBERUS.get(), ModEntities.HUNTER.get(),
-            ModEntities.CHIMERA.get(), ModEntities.GIANT_SPIDER.get(), ModEntities.WEB_SPINNER.get(), ModEntities.LICKER.get(), ModEntities.LARVA.get(), ModEntities.IVY.get(), ModEntities.GRAVE_DIGGER.get(), ModEntities.PALE_HEAD.get(), ModEntities.HUNTER_BETA.get(), ModEntities.HUNTER_GAMMA.get()}) {
+            ModEntities.CHIMERA.get(), ModEntities.GIANT_SPIDER.get(), ModEntities.WEB_SPINNER.get(), ModEntities.LICKER.get(), ModEntities.LARVA.get(), ModEntities.IVY.get(), ModEntities.GRAVE_DIGGER.get(), ModEntities.PALE_HEAD.get(), ModEntities.HUNTER_BETA.get(), ModEntities.HUNTER_GAMMA.get(), ModEntities.GANADO.get(), ModEntities.SALVADOR.get(), ModEntities.GARRADOR.get(), ModEntities.COLMILLOS.get(), ModEntities.REGENERADOR.get(), ModEntities.IRON_MAIDEN.get()}) {
             reg(e, t);
         }
-        for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.CROW.get(), ModEntities.GIANT_MOTH.get(), ModEntities.DRAIN_DEIMOS.get(), ModEntities.BRAIN_SUCKER.get()}) {
+        for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.CROW.get(), ModEntities.GIANT_MOTH.get(), ModEntities.DRAIN_DEIMOS.get(), ModEntities.BRAIN_SUCKER.get(), ModEntities.NOVISTADOR.get()}) {
             e.register(t, SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, (ty, l, r, p, rnd) -> p.getY() > l.getMinBuildHeight() && Monster.isDarkEnoughToSpawn(l, p, rnd), SpawnPlacementRegisterEvent.Operation.OR);
         }
-        e.register(ModEntities.ALLIGATOR.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        for (EntityType<? extends Mob> w : new EntityType[]{ModEntities.ALLIGATOR.get(), ModEntities.DEL_LAGO.get()}) e.register(w, SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
             (ty, l, r, p, rnd) -> l.getFluidState(p).is(FluidTags.WATER) || l.getFluidState(p.below()).is(FluidTags.WATER), SpawnPlacementRegisterEvent.Operation.OR);
         e.register(ModEntities.NEPTUNE.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.OCEAN_FLOOR,
             (ty, l, r, p, rnd) -> l.getFluidState(p).is(FluidTags.WATER) && p.getY() < l.getSeaLevel() - 6, SpawnPlacementRegisterEvent.Operation.OR);

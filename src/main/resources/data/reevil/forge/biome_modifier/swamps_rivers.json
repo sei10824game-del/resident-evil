@@ -11,6 +11,12 @@
    "weight": 6,
    "minCount": 1,
    "maxCount": 1
+  },
+  {
+   "type": "reevil:del_lago",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
   }
  ]
 }

@@ -33,6 +33,7 @@ public class SalvadorEntity extends GanadoEntity {
 
     @Override protected int defaultWeapon() { return W_CHAINSAW; }
     @Override protected boolean canBurst() { return false; }
+    @Override public boolean hasHat() { return false; }
     @Override public List<AttackMove> moves() { return MOVES; }
     @Override public String getTextureSuffix() { return ""; }
 

@@ -88,6 +88,7 @@ public class GanadoEntity extends BioMonster {
     }
 
     protected boolean canBurst() { return true; }
+    public boolean hasHat() { return true; }
 
     @Override
     protected void onMoveStart(AttackMove m) {

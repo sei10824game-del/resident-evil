@@ -99,4 +99,12 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void hunterGamma(GameTestHelper h) { run(h, ModEntities.HUNTER_GAMMA.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void ganado(GameTestHelper h) { run(h, ModEntities.GANADO.get(), false, 4); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void ganadoLow(GameTestHelper h) { run(h, ModEntities.GANADO.get(), false, 4, 0.45f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void salvador(GameTestHelper h) { run(h, ModEntities.SALVADOR.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void garrador(GameTestHelper h) { run(h, ModEntities.GARRADOR.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void colmillos(GameTestHelper h) { run(h, ModEntities.COLMILLOS.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void novistador(GameTestHelper h) { run(h, ModEntities.NOVISTADOR.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void regenerador(GameTestHelper h) { run(h, ModEntities.REGENERADOR.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void ironMaiden(GameTestHelper h) { run(h, ModEntities.IRON_MAIDEN.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void elGigante(GameTestHelper h) { run(h, ModEntities.EL_GIGANTE.get(), false, 8); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void delLago(GameTestHelper h) { run(h, ModEntities.DEL_LAGO.get(), true, 8); }
 }

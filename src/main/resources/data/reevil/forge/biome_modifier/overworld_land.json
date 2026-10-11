@@ -109,6 +109,48 @@
    "weight": 2,
    "minCount": 1,
    "maxCount": 2
+  },
+  {
+   "type": "reevil:ganado",
+   "weight": 14,
+   "minCount": 2,
+   "maxCount": 4
+  },
+  {
+   "type": "reevil:salvador",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:garrador",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:colmillos",
+   "weight": 5,
+   "minCount": 2,
+   "maxCount": 4
+  },
+  {
+   "type": "reevil:regenerador",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:iron_maiden",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:novistador",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 1
   }
  ]
 }

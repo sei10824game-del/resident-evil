@@ -31,6 +31,12 @@ import com.reevil.entity.huntergamma.HunterGammaEntity;
 import com.reevil.entity.ganado.GanadoEntity;
 import com.reevil.entity.salvador.SalvadorEntity;
 import com.reevil.entity.garrador.GarradorEntity;
+import com.reevil.entity.colmillos.ColmillosEntity;
+import com.reevil.entity.novistador.NovistadorEntity;
+import com.reevil.entity.regenerador.RegeneradorEntity;
+import com.reevil.entity.ironmaiden.IronMaidenEntity;
+import com.reevil.entity.elgigante.ElGiganteEntity;
+import com.reevil.entity.dellago.DelLagoEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -160,6 +166,30 @@ public final class ModEntities {
         () -> EntityType.Builder.of(GarradorEntity::new, MobCategory.MONSTER).sized(1.0f, 2.5f).clientTrackingRange(10).build("garrador"));
     public static final RegistryObject<Item> GARRADOR_EGG = egg("garrador", GARRADOR, 0x504030, 0xc0a050);
 
+    public static final RegistryObject<EntityType<ColmillosEntity>> COLMILLOS = ENTITIES.register("colmillos",
+        () -> EntityType.Builder.of(ColmillosEntity::new, MobCategory.MONSTER).sized(0.8f, 0.95f).clientTrackingRange(10).build("colmillos"));
+    public static final RegistryObject<Item> COLMILLOS_EGG = egg("colmillos", COLMILLOS, 0x707068, 0xc0c0b0);
+
+    public static final RegistryObject<EntityType<NovistadorEntity>> NOVISTADOR = ENTITIES.register("novistador",
+        () -> EntityType.Builder.of(NovistadorEntity::new, MobCategory.MONSTER).sized(1.0f, 1.0f).clientTrackingRange(10).build("novistador"));
+    public static final RegistryObject<Item> NOVISTADOR_EGG = egg("novistador", NOVISTADOR, 0x405848, 0xa0c0a0);
+
+    public static final RegistryObject<EntityType<RegeneradorEntity>> REGENERADOR = ENTITIES.register("regenerador",
+        () -> EntityType.Builder.of(RegeneradorEntity::new, MobCategory.MONSTER).sized(0.7f, 2.1f).clientTrackingRange(10).build("regenerador"));
+    public static final RegistryObject<Item> REGENERADOR_EGG = egg("regenerador", REGENERADOR, 0x8a8070, 0x305070);
+
+    public static final RegistryObject<EntityType<IronMaidenEntity>> IRON_MAIDEN = ENTITIES.register("iron_maiden",
+        () -> EntityType.Builder.of(IronMaidenEntity::new, MobCategory.MONSTER).sized(0.8f, 2.2f).clientTrackingRange(10).build("iron_maiden"));
+    public static final RegistryObject<Item> IRON_MAIDEN_EGG = egg("iron_maiden", IRON_MAIDEN, 0x707070, 0xa03020);
+
+    public static final RegistryObject<EntityType<ElGiganteEntity>> EL_GIGANTE = ENTITIES.register("el_gigante",
+        () -> EntityType.Builder.of(ElGiganteEntity::new, MobCategory.MONSTER).sized(1.9f, 4.6f).clientTrackingRange(10).build("el_gigante"));
+    public static final RegistryObject<Item> EL_GIGANTE_EGG = egg("el_gigante", EL_GIGANTE, 0x706050, 0xc03030);
+
+    public static final RegistryObject<EntityType<DelLagoEntity>> DEL_LAGO = ENTITIES.register("del_lago",
+        () -> EntityType.Builder.of(DelLagoEntity::new, MobCategory.MONSTER).sized(3.2f, 2.4f).clientTrackingRange(10).build("del_lago"));
+    public static final RegistryObject<Item> DEL_LAGO_EGG = egg("del_lago", DEL_LAGO, 0x305048, 0xc0a060);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -191,6 +221,12 @@ public final class ModEntities {
         e.put(GANADO.get(), GanadoEntity.createAttributes().build());
         e.put(SALVADOR.get(), SalvadorEntity.createAttributes().build());
         e.put(GARRADOR.get(), GarradorEntity.createAttributes().build());
+        e.put(COLMILLOS.get(), ColmillosEntity.createAttributes().build());
+        e.put(NOVISTADOR.get(), NovistadorEntity.createAttributes().build());
+        e.put(REGENERADOR.get(), RegeneradorEntity.createAttributes().build());
+        e.put(IRON_MAIDEN.get(), IronMaidenEntity.createAttributes().build());
+        e.put(EL_GIGANTE.get(), ElGiganteEntity.createAttributes().build());
+        e.put(DEL_LAGO.get(), DelLagoEntity.createAttributes().build());
     }
 
     private ModEntities() {}

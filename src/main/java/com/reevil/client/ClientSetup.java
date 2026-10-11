@@ -61,6 +61,18 @@ import com.reevil.client.salvador.SalvadorModel;
 import com.reevil.client.salvador.SalvadorRenderer;
 import com.reevil.client.garrador.GarradorModel;
 import com.reevil.client.garrador.GarradorRenderer;
+import com.reevil.client.colmillos.ColmillosModel;
+import com.reevil.client.colmillos.ColmillosRenderer;
+import com.reevil.client.novistador.NovistadorModel;
+import com.reevil.client.novistador.NovistadorRenderer;
+import com.reevil.client.regenerador.RegeneradorModel;
+import com.reevil.client.regenerador.RegeneradorRenderer;
+import com.reevil.client.ironmaiden.IronMaidenModel;
+import com.reevil.client.ironmaiden.IronMaidenRenderer;
+import com.reevil.client.elgigante.ElGiganteModel;
+import com.reevil.client.elgigante.ElGiganteRenderer;
+import com.reevil.client.dellago.DelLagoModel;
+import com.reevil.client.dellago.DelLagoRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -101,6 +113,12 @@ public final class ClientSetup {
         e.registerLayerDefinition(GanadoModel.LAYER, GanadoModel::createBodyLayer);
         e.registerLayerDefinition(SalvadorModel.LAYER, SalvadorModel::createBodyLayer);
         e.registerLayerDefinition(GarradorModel.LAYER, GarradorModel::createBodyLayer);
+        e.registerLayerDefinition(ColmillosModel.LAYER, ColmillosModel::createBodyLayer);
+        e.registerLayerDefinition(NovistadorModel.LAYER, NovistadorModel::createBodyLayer);
+        e.registerLayerDefinition(RegeneradorModel.LAYER, RegeneradorModel::createBodyLayer);
+        e.registerLayerDefinition(IronMaidenModel.LAYER, IronMaidenModel::createBodyLayer);
+        e.registerLayerDefinition(ElGiganteModel.LAYER, ElGiganteModel::createBodyLayer);
+        e.registerLayerDefinition(DelLagoModel.LAYER, DelLagoModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -135,6 +153,12 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.GANADO.get(), GanadoRenderer::new);
         e.registerEntityRenderer(ModEntities.SALVADOR.get(), SalvadorRenderer::new);
         e.registerEntityRenderer(ModEntities.GARRADOR.get(), GarradorRenderer::new);
+        e.registerEntityRenderer(ModEntities.COLMILLOS.get(), ColmillosRenderer::new);
+        e.registerEntityRenderer(ModEntities.NOVISTADOR.get(), NovistadorRenderer::new);
+        e.registerEntityRenderer(ModEntities.REGENERADOR.get(), RegeneradorRenderer::new);
+        e.registerEntityRenderer(ModEntities.IRON_MAIDEN.get(), IronMaidenRenderer::new);
+        e.registerEntityRenderer(ModEntities.EL_GIGANTE.get(), ElGiganteRenderer::new);
+        e.registerEntityRenderer(ModEntities.DEL_LAGO.get(), DelLagoRenderer::new);
     }
 
     private ClientSetup() {}
