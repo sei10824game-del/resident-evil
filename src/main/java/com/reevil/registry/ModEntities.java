@@ -24,6 +24,7 @@ import com.reevil.entity.larva.LarvaEntity;
 import com.reevil.entity.nemesis.NemesisEntity;
 import com.reevil.entity.gravedigger.GraveDiggerEntity;
 import com.reevil.entity.draindeimos.DrainDeimosEntity;
+import com.reevil.entity.brainsucker.BrainSuckerEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -125,6 +126,10 @@ public final class ModEntities {
         () -> EntityType.Builder.of(DrainDeimosEntity::new, MobCategory.MONSTER).sized(1.0f, 1.0f).clientTrackingRange(10).build("drain_deimos"));
     public static final RegistryObject<Item> DRAIN_DEIMOS_EGG = egg("drain_deimos", DRAIN_DEIMOS, 0x405040, 0xc03030);
 
+    public static final RegistryObject<EntityType<BrainSuckerEntity>> BRAIN_SUCKER = ENTITIES.register("brain_sucker",
+        () -> EntityType.Builder.of(BrainSuckerEntity::new, MobCategory.MONSTER).sized(0.8f, 0.8f).clientTrackingRange(10).build("brain_sucker"));
+    public static final RegistryObject<Item> BRAIN_SUCKER_EGG = egg("brain_sucker", BRAIN_SUCKER, 0x504050, 0xc05080);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -149,6 +154,7 @@ public final class ModEntities {
         e.put(NEMESIS.get(), NemesisEntity.createAttributes().build());
         e.put(GRAVE_DIGGER.get(), GraveDiggerEntity.createAttributes().build());
         e.put(DRAIN_DEIMOS.get(), DrainDeimosEntity.createAttributes().build());
+        e.put(BRAIN_SUCKER.get(), BrainSuckerEntity.createAttributes().build());
     }
 
     private ModEntities() {}

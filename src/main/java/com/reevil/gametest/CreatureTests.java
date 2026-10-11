@@ -93,4 +93,5 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void nemesisF2(GameTestHelper h) { run(h, ModEntities.NEMESIS.get(), false, 6, 0.2f); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void graveDigger(GameTestHelper h) { run(h, ModEntities.GRAVE_DIGGER.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void drainDeimos(GameTestHelper h) { run(h, ModEntities.DRAIN_DEIMOS.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void brainSucker(GameTestHelper h) { run(h, ModEntities.BRAIN_SUCKER.get(), false, 6); }
 }

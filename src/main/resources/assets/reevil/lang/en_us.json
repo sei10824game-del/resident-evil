@@ -44,5 +44,7 @@
  "entity.reevil.grave_digger": "Grave Digger",
  "item.reevil.grave_digger_spawn_egg": "Grave Digger Spawn Egg",
  "entity.reevil.drain_deimos": "Drain Deimos",
- "item.reevil.drain_deimos_spawn_egg": "Drain Deimos Spawn Egg"
+ "item.reevil.drain_deimos_spawn_egg": "Drain Deimos Spawn Egg",
+ "entity.reevil.brain_sucker": "Brain Sucker",
+ "item.reevil.brain_sucker_spawn_egg": "Brain Sucker Spawn Egg"
 }

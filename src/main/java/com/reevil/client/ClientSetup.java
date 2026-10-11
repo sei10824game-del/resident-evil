@@ -47,6 +47,8 @@ import com.reevil.client.gravedigger.GraveDiggerModel;
 import com.reevil.client.gravedigger.GraveDiggerRenderer;
 import com.reevil.client.draindeimos.DrainDeimosModel;
 import com.reevil.client.draindeimos.DrainDeimosRenderer;
+import com.reevil.client.brainsucker.BrainSuckerModel;
+import com.reevil.client.brainsucker.BrainSuckerRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -80,6 +82,7 @@ public final class ClientSetup {
         e.registerLayerDefinition(NemesisModel.LAYER, NemesisModel::createBodyLayer);
         e.registerLayerDefinition(GraveDiggerModel.LAYER, GraveDiggerModel::createBodyLayer);
         e.registerLayerDefinition(DrainDeimosModel.LAYER, DrainDeimosModel::createBodyLayer);
+        e.registerLayerDefinition(BrainSuckerModel.LAYER, BrainSuckerModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -107,6 +110,7 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.NEMESIS.get(), NemesisRenderer::new);
         e.registerEntityRenderer(ModEntities.GRAVE_DIGGER.get(), GraveDiggerRenderer::new);
         e.registerEntityRenderer(ModEntities.DRAIN_DEIMOS.get(), DrainDeimosRenderer::new);
+        e.registerEntityRenderer(ModEntities.BRAIN_SUCKER.get(), BrainSuckerRenderer::new);
     }
 
     private ClientSetup() {}

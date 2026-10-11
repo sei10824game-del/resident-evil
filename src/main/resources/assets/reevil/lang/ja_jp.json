@@ -44,5 +44,7 @@
  "entity.reevil.grave_digger": "グレイブディガー",
  "item.reevil.grave_digger_spawn_egg": "グレイブディガーのスポーンエッグ",
  "entity.reevil.drain_deimos": "ドレインディモス",
- "item.reevil.drain_deimos_spawn_egg": "ドレインディモスのスポーンエッグ"
+ "item.reevil.drain_deimos_spawn_egg": "ドレインディモスのスポーンエッグ",
+ "entity.reevil.brain_sucker": "ブレインサッカー",
+ "item.reevil.brain_sucker_spawn_egg": "ブレインサッカーのスポーンエッグ"
 }
