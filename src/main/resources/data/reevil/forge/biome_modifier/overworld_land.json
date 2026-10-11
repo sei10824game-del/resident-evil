@@ -73,6 +73,18 @@
    "weight": 1,
    "minCount": 1,
    "maxCount": 1
+  },
+  {
+   "type": "reevil:grave_digger",
+   "weight": 1,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:drain_deimos",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 2
   }
  ]
 }

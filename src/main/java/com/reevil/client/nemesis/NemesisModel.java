@@ -58,10 +58,10 @@ public class NemesisModel extends BioModel<NemesisEntity> {
             PartDefinition sh = th.addOrReplaceChild("shin" + n, CubeListBuilder.create().texOffs(18, 40).addBox(-2, 0, -2, 4, 7, 4), PartPose.offset(0, 7, 0));
             sh.addOrReplaceChild("foot" + n, CubeListBuilder.create().texOffs(36, 40).addBox(-2, 0, -5, 4, 2, 6), PartPose.offset(0, 7, 0));
         }
-        float[][] tp = {{6.5f, -9, 2.5f, -0.6f, 0.5f}, {-6.5f, -9, 2.5f, -0.6f, -0.5f}, {3, -4, 3, -0.2f, 0.25f}, {-3, -4, 3, -0.2f, -0.25f}};
+        float[][] tp = {{6.5f, -9, 2.5f, 0.1f, 0.5f}, {-6.5f, -9, 2.5f, 0.1f, -0.5f}, {3, -4, 3, 0.3f, 0.25f}, {-3, -4, 3, 0.3f, -0.25f}};
         for (int c = 0; c < 4; c++) {
             PartDefinition t = torso.addOrReplaceChild("t" + TN[c], CubeListBuilder.create(), PartPose.offsetAndRotation(tp[c][0], tp[c][1], tp[c][2], tp[c][3], 3.14159f + tp[c][4], 0));
-            for (int i = 1; i <= 5; i++) t = t.addOrReplaceChild("t" + TN[c] + i, CubeListBuilder.create().texOffs(82, 24).addBox(-1.5f, -1.5f, -9, 3, 3, 9), PartPose.offsetAndRotation(0, 0, i == 1 ? 0 : -9, -0.25f, 0, 0));
+            for (int i = 1; i <= 5; i++) t = t.addOrReplaceChild("t" + TN[c] + i, CubeListBuilder.create().texOffs(82, 24).addBox(-1.5f, -1.5f, -9, 3, 3, 9), PartPose.offsetAndRotation(0, 0, i == 1 ? 0 : -9, 0.3f, 0, 0));
         }
         return LayerDefinition.create(mesh, 128, 64);
     }

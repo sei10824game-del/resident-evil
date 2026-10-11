@@ -20,10 +20,10 @@ public final class ModSpawns {
     @SubscribeEvent
     public static void register(SpawnPlacementRegisterEvent e) {
         for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.ZOMBIE.get(), ModEntities.CRIMSON_HEAD.get(), ModEntities.CERBERUS.get(), ModEntities.HUNTER.get(),
-            ModEntities.CHIMERA.get(), ModEntities.GIANT_SPIDER.get(), ModEntities.WEB_SPINNER.get(), ModEntities.LICKER.get(), ModEntities.LARVA.get(), ModEntities.IVY.get()}) {
+            ModEntities.CHIMERA.get(), ModEntities.GIANT_SPIDER.get(), ModEntities.WEB_SPINNER.get(), ModEntities.LICKER.get(), ModEntities.LARVA.get(), ModEntities.IVY.get(), ModEntities.GRAVE_DIGGER.get()}) {
             reg(e, t);
         }
-        for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.CROW.get(), ModEntities.GIANT_MOTH.get()}) {
+        for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.CROW.get(), ModEntities.GIANT_MOTH.get(), ModEntities.DRAIN_DEIMOS.get()}) {
             e.register(t, SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING, (ty, l, r, p, rnd) -> p.getY() > l.getMinBuildHeight() && Monster.isDarkEnoughToSpawn(l, p, rnd), SpawnPlacementRegisterEvent.Operation.OR);
         }
         e.register(ModEntities.ALLIGATOR.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,

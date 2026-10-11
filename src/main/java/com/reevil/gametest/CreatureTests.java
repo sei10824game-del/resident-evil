@@ -87,4 +87,10 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void ivyLow(GameTestHelper h) { run(h, ModEntities.IVY.get(), false, 4, 0.4f); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void giantMoth(GameTestHelper h) { run(h, ModEntities.GIANT_MOTH.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void larva(GameTestHelper h) { run(h, ModEntities.LARVA.get(), false, 5); }
+
+    @GameTest(template = "empty", timeoutTicks = 700) public static void nemesis(GameTestHelper h) { run(h, ModEntities.NEMESIS.get(), false, 8); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void nemesisF1(GameTestHelper h) { run(h, ModEntities.NEMESIS.get(), false, 6, 0.55f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void nemesisF2(GameTestHelper h) { run(h, ModEntities.NEMESIS.get(), false, 6, 0.2f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void graveDigger(GameTestHelper h) { run(h, ModEntities.GRAVE_DIGGER.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void drainDeimos(GameTestHelper h) { run(h, ModEntities.DRAIN_DEIMOS.get(), false, 6); }
 }
