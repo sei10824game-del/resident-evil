@@ -31,6 +31,8 @@ import com.reevil.client.licker.LickerModel;
 import com.reevil.client.licker.LickerRenderer;
 import com.reevil.client.mrx.MrXModel;
 import com.reevil.client.mrx.MrXRenderer;
+import com.reevil.client.birkin.BirkinModel;
+import com.reevil.client.birkin.BirkinRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -56,6 +58,7 @@ public final class ClientSetup {
         e.registerLayerDefinition(LisaTrevorModel.LAYER, LisaTrevorModel::createBodyLayer);
         e.registerLayerDefinition(LickerModel.LAYER, LickerModel::createBodyLayer);
         e.registerLayerDefinition(MrXModel.LAYER, MrXModel::createBodyLayer);
+        e.registerLayerDefinition(BirkinModel.LAYER, BirkinModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -75,6 +78,7 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.LISA_TREVOR.get(), LisaTrevorRenderer::new);
         e.registerEntityRenderer(ModEntities.LICKER.get(), LickerRenderer::new);
         e.registerEntityRenderer(ModEntities.MR_X.get(), MrXRenderer::new);
+        e.registerEntityRenderer(ModEntities.BIRKIN.get(), BirkinRenderer::new);
     }
 
     private ClientSetup() {}
