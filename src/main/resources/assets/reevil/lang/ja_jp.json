@@ -140,5 +140,13 @@
  "entity.reevil.urias": "ウリアス",
  "item.reevil.urias_spawn_egg": "ウリアスのスポーンエッグ",
  "entity.reevil.soldat": "ゾルダート",
- "item.reevil.soldat_spawn_egg": "ゾルダートのスポーンエッグ"
+ "item.reevil.soldat_spawn_egg": "ゾルダートのスポーンエッグ",
+ "entity.reevil.marguerite": "マルガレーテ",
+ "item.reevil.marguerite_spawn_egg": "マルガレーテのスポーンエッグ",
+ "entity.reevil.miranda": "ミランダ",
+ "item.reevil.miranda_spawn_egg": "ミランダのスポーンエッグ",
+ "entity.reevil.haos": "ハオス",
+ "item.reevil.haos_spawn_egg": "ハオスのスポーンエッグ",
+ "entity.reevil.gnezdo": "グネズド",
+ "item.reevil.gnezdo_spawn_egg": "グネズドのスポーンエッグ"
 }

@@ -17,7 +17,7 @@ public class DelLagoEntity extends NeptuneEntity {
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
             .add(Attributes.MAX_HEALTH, 500.0)
-            .add(Attributes.MOVEMENT_SPEED, 0.45)
+            .add(Attributes.MOVEMENT_SPEED, 1.2)
             .add(Attributes.ATTACK_DAMAGE, 14.0)
             .add(Attributes.FOLLOW_RANGE, 40.0)
             .add(Attributes.KNOCKBACK_RESISTANCE, 1.0)

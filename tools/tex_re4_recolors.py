@@ -103,3 +103,9 @@ save(colorize(load('del_lago'), (10, 30, 16), (190, 214, 120), (70, 110, 50)), '
 save(colorize(load('ogroman'), (30, 30, 34), (190, 192, 196), (110, 110, 116)), 'sturm')
 save(colorize(load('ustanak'), (30, 12, 10), (200, 120, 100), (120, 46, 36)), 'urias')
 save(colorize(load('krauser'), (26, 28, 26), (196, 198, 192), (110, 114, 106)), 'soldat')
+
+# ---- remaining RE6/7/8
+save(colorize(load('giant_moth'), (30, 18, 10), (232, 208, 150), (130, 100, 60)), 'marguerite')
+for sfx in ('', '_mutated', '_final'): save(colorize(load('saddler' + sfx), (14, 8, 28), (206, 196, 232), (80, 60, 120)), 'miranda' + sfx)
+for sfx in ('', '_phase2'): save(colorize(load('plant42' + sfx), (30, 12, 16), (210, 150, 90), (110, 50, 40)), 'haos' + sfx)
+save(colorize(load('larva'), (24, 28, 10), (196, 214, 120), (100, 120, 40)), 'gnezdo')

@@ -140,5 +140,13 @@
  "entity.reevil.urias": "Urias",
  "item.reevil.urias_spawn_egg": "Urias Spawn Egg",
  "entity.reevil.soldat": "Soldat",
- "item.reevil.soldat_spawn_egg": "Soldat Spawn Egg"
+ "item.reevil.soldat_spawn_egg": "Soldat Spawn Egg",
+ "entity.reevil.marguerite": "Marguerite",
+ "item.reevil.marguerite_spawn_egg": "Marguerite Spawn Egg",
+ "entity.reevil.miranda": "Miranda",
+ "item.reevil.miranda_spawn_egg": "Miranda Spawn Egg",
+ "entity.reevil.haos": "Haos",
+ "item.reevil.haos_spawn_egg": "Haos Spawn Egg",
+ "entity.reevil.gnezdo": "Gnezdo",
+ "item.reevil.gnezdo_spawn_egg": "Gnezdo Spawn Egg"
 }

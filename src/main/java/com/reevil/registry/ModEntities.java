@@ -72,6 +72,10 @@ import com.reevil.entity.moreau.MoreauEntity;
 import com.reevil.entity.sturm.SturmEntity;
 import com.reevil.entity.urias.UriasEntity;
 import com.reevil.entity.soldat.SoldatEntity;
+import com.reevil.entity.marguerite.MargueriteEntity;
+import com.reevil.entity.miranda.MirandaEntity;
+import com.reevil.entity.haos.HaosEntity;
+import com.reevil.entity.gnezdo.GnezdoEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -365,6 +369,22 @@ public final class ModEntities {
         () -> EntityType.Builder.of(SoldatEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("soldat"));
     public static final RegistryObject<Item> SOLDAT_EGG = egg("soldat", SOLDAT, 0x404840, 0xa0a0a0);
 
+    public static final RegistryObject<EntityType<MargueriteEntity>> MARGUERITE = ENTITIES.register("marguerite",
+        () -> EntityType.Builder.of(MargueriteEntity::new, MobCategory.MONSTER).sized(1.6f, 1.8f).clientTrackingRange(10).build("marguerite"));
+    public static final RegistryObject<Item> MARGUERITE_EGG = egg("marguerite", MARGUERITE, 0x806040, 0xd0c080);
+
+    public static final RegistryObject<EntityType<MirandaEntity>> MIRANDA = ENTITIES.register("miranda",
+        () -> EntityType.Builder.of(MirandaEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("miranda"));
+    public static final RegistryObject<Item> MIRANDA_EGG = egg("miranda", MIRANDA, 0x302040, 0xc0c0e0);
+
+    public static final RegistryObject<EntityType<HaosEntity>> HAOS = ENTITIES.register("haos",
+        () -> EntityType.Builder.of(HaosEntity::new, MobCategory.MONSTER).sized(2.6f, 4.4f).clientTrackingRange(10).build("haos"));
+    public static final RegistryObject<Item> HAOS_EGG = egg("haos", HAOS, 0x402028, 0xc08040);
+
+    public static final RegistryObject<EntityType<GnezdoEntity>> GNEZDO = ENTITIES.register("gnezdo",
+        () -> EntityType.Builder.of(GnezdoEntity::new, MobCategory.MONSTER).sized(1.2f, 0.9f).clientTrackingRange(10).build("gnezdo"));
+    public static final RegistryObject<Item> GNEZDO_EGG = egg("gnezdo", GNEZDO, 0x606030, 0xc0c060);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -437,6 +457,10 @@ public final class ModEntities {
         e.put(STURM.get(), SturmEntity.createAttributes().build());
         e.put(URIAS.get(), UriasEntity.createAttributes().build());
         e.put(SOLDAT.get(), SoldatEntity.createAttributes().build());
+        e.put(MARGUERITE.get(), MargueriteEntity.createAttributes().build());
+        e.put(MIRANDA.get(), MirandaEntity.createAttributes().build());
+        e.put(HAOS.get(), HaosEntity.createAttributes().build());
+        e.put(GNEZDO.get(), GnezdoEntity.createAttributes().build());
     }
 
     private ModEntities() {}

@@ -24,9 +24,9 @@ public class CreatureTests {
     private static void run(GameTestHelper h, EntityType<? extends BioMonster> type, boolean water, int dist, float hpFrac) {
         for (int x = 0; x < 24; x++) for (int z = 0; z < 24; z++) {
             h.setBlock(new BlockPos(x, 0, z), Blocks.STONE);
-            for (int y = 1; y <= 3; y++) h.setBlock(new BlockPos(x, y, z), water ? Blocks.WATER : Blocks.AIR);
+            for (int y = 1; y <= 5; y++) h.setBlock(new BlockPos(x, y, z), water && y <= 4 ? Blocks.WATER : Blocks.AIR);
         }
-        BioMonster mob = (BioMonster) h.spawn(type, new BlockPos(12, 1, 12 + dist));
+        BioMonster mob = (BioMonster) h.spawn(type, new BlockPos(12, water ? 2 : 1, 12 + dist));
         Player p = h.makeMockPlayer();
         Vec3 ppos = h.absoluteVec(new Vec3(12, 1, 12));
         p.moveTo(ppos.x, ppos.y, ppos.z);
@@ -144,4 +144,9 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void sturm(GameTestHelper h) { run(h, ModEntities.STURM.get(), false, 8); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void urias(GameTestHelper h) { run(h, ModEntities.URIAS.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void soldat(GameTestHelper h) { run(h, ModEntities.SOLDAT.get(), false, 9); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void moreau(GameTestHelper h) { run(h, ModEntities.MOREAU.get(), true, 8); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void marguerite(GameTestHelper h) { run(h, ModEntities.MARGUERITE.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void miranda(GameTestHelper h) { run(h, ModEntities.MIRANDA.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void haos(GameTestHelper h) { run(h, ModEntities.HAOS.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void gnezdo(GameTestHelper h) { run(h, ModEntities.GNEZDO.get(), false, 5); }
 }

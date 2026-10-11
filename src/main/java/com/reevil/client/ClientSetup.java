@@ -143,6 +143,14 @@ import com.reevil.client.urias.UriasModel;
 import com.reevil.client.urias.UriasRenderer;
 import com.reevil.client.soldat.SoldatModel;
 import com.reevil.client.soldat.SoldatRenderer;
+import com.reevil.client.marguerite.MargueriteModel;
+import com.reevil.client.marguerite.MargueriteRenderer;
+import com.reevil.client.miranda.MirandaModel;
+import com.reevil.client.miranda.MirandaRenderer;
+import com.reevil.client.haos.HaosModel;
+import com.reevil.client.haos.HaosRenderer;
+import com.reevil.client.gnezdo.GnezdoModel;
+import com.reevil.client.gnezdo.GnezdoRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -224,6 +232,10 @@ public final class ClientSetup {
         e.registerLayerDefinition(SturmModel.LAYER, SturmModel::createBodyLayer);
         e.registerLayerDefinition(UriasModel.LAYER, UriasModel::createBodyLayer);
         e.registerLayerDefinition(SoldatModel.LAYER, SoldatModel::createBodyLayer);
+        e.registerLayerDefinition(MargueriteModel.LAYER, MargueriteModel::createBodyLayer);
+        e.registerLayerDefinition(MirandaModel.LAYER, MirandaModel::createBodyLayer);
+        e.registerLayerDefinition(HaosModel.LAYER, HaosModel::createBodyLayer);
+        e.registerLayerDefinition(GnezdoModel.LAYER, GnezdoModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -299,6 +311,10 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.STURM.get(), SturmRenderer::new);
         e.registerEntityRenderer(ModEntities.URIAS.get(), UriasRenderer::new);
         e.registerEntityRenderer(ModEntities.SOLDAT.get(), SoldatRenderer::new);
+        e.registerEntityRenderer(ModEntities.MARGUERITE.get(), MargueriteRenderer::new);
+        e.registerEntityRenderer(ModEntities.MIRANDA.get(), MirandaRenderer::new);
+        e.registerEntityRenderer(ModEntities.HAOS.get(), HaosRenderer::new);
+        e.registerEntityRenderer(ModEntities.GNEZDO.get(), GnezdoRenderer::new);
     }
 
     private ClientSetup() {}

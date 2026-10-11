@@ -16,6 +16,6 @@ public class MoreauEntity extends DelLagoEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-            .add(Attributes.MAX_HEALTH, 320.0).add(Attributes.MOVEMENT_SPEED, 0.45).add(Attributes.ATTACK_DAMAGE, 12.0).add(Attributes.FOLLOW_RANGE, 40).add(Attributes.KNOCKBACK_RESISTANCE, 1.0).add(Attributes.ARMOR, 4.0);
+            .add(Attributes.MAX_HEALTH, 320.0).add(Attributes.MOVEMENT_SPEED, 1.1).add(Attributes.ATTACK_DAMAGE, 12.0).add(Attributes.FOLLOW_RANGE, 40).add(Attributes.KNOCKBACK_RESISTANCE, 1.0).add(Attributes.ARMOR, 4.0);
     }
 }
