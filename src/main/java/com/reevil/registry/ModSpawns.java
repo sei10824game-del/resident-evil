@@ -20,7 +20,7 @@ public final class ModSpawns {
     @SubscribeEvent
     public static void register(SpawnPlacementRegisterEvent e) {
         for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.ZOMBIE.get(), ModEntities.CRIMSON_HEAD.get(), ModEntities.CERBERUS.get(), ModEntities.HUNTER.get(),
-            ModEntities.CHIMERA.get(), ModEntities.GIANT_SPIDER.get(), ModEntities.WEB_SPINNER.get(), ModEntities.LICKER.get(), ModEntities.LARVA.get(), ModEntities.IVY.get(), ModEntities.GRAVE_DIGGER.get()}) {
+            ModEntities.CHIMERA.get(), ModEntities.GIANT_SPIDER.get(), ModEntities.WEB_SPINNER.get(), ModEntities.LICKER.get(), ModEntities.LARVA.get(), ModEntities.IVY.get(), ModEntities.GRAVE_DIGGER.get(), ModEntities.PALE_HEAD.get(), ModEntities.HUNTER_BETA.get(), ModEntities.HUNTER_GAMMA.get()}) {
             reg(e, t);
         }
         for (EntityType<? extends Mob> t : new EntityType[]{ModEntities.CROW.get(), ModEntities.GIANT_MOTH.get(), ModEntities.DRAIN_DEIMOS.get(), ModEntities.BRAIN_SUCKER.get()}) {

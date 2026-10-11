@@ -49,6 +49,12 @@ import com.reevil.client.draindeimos.DrainDeimosModel;
 import com.reevil.client.draindeimos.DrainDeimosRenderer;
 import com.reevil.client.brainsucker.BrainSuckerModel;
 import com.reevil.client.brainsucker.BrainSuckerRenderer;
+import com.reevil.client.palehead.PaleHeadModel;
+import com.reevil.client.palehead.PaleHeadRenderer;
+import com.reevil.client.hunterbeta.HunterBetaModel;
+import com.reevil.client.hunterbeta.HunterBetaRenderer;
+import com.reevil.client.huntergamma.HunterGammaModel;
+import com.reevil.client.huntergamma.HunterGammaRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -83,6 +89,9 @@ public final class ClientSetup {
         e.registerLayerDefinition(GraveDiggerModel.LAYER, GraveDiggerModel::createBodyLayer);
         e.registerLayerDefinition(DrainDeimosModel.LAYER, DrainDeimosModel::createBodyLayer);
         e.registerLayerDefinition(BrainSuckerModel.LAYER, BrainSuckerModel::createBodyLayer);
+        e.registerLayerDefinition(PaleHeadModel.LAYER, PaleHeadModel::createBodyLayer);
+        e.registerLayerDefinition(HunterBetaModel.LAYER, HunterBetaModel::createBodyLayer);
+        e.registerLayerDefinition(HunterGammaModel.LAYER, HunterGammaModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -111,6 +120,9 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.GRAVE_DIGGER.get(), GraveDiggerRenderer::new);
         e.registerEntityRenderer(ModEntities.DRAIN_DEIMOS.get(), DrainDeimosRenderer::new);
         e.registerEntityRenderer(ModEntities.BRAIN_SUCKER.get(), BrainSuckerRenderer::new);
+        e.registerEntityRenderer(ModEntities.PALE_HEAD.get(), PaleHeadRenderer::new);
+        e.registerEntityRenderer(ModEntities.HUNTER_BETA.get(), HunterBetaRenderer::new);
+        e.registerEntityRenderer(ModEntities.HUNTER_GAMMA.get(), HunterGammaRenderer::new);
     }
 
     private ClientSetup() {}

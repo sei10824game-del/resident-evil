@@ -163,7 +163,7 @@ public class LickerEntity extends BioMonster {
         }
         if (!rolled && tickCount > 1) {
             rolled = true;
-            if (getForm() == 0 && getRandom().nextFloat() < 0.25f) makeBeta();
+            if (canBeta() && getForm() == 0 && getRandom().nextFloat() < 0.25f) makeBeta();
         }
         fallDistance = 0f;
         if (ceilCd > 0) ceilCd--;
@@ -189,7 +189,11 @@ public class LickerEntity extends BioMonster {
         setHealth(getMaxHealth());
     }
 
+    protected boolean canBeta() { return true; }
+    protected boolean canCeiling() { return true; }
+
     private boolean wantsAscend() {
+        if (!canCeiling()) return false;
         double gap = ceilingGap();
         if (gap < 0.3 || gap > 3.6) return false;
         LivingEntity t = getTarget();

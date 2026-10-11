@@ -25,6 +25,9 @@ import com.reevil.entity.nemesis.NemesisEntity;
 import com.reevil.entity.gravedigger.GraveDiggerEntity;
 import com.reevil.entity.draindeimos.DrainDeimosEntity;
 import com.reevil.entity.brainsucker.BrainSuckerEntity;
+import com.reevil.entity.palehead.PaleHeadEntity;
+import com.reevil.entity.hunterbeta.HunterBetaEntity;
+import com.reevil.entity.huntergamma.HunterGammaEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -130,6 +133,18 @@ public final class ModEntities {
         () -> EntityType.Builder.of(BrainSuckerEntity::new, MobCategory.MONSTER).sized(0.8f, 0.8f).clientTrackingRange(10).build("brain_sucker"));
     public static final RegistryObject<Item> BRAIN_SUCKER_EGG = egg("brain_sucker", BRAIN_SUCKER, 0x504050, 0xc05080);
 
+    public static final RegistryObject<EntityType<PaleHeadEntity>> PALE_HEAD = ENTITIES.register("pale_head",
+        () -> EntityType.Builder.of(PaleHeadEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("pale_head"));
+    public static final RegistryObject<Item> PALE_HEAD_EGG = egg("pale_head", PALE_HEAD, 0xc8c0b0, 0x605850);
+
+    public static final RegistryObject<EntityType<HunterBetaEntity>> HUNTER_BETA = ENTITIES.register("hunter_beta",
+        () -> EntityType.Builder.of(HunterBetaEntity::new, MobCategory.MONSTER).sized(0.9f, 2.1f).clientTrackingRange(10).build("hunter_beta"));
+    public static final RegistryObject<Item> HUNTER_BETA_EGG = egg("hunter_beta", HUNTER_BETA, 0xa08a50, 0x402c20);
+
+    public static final RegistryObject<EntityType<HunterGammaEntity>> HUNTER_GAMMA = ENTITIES.register("hunter_gamma",
+        () -> EntityType.Builder.of(HunterGammaEntity::new, MobCategory.MONSTER).sized(1.0f, 1.2f).clientTrackingRange(10).build("hunter_gamma"));
+    public static final RegistryObject<Item> HUNTER_GAMMA_EGG = egg("hunter_gamma", HUNTER_GAMMA, 0x6a8a30, 0xd0c040);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -155,6 +170,9 @@ public final class ModEntities {
         e.put(GRAVE_DIGGER.get(), GraveDiggerEntity.createAttributes().build());
         e.put(DRAIN_DEIMOS.get(), DrainDeimosEntity.createAttributes().build());
         e.put(BRAIN_SUCKER.get(), BrainSuckerEntity.createAttributes().build());
+        e.put(PALE_HEAD.get(), PaleHeadEntity.createAttributes().build());
+        e.put(HUNTER_BETA.get(), HunterBetaEntity.createAttributes().build());
+        e.put(HUNTER_GAMMA.get(), HunterGammaEntity.createAttributes().build());
     }
 
     private ModEntities() {}

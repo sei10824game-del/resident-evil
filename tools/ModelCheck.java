@@ -11,7 +11,7 @@ public class ModelCheck {
 
     public static void main(String[] a) throws Exception {
         String[] names = {"zombie.ZombieModel", "crimsonhead.CrimsonHeadModel", "cerberus.CerberusModel", "crow.CrowModel", "hunter.HunterModel", "chimera.ChimeraModel",
-            "giantspider.GiantSpiderModel", "webspinner.WebSpinnerModel", "neptune.NeptuneModel", "yawn.YawnModel", "plant42.Plant42Model", "tyrant.TyrantModel", "lisatrevor.LisaTrevorModel", "licker.LickerModel", "mrx.MrXModel", "birkin.BirkinModel", "alligator.AlligatorModel", "ivy.IvyModel", "giantmoth.GiantMothModel", "larva.LarvaModel", "nemesis.NemesisModel", "gravedigger.GraveDiggerModel", "draindeimos.DrainDeimosModel", "brainsucker.BrainSuckerModel"};
+            "giantspider.GiantSpiderModel", "webspinner.WebSpinnerModel", "neptune.NeptuneModel", "yawn.YawnModel", "plant42.Plant42Model", "tyrant.TyrantModel", "lisatrevor.LisaTrevorModel", "licker.LickerModel", "mrx.MrXModel", "birkin.BirkinModel", "alligator.AlligatorModel", "ivy.IvyModel", "giantmoth.GiantMothModel", "larva.LarvaModel", "nemesis.NemesisModel", "gravedigger.GraveDiggerModel", "draindeimos.DrainDeimosModel", "brainsucker.BrainSuckerModel", "palehead.PaleHeadModel", "hunterbeta.HunterBetaModel", "huntergamma.HunterGammaModel"};
         int bad = 0;
         for (String n : names) {
             try {

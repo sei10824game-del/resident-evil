@@ -91,6 +91,24 @@
    "weight": 3,
    "minCount": 1,
    "maxCount": 3
+  },
+  {
+   "type": "reevil:pale_head",
+   "weight": 3,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:hunter_beta",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 1
+  },
+  {
+   "type": "reevil:hunter_gamma",
+   "weight": 2,
+   "minCount": 1,
+   "maxCount": 2
   }
  ]
 }

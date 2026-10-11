@@ -188,6 +188,9 @@ public class ZombieEntity extends BioMonster {
 
     // ---------------------------------------------------------------- damage
 
+    /** subclasses (Pale Head) that stay dead. */
+    protected boolean revives() { return true; }
+
     private static boolean isTrueDeath(DamageSource src) {
         return src.is(DamageTypeTags.IS_FIRE) || src.is(DamageTypeTags.BYPASSES_INVULNERABILITY);
     }
@@ -217,7 +220,7 @@ public class ZombieEntity extends BioMonster {
 
     @Override
     public void die(DamageSource src) {
-        if (!level().isClientSide && getForm() != FORM_CORPSE && !isTrueDeath(src) && !isOnFire()) {
+        if (revives() && !level().isClientSide && getForm() != FORM_CORPSE && !isTrueDeath(src) && !isOnFire()) {
             setHealth(1f);
             cancelMove();
             grabbing = false;

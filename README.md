@@ -2,7 +2,7 @@
 
 RE1: Zombie (+revive into Crimson Head), Crimson Head, Cerberus, Infected Crow, Hunter, Chimera, Giant Spider, Web Spinner, Neptune, Yawn, Plant 42, Tyrant, Lisa Trevor.
 RE2: Licker (blind, ceiling ambush, beta form), Mr. X / Super Tyrant (door-smashing stalker, stagger kneel), G-Birkin (G1 -> G2 -> G3), Giant Alligator, Ivy, Giant Moth, Moth Larva.
-RE3: Nemesis (3 forms, rocket launcher, tentacles, door-smashing pursuit), Grave Digger (Yawn serpent rig/behaviour, reskinned), Drain Deimos (Giant Moth rig/behaviour + blood drain, reskinned), Brain Sucker (bat flier, head-cling drain).
+RE3: Nemesis (3 forms, rocket launcher, tentacles, door-smashing pursuit), Grave Digger (Yawn serpent rig/behaviour, reskinned), Drain Deimos (Giant Moth rig/behaviour + blood drain, reskinned), Brain Sucker (bat flier, head-cling drain), Pale Head (tanky non-reviving zombie, swollen skull), Hunter Beta (tougher sandy Hunter), Hunter Gamma (amphibious tongue Hunter, Licker rig).
 Spawn eggs for all (creative tab: Spawn Eggs). New creatures: `tools/addentity.py` registers one; see an existing creature for the pattern.
 
 - Build: `./gradlew build` (JDK 17). Run: `./gradlew runClient`.

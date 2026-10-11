@@ -46,5 +46,11 @@
  "entity.reevil.drain_deimos": "Drain Deimos",
  "item.reevil.drain_deimos_spawn_egg": "Drain Deimos Spawn Egg",
  "entity.reevil.brain_sucker": "Brain Sucker",
- "item.reevil.brain_sucker_spawn_egg": "Brain Sucker Spawn Egg"
+ "item.reevil.brain_sucker_spawn_egg": "Brain Sucker Spawn Egg",
+ "entity.reevil.pale_head": "Pale Head",
+ "item.reevil.pale_head_spawn_egg": "Pale Head Spawn Egg",
+ "entity.reevil.hunter_beta": "Hunter Beta",
+ "item.reevil.hunter_beta_spawn_egg": "Hunter Beta Spawn Egg",
+ "entity.reevil.hunter_gamma": "Hunter Gamma",
+ "item.reevil.hunter_gamma_spawn_egg": "Hunter Gamma Spawn Egg"
 }

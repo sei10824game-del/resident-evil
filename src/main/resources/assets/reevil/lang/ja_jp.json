@@ -46,5 +46,11 @@
  "entity.reevil.drain_deimos": "ドレインディモス",
  "item.reevil.drain_deimos_spawn_egg": "ドレインディモスのスポーンエッグ",
  "entity.reevil.brain_sucker": "ブレインサッカー",
- "item.reevil.brain_sucker_spawn_egg": "ブレインサッカーのスポーンエッグ"
+ "item.reevil.brain_sucker_spawn_egg": "ブレインサッカーのスポーンエッグ",
+ "entity.reevil.pale_head": "ペイルヘッド",
+ "item.reevil.pale_head_spawn_egg": "ペイルヘッドのスポーンエッグ",
+ "entity.reevil.hunter_beta": "ハンターβ",
+ "item.reevil.hunter_beta_spawn_egg": "ハンターβのスポーンエッグ",
+ "entity.reevil.hunter_gamma": "ハンターγ",
+ "item.reevil.hunter_gamma_spawn_egg": "ハンターγのスポーンエッグ"
 }
