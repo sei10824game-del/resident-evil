@@ -48,7 +48,8 @@ public class Plant42Model extends BioModel<Plant42Entity> {
         }
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 256, 256); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition base = root.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(-12, -6, -12, 24, 6, 24), PartPose.offset(0, 24, 0));
@@ -88,7 +89,7 @@ public class Plant42Model extends BioModel<Plant42Entity> {
         head.addOrReplaceChild("petalR", CubeListBuilder.create().texOffs(156, 72).addBox(0, -6, -14, 2, 12, 14), PartPose.offsetAndRotation(-8, -9, -10, 0, -0.35f, 0));
         head.addOrReplaceChild("sacL", CubeListBuilder.create().texOffs(190, 72).addBox(-3, -3, -3, 6, 6, 6), PartPose.offset(12, -7, 2));
         head.addOrReplaceChild("sacR", CubeListBuilder.create().texOffs(190, 72).addBox(-3, -3, -3, 6, 6, 6), PartPose.offset(-12, -7, 2));
-        return LayerDefinition.create(mesh, 256, 256);
+        return mesh;
     }
 
     // ------------------------------------------------------------------ idle / hurt / death

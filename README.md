@@ -23,3 +23,4 @@ Spawn eggs for all (creative tab: Spawn Eggs). New creatures: `tools/addentity.p
 ## Structures & factions
 - `tools/gen_structures.py` generates 8 natural structures (Spencer Mansion/forest, Raccoon City/plains, Salazar Castle/mountains, Ganado village/taiga, Majini village/desert-savanna-badlands, Baker house/swamp, Dimitrescu Castle/snow, Edonia ruins/jungle) with spawners + structure spawn overrides for that game's creatures. Test: `/place structure reevil:<name> x y z`, `/locate structure reevil:<name>`.
 - Factions (`entity/Factions.java`): same origin = allies, different origin = enemies, all non-mod mobs hostile both ways (`FactionEvents`). Edit `ALLIES` for confirmed alliances.
+- `tools/variantgen.py`: gives reskinned creatures their own silhouette (adds/replaces cubes on the parent rig so clips keep working, paints the new cubes into an extended texture). Edit a spec there and run `python3 tools/variantgen.py <id>`.

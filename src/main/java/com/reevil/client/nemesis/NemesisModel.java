@@ -39,7 +39,8 @@ public class NemesisModel extends BioModel<NemesisEntity> {
         for (String t : TN) { String p = "base/torso/t" + t; reg("t" + t, p); for (int i = 1; i <= 5; i++) { p += "/t" + t + i; reg("t" + t + i, p); } }
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 128, 64); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition base = root.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(-4.5f, -1.5f, -2, 9, 3, 4), PartPose.offset(0, 6, 0));
@@ -63,7 +64,7 @@ public class NemesisModel extends BioModel<NemesisEntity> {
             PartDefinition t = torso.addOrReplaceChild("t" + TN[c], CubeListBuilder.create(), PartPose.offsetAndRotation(tp[c][0], tp[c][1], tp[c][2], tp[c][3], 3.14159f + tp[c][4], 0));
             for (int i = 1; i <= 5; i++) t = t.addOrReplaceChild("t" + TN[c] + i, CubeListBuilder.create().texOffs(82, 24).addBox(-1.5f, -1.5f, -9, 3, 3, 9), PartPose.offsetAndRotation(0, 0, i == 1 ? 0 : -9, 0.3f, 0, 0));
         }
-        return LayerDefinition.create(mesh, 128, 64);
+        return mesh;
     }
 
     @Override

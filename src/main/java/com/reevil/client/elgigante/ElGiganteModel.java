@@ -11,5 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 public class ElGiganteModel extends MrXModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "el_gigante"), "main");
     public ElGiganteModel(ModelPart root) { super(root); }
+    public static net.minecraft.client.model.geom.builders.MeshDefinition mesh() { return MrXModel.mesh(); }
     public static LayerDefinition createBodyLayer() { return MrXModel.createBodyLayer(); }
 }

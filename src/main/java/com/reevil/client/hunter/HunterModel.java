@@ -51,7 +51,8 @@ public class HunterModel extends BioModel<HunterEntity> {
         }
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 128, 128); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition base = root.addOrReplaceChild("base", CubeListBuilder.create(), PartPose.offset(0f, 12f, 0f));
@@ -105,7 +106,7 @@ public class HunterModel extends BioModel<HunterEntity> {
             foot.addOrReplaceChild("toes" + n, CubeListBuilder.create()
                 .texOffs(106, v).addBox(-2f, 0f, -4f, 4, 1, 5), PartPose.offsetAndRotation(0f, 4.5f, 0f, 0.15f, 0f, 0f));
         }
-        return LayerDefinition.create(mesh, 128, 128);
+        return mesh;
     }
 
     // ------------------------------------------------------------------ helpers

@@ -49,7 +49,8 @@ public class MrXModel extends BioModel<MrXEntity> {
         for (String c : CLAWS) reg(c, "base/torso/armR/foreR/handR/" + c);
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 128, 64); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition base = root.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(-4, -1.5f, -2, 8, 3, 4), PartPose.offset(0, 6.5f, 0));
@@ -70,7 +71,7 @@ public class MrXModel extends BioModel<MrXEntity> {
             PartDefinition sh = th.addOrReplaceChild("shin" + n, CubeListBuilder.create().texOffs(18, 40).addBox(-2, 0, -2, 4, 7, 4), PartPose.offset(0, 7, 0));
             sh.addOrReplaceChild("foot" + n, CubeListBuilder.create().texOffs(36, 40).addBox(-2, 0, -5, 4, 2, 6), PartPose.offset(0, 7, 0));
         }
-        return LayerDefinition.create(mesh, 128, 64);
+        return mesh;
     }
 
     @Override

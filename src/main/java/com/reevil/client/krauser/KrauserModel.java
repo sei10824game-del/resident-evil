@@ -11,5 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 public class KrauserModel extends GanadoModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "krauser"), "main");
     public KrauserModel(ModelPart root) { super(root); }
+    public static net.minecraft.client.model.geom.builders.MeshDefinition mesh() { return GanadoModel.mesh(); }
     public static LayerDefinition createBodyLayer() { return GanadoModel.createBodyLayer(); }
 }

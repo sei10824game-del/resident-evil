@@ -57,7 +57,8 @@ public class CerberusModel extends BioModel<CerberusEntity> {
         tail3 = reg("tail3", "body/hips/tail1/tail2/tail3");
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 64, 64); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0f, 13f, 0f));
@@ -108,7 +109,7 @@ public class CerberusModel extends BioModel<CerberusEntity> {
             .texOffs(36, 37).addBox(-1f, -1f, 0f, 2, 2, 2), PartPose.offsetAndRotation(0f, 0f, 2.6f, 0.15f, 0f, 0f));
         t2.addOrReplaceChild("tail3", CubeListBuilder.create()
             .texOffs(44, 37).addBox(-0.5f, -0.5f, 0f, 1, 1, 2), PartPose.offsetAndRotation(0f, 0f, 1.8f, 0.1f, 0f, 0f));
-        return LayerDefinition.create(mesh, 64, 64);
+        return mesh;
     }
 
     // ------------------------------------------------------------------ gait / idle

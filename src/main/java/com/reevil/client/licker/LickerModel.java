@@ -47,7 +47,8 @@ public class LickerModel extends BioModel<LickerEntity> {
         }
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 128, 64); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition base = root.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(-3, -3, -3, 6, 6, 6), PartPose.offset(0, 14, 3));
@@ -75,7 +76,7 @@ public class LickerModel extends BioModel<LickerEntity> {
             PartDefinition sh = th.addOrReplaceChild("shin" + n, CubeListBuilder.create().texOffs(18, 38).addBox(-1.5f, 0, -1.5f, 3, 8, 3), PartPose.offsetAndRotation(0, 7, 0, 1.3f, 0, 0));
             sh.addOrReplaceChild("foot" + n, CubeListBuilder.create().texOffs(32, 38).addBox(-2, 0, -4, 4, 2, 5), PartPose.offsetAndRotation(0, 8, 0, -0.5f, 0, 0));
         }
-        return LayerDefinition.create(mesh, 128, 64);
+        return mesh;
     }
 
     @Override

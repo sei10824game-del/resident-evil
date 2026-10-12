@@ -10,6 +10,6 @@ public class EvelineRenderer extends BioRenderer<NemesisEntity, EvelineModel> {
         super(ctx, new EvelineModel(ctx.bakeLayer(EvelineModel.LAYER)), 0.6f, "eveline");
     }
 
-    @Override protected void scale(NemesisEntity e, PoseStack ps, float partial) { ps.scale(0.95f, 0.95f, 0.95f); }
+    @Override protected void scale(NemesisEntity e, PoseStack ps, float partial) { ps.scale(0.72f, 0.72f, 0.72f); }
     @Override protected float getFlipDegrees(NemesisEntity e) { return 0f; }
 }

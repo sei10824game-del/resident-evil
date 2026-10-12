@@ -36,7 +36,8 @@ public class GiantMothModel extends BioModel<GiantMothEntity> {
         }
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 128, 64); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(38, 0).addBox(-2.5f, -2.5f, -3, 5, 5, 6), PartPose.offset(0, 14, 0));
@@ -53,7 +54,7 @@ public class GiantMothModel extends BioModel<GiantMothEntity> {
             w.addOrReplaceChild("wingOut" + n, CubeListBuilder.create().texOffs(46, 20).addBox(sg > 0 ? 0 : -12, -0.5f, -6, 12, 1, 12), PartPose.offsetAndRotation(sg * 12, 0, 0, 0, 0, -sg * 0.1f));
             for (int i = 0; i < 3; i++) body.addOrReplaceChild("leg" + n + i, CubeListBuilder.create().texOffs(96, 20).addBox(-0.5f, 0, -0.5f, 1, 5, 1), PartPose.offsetAndRotation(sg * 1.5f, 2.5f, -2 + i * 2, 0.2f * (i - 1), 0, sg * 0.35f));
         }
-        return LayerDefinition.create(mesh, 128, 64);
+        return mesh;
     }
 
     @Override

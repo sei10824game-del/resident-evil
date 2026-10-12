@@ -31,7 +31,8 @@ public class LarvaModel extends BioModel<LarvaEntity> {
         for (int i = 1; i <= 5; i++) { p += "/s" + i; reg("s" + i, p); }
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 64, 64); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition head = root.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-2.5f, -4, -5, 5, 4, 5)
@@ -47,7 +48,7 @@ public class LarvaModel extends BioModel<LarvaEntity> {
             if (i < 4) c.texOffs(22, 36).addBox(-w / 2 - 0.5f, 0, 2, 1, 2, 1).texOffs(22, 36).addBox(w / 2 - 0.5f, 0, 2, 1, 2, 1);
             prev = prev.addOrReplaceChild("s" + (i + 1), c, PartPose.offset(0, 0, i == 0 ? 0 : dim[i - 1][2]));
         }
-        return LayerDefinition.create(mesh, 64, 64);
+        return mesh;
     }
 
     @Override

@@ -65,7 +65,8 @@ public class YawnModel extends BioModel<YawnEntity> {
         return c;
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 256, 64); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create()
@@ -103,7 +104,7 @@ public class YawnModel extends BioModel<YawnEntity> {
             if (i < 6) c.texOffs(74, 34).addBox(-0.5f, 4 - h, 1, 1, 1, 6);
             prev = prev.addOrReplaceChild(TAIL[i], c, PartPose.offset(0, 0, i == 0 ? 4 : 8));
         }
-        return LayerDefinition.create(mesh, 256, 64);
+        return mesh;
     }
 
     // ------------------------------------------------------------------ procedural base motion

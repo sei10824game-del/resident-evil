@@ -55,7 +55,8 @@ public class ZombieModel extends BioModel<ZombieEntity> {
         reg("leftShin", "body/leftThigh/leftShin");
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 128, 64); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0f, 12f, 0f));
@@ -71,7 +72,7 @@ public class ZombieModel extends BioModel<ZombieEntity> {
         rt.addOrReplaceChild("rightShin", CubeListBuilder.create().texOffs(16, 42).addBox(-2f, 0f, -2f, 4f, 6f, 4f), PartPose.offset(0f, 6f, 0f));
         PartDefinition lt = body.addOrReplaceChild("leftThigh", CubeListBuilder.create().texOffs(32, 42).addBox(-2f, 0f, -2f, 4f, 6f, 4f), PartPose.offset(2f, 0f, 0f));
         lt.addOrReplaceChild("leftShin", CubeListBuilder.create().texOffs(48, 42).addBox(-2f, 0f, -2f, 4f, 6f, 4f), PartPose.offset(0f, 6f, 0f));
-        return LayerDefinition.create(mesh, 128, 64);
+        return mesh;
     }
 
     private static void arm(PartDefinition chest, String side, float x, int u, int v) {

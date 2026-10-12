@@ -40,7 +40,8 @@ public class GanadoModel extends BioModel<GanadoEntity> {
         for (int l = 0; l < 4; l++) { String p = "base/torso/sl" + l; reg("sl" + l, p); for (int i = 1; i <= 3; i++) { p += "/s" + l + i; reg("s" + l + i, p); } }
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 128, 64); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition base = root.addOrReplaceChild("base", CubeListBuilder.create().texOffs(0, 0).addBox(-4, -1.5f, -2, 8, 3, 4), PartPose.offset(0, 11.5f, 0));
@@ -77,7 +78,7 @@ public class GanadoModel extends BioModel<GanadoEntity> {
             PartDefinition s = torso.addOrReplaceChild("sl" + l, CubeListBuilder.create(), PartPose.offsetAndRotation(sp[l][0], sp[l][1], sp[l][2], -sp[l][3], 3.14159f + sp[l][4] * 0.5f, 0));
             for (int i = 1; i <= 3; i++) s = s.addOrReplaceChild("s" + l + i, CubeListBuilder.create().texOffs(34, 50).addBox(-1, -1, -9, 2, 2, 9), PartPose.offsetAndRotation(0, 0, i == 1 ? 0 : -9, i == 1 ? 0 : 0.7f, 0, 0));
         }
-        return LayerDefinition.create(mesh, 128, 64);
+        return mesh;
     }
 
     private static void vis(ModelPart p, boolean on) { float v = on ? 1f : 0.001f; p.xScale *= v; p.yScale *= v; p.zScale *= v; }

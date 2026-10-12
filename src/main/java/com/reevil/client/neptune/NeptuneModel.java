@@ -42,7 +42,8 @@ public class NeptuneModel extends BioModel<NeptuneEntity> {
         reg("pelvR", "body/pelvR");
     }
 
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(mesh(), 128, 128); }
+    public static MeshDefinition mesh() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
         PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-7, -6, -11, 14, 12, 22), PartPose.offset(0, 14, 0));
@@ -59,7 +60,7 @@ public class NeptuneModel extends BioModel<NeptuneEntity> {
         body.addOrReplaceChild("pecR", CubeListBuilder.create().texOffs(0, 80).mirror().addBox(-10, -0.5f, -2, 10, 1, 6), PartPose.offsetAndRotation(-6, 4, -6, 0, 0.3f, -0.5f));
         body.addOrReplaceChild("pelvL", CubeListBuilder.create().texOffs(56, 80).addBox(0, -0.5f, 0, 6, 1, 4), PartPose.offsetAndRotation(4, 5.5f, 6, 0, -0.3f, 0.4f));
         body.addOrReplaceChild("pelvR", CubeListBuilder.create().texOffs(56, 80).mirror().addBox(-6, -0.5f, 0, 6, 1, 4), PartPose.offsetAndRotation(-4, 5.5f, 6, 0, 0.3f, -0.4f));
-        return LayerDefinition.create(mesh, 128, 128);
+        return mesh;
     }
 
     @Override
