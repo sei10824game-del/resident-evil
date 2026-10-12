@@ -18,28 +18,89 @@ public class LycanModel extends HunterModel {
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = HunterModel.mesh();
         PartDefinition root = mesh.getRoot();
-        root.getChild("base").getChild("hips").getChild("chest").getChild("neck").addOrReplaceChild("head", CubeListBuilder.create()
-            .texOffs(0, 128).addBox(-3.5f, -4, -5, 7, 6, 7)
-            .texOffs(28, 128).addBox(-2.5f, -2, -12, 5, 3, 7)
-            .texOffs(52, 128).addBox(-1.5f, -2.5f, -13, 3, 2, 1)
-            .texOffs(60, 128).addBox(-3.5f, -7.5f, -2, 2, 4, 2)
-            .texOffs(68, 128).addBox(1.5f, -7.5f, -2, 2, 4, 2)
-            .texOffs(76, 128).addBox(-3, -1, -6, 2, 2, 1)
-            .texOffs(82, 128).addBox(1, -1, -6, 2, 2, 1)
-            .texOffs(88, 128).addBox(-4, -2, -2, 8, 4, 5),
-            PartPose.offsetAndRotation(0f, -3.5f, -0.5f, -0.3f, 0f, 0f));
+        root.getChild("base").getChild("hips").addOrReplaceChild("tail", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").getChild("hips").getChild("tail").addOrReplaceChild("tail2", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armL").getChild("foreL").getChild("handL").addOrReplaceChild("clawL1", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armL").getChild("foreL").getChild("handL").addOrReplaceChild("clawL2", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armL").getChild("foreL").getChild("handL").addOrReplaceChild("clawL3", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("clawR1", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("clawR2", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("clawR3", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").addOrReplaceChild("hips", CubeListBuilder.create()
+            .texOffs(0, 128).addBox(-5, -2, -3.5f, 10, 6, 7),
+            PartPose.offset(0, -4.5f, 0));
         root.getChild("base").getChild("hips").addOrReplaceChild("chest", CubeListBuilder.create()
-            .texOffs(0, 141).addBox(-5.5f, -13, -4, 11, 13, 8)
-            .texOffs(38, 141).addBox(-7, -15, -5.5f, 14, 6, 11)
-            .texOffs(88, 141).addBox(-1, -12, 4, 2, 11, 2)
-            .texOffs(0, 162).addBox(-6.5f, -9, -4.5f, 13, 6, 9),
-            PartPose.offsetAndRotation(0f, -1f, 0f, 0.55f, 0f, 0f));
-        root.getChild("base").getChild("hips").addOrReplaceChild("tail", CubeListBuilder.create()
-            .texOffs(44, 162).addBox(-2.5f, -2.5f, 0, 5, 5, 8),
-            PartPose.offsetAndRotation(0f, 0f, 2.5f, -0.6f, 0f, 0f));
-        root.getChild("base").getChild("hips").getChild("tail").addOrReplaceChild("tail2", CubeListBuilder.create()
-            .texOffs(70, 162).addBox(-2, -2, 0, 4, 4, 7),
-            PartPose.offsetAndRotation(0f, 0f, 7.5f, -0.3f, 0f, 0f));
-        return LayerDefinition.create(mesh, 128, 184);
+            .texOffs(34, 128).addBox(-7, -13, -4.5f, 14, 13, 9)
+            .texOffs(80, 128).addBox(-10, -14, -3.5f, 4, 6, 7)
+            .texOffs(102, 128).addBox(6, -14, -3.5f, 4, 6, 7)
+            .texOffs(0, 150).addBox(-1, -12, 4.5f, 2, 6, 2),
+            PartPose.offsetAndRotation(0, -1, 0, 0.55f, 0, 0));
+        root.getChild("base").getChild("hips").getChild("chest").addOrReplaceChild("neck", CubeListBuilder.create()
+            .texOffs(8, 150).addBox(-3, -4, -3, 6, 5, 6),
+            PartPose.offsetAndRotation(0, -12.5f, -1, -0.25f, 0, 0));
+        root.getChild("base").getChild("hips").getChild("chest").getChild("neck").addOrReplaceChild("head", CubeListBuilder.create()
+            .texOffs(32, 150).addBox(-4, -7, -4, 8, 8, 8)
+            .texOffs(64, 150).addBox(-4.5f, -8, -4.5f, 9, 3, 9)
+            .texOffs(100, 150).addBox(-4.5f, -6, 0, 9, 12, 4)
+            .texOffs(0, 166).addBox(-4.8f, -6, -4.8f, 9.6f, 4, 3)
+            .texOffs(26, 166).addBox(-4.8f, -6, -3, 1.5f, 12, 4)
+            .texOffs(38, 166).addBox(3.3f, -6, -3, 1.5f, 12, 4),
+            PartPose.offsetAndRotation(0, -3.5f, -0.5f, -0.3f, 0, 0));
+        root.getChild("base").getChild("hips").getChild("chest").getChild("neck").getChild("head").addOrReplaceChild("jaw", CubeListBuilder.create()
+            .texOffs(50, 166).addBox(-3, 0, 0, 6, 2, 4.5f),
+            PartPose.offset(0, 0.5f, -4.5f));
+        root.getChild("base").getChild("hips").getChild("chest").addOrReplaceChild("armL", CubeListBuilder.create()
+            .texOffs(72, 166).addBox(-3, -1.5f, -3, 6, 9, 6),
+            PartPose.offsetAndRotation(7, -11, 0, -0.72f, 0, -0.1f));
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armL").addOrReplaceChild("foreL", CubeListBuilder.create()
+            .texOffs(96, 166).addBox(-2.8f, 0, -2.8f, 5.6f, 9, 5.6f),
+            PartPose.offsetAndRotation(0.5f, 6.5f, 0, -0.35f, 0, 0));
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armL").getChild("foreL").addOrReplaceChild("handL", CubeListBuilder.create()
+            .texOffs(0, 182).addBox(-3.2f, 0, -3.2f, 6.4f, 4, 6.4f)
+            .texOffs(28, 182).addBox(-3.2f, 3.5f, -3.2f, 1.5f, 2.5f, 1.5f)
+            .texOffs(36, 182).addBox(-0.7f, 3.5f, -3.4f, 1.5f, 3, 1.5f)
+            .texOffs(44, 182).addBox(1.7f, 3.5f, -3.2f, 1.5f, 2.5f, 1.5f),
+            PartPose.offset(0, 7.5f, 0));
+        root.getChild("base").addOrReplaceChild("thighL", CubeListBuilder.create()
+            .texOffs(52, 182).addBox(-3.2f, -1, -3.5f, 6.4f, 9, 7),
+            PartPose.offsetAndRotation(3f, -3.5f, 0, -0.55f, 0, 0));
+        root.getChild("base").getChild("thighL").addOrReplaceChild("shinL", CubeListBuilder.create()
+            .texOffs(80, 182).addBox(-2.8f, 0, -2.8f, 5.6f, 8, 5.6f),
+            PartPose.offsetAndRotation(0, 6, 0, 1.1f, 0, 0));
+        root.getChild("base").getChild("thighL").getChild("shinL").addOrReplaceChild("footL", CubeListBuilder.create()
+            .texOffs(104, 182).addBox(-2.8f, 0, -2.8f, 5.6f, 6, 5.6f),
+            PartPose.offsetAndRotation(0, 6, 0, -0.7f, 0, 0));
+        root.getChild("base").getChild("thighL").getChild("shinL").getChild("footL").addOrReplaceChild("toesL", CubeListBuilder.create()
+            .texOffs(0, 198).addBox(-3.2f, 0, -6, 6.4f, 2, 8),
+            PartPose.offsetAndRotation(0, 4.5f, 0, 0.15f, 0, 0));
+        root.getChild("base").getChild("hips").getChild("chest").addOrReplaceChild("armR", CubeListBuilder.create()
+            .texOffs(30, 198).addBox(-3, -1.5f, -3, 6, 9, 6),
+            PartPose.offsetAndRotation(-7, -11, 0, -0.72f, 0, 0.1f));
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armR").addOrReplaceChild("foreR", CubeListBuilder.create()
+            .texOffs(54, 198).addBox(-2.8f, 0, -2.8f, 5.6f, 9, 5.6f),
+            PartPose.offsetAndRotation(-0.5f, 6.5f, 0, -0.35f, 0, 0));
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armR").getChild("foreR").addOrReplaceChild("handR", CubeListBuilder.create()
+            .texOffs(78, 198).addBox(-3.2f, 0, -3.2f, 6.4f, 4, 6.4f)
+            .texOffs(106, 198).addBox(-3.2f, 3.5f, -3.2f, 1.5f, 2.5f, 1.5f)
+            .texOffs(114, 198).addBox(-0.7f, 3.5f, -3.4f, 1.5f, 3, 1.5f)
+            .texOffs(0, 213).addBox(1.7f, 3.5f, -3.2f, 1.5f, 2.5f, 1.5f),
+            PartPose.offset(0, 7.5f, 0));
+        root.getChild("base").addOrReplaceChild("thighR", CubeListBuilder.create()
+            .texOffs(8, 213).addBox(-3.2f, -1, -3.5f, 6.4f, 9, 7),
+            PartPose.offsetAndRotation(-3f, -3.5f, 0, -0.55f, 0, 0));
+        root.getChild("base").getChild("thighR").addOrReplaceChild("shinR", CubeListBuilder.create()
+            .texOffs(36, 213).addBox(-2.8f, 0, -2.8f, 5.6f, 8, 5.6f),
+            PartPose.offsetAndRotation(0, 6, 0, 1.1f, 0, 0));
+        root.getChild("base").getChild("thighR").getChild("shinR").addOrReplaceChild("footR", CubeListBuilder.create()
+            .texOffs(60, 213).addBox(-2.8f, 0, -2.8f, 5.6f, 6, 5.6f),
+            PartPose.offsetAndRotation(0, 6, 0, -0.7f, 0, 0));
+        root.getChild("base").getChild("thighR").getChild("shinR").getChild("footR").addOrReplaceChild("toesR", CubeListBuilder.create()
+            .texOffs(84, 213).addBox(-3.2f, 0, -6, 6.4f, 2, 8),
+            PartPose.offsetAndRotation(0, 4.5f, 0, 0.15f, 0, 0));
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("axe", CubeListBuilder.create()
+            .texOffs(114, 213).addBox(-0.7f, -3, -0.7f, 1.4f, 20, 1.4f)
+            .texOffs(0, 235).addBox(-0.6f, 14, -7, 1.2f, 8, 8),
+            PartPose.offsetAndRotation(0, 3, -1, -1.2f, 0, 0));
+        return LayerDefinition.create(mesh, 128, 256);
     }
 }

@@ -34,6 +34,21 @@ def paint_cube(t, u, v, w, h, d, sty, tint, rng):
                 px, py = x + rng.randrange(ww), y + rng.randrange(hh)
                 for _ in range(rng.randint(2, 5)):
                     t.px_set(px, py, (200, 36, 30)); px = min(max(px + rng.choice((-1, 0, 1)), x), x + ww - 1); py = min(max(py + 1, y), y + hh - 1)
+    elif det == 'face':
+        hc = sty.get('hc', (40, 36, 34)); ec = sty.get('ec', (16, 10, 10)); mc = sty.get('mc', (70, 20, 24))
+        for nm in ('top', 'back'): x, y, ww, hh = fc[nm]; t.rect(x, y, ww, hh, hc, 0.08)
+        for nm in ('left', 'right'):
+            x, y, ww, hh = fc[nm]; t.rect(x, y, ww, max(1, hh // 2), hc, 0.08)
+        t.rect(fx, fy, fw, max(1, int(fh * 0.22)), hc, 0.08)
+        ey = fy + int(fh * 0.45)
+        if sty.get('shades'): t.rect(fx, ey, fw, 2, (8, 8, 10), 0.02)
+        else:
+            t.rect(fx + max(1, fw // 5), ey, max(1, fw // 5), 1, ec, 0); t.rect(fx + fw - 2 * max(1, fw // 5), ey, max(1, fw // 5), 1, ec, 0)
+        if sty.get('beard'):
+            t.rect(fx, fy + int(fh * 0.62), fw, fh - int(fh * 0.62), hc, 0.08)
+            for nm in ('left', 'right'): x, y, ww, hh = fc[nm]; t.rect(x, y + hh // 2, ww, hh - hh // 2, hc, 0.08)
+        t.rect(fx + fw // 4, fy + int(fh * 0.8), max(2, fw // 2), 1, mc, 0.05)
+        if sty.get('fringe'): t.rect(fx, fy, fw, max(2, int(fh * 0.5)), hc, 0.08)
     elif det == 'bruise':
         t.blots(fx, fy, fw, fh, shade(base, 0.6), max(2, fw * fh // 10), 3)
     elif det == 'spike':
@@ -76,7 +91,7 @@ def gen(s):
         cb = 'CubeListBuilder.create()'
         for c in p['cubes']:
             cb += '\n            .texOffs(%d, %d).addBox(%s)' % (uv[k][0], uv[k][1], F(*c[:6])); k += 1
-        lines.append('        %s.addOrReplaceChild("%s", %s,\n            %s);' % (par, path[-1], cb, p['pose']))
+        lines.append('        %s.addOrReplaceChild("%s", %s,\n            %s);' % (par, path[-1], cb, re.sub(r'(?<![\w.])(-?\d+\.\d+)(?![\df])', r'\1f', p['pose'])))
     lines.append('        return LayerDefinition.create(mesh, %d, %d);' % (s['W'], H))
     cf = s.get('clipfn'); clipsrc = ('    @Override\n    protected com.reevil.anim.AnimClip clip(com.reevil.entity.mrx.MrXEntity e, int id) {\n        com.reevil.anim.AnimClip c = com.reevil.client.mrx.SignatureClips.%s(id);\n        return c != null ? c : super.clip(e, id);\n    }\n' % cf) if cf else ''
     src = '''package com.reevil.client.%(pkg)s;
@@ -148,15 +163,7 @@ spec(id='uroboros', pkg='uroboros', C='Uroboros', ppkg='plant42', pm='Plant42Mod
         (-1, -14, 8, 2, 2, 8, 's'), (-1, -6, -15, 2, 2, 6, 's'), (-6, -22, -6, 3, 6, 3, 's'), (3, -22, 3, 3, 6, 3, 's'), (-6, -22, 3, 3, 6, 3, 's'), (3, -22, -6, 3, 6, 3, 's'), (-8, -9, -10, 16, 2, 2, 'k2')]),
   ])
 
-spec(id='lycan', pkg='lycan', C='Lycan', ppkg='hunter', pm='HunterModel', W=128, H0=128,
-  sty=dict(f=FUR, g=FUR2, n=NOSE, m=MOUTH, e=EYE),
-  parts=[
-    dict(path='base/hips/chest/neck/head', pose='PartPose.offsetAndRotation(0f, -3.5f, -0.5f, -0.3f, 0f, 0f)', cubes=[(-3.5, -4, -5, 7, 6, 7, 'f'), (-2.5, -2, -12, 5, 3, 7, 'f'), (-1.5, -2.5, -13, 3, 2, 1, 'n'),
-        (-3.5, -7.5, -2, 2, 4, 2, 'g'), (1.5, -7.5, -2, 2, 4, 2, 'g'), (-3, -1, -6, 2, 2, 1, 'e'), (1, -1, -6, 2, 2, 1, 'e'), (-4, -2, -2, 8, 4, 5, 'g')]),
-    dict(path='base/hips/chest', pose='PartPose.offsetAndRotation(0f, -1f, 0f, 0.55f, 0f, 0f)', cubes=[(-5.5, -13, -4, 11, 13, 8, 'f'), (-7, -15, -5.5, 14, 6, 11, 'g'), (-1, -12, 4, 2, 11, 2, 'g'), (-6.5, -9, -4.5, 13, 6, 9, 'f')]),
-    dict(path='base/hips/tail', pose='PartPose.offsetAndRotation(0f, 0f, 2.5f, -0.6f, 0f, 0f)', cubes=[(-2.5, -2.5, 0, 5, 5, 8, 'f')]),
-    dict(path='base/hips/tail/tail2', pose='PartPose.offsetAndRotation(0f, 0f, 7.5f, -0.3f, 0f, 0f)', cubes=[(-2, -2, 0, 4, 4, 7, 'g')]),
-  ])
+
 
 
 # ---- palettes (batch 2)
@@ -310,6 +317,87 @@ spec(id='soldat', pkg='soldat', C='Soldat', ppkg='krauser', pm='KrauserModel', W
 spec(id='gatling_majini', pkg='gatlingmajini', C='GatlingMajini', ppkg='krauser', pm='KrauserModel', W=128, H0=64, sty=dict(s=STEEL, d=DARK, t=TAN),
   parts=[A('base/torso/armR/foreR/handR/gatling', 'PartPose.offsetAndRotation(0, 2, 0, -1.4f, 0, 0)', (-2, -2, -4, 4, 4, 6, 'd'), (-1.5, -1.5, -14, 1, 1, 10, 's'), (0.5, -1.5, -14, 1, 1, 10, 's'), (-0.5, 0.5, -14, 1, 1, 10, 's'), (-0.5, -2.5, -14, 1, 1, 10, 's')),
          A('base/torso/ammo', Z, (-4.6, -9, -2.6, 9.2, 2, 5.2, 't'), (-3, -7, 2.5, 6, 6, 3, 'd'))])
+
+
+# ---- batch 4: full-body rebuilds
+GSKIN = dict(c=(150, 146, 140), n=0.1, d='bruise'); GSHIRT = dict(c=(176, 176, 170), n=0.12, d='bruise'); GPANTS = dict(c=(58, 60, 58), n=0.1, d='bruise')
+GHAIR = dict(c=(52, 52, 56), n=0.1, d='fur'); GFACE = dict(c=(150, 146, 140), n=0.08, d='face', hc=(48, 48, 52), mc=(90, 24, 28), fringe=True)
+
+def limb2(path_pairs): pass
+
+def lycan_parts():
+    P = [A('base/hips', 'PartPose.offset(0, -4.5, 0)', (-5, -2, -3.5, 10, 6, 7, 'pa')),
+         A('base/hips/chest', 'PartPose.offsetAndRotation(0, -1, 0, 0.55f, 0, 0)', (-7, -13, -4.5, 14, 13, 9, 'sh'), (-10, -14, -3.5, 4, 6, 7, 'sk'), (6, -14, -3.5, 4, 6, 7, 'sk'), (-1, -12, 4.5, 2, 6, 2, 'sk')),
+         A('base/hips/chest/neck', 'PartPose.offsetAndRotation(0, -12.5, -1, -0.25f, 0, 0)', (-3, -4, -3, 6, 5, 6, 'sk')),
+         A('base/hips/chest/neck/head', 'PartPose.offsetAndRotation(0, -3.5, -0.5, -0.3f, 0, 0)', (-4, -7, -4, 8, 8, 8, 'fc'), (-4.5, -8, -4.5, 9, 3, 9, 'hr'), (-4.5, -6, 0, 9, 12, 4, 'hr'), (-4.8, -6, -4.8, 9.6, 4, 3, 'hr'), (-4.8, -6, -3, 1.5, 12, 4, 'hr'), (3.3, -6, -3, 1.5, 12, 4, 'hr')),
+         A('base/hips/chest/neck/head/jaw', 'PartPose.offset(0, 0.5, -4.5)', (-3, 0, 0, 6, 2, 4.5, 'sk')),
+         A('base/hips/tail', 'PartPose.offsetAndRotation(0, 0, 2.5, -0.6f, 0, 0)', ), A('base/hips/tail/tail2', 'PartPose.offsetAndRotation(0, 0, 7.5, -0.3f, 0, 0)', )]
+    P = [p for p in P if p['cubes']] + []
+    for n, sx in (('L', 1), ('R', -1)):
+        P += [A('base/hips/chest/arm' + n, 'PartPose.offsetAndRotation(%d, -11, 0, -0.72f, 0, %sf)' % (int(7.5 * sx) if False else (7 if sx > 0 else -7), -0.1 * sx), (-3, -1.5, -3, 6, 9, 6, 'sh')),
+              A('base/hips/chest/arm%s/fore%s' % (n, n), 'PartPose.offsetAndRotation(%sf, 6.5f, 0, -0.35f, 0, 0)' % (0.5 * sx), (-2.8, 0, -2.8, 5.6, 9, 5.6, 'sk')),
+              A('base/hips/chest/arm%s/fore%s/hand%s' % (n, n, n), 'PartPose.offset(0, 7.5f, 0)', (-3.2, 0, -3.2, 6.4, 4, 6.4, 'sk'), (-3.2, 3.5, -3.2, 1.5, 2.5, 1.5, 'sk'), (-0.7, 3.5, -3.4, 1.5, 3, 1.5, 'sk'), (1.7, 3.5, -3.2, 1.5, 2.5, 1.5, 'sk')),
+              A('base/thigh' + n, 'PartPose.offsetAndRotation(%sf, -3.5f, 0, -0.55f, 0, 0)' % (3 * sx), (-3.2, -1, -3.5, 6.4, 9, 7, 'pa')),
+              A('base/thigh%s/shin%s' % (n, n), 'PartPose.offsetAndRotation(0, 6, 0, 1.1f, 0, 0)', (-2.8, 0, -2.8, 5.6, 8, 5.6, 'pa')),
+              A('base/thigh%s/shin%s/foot%s' % (n, n, n), 'PartPose.offsetAndRotation(0, 6, 0, -0.7f, 0, 0)', (-2.8, 0, -2.8, 5.6, 6, 5.6, 'sk')),
+              A('base/thigh%s/shin%s/foot%s/toes%s' % (n, n, n, n), 'PartPose.offsetAndRotation(0, 4.5f, 0, 0.15f, 0, 0)', (-3.2, 0, -6, 6.4, 2, 8, 'sk'))]
+    P.append(A('base/hips/chest/armR/foreR/handR/axe', 'PartPose.offsetAndRotation(0, 3, -1, -1.2f, 0, 0)', (-0.7, -3, -0.7, 1.4, 20, 1.4, 'wd'), (-0.6, 14, -7, 1.2, 8, 8, 'st')))
+    return P
+LY_CLEAR = ['base/hips/tail', 'base/hips/tail/tail2', 'base/hips/chest/armL/foreL/handL/clawL1', 'base/hips/chest/armL/foreL/handL/clawL2', 'base/hips/chest/armL/foreL/handL/clawL3', 'base/hips/chest/armR/foreR/handR/clawR1', 'base/hips/chest/armR/foreR/handR/clawR2', 'base/hips/chest/armR/foreR/handR/clawR3']
+spec(id='lycan', pkg='lycan', C='Lycan', ppkg='hunter', pm='HunterModel', W=128, H0=128, clear=LY_CLEAR,
+  sty=dict(sk=GSKIN, sh=GSHIRT, pa=GPANTS, hr=GHAIR, fc=GFACE, wd=WOOD, st=STEEL), parts=lycan_parts())
+
+# ---- batch 5: Mr.X-rig humans rebuilt with own proportions
+def humanoid(torso, head, arm, fore, hand, thigh, shin, foot, coat=None, skirt=None, neck=None, hips=None):
+    """MrX rig poses. Each arg = list of cube tuples (x,y,z,w,h,d,style)."""
+    P = []
+    if hips: P.append(A('base', 'PartPose.offset(0, 6.5, 0)', *hips))
+    P.append(A('base/torso', 'PartPose.offset(0, -1.5, 0)', *torso))
+    if neck: P.append(A('base/torso/neck', 'PartPose.offset(0, -10, 0)', *neck))
+    P.append(A('base/torso/neck/head', 'PartPose.offset(0, -1, 0)', *head))
+    for n, sg in (('L', 1), ('R', -1)):
+        P += [A('base/torso/arm' + n, 'PartPose.offsetAndRotation(%sf, -9, 0, 0, 0, %sf)' % (6.5 * sg, 0.04 * sg), *arm),
+              A('base/torso/arm%s/fore%s' % (n, n), 'PartPose.offsetAndRotation(0, 9, 0, -0.1f, 0, 0)', *fore),
+              A('base/torso/arm%s/fore%s/hand%s' % (n, n, n), 'PartPose.offset(0, 9, 0)', *hand),
+              A('base/thigh' + n, 'PartPose.offset(%sf, 1.5f, 0)' % (2 * sg), *thigh),
+              A('base/thigh%s/shin%s' % (n, n), 'PartPose.offset(0, 7, 0)', *shin),
+              A('base/thigh%s/shin%s/foot%s' % (n, n, n), 'PartPose.offset(0, 7, 0)', *foot)]
+        P.append(A('base/thigh%s/coat%s' % (n, n), 'PartPose.ZERO', *(coat or [(-0.1, 0, -0.1, 0.2, 0.2, 0.2, 'sk')])))
+    return P
+
+# --- Jack Baker: big, bulky southern man: torn dirty shirt, overalls/jeans, beard
+JSKIN = dict(c=(190, 150, 124), n=0.1, d='bruise'); JSHIRT = dict(c=(150, 150, 138), n=0.14, d='bruise'); JJEANS = dict(c=(60, 76, 108), n=0.12, d='bruise'); JBOOT = dict(c=(52, 38, 28), n=0.1)
+JFACE = dict(c=(190, 150, 124), n=0.08, d='face', hc=(70, 52, 38), beard=True, mc=(110, 40, 40))
+jk = humanoid(torso=[(-6, -10, -3.5, 12, 10, 7, 'sh'), (-6.2, -3, -3.7, 12.4, 3, 7.4, 'jn')], neck=[(-2.5, -1, -2.5, 5, 2, 5, 'sk')],
+  head=[(-4, -8, -4, 8, 8, 8, 'fc'), (-4.3, -9, -4.3, 8.6, 2.5, 8.6, 'hr')],
+  arm=[(-3.5, 0, -3, 7, 9, 6, 'sk'), (-3.7, -0.5, -3.2, 7.4, 4, 6.4, 'sh')], fore=[(-3, 0, -3, 6, 9, 6, 'sk')], hand=[(-2.8, 0, -2.8, 5.6, 4, 5.6, 'sk')],
+  thigh=[(-3.2, 0, -3.2, 6.4, 7, 6.4, 'jn')], shin=[(-3, 0, -3, 6, 7, 6, 'jn')], foot=[(-3, 0, -6.5, 6, 3, 9, 'bt')])
+spec(id='jack_baker', pkg='jackbaker', C='JackBaker', ppkg='mrx', pm='MrXModel', W=128, H0=64, clipfn='jack', clear=['base/torso/neck/head/hatBrim/hatCrown', 'base/torso/neck/head/hatBrim'],
+  sty=dict(sk=JSKIN, sh=JSHIRT, jn=JJEANS, bt=JBOOT, fc=JFACE, hr=dict(c=(70, 52, 38), n=0.1, d='fur'), s=STEEL, w=WOOD, b=BLOOD, a=APRON),
+  parts=jk + [A('base/torso/armR/foreR/handR/shovel', 'PartPose.offsetAndRotation(0, 2, -1, -0.5f, 0, 0)', (-0.6, -4, -0.6, 1.2, 24, 1.2, 'w'), (-3, 19, -1, 6, 8, 1.5, 's'), (-0.5, 18, -1.2, 1, 6, 2, 'b')),
+              A('base/torso/stains', Z, (-6.3, -10, -3.8, 12.6, 5, 7.6, 'b'))])
+
+# --- Heisenberg: stocky, long black leather coat, shades, flat cap, steel left arm
+HCOAT = dict(c=(26, 24, 28), n=0.1); HSHIRT = dict(c=(150, 60, 60), n=0.08); HSKIN = dict(c=(196, 160, 134), n=0.08); HPANTS = dict(c=(40, 40, 46), n=0.08)
+HFACE = dict(c=(196, 160, 134), n=0.08, d='face', hc=(30, 26, 26), shades=True, beard=True)
+hb = humanoid(torso=[(-5.5, -10, -3, 11, 10, 6, 'cw'), (-2, -10, -3.1, 4, 8, 1, 'sr')], neck=[(-2, -1, -2, 4, 2, 4, 'sk')],
+  head=[(-3.5, -7, -3.5, 7, 7, 7, 'fc'), (-4, -8, -4, 8, 2, 8, 'ca')], arm=[(-2.5, 0, -2.5, 5, 9, 5, 'cw')], fore=[(-2.4, 0, -2.4, 4.8, 9, 4.8, 'cw')], hand=[(-2, 0, -2, 4, 3, 4, 'sk')],
+  thigh=[(-2.3, 0, -2.3, 4.6, 7, 4.6, 'pn')], shin=[(-2.3, 0, -2.3, 4.6, 7, 4.6, 'pn')], foot=[(-2.3, 0, -5, 4.6, 2, 7, 'ca')],
+  coat=[(-3.2, -1, -3.8, 6.4, 14, 7.6, 'cw')])
+spec(id='heisenberg', pkg='heisenberg', C='Heisenberg', ppkg='mrx', pm='MrXModel', W=128, H0=64, clipfn='heisenberg', clear=['base/torso/neck/head/hatBrim/hatCrown', 'base/torso/neck/head/hatBrim'],
+  sty=dict(cw=HCOAT, sr=HSHIRT, sk=HSKIN, pn=HPANTS, fc=HFACE, ca=dict(c=(30, 28, 30), n=0.06), s=STEEL, w=WOOD, d=DARK, k=ROBE),
+  parts=hb + [A('base/torso/armL/gauntlet', Z, (-3, -0.5, -3, 6, 9, 6, 's')), A('base/torso/armL/foreL/gauntlet2', Z, (-3, 0, -3, 6, 9, 6, 's'), (-3.4, 8, -1, 1, 4, 2, 's')),
+              A('base/torso/armR/foreR/handR/hammer', 'PartPose.offsetAndRotation(0, 2, -1, -0.5f, 0, 0)', (-0.6, -2, -0.6, 1.2, 22, 1.2, 'w'), (-3, 19, -3, 6, 7, 6, 's'), (-3.5, 20.5, -2, 7, 4, 4, 's'))])
+
+# --- Verdugo: tall emaciated skinless-looking bio-weapon, long thin limbs, exposed ribs/muscle, bare jaw
+VSKIN = dict(c=(122, 130, 112), n=0.12, d='veins'); VMUS = dict(c=(150, 52, 54), n=0.12, d='veins'); VBONE = dict(c=(214, 204, 172), n=0.08)
+VFACE = dict(c=(122, 130, 112), n=0.08, d='face', hc=(122, 130, 112), ec=(220, 40, 30), mc=(60, 14, 18))
+vd = humanoid(torso=[(-3.5, -10, -2, 7, 10, 4, 'mu'), (-3.7, -9, -2.2, 7.4, 1, 4.4, 'bn'), (-3.7, -7, -2.2, 7.4, 1, 4.4, 'bn'), (-3.7, -5, -2.2, 7.4, 1, 4.4, 'bn'), (-1, -10, 2, 2, 8, 2, 'bn')], neck=[(-1.5, -2, -1.5, 3, 4, 3, 'sk')],
+  head=[(-3, -8, -3, 6, 8, 6, 'fc'), (-1, -10, -2, 2, 3, 4, 'bn')], arm=[(-1.5, 0, -1.5, 3, 11, 3, 'sk')], fore=[(-1.5, 0, -1.5, 3, 11, 3, 'sk')], hand=[(-2, 0, -2, 4, 4, 4, 'sk'), (-2, 3.5, -2, 1, 5, 1, 'bn'), (-0.5, 3.5, -2, 1, 6, 1, 'bn'), (1, 3.5, -2, 1, 5, 1, 'bn')],
+  thigh=[(-1.7, 0, -1.7, 3.4, 8, 3.4, 'mu')], shin=[(-1.5, 0, -1.5, 3, 8, 3, 'sk')], foot=[(-2, 0, -5, 4, 2, 6, 'sk')], coat=[(-0.1, 0, -0.1, 0.2, 0.2, 0.2, 'sk')])
+spec(id='verdugo', pkg='verdugo', C='Verdugo', ppkg='mrx', pm='MrXModel', W=128, H0=64, clipfn='claws', clear=['base/torso/neck/head/hatBrim/hatCrown', 'base/torso/neck/head/hatBrim'],
+  sty=dict(sk=VSKIN, mu=VMUS, bn=VBONE, fc=VFACE, s=STEEL),
+  parts=vd + [A('base/torso/armR/foreR/blade', Z, (-0.5, 1, -3, 1, 15, 3, 's'), (-0.5, 13, -5, 1, 4, 2, 's')), A('base/torso/armL/foreL/blade', Z, (-0.5, 1, -3, 1, 15, 3, 's'), (-0.5, 13, -5, 1, 4, 2, 's'))])
 
 if __name__ == '__main__':
     for k in (sys.argv[1:] or SPECS): gen(SPECS[k])

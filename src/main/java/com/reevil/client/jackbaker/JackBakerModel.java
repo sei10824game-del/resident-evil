@@ -23,14 +23,71 @@ public class JackBakerModel extends MrXModel {
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = MrXModel.mesh();
         PartDefinition root = mesh.getRoot();
+        root.getChild("base").getChild("torso").getChild("neck").getChild("head").getChild("hatBrim").addOrReplaceChild("hatCrown", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").getChild("torso").getChild("neck").getChild("head").addOrReplaceChild("hatBrim", CubeListBuilder.create(), PartPose.ZERO);
+        root.getChild("base").addOrReplaceChild("torso", CubeListBuilder.create()
+            .texOffs(0, 64).addBox(-6, -10, -3.5f, 12, 10, 7)
+            .texOffs(38, 64).addBox(-6.2f, -3, -3.7f, 12.4f, 3, 7.4f),
+            PartPose.offset(0, -1.5f, 0));
+        root.getChild("base").getChild("torso").addOrReplaceChild("neck", CubeListBuilder.create()
+            .texOffs(80, 64).addBox(-2.5f, -1, -2.5f, 5, 2, 5),
+            PartPose.offset(0, -10, 0));
+        root.getChild("base").getChild("torso").getChild("neck").addOrReplaceChild("head", CubeListBuilder.create()
+            .texOffs(0, 81).addBox(-4, -8, -4, 8, 8, 8)
+            .texOffs(32, 81).addBox(-4.3f, -9, -4.3f, 8.6f, 2.5f, 8.6f),
+            PartPose.offset(0, -1, 0));
+        root.getChild("base").getChild("torso").addOrReplaceChild("armL", CubeListBuilder.create()
+            .texOffs(68, 81).addBox(-3.5f, 0, -3, 7, 9, 6)
+            .texOffs(94, 81).addBox(-3.7f, -0.5f, -3.2f, 7.4f, 4, 6.4f),
+            PartPose.offsetAndRotation(6.5f, -9, 0, 0, 0, 0.04f));
+        root.getChild("base").getChild("torso").getChild("armL").addOrReplaceChild("foreL", CubeListBuilder.create()
+            .texOffs(0, 97).addBox(-3, 0, -3, 6, 9, 6),
+            PartPose.offsetAndRotation(0, 9, 0, -0.1f, 0, 0));
+        root.getChild("base").getChild("torso").getChild("armL").getChild("foreL").addOrReplaceChild("handL", CubeListBuilder.create()
+            .texOffs(24, 97).addBox(-2.8f, 0, -2.8f, 5.6f, 4, 5.6f),
+            PartPose.offset(0, 9, 0));
+        root.getChild("base").addOrReplaceChild("thighL", CubeListBuilder.create()
+            .texOffs(48, 97).addBox(-3.2f, 0, -3.2f, 6.4f, 7, 6.4f),
+            PartPose.offset(2f, 1.5f, 0));
+        root.getChild("base").getChild("thighL").addOrReplaceChild("shinL", CubeListBuilder.create()
+            .texOffs(76, 97).addBox(-3, 0, -3, 6, 7, 6),
+            PartPose.offset(0, 7, 0));
+        root.getChild("base").getChild("thighL").getChild("shinL").addOrReplaceChild("footL", CubeListBuilder.create()
+            .texOffs(0, 112).addBox(-3, 0, -6.5f, 6, 3, 9),
+            PartPose.offset(0, 7, 0));
+        root.getChild("base").getChild("thighL").addOrReplaceChild("coatL", CubeListBuilder.create()
+            .texOffs(30, 112).addBox(-0.1f, 0, -0.1f, 0.2f, 0.2f, 0.2f),
+            PartPose.ZERO);
+        root.getChild("base").getChild("torso").addOrReplaceChild("armR", CubeListBuilder.create()
+            .texOffs(34, 112).addBox(-3.5f, 0, -3, 7, 9, 6)
+            .texOffs(60, 112).addBox(-3.7f, -0.5f, -3.2f, 7.4f, 4, 6.4f),
+            PartPose.offsetAndRotation(-6.5f, -9, 0, 0, 0, -0.04f));
+        root.getChild("base").getChild("torso").getChild("armR").addOrReplaceChild("foreR", CubeListBuilder.create()
+            .texOffs(90, 112).addBox(-3, 0, -3, 6, 9, 6),
+            PartPose.offsetAndRotation(0, 9, 0, -0.1f, 0, 0));
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").addOrReplaceChild("handR", CubeListBuilder.create()
+            .texOffs(0, 127).addBox(-2.8f, 0, -2.8f, 5.6f, 4, 5.6f),
+            PartPose.offset(0, 9, 0));
+        root.getChild("base").addOrReplaceChild("thighR", CubeListBuilder.create()
+            .texOffs(24, 127).addBox(-3.2f, 0, -3.2f, 6.4f, 7, 6.4f),
+            PartPose.offset(-2f, 1.5f, 0));
+        root.getChild("base").getChild("thighR").addOrReplaceChild("shinR", CubeListBuilder.create()
+            .texOffs(52, 127).addBox(-3, 0, -3, 6, 7, 6),
+            PartPose.offset(0, 7, 0));
+        root.getChild("base").getChild("thighR").getChild("shinR").addOrReplaceChild("footR", CubeListBuilder.create()
+            .texOffs(76, 127).addBox(-3, 0, -6.5f, 6, 3, 9),
+            PartPose.offset(0, 7, 0));
+        root.getChild("base").getChild("thighR").addOrReplaceChild("coatR", CubeListBuilder.create()
+            .texOffs(106, 127).addBox(-0.1f, 0, -0.1f, 0.2f, 0.2f, 0.2f),
+            PartPose.ZERO);
         root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("shovel", CubeListBuilder.create()
-            .texOffs(0, 64).addBox(-0.6f, -4, -0.6f, 1.2f, 24, 1.2f)
-            .texOffs(8, 64).addBox(-3, 19, -1, 6, 8, 1.5f)
-            .texOffs(24, 64).addBox(-0.5f, 18, -1.2f, 1, 6, 2),
+            .texOffs(110, 127).addBox(-0.6f, -4, -0.6f, 1.2f, 24, 1.2f)
+            .texOffs(0, 153).addBox(-3, 19, -1, 6, 8, 1.5f)
+            .texOffs(16, 153).addBox(-0.5f, 18, -1.2f, 1, 6, 2),
             PartPose.offsetAndRotation(0, 2, -1, -0.5f, 0, 0));
         root.getChild("base").getChild("torso").addOrReplaceChild("stains", CubeListBuilder.create()
-            .texOffs(30, 64).addBox(-4.6f, -10, -2.6f, 9.2f, 5, 5.2f),
+            .texOffs(22, 153).addBox(-6.3f, -10, -3.8f, 12.6f, 5, 7.6f),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 96);
+        return LayerDefinition.create(mesh, 128, 168);
     }
 }
