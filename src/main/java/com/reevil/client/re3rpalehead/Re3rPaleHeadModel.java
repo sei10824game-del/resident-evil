@@ -15,6 +15,11 @@ import net.minecraft.resources.ResourceLocation;
 public class Re3rPaleHeadModel extends PaleHeadModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "re3r_pale_head"), "main");
     public Re3rPaleHeadModel(ModelPart root) { super(root); }
+    @Override
+    protected com.reevil.anim.AnimClip clip(com.reevil.entity.zombie.ZombieEntity e, int id) {
+        com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re3r_pale_head(id);
+        return c != null ? c : super.clip(e, id);
+    }
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = PaleHeadModel.mesh();
         PartDefinition root = mesh.getRoot();

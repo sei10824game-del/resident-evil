@@ -15,6 +15,11 @@ import net.minecraft.resources.ResourceLocation;
 public class Re1rHunterModel extends HunterModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "re1r_hunter"), "main");
     public Re1rHunterModel(ModelPart root) { super(root); }
+    @Override
+    protected com.reevil.anim.AnimClip clip(com.reevil.entity.hunter.HunterEntity e, int id) {
+        com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re1r_hunter(id);
+        return c != null ? c : super.clip(e, id);
+    }
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = HunterModel.mesh();
         PartDefinition root = mesh.getRoot();

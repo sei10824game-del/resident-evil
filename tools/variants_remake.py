@@ -3,6 +3,7 @@ import os, re, sys, glob, subprocess
 from PIL import Image, ImageEnhance
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import variantgen as vg
+import remake_moves as rm
 from variantgen import spec, A, Z, SPECS, F, gen as vgen
 from genfam import gen as famgen
 from texlib import OUT
@@ -56,7 +57,8 @@ fam('re4r_iron_maiden', 'Re4rIronMaiden', PIM, 're4r', 'Iron Maiden (RE4 Remake)
 # ---- silhouettes
 def S(id, par, ppkg_pm, parts, sty, clear=None, **kw):
     f = next(x for x in R if x['id'] == id); pk = id.replace('_', '')
-    spec(id=id, pkg=pk, C=f['C'], ppkg=f['par']['pk'], pm=f['par']['C'] + 'Model', W=kw.pop('W'), H0=kw.pop('H0'), sty=sty, parts=parts, clear=clear or [], **kw)
+    spec(id=id, pkg=pk, C=f['C'], ppkg=f['par']['pk'], pm=f['par']['C'] + 'Model', W=kw.pop('W'), H0=kw.pop('H0'), sty=sty, parts=parts, clear=clear or [],
+         clipfn=id if id in rm.MOV else None, clipcls='com.reevil.client.remake.RemakeClips', clipent='com.reevil.entity.' + rm.ENT.get(id, 'x.X'), **kw)
 
 CH = 'body/waist/chest'; HD = CH + '/neck/head'
 S('re1r_zombie', PZ, 0, [A(CH + '/ribs', Z, (-4, -5, -3, 8, 1, 1, 'b'), (-4, -3, -3, 8, 1, 1, 'b'), (-4, -1, -3, 8, 1, 1, 'b'), (-4.6, -6, -2.6, 9.2, 2, 5.2, 'c')), A(CH + '/rags', Z, (-4.7, -6, -2.7, 4, 6, 5.4, 'c'), (1.5, -3, -2.7, 3.2, 4, 5.4, 'c'), (-3, 0, -2.2, 6, 5, 4.4, 'c')),
@@ -115,7 +117,8 @@ def parent_attrs(f):
 def build(f):
     par = f['par']; pk = f['id'].replace('_', '')
     famgen(dict(id=f['id'], C=f['C'], pk=pk, pent='%s.%sEntity' % (par['pk'], par['C']), pe=par['C'] + 'Entity', pmod='%s.%sModel' % (par['pk'], par['C']), pm=par['C'] + 'Model',
-        ret=par['ret'], retimp='%s.%s' % (par['rk'], par['ret']), attrs=parent_attrs(f), scale=f['scale'], shadow=f['shadow'], xp=60, doc=f['doc']))
+        ret=par['ret'], retimp='%s.%s' % (par['rk'], par['ret']), attrs=parent_attrs(f), scale=f['scale'], shadow=f['shadow'], xp=60, doc=f['doc'],
+        imports='import com.reevil.entity.AttackMove;\n', extra=rm.entity_extra(f['id']) if f['id'] in rm.MOV else ''))
     subprocess.run([sys.executable, TOOLS + '/addentity.py', f['id'], f['C'], str(f['w']), str(f['h']), f['e1'], f['e2'], f['en'], f['ja']], check=True, capture_output=True)
     # textures: tinted copy of the parent's files
     pid = par['tex']
@@ -126,6 +129,7 @@ def build(f):
         rgb.putalpha(a); rgb.save(OUT + '/' + f['id'] + suffix + '.png')
 
 if __name__ == '__main__':
+    rm.write_clips()
     ids = sys.argv[1:] or [f['id'] for f in R]
     for f in R:
         if f['id'] in ids:

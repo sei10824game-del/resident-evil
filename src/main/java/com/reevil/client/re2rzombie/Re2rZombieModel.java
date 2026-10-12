@@ -15,6 +15,11 @@ import net.minecraft.resources.ResourceLocation;
 public class Re2rZombieModel extends ZombieModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "re2r_zombie"), "main");
     public Re2rZombieModel(ModelPart root) { super(root); }
+    @Override
+    protected com.reevil.anim.AnimClip clip(com.reevil.entity.zombie.ZombieEntity e, int id) {
+        com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re2r_zombie(id);
+        return c != null ? c : super.clip(e, id);
+    }
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = ZombieModel.mesh();
         PartDefinition root = mesh.getRoot();

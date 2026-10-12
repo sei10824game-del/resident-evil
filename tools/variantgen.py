@@ -93,7 +93,8 @@ def gen(s):
             cb += '\n            .texOffs(%d, %d).addBox(%s)' % (uv[k][0], uv[k][1], F(*c[:6])); k += 1
         lines.append('        %s.addOrReplaceChild("%s", %s,\n            %s);' % (par, path[-1], cb, re.sub(r'(?<![\w.])(-?\d+\.\d+)(?![\df])', r'\1f', p['pose'])))
     lines.append('        return LayerDefinition.create(mesh, %d, %d);' % (s['W'], H))
-    cf = s.get('clipfn'); clipsrc = ('    @Override\n    protected com.reevil.anim.AnimClip clip(com.reevil.entity.mrx.MrXEntity e, int id) {\n        com.reevil.anim.AnimClip c = com.reevil.client.mrx.SignatureClips.%s(id);\n        return c != null ? c : super.clip(e, id);\n    }\n' % cf) if cf else ''
+    cf = s.get('clipfn'); cc = s.get('clipcls', 'com.reevil.client.mrx.SignatureClips'); ce = s.get('clipent', 'com.reevil.entity.mrx.MrXEntity')
+    clipsrc = ('    @Override\n    protected com.reevil.anim.AnimClip clip(%s e, int id) {\n        com.reevil.anim.AnimClip c = %s.%s(id);\n        return c != null ? c : super.clip(e, id);\n    }\n' % (ce, cc, cf)) if cf else ''
     src = '''package com.reevil.client.%(pkg)s;
 
 import com.reevil.ReEvilMod;
@@ -398,6 +399,41 @@ vd = humanoid(torso=[(-3.5, -10, -2, 7, 10, 4, 'mu'), (-3.7, -9, -2.2, 7.4, 1, 4
 spec(id='verdugo', pkg='verdugo', C='Verdugo', ppkg='mrx', pm='MrXModel', W=128, H0=64, clipfn='claws', clear=['base/torso/neck/head/hatBrim/hatCrown', 'base/torso/neck/head/hatBrim'],
   sty=dict(sk=VSKIN, mu=VMUS, bn=VBONE, fc=VFACE, s=STEEL),
   parts=vd + [A('base/torso/armR/foreR/blade', Z, (-0.5, 1, -3, 1, 15, 3, 's'), (-0.5, 13, -5, 1, 4, 2, 's')), A('base/torso/armL/foreL/blade', Z, (-0.5, 1, -3, 1, 15, 3, 's'), (-0.5, 13, -5, 1, 4, 2, 's'))])
+
+
+# ---- batch 6: moths, Neptune family, Colmillos, Gnezdo, Grave Digger
+DK = dict(c=(30, 28, 20), n=0.08); YB = dict(c=(214, 172, 40), n=0.08); FZ = dict(c=(220, 200, 150), n=0.12, d='fur'); WG = dict(c=(200, 90, 40), n=0.1); SP = dict(c=(40, 20, 60), n=0.06)
+SC = dict(c=(190, 170, 140), n=0.1, d='veins'); EYC = dict(c=(230, 220, 120), n=0.05); HR = dict(c=(60, 40, 30), n=0.1, d='fur')
+spec(id='drain_deimos', pkg='draindeimos', C='DrainDeimos', ppkg='giantmoth', pm='GiantMothModel', W=128, H0=64, sty=dict(d=DK, b=YB),
+  parts=[A('body/abdomen/stinger', 'PartPose.offset(0, 0, 12)', (-1, -1, 0, 2, 2, 9, 'd'), (-0.5, -0.5, 8, 1, 1, 4, 'd')), A('body/abdomen/bands', Z, (-3.3, -3.3, 2, 6.6, 6.6, 1.5, 'b'), (-3.3, -3.3, 5, 6.6, 6.6, 1.5, 'b'), (-3.3, -3.3, 8, 6.6, 6.6, 1.5, 'b')),
+         A('body/head/pinc', Z, (-3, -1, -5.5, 1, 1, 3, 'd'), (2, -1, -5.5, 1, 1, 3, 'd')), A('body/spk', Z, (-1, -4.5, -2, 2, 2, 2, 'd'), (-1, -4.5, 1, 2, 2, 2, 'd'))])
+leg = lambda sg, i, side: A('body/xleg%s%d' % (side, i), 'PartPose.offsetAndRotation(%s, 1, %s, 0.2f, 0, %sf)' % (2.5 * sg, -2 + i * 2, 0.9 * sg), (-0.5, 0, -0.5, 1, 9, 1, 'lg'))
+spec(id='marguerite', pkg='marguerite', C='Marguerite', ppkg='giantmoth', pm='GiantMothModel', W=128, H0=64, sty=dict(fc=dict(c=(196, 160, 140), n=0.08, d='face', hc=(60, 40, 30), mc=(110, 30, 30)), hr=HR, lg=DK, sc=SC),
+  parts=[A('body/head/face', Z, (-2.2, -2.2, -4.4, 4.4, 4.4, 1, 'fc'), (-2.7, -3, -2, 5.4, 3, 5, 'hr')), A('body/abdomen/sac', Z, (-4, -4, 5, 8, 8, 6, 'sc'), (-3, -3, -1, 6, 6, 2, 'sc'))] + [leg(sg, i, sd) for sg, sd in ((1, 'L'), (-1, 'R')) for i in range(4)])
+spec(id='kipepeo', pkg='kipepeo', C='Kipepeo', ppkg='giantmoth', pm='GiantMothModel', W=128, H0=64, sty=dict(fz=FZ, wg=WG, sp=SP),
+  parts=[A('body/thorax', Z, (-3, -3, -3.5, 6, 6, 7, 'fz')), A('body/wingL/wingOutL/tail', Z, (8, -0.5, 3, 2, 1, 10, 'wg')), A('body/wingR/wingOutR/tail', Z, (-10, -0.5, 3, 2, 1, 10, 'wg')),
+         A('body/wingL/spotL', Z, (3, -0.7, -2, 5, 1, 5, 'sp')), A('body/wingR/spotR', Z, (-8, -0.7, -2, 5, 1, 5, 'sp'))])
+BN = dict(c=(200, 190, 160), n=0.06, d='spike')
+spec(id='novistador', pkg='novistador', C='Novistador', ppkg='giantmoth', pm='GiantMothModel', W=128, H0=64, sty=dict(bn=BN, d=DK),
+  parts=[A('body/spines', Z, (-0.5, -5, -3, 1, 3, 1, 'bn'), (-0.5, -5, 0, 1, 4, 1, 'bn'), (-0.5, -4, 3, 1, 3, 1, 'bn')), A('body/head/mand', Z, (-2.5, 0, -5.5, 1, 1, 4, 'bn'), (1.5, 0, -5.5, 1, 1, 4, 'bn')),
+         A('body/clawL', 'PartPose.offsetAndRotation(2, 2, -3, -0.6f, 0.2f, 0)', (-0.5, 0, -0.5, 1, 8, 1, 'bn'), (-1, 7, -1, 2, 1, 3, 'bn')), A('body/clawR', 'PartPose.offsetAndRotation(-2, 2, -3, -0.6f, -0.2f, 0)', (-0.5, 0, -0.5, 1, 8, 1, 'bn'), (-1, 7, -1, 2, 1, 3, 'bn'))])
+SK = dict(c=(60, 76, 60), n=0.12, d='bruise'); SPN = dict(c=(40, 50, 40), n=0.1, d='spike')
+def limb(side, sg, z): return A('body/limb%s%d' % (side, int(z)), 'PartPose.offsetAndRotation(%s, 3, %s, 0, 0, %sf)' % (7 * sg, z, 0.5 * sg), (0 if sg > 0 else -10, -2, -2, 10, 4, 4, 'sk'), (9 if sg > 0 else -12, -1, -3, 3, 4, 6, 'sk'))
+spec(id='del_lago', pkg='dellago', C='DelLago', ppkg='neptune', pm='NeptuneModel', W=128, H0=128, sty=dict(sk=SK, sp=SPN, ey=EYC),
+  parts=[limb('L', 1, -6), limb('R', -1, -6), limb('L', 1, 7), limb('R', -1, 7), A('body/head/barbel', Z, (-6.5, 1, -13, 1, 1, 8, 'sk'), (5.5, 1, -13, 1, 1, 8, 'sk'), (-6.5, -1, -10, 1, 1, 8, 'sk'), (5.5, -1, -10, 1, 1, 8, 'sk')),
+         A('body/head/eyes', Z, (-6.5, -7, -7, 3, 3, 3, 'ey'), (3.5, -7, -7, 3, 3, 3, 'ey')), A('body/spikes', Z, (-1, -9, -8, 2, 3, 2, 'sp'), (-1, -9, -4, 2, 3, 2, 'sp'), (-1, -9, 0, 2, 3, 2, 'sp'), (-1, -9, 4, 2, 3, 2, 'sp'), (-1, -9, 8, 2, 3, 2, 'sp'))])
+FSK = dict(c=(120, 130, 100), n=0.12, d='bruise'); HND = dict(c=(190, 150, 130), n=0.1, d='bruise')
+def arm(side, sg): return A('body/arm' + side, 'PartPose.offsetAndRotation(%s, 0, -6, 0, 0, %sf)' % (7 * sg, 0.4 * sg), (0 if sg > 0 else -4, -2, -2, 4, 13, 4, 'hd'), (0 if sg > 0 else -5, 10, -2.5, 5, 3, 5, 'hd'), (1 if sg > 0 else -5, 12, -2, 1, 5, 1, 'hd'), (3 if sg > 0 else -3, 12, -2, 1, 5, 1, 'hd'))
+spec(id='moreau', pkg='moreau', C='Moreau', ppkg='neptune', pm='NeptuneModel', W=128, H0=128, sty=dict(hd=HND, sc=SC, ey=EYC, f=FSK),
+  parts=[arm('L', 1), arm('R', -1), A('body/head/sac', Z, (-4, 2, -9, 8, 6, 6, 'sc')), A('body/head/eyes', Z, (-7, -7, -8, 4, 4, 4, 'ey'), (3, -7, -8, 4, 4, 4, 'ey')), A('body/pust', Z, (-5, -8, -4, 3, 3, 3, 'sc'), (3, -8, 0, 4, 3, 3, 'sc'), (-2, -8, 5, 3, 3, 3, 'sc'), (-6, -4, 8, 3, 3, 3, 'sc')),
+         A('body/tail1/legs', Z, (-6, 4, -2, 3, 9, 3, 'f'), (3, 4, -2, 3, 9, 3, 'f'))])
+spec(id='colmillos', pkg='colmillos', C='Colmillos', ppkg='cerberus', pm='CerberusModel', W=64, H0=64, sty=dict(bn=BN, tn=dict(c=(150, 50, 60), n=0.1, d='veins')),
+  parts=[A('body/chest/spines', Z, (-1, -6, -9, 2, 3, 2, 'bn'), (-1, -6, -6, 2, 4, 2, 'bn'), (-1, -6, -3, 2, 3, 2, 'bn')), A('body/hips/spines2', Z, (-1, -5, 0, 2, 3, 2, 'bn'), (-1, -5, 3, 2, 3, 2, 'bn')),
+         A('body/chest/neck/head/horns', Z, (-2.5, -5, -3, 1, 3, 1, 'bn'), (1.5, -5, -3, 1, 3, 1, 'bn')), A('body/chest/neck/head/tent', Z, (-2, 1, -9, 1, 1, 6, 'tn'), (1, 1, -9, 1, 1, 6, 'tn'))])
+spec(id='gnezdo', pkg='gnezdo', C='Gnezdo', ppkg='larva', pm='LarvaModel', W=64, H0=64, sty=dict(bn=BN, c=dict(c=(150, 60, 40), n=0.1)),
+  parts=[A('head/horn', Z, (-0.5, -6, -3, 1, 3, 1, 'bn')), A('head/mandx', Z, (-2, -2, -8, 1, 1, 4, 'bn'), (1, -2, -8, 1, 1, 4, 'bn'))] + [A('head/' + '/'.join('s%d' % j for j in range(1, k + 1)) + '/bristle', Z, (-3.5, -5, 2, 1, 2, 1, 'bn'), (2.5, -5, 2, 1, 2, 1, 'bn'), (-0.5, -6, 3, 1, 3, 1, 'bn')) for k in (1, 2, 3)])
+spec(id='grave_digger', pkg='gravedigger', C='GraveDigger', ppkg='yawn', pm='YawnModel', W=256, H0=64, sty=dict(bn=BN),
+  parts=[A('body/neck1/neck2/neck3/head/hornsX', Z, (-3, -5, -6, 1, 3, 1, 'bn'), (2, -5, -6, 1, 3, 1, 'bn'), (-0.5, -6, -3, 1, 4, 1, 'bn')), A('body/spk', Z, (-1, -8, -4, 2, 3, 2, 'bn'), (-1, -8, 0, 2, 3, 2, 'bn'), (-1, -8, 4, 2, 3, 2, 'bn'))])
 
 if __name__ == '__main__':
     for k in (sys.argv[1:] or SPECS): gen(SPECS[k])

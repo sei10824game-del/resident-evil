@@ -15,6 +15,11 @@ import net.minecraft.resources.ResourceLocation;
 public class Re3rNemesisModel extends NemesisModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "re3r_nemesis"), "main");
     public Re3rNemesisModel(ModelPart root) { super(root); }
+    @Override
+    protected com.reevil.anim.AnimClip clip(com.reevil.entity.nemesis.NemesisEntity e, int id) {
+        com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re3r_nemesis(id);
+        return c != null ? c : super.clip(e, id);
+    }
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = NemesisModel.mesh();
         PartDefinition root = mesh.getRoot();

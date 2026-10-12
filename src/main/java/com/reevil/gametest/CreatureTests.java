@@ -184,4 +184,21 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void pbGarrador(GameTestHelper h) { run(h, ModEntities.GARRADOR.get(), false, 0); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void pbElGigante(GameTestHelper h) { run(h, ModEntities.EL_GIGANTE.get(), false, 0); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void pbWesker(GameTestHelper h) { run(h, ModEntities.WESKER.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re1rZombie(GameTestHelper h) { run(h, ModEntities.RE1R_ZOMBIE.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re1rHunter(GameTestHelper h) { run(h, ModEntities.RE1R_HUNTER.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re2rZombie(GameTestHelper h) { run(h, ModEntities.RE2R_ZOMBIE.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re2rLicker(GameTestHelper h) { run(h, ModEntities.RE2R_LICKER.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re2rMrX(GameTestHelper h) { run(h, ModEntities.RE2R_MR_X.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re3rZombie(GameTestHelper h) { run(h, ModEntities.RE3R_ZOMBIE.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re3rNemesis(GameTestHelper h) { run(h, ModEntities.RE3R_NEMESIS.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re3rPaleHead(GameTestHelper h) { run(h, ModEntities.RE3R_PALE_HEAD.get(), false, 5); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re3rHunterBeta(GameTestHelper h) { run(h, ModEntities.RE3R_HUNTER_BETA.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re4rGanado(GameTestHelper h) { run(h, ModEntities.RE4R_GANADO.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re4rElGigante(GameTestHelper h) { run(h, ModEntities.RE4R_EL_GIGANTE.get(), false, 8); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re4rVerdugo(GameTestHelper h) { run(h, ModEntities.RE4R_VERDUGO.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re4rRegenerador(GameTestHelper h) { run(h, ModEntities.RE4R_REGENERADOR.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re4rKrauser(GameTestHelper h) { run(h, ModEntities.RE4R_KRAUSER.get(), false, 5); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re4rSalazar(GameTestHelper h) { run(h, ModEntities.RE4R_SALAZAR.get(), false, 6); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re4rArmadura(GameTestHelper h) { run(h, ModEntities.RE4R_ARMADURA.get(), false, 5); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re4rIronMaiden(GameTestHelper h) { run(h, ModEntities.RE4R_IRON_MAIDEN.get(), false, 4); }
 }

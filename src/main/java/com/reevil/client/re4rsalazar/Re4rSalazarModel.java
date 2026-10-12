@@ -15,6 +15,11 @@ import net.minecraft.resources.ResourceLocation;
 public class Re4rSalazarModel extends SalazarModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "re4r_salazar"), "main");
     public Re4rSalazarModel(ModelPart root) { super(root); }
+    @Override
+    protected com.reevil.anim.AnimClip clip(com.reevil.entity.plant42.Plant42Entity e, int id) {
+        com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re4r_salazar(id);
+        return c != null ? c : super.clip(e, id);
+    }
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = SalazarModel.mesh();
         PartDefinition root = mesh.getRoot();

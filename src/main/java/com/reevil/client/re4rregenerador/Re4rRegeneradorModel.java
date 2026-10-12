@@ -15,6 +15,11 @@ import net.minecraft.resources.ResourceLocation;
 public class Re4rRegeneradorModel extends RegeneradorModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "re4r_regenerador"), "main");
     public Re4rRegeneradorModel(ModelPart root) { super(root); }
+    @Override
+    protected com.reevil.anim.AnimClip clip(com.reevil.entity.zombie.ZombieEntity e, int id) {
+        com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re4r_regenerador(id);
+        return c != null ? c : super.clip(e, id);
+    }
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = RegeneradorModel.mesh();
         PartDefinition root = mesh.getRoot();
