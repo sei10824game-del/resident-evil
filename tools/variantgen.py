@@ -119,15 +119,23 @@ public class %(C)sModel extends %(pm)s {
 ''' % dict(clip=clipsrc, pkg=pkg, ppkg=s['ppkg'], pm=s['pm'], C=C, id=s['id'], body='\n'.join(lines))
     open(os.path.join(ROOT, pkg, C + 'Model.java'), 'w').write(src)
     # textures
+    for suf in s.get('svar', {}):
+        pth = os.path.join(OUT, s['id'] + suf + '.png')
+        if not os.path.exists(pth): Image.new('RGBA', (s['W'], s['H0']), (0, 0, 0, 0)).save(pth)
+    if s.get('texfrom'):   # seed the base texture from another PNG (recoloured)
+        src = Image.open(os.path.join(OUT, s['texfrom'][0] + '.png')).convert('RGBA'); s['texfrom'][1](src).save(os.path.join(OUT, s['id'] + '.png'))
     files = sorted(glob.glob(os.path.join(OUT, s['id'] + '.png')) + glob.glob(os.path.join(OUT, s['id'] + '_*.png')))
     for fi, f in enumerate(files):
         old = Image.open(f).convert('RGBA')
-        if old.size[0] != s['W']: print('WIDTH MISMATCH', f, old.size); continue
+        if old.size[0] != s['W']: print('width mismatch -> blank base', f, old.size); old = Image.new('RGBA', (s['W'], s['H0']), (0, 0, 0, 0))
         old = old.crop((0, 0, s['W'], s['H0']))
         t = Tex(s['W'], H, 7 + fi); t.img.paste(old, (0, 0)); t.px = t.img.load()
         tint = 1.0 if fi == 0 else max(0.6, 0.9 - 0.1 * fi)
         rng = random.Random(fi + 3)
-        for c, dm, (u, v) in zip(flat, dims, uv): paint_cube(t, u, v, dm[0], dm[1], dm[2], sty[c[6]], tint, rng)
+        suf = os.path.basename(f)[len(s['id']):-4]
+        sty2 = dict(sty); sty2.update(s.get('svar', {}).get(suf, {}))
+        if suf in s.get('svar', {}): tint = 1.0
+        for c, dm, (u, v) in zip(flat, dims, uv): paint_cube(t, u, v, dm[0], dm[1], dm[2], sty2[c[6]], tint, rng)
         t.img.save(f)
     print('generated', s['id'], 'H=', H, 'cubes', len(flat), 'textures', len(files))
 

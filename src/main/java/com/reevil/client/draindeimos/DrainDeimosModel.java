@@ -18,22 +18,25 @@ public class DrainDeimosModel extends GiantMothModel {
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = GiantMothModel.mesh();
         PartDefinition root = mesh.getRoot();
-        root.getChild("body").getChild("abdomen").addOrReplaceChild("stinger", CubeListBuilder.create()
-            .texOffs(0, 64).addBox(-1, -1, 0, 2, 2, 9)
-            .texOffs(22, 64).addBox(-0.5f, -0.5f, 8, 1, 1, 4),
-            PartPose.offset(0, 0, 12));
-        root.getChild("body").getChild("abdomen").addOrReplaceChild("bands", CubeListBuilder.create()
-            .texOffs(32, 64).addBox(-3.3f, -3.3f, 2, 6.6f, 6.6f, 1.5f)
-            .texOffs(50, 64).addBox(-3.3f, -3.3f, 5, 6.6f, 6.6f, 1.5f)
-            .texOffs(68, 64).addBox(-3.3f, -3.3f, 8, 6.6f, 6.6f, 1.5f),
-            PartPose.ZERO);
+        root.getChild("body").addOrReplaceChild("hindL", CubeListBuilder.create()
+            .texOffs(0, 64).addBox(-1, 0, -1, 2, 8, 2)
+            .texOffs(8, 64).addBox(-1, 7, -5, 2, 2, 7),
+            PartPose.offsetAndRotation(2, 2, 3, 0.8f, 0, 0.3f));
+        root.getChild("body").addOrReplaceChild("hindR", CubeListBuilder.create()
+            .texOffs(26, 64).addBox(-1, 0, -1, 2, 8, 2)
+            .texOffs(34, 64).addBox(-1, 7, -5, 2, 2, 7),
+            PartPose.offsetAndRotation(-2, 2, 3, 0.8f, 0, -0.3f));
+        root.getChild("body").addOrReplaceChild("clawL", CubeListBuilder.create()
+            .texOffs(52, 64).addBox(-0.5f, 0, -0.5f, 1, 7, 1)
+            .texOffs(56, 64).addBox(-1, 6, -3, 1, 1, 4),
+            PartPose.offsetAndRotation(2, 2, -3, -0.7f, 0.2f, 0));
+        root.getChild("body").addOrReplaceChild("clawR", CubeListBuilder.create()
+            .texOffs(66, 64).addBox(-0.5f, 0, -0.5f, 1, 7, 1)
+            .texOffs(70, 64).addBox(0, 6, -3, 1, 1, 4),
+            PartPose.offsetAndRotation(-2, 2, -3, -0.7f, -0.2f, 0));
         root.getChild("body").getChild("head").addOrReplaceChild("pinc", CubeListBuilder.create()
-            .texOffs(86, 64).addBox(-3, -1, -5.5f, 1, 1, 3)
-            .texOffs(94, 64).addBox(2, -1, -5.5f, 1, 1, 3),
-            PartPose.ZERO);
-        root.getChild("body").addOrReplaceChild("spk", CubeListBuilder.create()
-            .texOffs(102, 64).addBox(-1, -4.5f, -2, 2, 2, 2)
-            .texOffs(110, 64).addBox(-1, -4.5f, 1, 2, 2, 2),
+            .texOffs(80, 64).addBox(-3, -1, -5.5f, 1, 1, 3)
+            .texOffs(88, 64).addBox(2, -1, -5.5f, 1, 1, 3),
             PartPose.ZERO);
         return LayerDefinition.create(mesh, 128, 80);
     }

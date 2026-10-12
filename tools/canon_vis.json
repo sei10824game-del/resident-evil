@@ -1,0 +1,223 @@
+{
+ "VIS": {
+  "wesker": [
+   [
+    "base/torso/uroT1",
+    "mut == 1"
+   ],
+   [
+    "base/torso/uroT2",
+    "mut == 1"
+   ],
+   [
+    "base/torso/uroT3",
+    "mut == 1"
+   ],
+   [
+    "base/torso/uroT4",
+    "mut == 1"
+   ]
+  ],
+  "fat_molded": [
+   [
+    "body/waist/chest/neck/head",
+    "mut != 1"
+   ]
+  ],
+  "gnezdo": [
+   [
+    "base/torso/queen",
+    "mut == 1"
+   ]
+  ],
+  "marguerite": [
+   [
+    "base/hive",
+    "mut == 1"
+   ],
+   [
+    "base/torso/armR/foreR/elong",
+    "mut == 1"
+   ],
+   [
+    "base/torso/lumps",
+    "mut == 1"
+   ]
+  ],
+  "soldat": [
+   [
+    "base/torso/armR/foreR/drillR",
+    "mut == 1 || mut == 3"
+   ],
+   [
+    "base/torso/armL/foreL/drillL2",
+    "mut == 3"
+   ],
+   [
+    "base/torso/armR/foreR/drillR2",
+    "mut == 3"
+   ],
+   [
+    "base/torso/pz",
+    "mut == 3"
+   ],
+   [
+    "base/torso/jet",
+    "mut == 2"
+   ]
+  ],
+  "adjule": [
+   [
+    "body/chest/neck/head/splitL",
+    "mut == 1"
+   ],
+   [
+    "body/chest/neck/head/splitR",
+    "mut == 1"
+   ],
+   [
+    "body/chest/neck/head/plaga",
+    "mut == 1"
+   ]
+  ],
+  "javo": [
+   [
+    "base/torso/neck/head/mSluz",
+    "((mut >> 8) & 15) == 1"
+   ],
+   [
+    "base/torso/neck/head/mSmech",
+    "((mut >> 8) & 15) == 2"
+   ],
+   [
+    "base/torso/neck/head/mBeg",
+    "((mut >> 8) & 15) == 3"
+   ],
+   [
+    "base/torso/neck/head/mDim",
+    "((mut >> 8) & 15) == 4"
+   ],
+   [
+    "base/torso/armR/foreR/mSrp",
+    "((mut >> 0) & 15) == 1"
+   ],
+   [
+    "base/torso/armL/foreL/mKhv",
+    "((mut >> 0) & 15) == 2"
+   ],
+   [
+    "base/torso/armL/foreL/mBed",
+    "((mut >> 0) & 15) == 3"
+   ],
+   [
+    "base/mTrch",
+    "((mut >> 4) & 15) == 1"
+   ],
+   [
+    "base/mLetL",
+    "((mut >> 4) & 15) == 2"
+   ],
+   [
+    "base/mLetR",
+    "((mut >> 4) & 15) == 2"
+   ],
+   [
+    "base/mLetT",
+    "((mut >> 4) & 15) == 2"
+   ],
+   [
+    "base/mSkak",
+    "((mut >> 4) & 15) == 3"
+   ],
+   [
+    "base/mOkl",
+    "((mut >> 4) & 15) == 4"
+   ],
+   [
+    "base/torso/mEks",
+    "((mut >> 12) & 15) == 1"
+   ],
+   [
+    "base/torso/mKrl",
+    "((mut >> 12) & 15) == 2"
+   ],
+   [
+    "base/torso/mMag",
+    "((mut >> 12) & 15) == 3"
+   ],
+   [
+    "base/mChr",
+    "((mut >> 12) & 15) == 4"
+   ]
+  ],
+  "mendez": [
+   [
+    "base/torso/worm",
+    "mut == 1"
+   ],
+   [
+    "base/torso/bkL",
+    "mut == 1"
+   ],
+   [
+    "base/torso/bkR",
+    "mut == 1"
+   ],
+   [
+    "base/torso/spineX",
+    "mut == 1"
+   ],
+   [
+    "base/torso/armR/foreR/talonR",
+    "mut == 1"
+   ],
+   [
+    "base/torso/armL/foreL/talonL",
+    "mut == 1"
+   ]
+  ],
+  "dimitrescu": [
+   [
+    "base/torso/wingL",
+    "mut == 1"
+   ],
+   [
+    "base/torso/wingR",
+    "mut == 1"
+   ],
+   [
+    "base/torso/neck/head/dhorn",
+    "mut == 1"
+   ],
+   [
+    "base/dtail",
+    "mut == 1"
+   ]
+  ],
+  "heisenberg": [
+   [
+    "base/slug",
+    "mut == 1"
+   ],
+   [
+    "base/slugGun",
+    "mut == 1"
+   ]
+  ],
+  "moreau": [
+   [
+    "body/head/maw",
+    "mut == 1"
+   ]
+  ]
+ },
+ "SPIN": {
+  "sturm": [
+   [
+    "base/torso/prop",
+    "z",
+    0.9
+   ]
+  ]
+ }
+}

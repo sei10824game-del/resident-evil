@@ -30,6 +30,31 @@ public class MendezModel extends ElGiganteModel {
         root.getChild("base").getChild("torso").addOrReplaceChild("coat2", CubeListBuilder.create()
             .texOffs(68, 64).addBox(-5, -2, -3, 10, 8, 6),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 80);
+        root.getChild("base").getChild("torso").addOrReplaceChild("bkL", CubeListBuilder.create()
+            .texOffs(100, 64).addBox(-1.2f, -1.2f, 0, 2.4f, 2.4f, 10),
+            PartPose.offsetAndRotation(3, -8, 3, 0.6f, 0.3f, 0));
+        root.getChild("base").getChild("torso").getChild("bkL").addOrReplaceChild("s2", CubeListBuilder.create()
+            .texOffs(0, 78).addBox(-1, -1, 0, 2, 2, 10),
+            PartPose.offsetAndRotation(0, 0, 10, -0.9f, 0, 0));
+        root.getChild("base").getChild("torso").addOrReplaceChild("bkR", CubeListBuilder.create()
+            .texOffs(24, 78).addBox(-1.2f, -1.2f, 0, 2.4f, 2.4f, 10),
+            PartPose.offsetAndRotation(-3, -8, 3, 0.6f, -0.3f, 0));
+        root.getChild("base").getChild("torso").getChild("bkR").addOrReplaceChild("s2", CubeListBuilder.create()
+            .texOffs(50, 78).addBox(-1, -1, 0, 2, 2, 10),
+            PartPose.offsetAndRotation(0, 0, 10, -0.9f, 0, 0));
+        root.getChild("base").getChild("torso").addOrReplaceChild("spineX", CubeListBuilder.create()
+            .texOffs(74, 78).addBox(-1.5f, -12, 2.5f, 3, 14, 3),
+            PartPose.ZERO);
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").addOrReplaceChild("talonR", CubeListBuilder.create()
+            .texOffs(86, 78).addBox(-1.5f, 9, -1.5f, 1, 6, 1)
+            .texOffs(90, 78).addBox(0, 9, -1.5f, 1, 7, 1)
+            .texOffs(94, 78).addBox(1.5f, 9, -1.5f, 1, 6, 1),
+            PartPose.ZERO);
+        root.getChild("base").getChild("torso").getChild("armL").getChild("foreL").addOrReplaceChild("talonL", CubeListBuilder.create()
+            .texOffs(98, 78).addBox(-1.5f, 9, -1.5f, 1, 6, 1)
+            .texOffs(102, 78).addBox(0, 9, -1.5f, 1, 7, 1)
+            .texOffs(106, 78).addBox(1.5f, 9, -1.5f, 1, 6, 1),
+            PartPose.ZERO);
+        return LayerDefinition.create(mesh, 128, 96);
     }
 }

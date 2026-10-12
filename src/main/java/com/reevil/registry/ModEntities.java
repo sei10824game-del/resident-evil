@@ -263,7 +263,7 @@ public final class ModEntities {
     public static final RegistryObject<Item> ARMADURA_EGG = egg("armadura", ARMADURA, 0x80848c, 0x303030);
 
     public static final RegistryObject<EntityType<KipepeoEntity>> KIPEPEO = ENTITIES.register("kipepeo",
-        () -> EntityType.Builder.of(KipepeoEntity::new, MobCategory.MONSTER).sized(1.4f, 1.2f).clientTrackingRange(10).build("kipepeo"));
+        () -> EntityType.Builder.of(KipepeoEntity::new, MobCategory.MONSTER).sized(0.7f, 0.6f).clientTrackingRange(10).build("kipepeo"));
     public static final RegistryObject<Item> KIPEPEO_EGG = egg("kipepeo", KIPEPEO, 0x607040, 0xe0d080);
 
     public static final RegistryObject<EntityType<ReaperEntity>> REAPER = ENTITIES.register("reaper",
@@ -279,7 +279,7 @@ public final class ModEntities {
     public static final RegistryObject<Item> WESKER_EGG = egg("wesker", WESKER, 0x101010, 0xe0c040);
 
     public static final RegistryObject<EntityType<AdjuleEntity>> ADJULE = ENTITIES.register("adjule",
-        () -> EntityType.Builder.of(AdjuleEntity::new, MobCategory.MONSTER).sized(0.9f, 2.5f).clientTrackingRange(10).build("adjule"));
+        () -> EntityType.Builder.of(AdjuleEntity::new, MobCategory.MONSTER).sized(0.8f, 0.95f).clientTrackingRange(10).build("adjule"));
     public static final RegistryObject<Item> ADJULE_EGG = egg("adjule", ADJULE, 0x706050, 0xa04040);
 
     public static final RegistryObject<EntityType<NdesuEntity>> NDESU = ENTITIES.register("ndesu",
@@ -363,7 +363,7 @@ public final class ModEntities {
     public static final RegistryObject<Item> DIMITRESCU_EGG = egg("dimitrescu", DIMITRESCU, 0xe0e0e0, 0x601020);
 
     public static final RegistryObject<EntityType<DaughterEntity>> DAUGHTER = ENTITIES.register("daughter",
-        () -> EntityType.Builder.of(DaughterEntity::new, MobCategory.MONSTER).sized(0.7f, 1.6f).clientTrackingRange(10).build("daughter"));
+        () -> EntityType.Builder.of(DaughterEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("daughter"));
     public static final RegistryObject<Item> DAUGHTER_EGG = egg("daughter", DAUGHTER, 0xd0d0d0, 0x501018);
 
     public static final RegistryObject<EntityType<HeisenbergEntity>> HEISENBERG = ENTITIES.register("heisenberg",
@@ -387,7 +387,7 @@ public final class ModEntities {
     public static final RegistryObject<Item> SOLDAT_EGG = egg("soldat", SOLDAT, 0x404840, 0xa0a0a0);
 
     public static final RegistryObject<EntityType<MargueriteEntity>> MARGUERITE = ENTITIES.register("marguerite",
-        () -> EntityType.Builder.of(MargueriteEntity::new, MobCategory.MONSTER).sized(1.6f, 1.8f).clientTrackingRange(10).build("marguerite"));
+        () -> EntityType.Builder.of(MargueriteEntity::new, MobCategory.MONSTER).sized(0.7f, 1.9f).clientTrackingRange(10).build("marguerite"));
     public static final RegistryObject<Item> MARGUERITE_EGG = egg("marguerite", MARGUERITE, 0x806040, 0xd0c080);
 
     public static final RegistryObject<EntityType<MirandaEntity>> MIRANDA = ENTITIES.register("miranda",
@@ -399,7 +399,7 @@ public final class ModEntities {
     public static final RegistryObject<Item> HAOS_EGG = egg("haos", HAOS, 0x402028, 0xc08040);
 
     public static final RegistryObject<EntityType<GnezdoEntity>> GNEZDO = ENTITIES.register("gnezdo",
-        () -> EntityType.Builder.of(GnezdoEntity::new, MobCategory.MONSTER).sized(1.2f, 0.9f).clientTrackingRange(10).build("gnezdo"));
+        () -> EntityType.Builder.of(GnezdoEntity::new, MobCategory.MONSTER).sized(0.6f, 1.8f).clientTrackingRange(10).build("gnezdo"));
     public static final RegistryObject<Item> GNEZDO_EGG = egg("gnezdo", GNEZDO, 0x606030, 0xc0c060);
 
     public static final RegistryObject<EntityType<Re1rZombieEntity>> RE1R_ZOMBIE = ENTITIES.register("re1r_zombie",

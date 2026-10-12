@@ -33,6 +33,14 @@ public class ReaperModel extends LickerModel {
             .texOffs(48, 79).addBox(-4, -5, -2, 8, 3, 8)
             .texOffs(80, 79).addBox(-1, -8, 0, 2, 4, 5),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 96);
+        root.getChild("base").addOrReplaceChild("stinger", CubeListBuilder.create()
+            .texOffs(94, 79).addBox(-1, -1, 0, 2, 2, 10)
+            .texOffs(0, 91).addBox(-0.5f, -0.5f, 9, 1, 1, 5),
+            PartPose.offsetAndRotation(0, -2, 3, -0.5f, 0, 0));
+        root.getChild("base").getChild("torso").getChild("neck1").getChild("neck2").getChild("head").addOrReplaceChild("ant", CubeListBuilder.create()
+            .texOffs(12, 91).addBox(-2.5f, -8, -9, 0.6f, 0.6f, 10)
+            .texOffs(34, 91).addBox(1.9f, -8, -9, 0.6f, 0.6f, 10),
+            PartPose.ZERO);
+        return LayerDefinition.create(mesh, 128, 104);
     }
 }

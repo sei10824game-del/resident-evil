@@ -50,6 +50,9 @@ public class BirkinEntity extends BioMonster {
     private static final List<AttackMove> G1 = List.of(M_SLAM, M_BACK, M_GRAB);
     private static final List<AttackMove> G2 = List.of(M_SLAM, M_BACK, M_GRAB, M_FLURRY, M_LEAP, M_CHARGE);
     private static final List<AttackMove> G3 = List.of(M_SLAM, M_FLURRY, M_CHARGE, M_WHIP, M_STOMP, M_BITE);
+    /** G4: legs ruined, scuttles on its arms - fast and low. G5: the final bloated mass. */
+    private static final List<AttackMove> G4 = List.of(M_SLAM, M_BACK, M_FLURRY, M_LEAP, M_CHARGE);
+    private static final List<AttackMove> G5 = List.of(M_SLAM, M_WHIP, M_STOMP, M_BITE);
 
     private final ServerBossEvent bossEvent = new ServerBossEvent(getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.NOTCHED_10);
     private LivingEntity held;
@@ -72,15 +75,16 @@ public class BirkinEntity extends BioMonster {
             .add(Attributes.ARMOR, 6.0);
     }
 
-    public int stage() { return getForm(); }
-    @Override public List<AttackMove> moves() { return getForm() == 0 ? G1 : getForm() == 1 ? G2 : G3; }
-    @Override public String getTextureSuffix() { return getForm() == 0 ? "" : getForm() == 1 ? "_g2" : "_g3"; }
+    /** model stage: G4 reuses the hunched G2 pose, G5 the bloated G3 one */
+    public int stage() { int f = getForm(); return f == 3 ? 1 : f == 4 ? 2 : f; }
+    @Override public List<AttackMove> moves() { return switch (getForm()) { case 0 -> G1; case 1 -> G2; case 2 -> G3; case 3 -> G4; default -> G5; }; }
+    @Override public String getTextureSuffix() { return new String[]{"", "_g2", "_g3", "_g4", "_g5"}[Math.min(4, getForm())]; }
     @Override public boolean removeWhenFarAway(double d) { return false; }
     @Override protected boolean isImmobile() { return super.isImmobile() || getMoveId() == MUTATE; }
 
     @Override
     public EntityDimensions getDimensions(Pose pose) {
-        return switch (getForm()) { case 1 -> EntityDimensions.scalable(1.5f, 2.6f); case 2 -> EntityDimensions.scalable(2.3f, 3.8f); default -> EntityDimensions.scalable(1.2f, 3.1f); };
+        return switch (getForm()) { case 1 -> EntityDimensions.scalable(1.5f, 2.6f); case 2 -> EntityDimensions.scalable(2.3f, 3.8f); case 3 -> EntityDimensions.scalable(1.6f, 2.1f); case 4 -> EntityDimensions.scalable(3.0f, 4.6f); default -> EntityDimensions.scalable(1.2f, 3.1f); };
     }
 
     @Override
@@ -97,7 +101,7 @@ public class BirkinEntity extends BioMonster {
         bossEvent.setProgress(getHealth() / getMaxHealth());
         if (isAlive() && getMoveId() != MUTATE) {
             float frac = getHealth() / getMaxHealth();
-            if ((getForm() == 0 && frac < 0.65f) || (getForm() == 1 && frac < 0.30f)) { cancelMove(); startMove(M_MUTATE); }
+            if ((getForm() == 0 && frac < 0.65f) || (getForm() == 1 && frac < 0.30f) || (getForm() == 2 && frac < 0.12f) || (getForm() == 3 && frac < 0.05f)) { cancelMove(); startMove(M_MUTATE); }
         }
     }
 
@@ -148,7 +152,7 @@ public class BirkinEntity extends BioMonster {
                 setForm(getForm() + 1);
                 mutating = false;
                 setHealth(Math.min(getMaxHealth(), getHealth() + getMaxHealth() * 0.12f));
-                var sp = getAttribute(Attributes.MOVEMENT_SPEED); if (sp != null) sp.setBaseValue(getForm() == 1 ? 0.30 : 0.27);
+                var sp = getAttribute(Attributes.MOVEMENT_SPEED); if (sp != null) sp.setBaseValue(switch (getForm()) { case 1 -> 0.30; case 3 -> 0.36; case 4 -> 0.22; default -> 0.27; });
                 playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 3f, 0.3f);
                 if (level() instanceof ServerLevel sl) sl.sendParticles(ParticleTypes.EXPLOSION, getX(), getY() + 1.5, getZ(), 5, 1.0, 1.0, 1.0, 0.0);
             }

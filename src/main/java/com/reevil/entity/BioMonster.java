@@ -35,6 +35,7 @@ public abstract class BioMonster extends Monster {
     private static final EntityDataAccessor<Integer> DATA_MOVE_DUR = SynchedEntityData.defineId(BioMonster.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_FORM = SynchedEntityData.defineId(BioMonster.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_MUT = SynchedEntityData.defineId(BioMonster.class, EntityDataSerializers.INT);
+    private int persistentStage, chrysalisTicks;
 
     protected int moveCooldown = 20;
     private AttackMove current;
@@ -62,6 +63,10 @@ public abstract class BioMonster extends Monster {
     /** mutation stage chosen by CanonMoves passives (0 = none); synced so models can show extra parts. */
     public int getMut() { return entityData.get(DATA_MUT); }
     public void setMut(int n) { entityData.set(DATA_MUT, n); }
+    public int getPersistentStage() { return persistentStage; }
+    public void setPersistentStage(int n) { persistentStage = n; }
+    public int getChrysalisTicks() { return chrysalisTicks; }
+    public void setChrysalisTicks(int n) { chrysalisTicks = n; }
 
     @Override
     protected void registerGoals() {
@@ -135,7 +140,10 @@ public abstract class BioMonster extends Monster {
     @Override
     public boolean hurt(DamageSource src, float amount) {
         if (src.getEntity() instanceof BioMonster b && !Factions.hostile(b, this)) return false; // no friendly fire inside a faction
+        amount = CanonMoves.modifyDamage(this, src, amount);
+        if (amount <= 0 && !src.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)) return false;
         boolean r = super.hurt(src, amount);
+        if (r && isAlive()) CanonMoves.hurt(this, src);
         if (r && isAlive() && random.nextInt(3) == 0) playVoice("hurt", 0.9f);
         return r;
     }
@@ -143,6 +151,7 @@ public abstract class BioMonster extends Monster {
     @Override
     public void die(DamageSource src) {
         super.die(src);
+        if (!level().isClientSide) CanonMoves.death(this);
         playVoice("death", 1.0f);
     }
 
@@ -216,13 +225,13 @@ public abstract class BioMonster extends Monster {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Form", getForm());
-        tag.putInt("Mut", getMut());
+        tag.putInt("Mut", getMut()); tag.putInt("MutStage", persistentStage);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         setForm(tag.getInt("Form"));
-        setMut(tag.getInt("Mut"));
+        setMut(tag.getInt("Mut")); persistentStage = tag.getInt("MutStage");
     }
 }

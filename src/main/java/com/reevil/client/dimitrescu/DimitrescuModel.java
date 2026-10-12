@@ -36,6 +36,22 @@ public class DimitrescuModel extends MrXModel {
             .texOffs(0, 96).addBox(-6.5f, 6, -4.5f, 13, 10, 9)
             .texOffs(44, 96).addBox(-6.6f, 14, -4.6f, 13.2f, 1, 9.2f),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 120);
+        root.getChild("base").getChild("torso").addOrReplaceChild("wingL", CubeListBuilder.create()
+            .texOffs(0, 115).addBox(0, -1, 0, 22, 1, 12)
+            .texOffs(68, 115).addBox(8, -1, 12, 10, 1, 8),
+            PartPose.offsetAndRotation(3, -9, 3, 0.2f, 0.3f, -0.6f));
+        root.getChild("base").getChild("torso").addOrReplaceChild("wingR", CubeListBuilder.create()
+            .texOffs(0, 128).addBox(-22, -1, 0, 22, 1, 12)
+            .texOffs(68, 128).addBox(-18, -1, 12, 10, 1, 8),
+            PartPose.offsetAndRotation(-3, -9, 3, 0.2f, -0.3f, 0.6f));
+        root.getChild("base").getChild("torso").getChild("neck").getChild("head").addOrReplaceChild("dhorn", CubeListBuilder.create()
+            .texOffs(104, 128).addBox(-3, -9, -2, 1.5f, 5, 1.5f)
+            .texOffs(112, 128).addBox(1.5f, -9, -2, 1.5f, 5, 1.5f),
+            PartPose.ZERO);
+        root.getChild("base").addOrReplaceChild("dtail", CubeListBuilder.create()
+            .texOffs(0, 141).addBox(-1.5f, -1.5f, 0, 3, 3, 12)
+            .texOffs(30, 141).addBox(-1, -1, 12, 2, 2, 10),
+            PartPose.offsetAndRotation(0, 0, 2, 0.4f, 0, 0));
+        return LayerDefinition.create(mesh, 128, 160);
     }
 }

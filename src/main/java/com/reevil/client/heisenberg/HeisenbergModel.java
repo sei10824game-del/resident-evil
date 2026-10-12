@@ -90,6 +90,14 @@ public class HeisenbergModel extends MrXModel {
             .texOffs(0, 140).addBox(-3, 19, -3, 6, 7, 6)
             .texOffs(24, 140).addBox(-3.5f, 20.5f, -2, 7, 4, 4),
             PartPose.offsetAndRotation(0, 2, -1, -0.5f, 0, 0));
-        return LayerDefinition.create(mesh, 128, 160);
+        root.getChild("base").addOrReplaceChild("slug", CubeListBuilder.create()
+            .texOffs(46, 140).addBox(-8, -4, -8, 16, 14, 22)
+            .texOffs(0, 176).addBox(-6, -6, -6, 12, 3, 18),
+            PartPose.ZERO);
+        root.getChild("base").addOrReplaceChild("slugGun", CubeListBuilder.create()
+            .texOffs(60, 176).addBox(-9, 0, -14, 2, 2, 8)
+            .texOffs(80, 176).addBox(7, 0, -14, 2, 2, 8),
+            PartPose.ZERO);
+        return LayerDefinition.create(mesh, 128, 200);
     }
 }

@@ -29,11 +29,26 @@ public class NdesuModel extends MrXModel {
             .texOffs(48, 64).addBox(-5, 0, -3, 10, 7, 1)
             .texOffs(70, 64).addBox(-5, 0, 2, 10, 7, 1),
             PartPose.ZERO);
-        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("mace", CubeListBuilder.create()
-            .texOffs(92, 64).addBox(-0.6f, -2, -0.6f, 1.2f, 18, 1.2f)
-            .texOffs(100, 64).addBox(-3, 14, -3, 6, 7, 6)
-            .texOffs(0, 84).addBox(-0.5f, 12, -4.5f, 1, 1, 9),
-            PartPose.offsetAndRotation(0, 2, -1, -0.5f, 0, 0));
-        return LayerDefinition.create(mesh, 128, 96);
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").addOrReplaceChild("brR", CubeListBuilder.create()
+            .texOffs(92, 64).addBox(-2.6f, 5, -2.6f, 5.2f, 2, 5.2f)
+            .texOffs(116, 64).addBox(-3.5f, 5.5f, -0.5f, 1.5f, 1, 1)
+            .texOffs(122, 64).addBox(2, 5.5f, -0.5f, 1.5f, 1, 1)
+            .texOffs(0, 72).addBox(-0.5f, 5.5f, -3.5f, 1, 1, 1.5f)
+            .texOffs(6, 72).addBox(-0.5f, 5.5f, 2, 1, 1, 1.5f),
+            PartPose.ZERO);
+        root.getChild("base").getChild("torso").getChild("armL").getChild("foreL").addOrReplaceChild("brL", CubeListBuilder.create()
+            .texOffs(12, 72).addBox(-2.6f, 5, -2.6f, 5.2f, 2, 5.2f)
+            .texOffs(36, 72).addBox(-3.5f, 5.5f, -0.5f, 1.5f, 1, 1)
+            .texOffs(42, 72).addBox(2, 5.5f, -0.5f, 1.5f, 1, 1)
+            .texOffs(48, 72).addBox(-0.5f, 5.5f, -3.5f, 1, 1, 1.5f)
+            .texOffs(54, 72).addBox(-0.5f, 5.5f, 2, 1, 1, 1.5f),
+            PartPose.ZERO);
+        root.getChild("base").addOrReplaceChild("belt", CubeListBuilder.create()
+            .texOffs(60, 72).addBox(-5, 0, -3, 10, 2, 6)
+            .texOffs(92, 72).addBox(-4, 2, -3.2f, 2, 2, 1)
+            .texOffs(98, 72).addBox(-1, 2, -3.2f, 2, 2, 1)
+            .texOffs(104, 72).addBox(2, 2, -3.2f, 2, 2, 1),
+            PartPose.ZERO);
+        return LayerDefinition.create(mesh, 128, 80);
     }
 }

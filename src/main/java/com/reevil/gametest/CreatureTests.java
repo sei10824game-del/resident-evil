@@ -201,4 +201,10 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void re4rSalazar(GameTestHelper h) { run(h, ModEntities.RE4R_SALAZAR.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void re4rArmadura(GameTestHelper h) { run(h, ModEntities.RE4R_ARMADURA.get(), false, 5); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void re4rIronMaiden(GameTestHelper h) { run(h, ModEntities.RE4R_IRON_MAIDEN.get(), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void birkinLow(GameTestHelper h) { run(h, ModEntities.BIRKIN.get(), false, 6, 0.1f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void javoLow2(GameTestHelper h) { run(h, ModEntities.JAVO.get(), false, 5, 0.25f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void sturmLow(GameTestHelper h) { run(h, ModEntities.STURM.get(), false, 6, 0.4f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void gnezdoLow(GameTestHelper h) { run(h, ModEntities.GNEZDO.get(), false, 4, 0.3f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void margueriteLow(GameTestHelper h) { run(h, ModEntities.MARGUERITE.get(), false, 5, 0.4f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void dimitrescuLow(GameTestHelper h) { run(h, ModEntities.DIMITRESCU.get(), false, 5, 0.25f); }
 }

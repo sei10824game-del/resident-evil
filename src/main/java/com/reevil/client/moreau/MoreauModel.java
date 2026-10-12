@@ -47,6 +47,11 @@ public class MoreauModel extends NeptuneModel {
             .texOffs(82, 145).addBox(-6, 4, -2, 3, 9, 3)
             .texOffs(94, 145).addBox(3, 4, -2, 3, 9, 3),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 160);
+        root.getChild("body").getChild("head").addOrReplaceChild("maw", CubeListBuilder.create()
+            .texOffs(0, 157).addBox(-8, -4, -16, 16, 3, 10)
+            .texOffs(52, 157).addBox(-8, 3, -16, 16, 3, 10)
+            .texOffs(104, 157).addBox(-3, -1, -14, 6, 5, 5),
+            PartPose.ZERO);
+        return LayerDefinition.create(mesh, 128, 176);
     }
 }

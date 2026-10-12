@@ -19,10 +19,6 @@ public class JavoEntity extends GanadoEntity {
             .add(Attributes.MAX_HEALTH, 40.0).add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.ATTACK_DAMAGE, 6.0).add(Attributes.FOLLOW_RANGE, 30);
     }
 
-    /** the C-virus mutation is quick: once hurt it forces the limb eruption (whip / scythe / spider) on its own. */
-    @Override
-    public void aiStep() {
-        super.aiStep();
-        if (!level().isClientSide && isAlive() && getForm() == 0 && getHealth() < getMaxHealth() * 0.75f && random.nextInt(60) == 0) triggerBurst();
-    }
+    /** J'avo mutate by themselves (CanonMoves.multiMutate): arm / leg / head / torso slots, see CANON_NOTES.md */
+    @Override public boolean hasHat() { return false; }
 }

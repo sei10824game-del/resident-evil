@@ -6,6 +6,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EntityType;
@@ -13,6 +14,8 @@ import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -43,10 +46,20 @@ public final class CanonMoves {
     private static final Map<String, List<Def>> DEFS = new HashMap<>();
     private static final Map<String, List<Consumer<BioMonster>>> PASSIVES = new HashMap<>();
     private static final Map<List<AttackMove>, Map<String, List<AttackMove>>> MERGED = new IdentityHashMap<>();
+    private static final Set<String> REPLACE = new HashSet<>();
+    private static final Map<String, List<BiFunction<BioMonster, DamageSource, Float>>> DMG = new HashMap<>();
+    private static final Map<String, List<BiConsumer<BioMonster, DamageSource>>> HURT = new HashMap<>();
+    private static final Map<String, List<Consumer<BioMonster>>> DEATH = new HashMap<>();
+    private static final Map<String, List<Def>> REPLACED_CACHE = new HashMap<>();
     static { CanonData.register(); }
 
     // ------------------------------------------------------------------ registry
     public static Def add(String entity, AttackMove m) { Def d = new Def(m); DEFS.computeIfAbsent(entity, k -> new ArrayList<>()).add(d); return d; }
+    /** this creature uses ONLY its canon moves (the inherited ones do not fit it). */
+    public static void replaceBase(String entity) { REPLACE.add(entity); }
+    public static void damage(String entity, BiFunction<BioMonster, DamageSource, Float> f) { DMG.computeIfAbsent(entity, k -> new ArrayList<>()).add(f); }
+    public static void onHurt(String entity, BiConsumer<BioMonster, DamageSource> f) { HURT.computeIfAbsent(entity, k -> new ArrayList<>()).add(f); }
+    public static void onDeath(String entity, Consumer<BioMonster> f) { DEATH.computeIfAbsent(entity, k -> new ArrayList<>()).add(f); }
     public static void passive(String entity, Consumer<BioMonster> p) { PASSIVES.computeIfAbsent(entity, k -> new ArrayList<>()).add(p); }
 
     static String key(BioMonster s) { return BuiltInRegistries.ENTITY_TYPE.getKey(s.getType()).getPath(); }
@@ -58,6 +71,7 @@ public final class CanonMoves {
 
     public static synchronized List<AttackMove> merge(BioMonster s, List<AttackMove> base) {
         List<Def> l = DEFS.get(key(s));
+        if (l != null && REPLACE.contains(key(s))) return MERGED.computeIfAbsent(base, b -> new HashMap<>()).computeIfAbsent(key(s), k -> l.stream().map(d -> d.move).toList());
         if (l == null || base.size() < 2) return base;
         return MERGED.computeIfAbsent(base, b -> new HashMap<>()).computeIfAbsent(key(s), k -> { List<AttackMove> r = new ArrayList<>(base); for (Def d : l) r.add(d.move); return List.copyOf(r); });
     }
@@ -76,6 +90,13 @@ public final class CanonMoves {
         List<Fx> l = d.hits.get(i);
         if (l != null) for (Fx f : l) f.run(s, target);
     }
+    public static float modifyDamage(BioMonster s, DamageSource src, float amount) {
+        List<BiFunction<BioMonster, DamageSource, Float>> l = DMG.get(key(s));
+        if (l != null) for (BiFunction<BioMonster, DamageSource, Float> f : l) amount = f.apply(s, src) * amount;
+        return amount;
+    }
+    public static void hurt(BioMonster s, DamageSource src) { List<BiConsumer<BioMonster, DamageSource>> l = HURT.get(key(s)); if (l != null) for (BiConsumer<BioMonster, DamageSource> f : l) f.accept(s, src); }
+    public static void death(BioMonster s) { List<Consumer<BioMonster>> l = DEATH.get(key(s)); if (l != null) for (Consumer<BioMonster> f : l) f.accept(s); }
     public static void passives(BioMonster s) {
         List<Consumer<BioMonster>> l = PASSIVES.get(key(s));
         if (l != null) for (Consumer<BioMonster> p : l) p.accept(s);
@@ -85,6 +106,92 @@ public final class CanonMoves {
     public static Predicate<BioMonster> hpBelow(float f) { return s -> s.getHealth() < s.getMaxHealth() * f; }
     public static Predicate<BioMonster> mut(int n) { return s -> s.getMut() == n; }
     public static Predicate<BioMonster> mutAny() { return s -> s.getMut() > 0; }
+
+    /** J'avo-style multi-slot mutations packed in getMut(): arm = bits 0-3, leg = 4-7, head = 8-11, torso = 12-15. */
+    public static Predicate<BioMonster> slot(int shift, int value) { return s -> ((s.getMut() >> shift) & 15) == value; }
+    public static int slotOf(BioMonster s, int shift) { return (s.getMut() >> shift) & 15; }
+
+    /** adds one random mutation to a free slot each time HP drops under a threshold; a small chance enters a chrysalid first. */
+    public static Consumer<BioMonster> multiMutate(float... thresholds) {
+        return s -> {
+            if (s.level().isClientSide || !s.isAlive()) return;
+            int stage = s.getPersistentStage();
+            if (stage >= thresholds.length || s.getHealth() >= s.getMaxHealth() * thresholds[stage]) return;
+            s.setPersistentStage(stage + 1);
+            s.cancelMove();
+            if (slotOf(s, 12) == 0 && s.getRandom().nextInt(5) == 0) { s.setMut((s.getMut() & 0x0FFF) | (4 << 12)); s.setChrysalisTicks(70); return; }
+            addRandomSlot(s);
+        };
+    }
+    public static void addRandomSlot(BioMonster s) {
+        int[] shifts = {0, 4, 8}; int[] counts = {3, 4, 4};
+        for (int tries = 0; tries < 6; tries++) {
+            int k = s.getRandom().nextInt(3);
+            if (slotOf(s, shifts[k]) != 0) continue;
+            s.setMut(s.getMut() | ((1 + s.getRandom().nextInt(counts[k])) << shifts[k]));
+            ((ServerLevel) s.level()).sendParticles(ParticleTypes.EXPLOSION, s.getX(), s.getY() + s.getBbHeight() * 0.5, s.getZ(), 2, 0.3, 0.3, 0.3, 0);
+            return;
+        }
+        if (slotOf(s, 12) == 0) s.setMut(s.getMut() | ((1 + s.getRandom().nextInt(3)) << 12));
+    }
+    /** chrysalid: frozen and unhurtable until it hatches into a fresh mutation. */
+    public static Consumer<BioMonster> chrysalis() {
+        return s -> {
+            if (s.level().isClientSide || slotOf(s, 12) != 4) return;
+            s.getNavigation().stop(); s.setDeltaMovement(0, Math.min(0, s.getDeltaMovement().y), 0); s.cancelMove();
+            int t = s.getChrysalisTicks() - 1; s.setChrysalisTicks(t);
+            if (t <= 0) { s.setMut(s.getMut() & 0x0FFF); addRandomSlot(s); addRandomSlot(s); s.playVoice("attack", 1.2f); }
+        };
+    }
+    /** immobile mutation that emits poison gas (Telo-Magla). */
+    public static Consumer<BioMonster> gasEmitter() {
+        return s -> {
+            if (s.level().isClientSide || slotOf(s, 12) != 3) return;
+            s.getNavigation().stop(); s.setDeltaMovement(0, Math.min(0, s.getDeltaMovement().y), 0);
+            if (s.tickCount % 20 == 0) aoe(5, 1f, 0).run(s, null);
+            if (s.tickCount % 20 == 0) for (LivingEntity e : s.level().getEntitiesOfClass(LivingEntity.class, s.getBoundingBox().inflate(5), x -> x != s && Factions.hostile(s, x))) e.addEffect(new MobEffectInstance(net.minecraft.world.effect.MobEffects.POISON, 60, 0), s);
+        };
+    }
+    public static BiFunction<BioMonster, DamageSource, Float> armorAndScales() {
+        return (s, src) -> {
+            if (slotOf(s, 12) == 4) return 0f;                                                   // chrysalid
+            if (slotOf(s, 12) == 2 && src.getDirectEntity() != null && !(src.getDirectEntity() instanceof LivingEntity)) return 0f;  // scales: projectiles bounce
+            if (slotOf(s, 0) == 3) return 0.6f;                                                   // armour arm
+            return 1f;
+        };
+    }
+    public static Consumer<BioMonster> explodeOnDeath(double r, float dmg) { return s -> aoe(r, dmg, 1.2).run(s, null); }
+
+    public static Predicate<BioMonster> mutIn(int... ms) { return s -> { for (int m : ms) if (s.getMut() == m) return true; return false; }; }
+    public static Predicate<BioMonster> form(int... fs) { return s -> { for (int f : fs) if (s.getForm() == f) return true; return false; }; }
+    /** cold biome / snowy position: the Dimitrescu daughters hibernate-weaken here. */
+    public static boolean cold(BioMonster s) { return s.level().getBiome(s.blockPosition()).value().coldEnoughToSnow(s.blockPosition()) || s.level().getBiome(s.blockPosition()).value().getBaseTemperature() < 0.2f; }
+    public static Predicate<BioMonster> isCold() { return CanonMoves::cold; }
+    public static Predicate<BioMonster> notCold() { return s -> !cold(s); }
+    public static BiFunction<BioMonster, DamageSource, Float> rearWeak(float mult) {
+        return (s, src) -> {
+            Entity a = src.getEntity(); if (a == null) return 1f;
+            Vec3 look = Vec3.directionFromRotation(0, s.getYRot());
+            Vec3 d = a.position().subtract(s.position()).multiply(1, 0, 1);
+            return d.lengthSqr() > 1.0e-4 && d.normalize().dot(look) < -0.4 ? mult : 1f;
+        };
+    }
+    public static Fx suicide() { return (s, t) -> { s.kill(); }; }
+    /** slows (stuns) every hostile around, e.g. acid bursts that disable other enemies. */
+    public static Fx stunAoe(double r, int ticks) {
+        return (s, t) -> { for (LivingEntity e : s.level().getEntitiesOfClass(LivingEntity.class, s.getBoundingBox().inflate(r), x -> x != s && x.isAlive() && Factions.hostile(s, x))) e.addEffect(new MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, ticks, 4), s); };
+    }
+    /** chance (0..1) that being hurt while idle starts the given move (counter-attack). */
+    public static BiConsumer<BioMonster, DamageSource> counter(int moveId, float chance) {
+        return (s, src) -> {
+            if (s.isMoving() || s.getMoveCooldown() > 0 || s.getRandom().nextFloat() > chance) return;
+            for (AttackMove m : s.allMoves()) if (m.id == moveId) { s.startMove(m); return; }
+        };
+    }
+    /** some of a host's parasites burst out when it dies. */
+    public static Consumer<BioMonster> burstInto(String entityId, int n, float chance) {
+        return s -> { if (s.getRandom().nextFloat() < chance) summon(entityId, n).run(s, s.getTarget()); };
+    }
 
     // ------------------------------------------------------------------ passives
     public static Consumer<BioMonster> mutateAt(float hpFrac, int... options) {

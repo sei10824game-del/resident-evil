@@ -100,6 +100,7 @@ public class BirkinModel extends BioModel<BirkinEntity> {
         float eye = (1f + st * 0.3f) * (1f + Mth.sin(age * 0.22f) * 0.06f);
         bone("eye").xScale *= eye; bone("eye").yScale *= eye; bone("eye").zScale *= eye;
         bone("eye").x += st == 2 ? 2f : 0f;
+        if (e.getForm() == 3) { base.xRot += 0.45f; bone("torso").xRot += 0.5f; bone("armL").xRot += -0.7f; bone("armR").xRot += -0.7f; }
         if (st >= 1) { bone("armR").xRot += 0.35f; bone("armL").xRot += 0.35f; bone("foreR").xRot += -0.2f; }
         float tv = st == 2 ? 1f : 0.001f;
         for (String sd : new String[]{"L", "R"}) {

@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 
 public class UriasRenderer extends BioRenderer<MrXEntity, UriasModel> {
     public UriasRenderer(EntityRendererProvider.Context ctx) {
-        super(ctx, new UriasModel(ctx.bakeLayer(UriasModel.LAYER)), 1.1f, "urias");
+        super(ctx, new UriasModel(ctx.bakeLayer(UriasModel.LAYER)), 1.2f, "urias");
     }
 
     @Override protected void scale(MrXEntity e, PoseStack ps, float partial) { ps.scale(1.3f, 1.3f, 1.3f); }

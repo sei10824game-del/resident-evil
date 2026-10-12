@@ -10,6 +10,6 @@ public class KipepeoRenderer extends BioRenderer<GiantMothEntity, KipepeoModel> 
         super(ctx, new KipepeoModel(ctx.bakeLayer(KipepeoModel.LAYER)), 0.4f, "kipepeo");
     }
 
-    @Override protected void scale(GiantMothEntity e, PoseStack ps, float partial) { ps.scale(1.1f, 1.1f, 1.1f); }
+    @Override protected void scale(GiantMothEntity e, PoseStack ps, float partial) { ps.scale(0.6f, 0.6f, 0.6f); }
     @Override protected float getFlipDegrees(GiantMothEntity e) { return 0f; }
 }

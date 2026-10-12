@@ -99,8 +99,6 @@ mv('zealot', 'ganado', 40, 'sickle_rush', 34, [18], 2, 7, 50, 3, 7, 1.0, 'dash',
 mv('krauser', 'ganado', 40, 'arm_blade_cleave', 36, [18], 0, 4, 44, 4, 14, 1.4, 'sweep', can='mut(1)', tick=[(12, 17, 'lunge(0.25, 0)')])
 mv('krauser', 'ganado', 41, 'stealth_cloak', 24, [], 0, 12, 150, 2, 0, 0, 'cast', can='mut(1)', end=[INV % 160, SPD % 160])
 mv('salazar', 'plant', 40, 'spawn_larvae', 44, [22], 0, 10, 200, 2, 0, 0, 'cast', hit={0: ["summon(\"larva\", 3)"]}, nodef=True)
-mv('mendez', 'mrx', 40, 'tongue_lash', 36, [16], 3, 8, 50, 3, 7, 0, 'thrust', can='mut(1)', hit={0: ['pull(1.3)', SLOW(40, 1)]})
-mv('mendez', 'mrx', 41, 'worm_burst', 40, [20], 0, 5, 60, 3, 9, 1.5, 'cast', can='mut(1)', hit={0: ['aoe(5, 9f, 1.5)', PO(80, 0)]}, nodef=True)
 mv('verdugo', 'mrx', 40, 'rend_grab', 52, [14, 26, 38], 0, 2.2, 60, 3, 5, 0, 'grab', hit={0: [SLOW(60, 3)]})
 # ---- RE5
 mv('uroboros', 'plant', 40, 'tendril_mass_slam', 44, [24], 0, 7, 60, 4, 12, 1.8, 'slam', hit={0: ['aoe(5.5, 10f, 1.6)']}, nodef=True)
@@ -110,14 +108,7 @@ mv('wesker', 'mrx', 40, 'phantom_step_strike', 30, [16], 3, 9, 50, 3, 10, 1.3, '
 mv('wesker', 'mrx', 41, 'lava_tentacle_lash', 40, [16, 26], 0, 7, 50, 4, 9, 1.2, 'sweep', can='mut(1)', hit={0: ['aoe(6, 8f, 1.4)', 'fire(4)'], 1: ['aoe(6, 8f, 1.4)']}, nodef=True)
 mv('wesker', 'mrx', 42, 'charge_rush', 36, [20], 3, 10, 60, 3, 14, 2.4, 'dash', can='mut(1)', tick=[(6, 20, 'lunge(0.55, 0)')], hit={0: ['launch(0.45)']})
 mv('jill', 'mrx', 40, 'flip_kick', 30, [14], 0, 3.4, 40, 3, 9, 1.6, 'kick', tick=[(8, 13, 'lunge(0.3, 0)')])
-mv('ndesu', 'mrx', 40, 'mace_smash', 44, [24], 0, 5, 60, 4, 14, 2.0, 'slam', hit={0: ['aoe(5, 10f, 1.8)']}, nodef=True)
-mv('reaper', 'licker', 40, 'carapace_charge', 40, [24], 3, 9, 70, 3, 12, 2.4, 'dash', tick=[(8, 24, 'lunge(0.5, 0)')])
-mv('reaper', 'licker', 41, 'jaw_clamp', 48, [16, 28, 40], 0, 2.2, 60, 3, 5, 0, 'bite', hit={0: [SLOW(60, 2)]})
 # ---- RE6
-mv('javo', 'ganado', 40, 'blade_arm_slash', 30, [14], 0, 3.2, 34, 4, 9, 1.0, 'thrust', can='mut(1)')
-mv('javo', 'ganado', 41, 'wing_dive', 38, [22], 3, 10, 60, 4, 10, 1.6, 'dash', can='mut(2)', tick=[(6, 22, 'lunge(0.6, 0.25)')])
-mv('javo', 'ganado', 42, 'stinger_stab', 32, [16], 0, 5, 40, 4, 8, 0.5, 'thrust', can='mut(3)', hit={0: [PO(100, 1)]})
-mv('javo', 'ganado', 43, 'claw_smash', 36, [20], 0, 3.4, 40, 4, 12, 1.8, 'slam', can='mut(4)')
 mv('napad', 'licker', 40, 'scythe_flurry', 36, [10, 16, 22, 28], 0, 3.2, 36, 4, 5, 0.4, 'flurry')
 mv('ogroman', 'mrx', 40, 'charging_smash', 42, [24], 3, 9, 70, 3, 14, 2.4, 'dash', tick=[(8, 24, 'lunge(0.45, 0)')], hit={0: ['launch(0.5)']})
 mv('ogroman', 'mrx', 41, 'overhead_pound', 44, [24], 0, 5.5, 60, 3, 12, 1.8, 'slam', hit={0: ['aoe(6, 11f, 1.8)']}, nodef=True)
@@ -128,36 +119,148 @@ mv('ustanak', 'mrx', 40, 'chain_hook_pull', 40, [18], 4, 10, 70, 3, 6, 0, 'thrus
 # ---- RE7
 mv('molded', 'ganado', 40, 'blade_arm_slash', 30, [14], 0, 3.2, 34, 3, 8, 1.0, 'thrust')
 mv('molded', 'ganado', 41, 'crawl_lunge', 34, [18], 2, 7, 50, 3, 7, 1.0, 'dash', tick=[(6, 18, 'lunge(0.5, 0)')])
-mv('fat_molded', 'zombie', 40, 'bile_vomit', 40, [20], 0, 5, 60, 3, 3, 0, 'spit', hit={0: ['cone(5, 3f, 0)', PO(100, 1)]}, nodef=True)
-mv('fat_molded', 'zombie', 41, 'belly_slam', 40, [22], 0, 3, 50, 3, 9, 2.0, 'slam', hit={0: ['aoe(3.5, 8f, 1.6)']}, nodef=True)
 mv('jack_baker', 'mrx', 40, 'door_slam_rush', 40, [22], 3, 8, 60, 3, 12, 2.2, 'dash', tick=[(6, 22, 'lunge(0.5, 0)')], hit={0: ['launch(0.45)']})
 mv('jack_baker', 'mrx', 41, 'headlock_grab', 56, [16, 30, 44], 0, 2, 60, 3, 4, 0, 'grab', hit={0: [SLOW(70, 3)]})
-mv('marguerite', 'moth', 40, 'insect_swarm', 44, [22], 0, 6, 80, 3, 3, 0, 'cast', hit={0: ['aoe(6, 4f, 0.8)', PO(100, 1)]}, nodef=True)
 mv('eveline', 'nemesis', 40, 'psychic_shove', 34, [16], 0, 9, 60, 3, 5, 0, 'cast', hit={0: ['aoe(8, 5f, 2.6)']}, nodef=True)
 mv('eveline', 'nemesis', 41, 'summon_molded', 40, [20], 0, 20, 160, 2, 0, 0, 'cast', can='hpBelow(0.8f)', hit={0: ['summon("molded", 2)']}, nodef=True)
 # ---- RE8
 mv('lycan', 'hunter', 40, 'frenzy_rake', 36, [10, 16, 22, 28], 0, 3, 40, 4, 5, 0.5, 'flurry')
 mv('lycan', 'hunter', 41, 'howl_summon', 48, [24], 0, 30, 220, 1, 0, 0, 'cast', can='hpBelow(0.7f)', hit={0: ['summon("lycan", 1)']}, nodef=True)
-mv('daughter', 'licker', 40, 'bat_swarm_dash', 28, [16], 4, 12, 60, 3, 7, 0.8, 'dash', tick=[(4, 4, 'blink()')])
-mv('daughter', 'licker', 41, 'ice_shard_volley', 34, [14, 20], 4, 14, 60, 3, 5, 0, 'spit', hit={0: ['shot("slow", 5f)'], 1: ['shot("slow", 5f)']}, nodef=True)
 mv('dimitrescu', 'mrx', 40, 'blood_lunge', 36, [18], 3, 8, 50, 3, 11, 0.8, 'dash', tick=[(6, 18, 'lunge(0.6, 0)')], hit={0: ['heal(8f)']})
 mv('dimitrescu', 'mrx', 41, 'vault_kick', 30, [14], 0, 3.6, 40, 3, 9, 1.8, 'kick', tick=[(8, 13, 'lunge(0.3, 0)')])
 mv('heisenberg', 'mrx', 40, 'magnet_pull', 36, [16], 4, 12, 70, 3, 4, 0, 'cast', hit={0: ['pull(2.2)']})
 mv('heisenberg', 'mrx', 41, 'hammer_toss', 40, [20], 4, 14, 70, 2, 13, 0.6, 'thrust', hit={0: ['shot("arrow", 13f)']}, nodef=True)
-mv('sturm', 'mrx', 40, 'flamethrower', 50, [10, 16, 22, 28, 34, 40], 0, 7, 70, 4, 3, 0.1, 'aimhold', hit={i: ['cone(7, 3f, 5)'] for i in range(6)}, nodef=True)
-mv('urias', 'mrx', 40, 'cadou_charge', 40, [22], 4, 10, 70, 3, 15, 2.5, 'dash', tick=[(6, 22, 'lunge(0.55, 0)')], hit={0: ['launch(0.5)']})
 mv('moreau', 'neptune', 40, 'toxic_spit', 36, [16], 4, 14, 60, 4, 4, 0, 'spit', hit={0: ['shot("poison", 4f)']}, nodef=True)
 mv('miranda', 'nemesis', 40, 'wing_dive', 40, [22], 4, 12, 70, 3, 13, 2.0, 'dash', tick=[(6, 22, 'lunge(0.6, 0.3)')], hit={0: ['aoe(3, 6f, 1.4)']}, nodef=True)
 mv('miranda', 'nemesis', 41, 'shard_volley', 42, [14, 20, 26], 5, 16, 60, 3, 6, 0, 'cast', hit={i: ['shot("slow", 6f)'] for i in range(3)}, nodef=True)
-mv('soldat', 'ganado', 40, 'rifle_burst', 40, [12, 18, 24], 5, 16, 60, 4, 5, 0, 'aimhold', hit={i: ['shot("arrow", 5f)'] for i in range(3)}, nodef=True)
 # ---- RE1-3 gaps
-mv('drain_deimos', 'moth', 40, 'sting_stab', 28, [14], 0, 4, 40, 4, 7, 0.5, 'bite', hit={0: [PO(120, 1)]})
 mv('grave_digger', 'yawn', 40, 'earth_burst', 44, [24], 0, 6, 80, 3, 8, 1.6, 'bite', hit={0: ['aoe(5, 8f, 1.6)']}, nodef=True)
 
-PASSIVES = {'javo': ['mutateAt(0.65f, 1, 2, 3, 4)'], 'krauser': ['mutateAt(0.5f, 1)'], 'wesker': ['mutateAt(0.3f, 1)'], 'mendez': ['mutateAt(0.5f, 1)'], 'regenerador': ['regen(0.01f)'], 're4r_regenerador': ['regen(0.01f)']}
+PASSIVES0 = {'javo': ['mutateAt(0.65f, 1, 2, 3, 4)'], 'krauser': ['mutateAt(0.5f, 1)'], 'wesker': ['mutateAt(0.3f, 1)'], 'mendez': ['mutateAt(0.5f, 1)'], 'regenerador': ['regen(0.01f)'], 're4r_regenerador': ['regen(0.01f)']}
 # entity -> {mut stage: [part paths]} (parts exist in the model; shown only while getMut()==stage)
-VIS = {'javo': {1: ['base/torso/armR/foreR/mutBlade'], 2: ['base/torso/mutWingL', 'base/torso/mutWingR'], 3: ['base/mutTail'], 4: ['base/torso/armL/foreL/mutClaw']},
-       'wesker': {1: ['base/torso/uroT1', 'base/torso/uroT2', 'base/torso/uroT3', 'base/torso/uroT4']}}
+VIS = {'wesker': [('base/torso/uroT%d' % i, 'mut == 1') for i in (1, 2, 3, 4)]}
+SPIN = {}
+
+
+# ===================================================== canon v2 (wiki-verified, see CANON_NOTES.md)
+REPL = set(); DMGS = {}; HURTS = {}; DEATHS = {}
+PASSIVES = dict(PASSIVES0); PASSIVES.pop('javo', None)
+BLIND = 'effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)'
+# ---- Gnezdo: swarm woman + hidden Queen
+REPL.add('gnezdo')
+mv('gnezdo', 'mrx', 40, 'swarm_slash', 30, [14], 0, 2.8, 30, 4, 5, 0.6, 'sweep', hit={0: [PO(60, 0)]})
+mv('gnezdo', 'mrx', 41, 'insect_barrage', 40, [16], 0, 5, 60, 3, 3, 0, 'cast', hit={0: ['aoe(4, 4f, 0.8)', PO(80, 0)]}, nodef=True)
+mv('gnezdo', 'mrx', 42, 'engulf_grab', 56, [16, 30, 44], 0, 2, 60, 3, 4, 0, 'grab', hit={0: [SLOW(60, 3)]})
+mv('gnezdo', 'mrx', 43, 'swarm_lunge', 30, [16], 3, 9, 50, 3, 6, 0.8, 'dash', tick=[(6, 16, 'lunge(0.5, 0)')])
+mv('gnezdo', 'mrx', 44, 'queen_bite', 24, [12], 0, 2.5, 24, 5, 9, 0.4, 'bite', can='mut(1)')
+PASSIVES['gnezdo'] = ['mutateAt(0.35f, 1)']; DMGS['gnezdo'] = ['(s, src) -> s.getMut() == 0 ? 0.55f : 1f']
+# ---- Daughters: swarm form (hard to hurt, DoT, lunge-bite) / cold -> sickle frenzy
+REPL.add('daughter')
+mv('daughter', 'mrx', 40, 'swarm_lunge_bite', 34, [18], 3, 10, 50, 4, 8, 0.8, 'dash', can='notCold()', tick=[(6, 18, 'lunge(0.6, 0)')], hit={0: ['heal(6f)']})
+mv('daughter', 'mrx', 41, 'swarm_cloud', 40, [14, 26], 0, 4, 70, 3, 3, 0, 'cast', can='notCold()', hit={0: ['aoe(4, 3f, 0)'], 1: ['aoe(4, 3f, 0)']}, nodef=True)
+mv('daughter', 'mrx', 42, 'sickle_frenzy', 44, [8, 14, 20, 26, 32], 0, 3, 36, 6, 6, 0.5, 'flurry', can='isCold()')
+DMGS['daughter'] = ['(s, src) -> CanonMoves.cold(s) ? 1f : 0.15f']
+# ---- Marguerite: woman controlling insects, mutated hive form
+REPL.add('marguerite')
+mv('marguerite', 'mrx', 40, 'neck_lift_choke', 48, [14, 26, 38], 0, 2.2, 50, 3, 5, 0, 'grab', hit={0: [SLOW(40, 3)]})
+mv('marguerite', 'mrx', 41, 'leg_drag', 44, [16, 30], 0, 2.4, 50, 3, 4, 0, 'grab', hit={0: ['pull(1.2)']})
+mv('marguerite', 'mrx', 42, 'swift_dash', 30, [16], 3, 10, 40, 3, 8, 1.0, 'dash', tick=[(6, 16, 'lunge(0.55, 0)')])
+mv('marguerite', 'mrx', 43, 'swarm_discharge', 46, [22], 0, 8, 70, 4, 3, 0, 'cast', can='mut(1)', hit={0: ['aoe(8, 4f, 0.8)', PO(100, 1)]}, nodef=True)
+mv('marguerite', 'mrx', 44, 'elongated_arm_snatch', 36, [16], 3, 10, 50, 3, 6, 0, 'thrust', can='mut(1)', hit={0: ['pull(2.2)']})
+mv('marguerite', 'mrx', 45, 'wall_ambush_leap', 38, [22], 4, 10, 60, 3, 11, 1.2, 'dash', can='mut(1)', tick=[(8, 22, 'lunge(0.6, 0.35)')])
+PASSIVES['marguerite'] = ['mutateAt(0.5f, 1)']
+# ---- Soldat variants by form: 0 Eins, 1 Zwei, 2 Jet, 3 Panzer
+REPL.add('soldat')
+mv('soldat', 'mrx', 40, 'drill_impale', 30, [14], 0, 3, 32, 4, 9, 0.8, 'thrust')
+mv('soldat', 'mrx', 41, 'drill_bludgeon', 34, [18], 0, 3, 32, 3, 8, 1.6, 'slam')
+mv('soldat', 'mrx', 42, 'double_drill', 36, [14, 22], 0, 3, 36, 4, 8, 0.8, 'flurry', can='mutIn(1, 3)')
+mv('soldat', 'mrx', 43, 'jet_dash', 36, [22], 4, 12, 60, 4, 14, 2.2, 'dash', can='mutIn(2)', tick=[(6, 22, 'lunge(0.8, 0.1)')])
+mv('soldat', 'mrx', 44, 'drill_barrage', 50, [12, 18, 24, 30, 36, 42], 0, 3.4, 50, 3, 6, 0.6, 'flurry', can='mutIn(3)')
+DMGS['soldat'] = ['rearWeak(1.5f)']
+# ---- Sturm: armless engine torso with propeller
+REPL.add('sturm')
+mv('sturm', 'mrx', 40, 'propeller_charge', 56, [40], 4, 14, 90, 4, 18, 3.0, 'dash', tick=[(20, 40, 'lunge(0.85, 0)')], hit={0: ['launch(0.6)']})
+mv('sturm', 'mrx', 41, 'body_ram', 30, [14], 0, 3, 30, 3, 10, 2.0, 'bite')
+mv('sturm', 'mrx', 42, 'overheat_flame', 60, [10, 16, 22, 28, 34, 40, 46, 52], 0, 6, 80, 4, 4, 0.1, 'aimhold', can='mut(1)', hit={i: ['cone(6, 4f, 6)'] for i in range(8)}, nodef=True)
+mv('sturm', 'mrx', 43, 'chain_charge', 70, [30, 56], 4, 12, 90, 3, 16, 2.4, 'dash', can='mut(1)', tick=[(14, 30, 'lunge(0.8, 0)'), (40, 56, 'lunge(0.8, 0)')], hit={0: ['launch(0.5)'], 1: ['launch(0.5)']})
+PASSIVES['sturm'] = ['mutateAt(0.5f, 1)']; DMGS['sturm'] = ['rearWeak(1.6f)']
+# ---- Urias: troll-like Lycan with war-hammer, huge jumps, column throwing (El Gigante base moves)
+mv('urias', 'mrx', 40, 'giant_leap', 44, [28], 5, 14, 80, 3, 12, 2.0, 'dash', tick=[(8, 26, 'lunge(0.55, 0.45)')], hit={0: ['aoe(4, 8f, 1.8)']}, nodef=True)
+# ---- Reaper: cockroach - stinging, grabbing, claws
+REPL.add('reaper')
+mv('reaper', 'licker', 40, 'claw_rake', 36, [10, 18, 26], 0, 3.2, 34, 4, 6, 0.6, 'flurry')
+mv('reaper', 'licker', 41, 'tail_sting', 30, [16], 0, 4.5, 40, 3, 8, 0.5, 'thrust', hit={0: [PO(120, 1)]})
+mv('reaper', 'licker', 42, 'claw_grab', 48, [16, 28, 40], 0, 2.2, 60, 3, 5, 0, 'grab', hit={0: [SLOW(60, 2)]})
+# ---- Ndesu: giant human; punches, slams, throws objects
+mv('ndesu', 'mrx', 40, 'object_throw', 40, [20], 4, 14, 80, 3, 11, 0.6, 'thrust', hit={0: ['shot("arrow", 11f)']}, nodef=True)
+mv('ndesu', 'mrx', 41, 'ground_slam', 44, [24], 0, 5, 60, 3, 12, 1.8, 'slam', hit={0: ['aoe(5, 9f, 1.8)']}, nodef=True)
+# ---- Adjule: Plaga dog, head splits open to devour
+mv('adjule', 'cerb', 40, 'head_split_devour', 46, [20, 30, 40], 0, 2.4, 70, 3, 7, 0, 'bite', start=['mutate(1)'], end=['mutate(0)'], hit={0: [SLOW(50, 2), PO(60, 0)]})
+# ---- Kipepeo: Plaga butterfly; grabs
+REPL.add('kipepeo')
+mv('kipepeo', 'moth', 40, 'plaga_grab', 40, [18], 0, 3, 40, 4, 4, 0, 'thrust', hit={0: [SLOW(50, 2)]})
+mv('kipepeo', 'moth', 41, 'flutter_dive', 30, [16], 3, 9, 40, 3, 5, 0.5, 'dash', tick=[(6, 16, 'lunge(0.5, 0.2)')])
+for m_ in ('majini', 'chainsaw_majini', 'gatling_majini', 'executioner_majini'): DEATHS.setdefault(m_, []).append('burstInto("kipepeo", 3, 0.12f)')
+# ---- Executioner Majini: Slam, Double Swing, Berserk, Grab (+ leap)
+REPL.add('executioner_majini')
+mv('executioner_majini', 'mrx', 40, 'axe_slam', 44, [24], 0, 5.5, 40, 4, 18, 2.0, 'slam', hit={0: ['aoe(4, 12f, 1.5)']}, nodef=True)
+mv('executioner_majini', 'mrx', 41, 'double_swing', 46, [14, 28], 0, 6, 40, 4, 14, 1.8, 'sweep', hit={0: ['aoe(5, 10f, 1.8)'], 1: ['aoe(5, 10f, 1.8)']}, nodef=True)
+mv('executioner_majini', 'mrx', 42, 'berserk', 60, [10, 18, 26, 34, 42, 50], 0, 6, 60, 5, 9, 1.2, 'flurry', can='hpBelow(0.35f)', hit={i: ['aoe(5, 7f, 1.2)'] for i in range(6)}, nodef=True)
+mv('executioner_majini', 'mrx', 43, 'grab_throw_slam', 64, [16, 40, 56], 0, 2.6, 70, 3, 8, 0, 'grab', hit={0: [SLOW(60, 3)], 1: ['launch(0.6)'], 2: ['strike(14f, 1.0, 3.5)']})
+mv('executioner_majini', 'mrx', 44, 'leap', 40, [26], 5, 12, 90, 2, 12, 1.5, 'dash', tick=[(8, 24, 'lunge(0.55, 0.5)')], hit={0: ['aoe(3.5, 8f, 1.5)']}, nodef=True)
+# ---- Fat Molded: projectile bile, charge, arm swing, grapple-vomit, headless exploding variant
+REPL.add('fat_molded')
+mv('fat_molded', 'zombie', 40, 'bile_vomit', 40, [20], 0, 7, 50, 4, 4, 0, 'spit', hit={0: ['cone(7, 4f, 0)', PO(80, 0), 'stunAoe(4, 60)']}, nodef=True)
+mv('fat_molded', 'zombie', 41, 'acid_charge', 40, [24], 3, 9, 70, 3, 10, 2.0, 'dash', tick=[(8, 24, 'lunge(0.4, 0)')])
+mv('fat_molded', 'zombie', 42, 'arm_swing', 30, [14], 0, 2.8, 30, 4, 8, 1.4, 'sweep')
+mv('fat_molded', 'zombie', 43, 'grapple_vomit', 44, [16, 32], 0, 1.8, 60, 3, 5, 0, 'grab', hit={0: [SLOW(50, 3)], 1: ['cone(2, 6f, 0)', PO(80, 0)]})
+mv('fat_molded', 'zombie', 44, 'headless_explosion', 34, [18], 0, 3, 10, 9, 14, 2.4, 'dash', can='mut(1)', tick=[(4, 17, 'lunge(0.45, 0)')], hit={0: ['aoe(4, 12f, 2.4)', 'suicide()']}, nodef=True)
+HURTS['fat_molded'] = ['counter(40, 0.35f)']; DEATHS['fat_molded'] = ['explodeOnDeath(4, 5f)']
+VIS['fat_molded'] = [('body/waist/chest/neck/head', 'mut != 1')]
+# ---- Mendez: back limbs, talons (2nd form)
+REPL.add('mendez') if False else None
+mv('mendez', 'mrx', 40, 'back_limb_grab', 36, [16], 3, 9, 50, 3, 7, 0, 'thrust', can='mut(1)', hit={0: ['pull(1.5)', SLOW(40, 1)]})
+mv('mendez', 'mrx', 41, 'talon_rake', 36, [10, 18, 26], 0, 3.4, 36, 4, 8, 1.0, 'flurry', can='mut(1)')
+mv('mendez', 'mrx', 42, 'limb_fling_leap', 40, [24], 4, 11, 70, 3, 11, 1.6, 'dash', can='mut(1)', tick=[(8, 24, 'lunge(0.55, 0.5)')])
+# ---- Dimitrescu dragon form
+mv('dimitrescu', 'mrx', 42, 'dragon_wing_sweep', 40, [16], 0, 7, 60, 4, 10, 1.8, 'sweep', can='mut(1)', hit={0: ['aoe(7, 10f, 1.8)']}, nodef=True)
+mv('dimitrescu', 'mrx', 43, 'dragon_dive', 44, [26], 4, 14, 80, 3, 15, 2.0, 'dash', can='mut(1)', tick=[(8, 26, 'lunge(0.7, 0.4)')], hit={0: ['aoe(4, 9f, 1.6)']}, nodef=True)
+PASSIVES['dimitrescu'] = ['mutateAt(0.3f, 1)']
+# ---- Heisenberg slug machine form
+mv('heisenberg', 'mrx', 42, 'machine_gun_burst', 50, [10, 16, 22, 28, 34], 5, 16, 60, 4, 5, 0, 'aimhold', can='mut(1)', hit={i: ['shot("arrow", 5f)'] for i in range(5)}, nodef=True)
+mv('heisenberg', 'mrx', 43, 'steel_slam', 44, [24], 0, 5, 60, 3, 13, 2.0, 'slam', can='mut(1)', hit={0: ['aoe(5, 11f, 1.8)']}, nodef=True)
+PASSIVES['heisenberg'] = ['mutateAt(0.35f, 1)']
+# ---- Moreau 2nd form
+mv('moreau', 'neptune', 41, 'acid_vomit', 44, [22], 0, 8, 60, 4, 5, 0, 'spit', can='mut(1)', hit={0: ['cone(8, 5f, 0)', PO(100, 1)]}, nodef=True)
+PASSIVES['moreau'] = ['mutateAt(0.5f, 1)']
+# ---- J'avo: every mutation of the wiki list (slots: arm bits0-3, leg 4-7, head 8-11, torso 12-15)
+SL = lambda sh, v: 'slot(%d, %d)' % (sh, v)
+mv('javo', 'mrx', 40, 'web_spit', 36, [16], 3, 10, 50, 3, 2, 0, 'spit', can=SL(8, 1), hit={0: ['shot("slow", 2f)', SLOW(80, 3)]}, nodef=True)
+mv('javo', 'mrx', 41, 'mandible_lift', 52, [18, 34], 0, 2.6, 60, 3, 10, 0, 'grab', can=SL(8, 2), hit={0: ['launch(0.4)', SLOW(40, 3)]})
+mv('javo', 'mrx', 42, 'berserk_frenzy', 40, [8, 14, 20, 26, 32], 0, 3, 40, 4, 6, 0.6, 'flurry', can=SL(8, 3))
+mv('javo', 'mrx', 43, 'poison_gas', 44, [20], 0, 6, 70, 3, 2, 0, 'cast', can=SL(8, 4), hit={0: ['aoe(6, 2f, 0)', PO(120, 1), BLIND]}, nodef=True)
+mv('javo', 'mrx', 44, 'sickle_slash', 30, [14], 0, 4.2, 34, 4, 10, 1.0, 'sweep', can=SL(0, 1))
+mv('javo', 'mrx', 45, 'stretch_grab', 36, [16], 3, 10, 50, 3, 5, 0, 'thrust', can=SL(0, 2), hit={0: ['pull(2.2)', SLOW(40, 2)]})
+mv('javo', 'mrx', 46, 'shield_bash', 34, [14], 0, 2.6, 36, 3, 7, 1.8, 'slam', can=SL(0, 3))
+mv('javo', 'mrx', 47, 'insect_pounce', 34, [18], 3, 9, 50, 4, 9, 1.0, 'dash', can=SL(4, 1), tick=[(6, 18, 'lunge(0.6, 0.35)')])
+mv('javo', 'mrx', 48, 'wing_dive_sting', 38, [22], 3, 11, 60, 4, 10, 1.4, 'dash', can=SL(4, 2), tick=[(6, 22, 'lunge(0.6, 0.3)')], hit={0: [PO(100, 1)]})
+mv('javo', 'mrx', 49, 'insect_leg_kick', 30, [14], 0, 3.6, 40, 4, 9, 2.0, 'kick', can=SL(4, 3))
+mv('javo', 'mrx', 50, 'armored_jump_kick', 34, [16], 2, 8, 50, 4, 11, 2.2, 'kick', can=SL(4, 4), tick=[(6, 15, 'lunge(0.45, 0.5)')])
+PASSIVES['javo'] = ['multiMutate(0.8f, 0.55f, 0.3f)', 'chrysalis()', 'gasEmitter()']
+DMGS['javo'] = ['armorAndScales()']; DEATHS['javo'] = ['s -> { if (slotOf(s, 12) == 1) aoe(5, 10f, 2f).run(s, null); }']
+
+
+# ---- Drain Deimos: mutated flea (claws, grabbing, egg implantation)
+REPL.add('drain_deimos')
+HUNGER = 'effect(net.minecraft.world.effect.MobEffects.HUNGER, 200, 1)'; WEAK = 'effect(net.minecraft.world.effect.MobEffects.WEAKNESS, 200, 1)'
+mv('drain_deimos', 'moth', 40, 'claw_swipe', 26, [12], 0, 3, 30, 4, 6, 0.5, 'thrust')
+mv('drain_deimos', 'moth', 41, 'grab_drain', 46, [16, 28, 40], 0, 2.4, 60, 3, 3, 0, 'thrust', hit={0: [SLOW(60, 3)], 1: ['heal(3f)'], 2: ['heal(3f)']})
+mv('drain_deimos', 'moth', 42, 'egg_implant', 40, [20], 0, 2.4, 120, 2, 4, 0, 'thrust', hit={0: [HUNGER, WEAK, 'effect(net.minecraft.world.effect.MobEffects.CONFUSION, 160, 0)']})
+mv('drain_deimos', 'moth', 43, 'leaping_pounce', 34, [18], 3, 9, 50, 3, 7, 0.8, 'dash', tick=[(6, 18, 'lunge(0.6, 0.4)')])
+
+
+# ---- Hunter gamma: the mutated 'Glimmers' vomit acid
+mv('hunter_gamma', 'licker', 40, 'acid_vomit', 40, [20], 2, 7, 60, 3, 4, 0, 'spit', hit={0: ['cone(7, 4f, 0)', PO(80, 1)]}, nodef=True)
 
 def f(x): return ('%sf' % x)
 def data_java():
@@ -172,6 +275,13 @@ def data_java():
         for fx in (m.start or []): d += '.onStart(%s)' % fx
         for fx in (m.end or []): d += '.onEnd(%s)' % fx
         L.append(d + ';')
+    for ent in sorted(REPL): L.append('        replaceBase("%s");' % ent)
+    for ent, fs in DMGS.items():
+        for x in fs: L.append('        damage("%s", %s);' % (ent, x))
+    for ent, fs in HURTS.items():
+        for x in fs: L.append('        onHurt("%s", %s);' % (ent, x))
+    for ent, fs in DEATHS.items():
+        for x in fs: L.append('        onDeath("%s", %s);' % (ent, x))
     for ent, ps in PASSIVES.items():
         for p in ps: L.append('        passive("%s", %s);' % (ent, p))
     L += ['    }', '}']
@@ -204,18 +314,23 @@ def clips_java():
     return '\n'.join(L) + '\n'
 
 def vis_java():
-    L = ['package com.reevil.client.canon;', '', 'import com.reevil.entity.BioMonster;', 'import net.minecraft.client.model.geom.ModelPart;', 'import net.minecraft.core.registries.BuiltInRegistries;', '', '/** Generated by tools/canon_moves.py: shows a creature\'s mutation parts only while its mutation stage matches. */',
+    L = ['package com.reevil.client.canon;', '', 'import com.reevil.entity.BioMonster;', 'import net.minecraft.client.model.geom.ModelPart;', 'import net.minecraft.core.registries.BuiltInRegistries;', '', '/** Generated by tools/canon_moves.py: shows mutation/form parts only while their condition holds; spins propellers. */',
          'public final class CanonVisuals {', '    private CanonVisuals() {}', '    private static ModelPart part(ModelPart root, String path) {', '        ModelPart p = root;', '        for (String s : path.split("/")) { if (!p.hasChild(s)) return null; p = p.getChild(s); }', '        return p;', '    }',
-         '    public static void apply(ModelPart root, BioMonster e) {', '        String id = BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath();', '        int mut = e.getMut();', '        switch (id) {']
-    for ent, st in VIS.items():
+         '    public static void apply(ModelPart root, BioMonster e) {', '        String id = BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath();', '        int mut = e.getMut(), form = e.getForm();', '        float age = e.tickCount;', '        switch (id) {']
+    for ent in sorted(set(list(VIS) + list(SPIN))):
         L.append('            case "%s" -> {' % ent)
-        for k, paths in st.items():
-            for pth in paths: L.append('                { ModelPart p = part(root, "%s"); if (p != null) p.visible = mut == %d; }' % (pth, k))
+        for pth, expr in VIS.get(ent, []):
+            L.append('                { ModelPart p = part(root, "%s"); if (p != null) p.visible = %s; }' % (pth, expr))
+        for pth, axis, rate in SPIN.get(ent, []):
+            L.append('                { ModelPart p = part(root, "%s"); if (p != null) p.%sRot = age * %sf; }' % (pth, axis, rate))
         L.append('            }')
     L += ['            default -> {}', '        }', '    }', '}']
     return '\n'.join(L) + '\n'
 
 if __name__ == '__main__':
+    vj = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'canon_vis.json')
+    if os.path.exists(vj):
+        import json; d = json.load(open(vj)); VIS.update({k: [tuple(x) for x in v] for k, v in d['VIS'].items()}); SPIN.update({k: [tuple(x) for x in v] for k, v in d['SPIN'].items()})
     os.makedirs(J + 'client/canon', exist_ok=True)
     open(J + 'entity/CanonData.java', 'w').write(data_java())
     open(J + 'client/canon/CanonClips.java', 'w').write(clips_java())
