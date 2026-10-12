@@ -148,5 +148,11 @@
  "entity.reevil.haos": "Haos",
  "item.reevil.haos_spawn_egg": "Haos Spawn Egg",
  "entity.reevil.gnezdo": "Gnezdo",
- "item.reevil.gnezdo_spawn_egg": "Gnezdo Spawn Egg"
+ "item.reevil.gnezdo_spawn_egg": "Gnezdo Spawn Egg",
+ "subtitles.reevil.voice.groan": "Creature groans",
+ "subtitles.reevil.voice.growl": "Creature growls",
+ "subtitles.reevil.voice.hiss": "Creature hisses",
+ "subtitles.reevil.voice.roar": "Creature roars",
+ "subtitles.reevil.voice.screech": "Creature screeches",
+ "subtitles.reevil.voice.squelch": "Creature squelches"
 }

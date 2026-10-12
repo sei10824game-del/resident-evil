@@ -12,6 +12,7 @@ public class ReEvilMod {
         var bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModEntities.ENTITIES.register(bus);
         ModEntities.ITEMS.register(bus);
+        com.reevil.registry.ModSounds.SOUNDS.register(bus);
         bus.addListener(ModEntities::onAttributes);
     }
 }

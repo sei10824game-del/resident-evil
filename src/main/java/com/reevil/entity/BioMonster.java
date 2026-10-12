@@ -5,6 +5,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import com.reevil.registry.ModSounds;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -80,6 +83,7 @@ public abstract class BioMonster extends Monster {
         entityData.set(DATA_MOVE, m.id);
         entityData.set(DATA_MOVE_TICK, 0);
         entityData.set(DATA_MOVE_DUR, m.duration);
+        if (random.nextInt(3) == 0) playVoice("attack", 1.0f);
         onMoveStart(m);
     }
 
@@ -102,10 +106,33 @@ public abstract class BioMonster extends Monster {
         entityData.set(DATA_MOVE_DUR, 0);
     }
 
+    /** Layered synthesised voice: archetype by creature, lower and slower for bigger bodies. */
+    public void playVoice(String kind, float volume) {
+        if (level().isClientSide) return;
+        String id = BuiltInRegistries.ENTITY_TYPE.getKey(getType()).getPath();
+        float big = Math.min(1f, Math.max(0f, (getBbHeight() - 1f) / 3.5f));
+        float pitch = (1.12f - 0.4f * big) + (random.nextFloat() - 0.5f) * 0.12f;
+        level().playSound(null, getX(), getY(), getZ(), ModSounds.get(id, kind), getSoundSource(), volume * (0.9f + 0.6f * big), pitch);
+    }
+
+    @Override
+    public boolean hurt(DamageSource src, float amount) {
+        boolean r = super.hurt(src, amount);
+        if (r && isAlive() && random.nextInt(3) == 0) playVoice("hurt", 0.9f);
+        return r;
+    }
+
+    @Override
+    public void die(DamageSource src) {
+        super.die(src);
+        playVoice("death", 1.0f);
+    }
+
     @Override
     public void aiStep() {
         super.aiStep();
         if (level().isClientSide) return;
+        if (isAlive() && !isMoving() && random.nextInt(getTarget() != null ? 180 : 320) == 0) playVoice("ambient", getTarget() != null ? 1.0f : 0.7f);
         if (moveCooldown > 0 && current == null) moveCooldown--;
         if (current == null) return;
         if (!isAlive()) { cancelMove(); return; }

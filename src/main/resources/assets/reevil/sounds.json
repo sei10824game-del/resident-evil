@@ -1,0 +1,266 @@
+{
+ "voice.groan.ambient": {
+  "sounds": [
+   {
+    "name": "reevil:voice/groan_ambient0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/groan_ambient1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.groan"
+ },
+ "voice.groan.hurt": {
+  "sounds": [
+   {
+    "name": "reevil:voice/groan_hurt0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/groan_hurt1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.groan"
+ },
+ "voice.groan.death": {
+  "sounds": [
+   {
+    "name": "reevil:voice/groan_death0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.groan"
+ },
+ "voice.groan.attack": {
+  "sounds": [
+   {
+    "name": "reevil:voice/groan_attack0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.groan"
+ },
+ "voice.growl.ambient": {
+  "sounds": [
+   {
+    "name": "reevil:voice/growl_ambient0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/growl_ambient1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.growl"
+ },
+ "voice.growl.hurt": {
+  "sounds": [
+   {
+    "name": "reevil:voice/growl_hurt0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/growl_hurt1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.growl"
+ },
+ "voice.growl.death": {
+  "sounds": [
+   {
+    "name": "reevil:voice/growl_death0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.growl"
+ },
+ "voice.growl.attack": {
+  "sounds": [
+   {
+    "name": "reevil:voice/growl_attack0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.growl"
+ },
+ "voice.hiss.ambient": {
+  "sounds": [
+   {
+    "name": "reevil:voice/hiss_ambient0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/hiss_ambient1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.hiss"
+ },
+ "voice.hiss.hurt": {
+  "sounds": [
+   {
+    "name": "reevil:voice/hiss_hurt0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/hiss_hurt1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.hiss"
+ },
+ "voice.hiss.death": {
+  "sounds": [
+   {
+    "name": "reevil:voice/hiss_death0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.hiss"
+ },
+ "voice.hiss.attack": {
+  "sounds": [
+   {
+    "name": "reevil:voice/hiss_attack0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.hiss"
+ },
+ "voice.roar.ambient": {
+  "sounds": [
+   {
+    "name": "reevil:voice/roar_ambient0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/roar_ambient1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.roar"
+ },
+ "voice.roar.hurt": {
+  "sounds": [
+   {
+    "name": "reevil:voice/roar_hurt0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/roar_hurt1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.roar"
+ },
+ "voice.roar.death": {
+  "sounds": [
+   {
+    "name": "reevil:voice/roar_death0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.roar"
+ },
+ "voice.roar.attack": {
+  "sounds": [
+   {
+    "name": "reevil:voice/roar_attack0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.roar"
+ },
+ "voice.screech.ambient": {
+  "sounds": [
+   {
+    "name": "reevil:voice/screech_ambient0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/screech_ambient1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.screech"
+ },
+ "voice.screech.hurt": {
+  "sounds": [
+   {
+    "name": "reevil:voice/screech_hurt0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/screech_hurt1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.screech"
+ },
+ "voice.screech.death": {
+  "sounds": [
+   {
+    "name": "reevil:voice/screech_death0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.screech"
+ },
+ "voice.screech.attack": {
+  "sounds": [
+   {
+    "name": "reevil:voice/screech_attack0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.screech"
+ },
+ "voice.squelch.ambient": {
+  "sounds": [
+   {
+    "name": "reevil:voice/squelch_ambient0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/squelch_ambient1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.squelch"
+ },
+ "voice.squelch.hurt": {
+  "sounds": [
+   {
+    "name": "reevil:voice/squelch_hurt0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/squelch_hurt1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.squelch"
+ },
+ "voice.squelch.death": {
+  "sounds": [
+   {
+    "name": "reevil:voice/squelch_death0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.squelch"
+ },
+ "voice.squelch.attack": {
+  "sounds": [
+   {
+    "name": "reevil:voice/squelch_attack0",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.voice.squelch"
+ }
+}
