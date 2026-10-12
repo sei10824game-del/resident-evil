@@ -123,6 +123,7 @@ public abstract class BioMonster extends Monster {
 
     @Override
     public boolean hurt(DamageSource src, float amount) {
+        if (src.getEntity() instanceof BioMonster b && !Factions.hostile(b, this)) return false; // no friendly fire inside a faction
         boolean r = super.hurt(src, amount);
         if (r && isAlive() && random.nextInt(3) == 0) playVoice("hurt", 0.9f);
         return r;

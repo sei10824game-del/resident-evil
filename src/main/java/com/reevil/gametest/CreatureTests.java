@@ -62,7 +62,7 @@ public class CreatureTests {
         float ha = a.getMaxHealth(), hb = b.getMaxHealth();
         h.runAfterDelay(400, () -> {
             boolean dmg = a.getHealth() < ha || b.getHealth() < hb || !a.isAlive() || !b.isAlive();
-            System.out.println("[REEVIL-TEST] FACTION " + a.getType() + " vs " + b.getType() + " dmg=" + dmg);
+            System.out.println("[REEVIL-TEST] FACTION " + a.getType() + " vs " + b.getType() + " dmg=" + dmg + " tgtA=" + (a instanceof net.minecraft.world.entity.Mob ma ? ma.getTarget() : null) + " distAB=" + a.distanceTo(b) + " hpB=" + b.getHealth());
             if (dmg == expectDamage) h.succeed(); else h.fail("dmg=" + dmg);
         });
     }
@@ -71,7 +71,7 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 500) public static void factionSame(GameTestHelper h) {
         flat(h); fight(h, h.spawn(ModEntities.ZOMBIE.get(), new BlockPos(8, 1, 12)), h.spawn(ModEntities.HUNTER.get(), new BlockPos(14, 1, 12)), false); }
     @GameTest(template = "empty", timeoutTicks = 500) public static void factionVanilla(GameTestHelper h) {
-        flat(h); fight(h, h.spawn(ModEntities.ZOMBIE.get(), new BlockPos(8, 1, 12)), h.spawn(net.minecraft.world.entity.EntityType.COW, new BlockPos(10, 1, 12)), true); }
+        flat(h); fight(h, h.spawn(ModEntities.ZOMBIE.get(), new BlockPos(8, 1, 12)), h.spawn(net.minecraft.world.entity.EntityType.ZOMBIE, new BlockPos(12, 1, 12)), true); }
     @GameTest(template = "empty", timeoutTicks = 500) public static void factionVanillaAttacks(GameTestHelper h) {
         flat(h); fight(h, h.spawn(ModEntities.GANADO.get(), new BlockPos(8, 1, 12)), h.spawn(net.minecraft.world.entity.EntityType.IRON_GOLEM, new BlockPos(14, 1, 12)), true); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void zombie(GameTestHelper h) { run(h, ModEntities.ZOMBIE.get(), false, 4); }
