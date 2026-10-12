@@ -262,5 +262,31 @@
    }
   ],
   "subtitle": "subtitles.reevil.voice.squelch"
+ },
+ "misc.impact": {
+  "sounds": [
+   {
+    "name": "reevil:voice/misc_impact0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/misc_impact1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.misc.impact"
+ },
+ "misc.step": {
+  "sounds": [
+   {
+    "name": "reevil:voice/misc_step0",
+    "volume": 1.0
+   },
+   {
+    "name": "reevil:voice/misc_step1",
+    "volume": 1.0
+   }
+  ],
+  "subtitle": "subtitles.reevil.misc.step"
  }
 }

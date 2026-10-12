@@ -116,6 +116,12 @@ public abstract class BioMonster extends Monster {
     }
 
     @Override
+    protected void playStepSound(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState state) {
+        if (getBbHeight() > 2.2f) playSound(ModSounds.STEP.get(), 0.5f + 0.15f * getBbHeight(), 1.1f - 0.08f * getBbHeight() + random.nextFloat() * 0.1f);
+        else super.playStepSound(pos, state);
+    }
+
+    @Override
     public boolean hurt(DamageSource src, float amount) {
         boolean r = super.hurt(src, amount);
         if (r && isAlive() && random.nextInt(3) == 0) playVoice("hurt", 0.9f);
@@ -177,6 +183,7 @@ public abstract class BioMonster extends Monster {
 
     protected boolean strike(LivingEntity target, float dmg, double kb) {
         boolean ok = target.hurt(damageSources().mobAttack(this), dmg);
+        if (ok) level().playSound(null, target.getX(), target.getY(), target.getZ(), ModSounds.IMPACT.get(), getSoundSource(), 0.6f + Math.min(0.8f, dmg / 20f), 1.15f - Math.min(0.5f, dmg / 40f));
         if (ok && kb > 0) {
             Vec3 d = target.position().subtract(position()).multiply(1, 0, 1).normalize().scale(kb);
             target.push(d.x, 0.15 + kb * 0.2, d.z);

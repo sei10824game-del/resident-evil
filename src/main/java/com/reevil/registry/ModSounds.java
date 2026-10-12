@@ -25,6 +25,9 @@ public final class ModSounds {
             }
     }
 
+    public static final RegistryObject<SoundEvent> IMPACT = SOUNDS.register("misc.impact", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ReEvilMod.MODID, "misc.impact")));
+    public static final RegistryObject<SoundEvent> STEP = SOUNDS.register("misc.step", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ReEvilMod.MODID, "misc.step")));
+
     private static final Set<String> GROAN = Set.of("zombie", "pale_head", "regenerador", "iron_maiden", "armadura", "fat_molded", "molded", "ganado", "majini", "zealot", "javo", "jack_baker", "lisa_trevor", "soldat");
     private static final Set<String> GROWL = Set.of("cerberus", "colmillos", "lycan", "hunter", "hunter_beta", "chimera", "crimson_head", "alligator");
     private static final Set<String> HISS = Set.of("licker", "giant_spider", "web_spinner", "hunter_gamma", "reaper", "napad", "daughter", "larva", "gnezdo");

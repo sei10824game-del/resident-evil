@@ -62,6 +62,13 @@ ARCH = {
  'squelch': dict(ambient=lambda v: squelch(0.9 + 0.2 * v, v), hurt=lambda v: squelch(0.3, v), death=lambda v: squelch(1.3, 2), attack=lambda v: squelch(0.5, 3)),
 }
 VARIANTS = {'ambient': 2, 'hurt': 2, 'death': 1, 'attack': 1}
+def impact(d, f0):
+    n = int(SR * d); x = osc(lin(d, f0, f0 * 0.35), 'sin') * env(n, 0.005, 0.9, 2.0) + 0.6 * band(noise(n), 300, 3000) * env(n, 0.003, 0.5, 2.0)
+    return norm(np.tanh(2 * x))
+def step(d, f0):
+    n = int(SR * d); x = osc(lin(d, f0, f0 * 0.5), 'sin') * env(n, 0.01, 0.9, 2.0) + 0.3 * band(noise(n), 80, 600) * env(n, 0.01, 0.6, 2.0)
+    return norm(x)
+MISC = {'impact': [lambda: impact(0.28, 180), lambda: impact(0.32, 140)], 'step': [lambda: step(0.3, 70), lambda: step(0.34, 60)]}
 snd = {}
 os.makedirs(OUT + 'sounds/voice', exist_ok=True)
 for arch, kinds in ARCH.items():
@@ -76,8 +83,18 @@ for arch, kinds in ARCH.items():
             os.unlink(tf.name)
             names.append({'name': f'reevil:voice/{fname}', 'volume': 1.0})
         snd[f'voice.{arch}.{kind}'] = {'sounds': names, 'subtitle': f'subtitles.reevil.voice.{arch}'}
+for kind, fns in MISC.items():
+    names = []
+    for v, fn in enumerate(fns):
+        x = np.clip(fn(), -1, 1); fname = f'misc_{kind}{v}'
+        with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as tf:
+            w = wave.open(tf.name, 'wb'); w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes((x * 32000).astype('<i2').tobytes()); w.close()
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', tf.name, '-c:a', 'libvorbis', '-q:a', '3', OUT + f'sounds/voice/{fname}.ogg'], check=True); os.unlink(tf.name)
+        names.append({'name': f'reevil:voice/{fname}', 'volume': 1.0})
+    snd[f'misc.{kind}'] = {'sounds': names, 'subtitle': 'subtitles.reevil.misc.' + kind}
 json.dump(snd, open(OUT + 'sounds.json', 'w'), indent=1)
 lang_p = OUT + 'lang/en_us.json'; d = json.load(open(lang_p))
 for arch in ARCH: d[f'subtitles.reevil.voice.{arch}'] = {'groan': 'Creature groans', 'growl': 'Creature growls', 'hiss': 'Creature hisses', 'roar': 'Creature roars', 'screech': 'Creature screeches', 'squelch': 'Creature squelches'}[arch]
 json.dump(d, open(lang_p, 'w'), indent=1, ensure_ascii=False)
+d = json.load(open(lang_p)); d['subtitles.reevil.misc.impact'] = 'Creature strikes'; d['subtitles.reevil.misc.step'] = 'Heavy footstep'; json.dump(d, open(lang_p, 'w'), indent=1, ensure_ascii=False)
 print('wrote', sum(len(v['sounds']) for v in snd.values()), 'sounds')

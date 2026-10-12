@@ -154,5 +154,7 @@
  "subtitles.reevil.voice.hiss": "Creature hisses",
  "subtitles.reevil.voice.roar": "Creature roars",
  "subtitles.reevil.voice.screech": "Creature screeches",
- "subtitles.reevil.voice.squelch": "Creature squelches"
+ "subtitles.reevil.voice.squelch": "Creature squelches",
+ "subtitles.reevil.misc.impact": "Creature strikes",
+ "subtitles.reevil.misc.step": "Heavy footstep"
 }
