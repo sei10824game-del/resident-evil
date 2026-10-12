@@ -148,5 +148,13 @@
  "entity.reevil.haos": "ハオス",
  "item.reevil.haos_spawn_egg": "ハオスのスポーンエッグ",
  "entity.reevil.gnezdo": "グネズド",
- "item.reevil.gnezdo_spawn_egg": "グネズドのスポーンエッグ"
+ "item.reevil.gnezdo_spawn_egg": "グネズドのスポーンエッグ",
+ "itemGroup.reevil.re1": "バイオハザード1",
+ "itemGroup.reevil.re2": "バイオハザード2",
+ "itemGroup.reevil.re3": "バイオハザード3",
+ "itemGroup.reevil.re4": "バイオハザード4",
+ "itemGroup.reevil.re5": "バイオハザード5",
+ "itemGroup.reevil.re6": "バイオハザード6",
+ "itemGroup.reevil.re7": "バイオハザード7",
+ "itemGroup.reevil.re8": "バイオハザード ヴィレッジ"
 }

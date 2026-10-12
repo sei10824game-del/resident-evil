@@ -156,5 +156,13 @@
  "subtitles.reevil.voice.screech": "Creature screeches",
  "subtitles.reevil.voice.squelch": "Creature squelches",
  "subtitles.reevil.misc.impact": "Creature strikes",
- "subtitles.reevil.misc.step": "Heavy footstep"
+ "subtitles.reevil.misc.step": "Heavy footstep",
+ "itemGroup.reevil.re1": "Resident Evil 1",
+ "itemGroup.reevil.re2": "Resident Evil 2",
+ "itemGroup.reevil.re3": "Resident Evil 3",
+ "itemGroup.reevil.re4": "Resident Evil 4",
+ "itemGroup.reevil.re5": "Resident Evil 5",
+ "itemGroup.reevil.re6": "Resident Evil 6",
+ "itemGroup.reevil.re7": "Resident Evil 7",
+ "itemGroup.reevil.re8": "Resident Evil Village"
 }

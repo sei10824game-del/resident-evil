@@ -13,6 +13,7 @@ Spawn eggs for all (creative tab: Spawn Eggs). New creatures: `tools/addentity.p
 - Animation: `anim/AnimClip` keyframes (anticipation / impact / follow-through / recovery) added on top of walk/idle in each `client/<creature>/*Model`.
   Each `AttackMove` hit tick matches the clip's impact key (`hitTick/duration`).
 - Textures are generated: `python3 tools/tex_*.py` (UVs are parsed from the model sources by `tools/autotex.py`).
+- Creative tabs: one per game (Resident Evil 1 .. Village) with that game's spawn eggs.
 - Dev: `/rmove <id>`, `/rform <n>`, `/rstop` (dev runs only) play a move of the nearest creature for animation review.
 - Checks: `tools/jc.sh` fast javac; dev GameTests in `com.reevil.gametest` (`/test runall`, excluded from the jar);
   `tools/ModelCheck.java` bakes every model and verifies clip bones.

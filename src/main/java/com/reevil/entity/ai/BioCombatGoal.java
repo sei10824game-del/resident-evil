@@ -29,16 +29,23 @@ public class BioCombatGoal extends Goal {
         LivingEntity t = mob.getTarget();
         if (t == null) return;
         if (mob.isMoving()) return; // move runs inside BioMonster.aiStep
-        double dist = Math.sqrt(mob.distanceToSqr(t)) - t.getBbWidth() * 0.5 - mob.getBbWidth() * 0.5;
+        double dist = Math.max(0.0, Math.sqrt(mob.distanceToSqr(t)) - t.getBbWidth() * 0.5 - mob.getBbWidth() * 0.5); // overlapping boxes count as point-blank, not negative
         mob.getLookControl().setLookAt(t, 30f, 30f);
         if (--repath <= 0) { mob.getNavigation().moveTo(t, speed); repath = 6 + mob.getRandom().nextInt(6); }
         if (mob.getMoveCooldown() > 0) return;
         List<AttackMove> ok = new ArrayList<>();
         int total = 0;
         for (AttackMove m : mob.moves()) {
-            if (dist >= m.minRange && dist <= m.maxRange && mob.hasLineOfSight(t) && mob.canStartMove(m)) { ok.add(m); total += m.weight; }
+            if (m.weight > 0 && dist >= m.minRange && dist <= m.maxRange && mob.hasLineOfSight(t) && mob.canStartMove(m)) { ok.add(m); total += m.weight; }
         }
-        if (ok.isEmpty()) return;
+        if (ok.isEmpty()) { // point-blank with only longer-range moves available: use the shortest-range ones anyway
+            double best = Double.MAX_VALUE;
+            for (AttackMove m : mob.moves()) if (m.weight > 0 && dist < m.minRange && mob.canStartMove(m)) best = Math.min(best, m.minRange);
+            if (best == Double.MAX_VALUE) return;
+            total = 0;
+            for (AttackMove m : mob.moves()) if (m.weight > 0 && m.minRange <= best + 1.0e-6 && dist < m.minRange && mob.canStartMove(m)) { ok.add(m); total += m.weight; }
+            if (ok.isEmpty() || total <= 0) return;
+        }
         int r = mob.getRandom().nextInt(total);
         for (AttackMove m : ok) { r -= m.weight; if (r < 0) { mob.startMove(m); return; } }
     }

@@ -13,6 +13,7 @@ public class ReEvilMod {
         ModEntities.ENTITIES.register(bus);
         ModEntities.ITEMS.register(bus);
         com.reevil.registry.ModSounds.SOUNDS.register(bus);
+        com.reevil.registry.ModTabs.TABS.register(bus);
         bus.addListener(ModEntities::onAttributes);
     }
 }

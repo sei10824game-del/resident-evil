@@ -149,4 +149,16 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void miranda(GameTestHelper h) { run(h, ModEntities.MIRANDA.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void haos(GameTestHelper h) { run(h, ModEntities.HAOS.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void gnezdo(GameTestHelper h) { run(h, ModEntities.GNEZDO.get(), false, 5); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbZombie(GameTestHelper h) { run(h, ModEntities.ZOMBIE.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbHunter(GameTestHelper h) { run(h, ModEntities.HUNTER.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbMrX(GameTestHelper h) { run(h, ModEntities.MR_X.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbPlant42(GameTestHelper h) { run(h, ModEntities.PLANT42.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbLicker(GameTestHelper h) { run(h, ModEntities.LICKER.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbNemesis(GameTestHelper h) { run(h, ModEntities.NEMESIS.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbCerberus(GameTestHelper h) { run(h, ModEntities.CERBERUS.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbYawn(GameTestHelper h) { run(h, ModEntities.YAWN.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbTyrant(GameTestHelper h) { run(h, ModEntities.TYRANT.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbGarrador(GameTestHelper h) { run(h, ModEntities.GARRADOR.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbElGigante(GameTestHelper h) { run(h, ModEntities.EL_GIGANTE.get(), false, 0); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void pbWesker(GameTestHelper h) { run(h, ModEntities.WESKER.get(), false, 0); }
 }
