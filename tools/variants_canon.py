@@ -146,8 +146,29 @@ nd['sty']['bn'] = BNE
 # Uroboros: the yellow cyst is its only organ
 SPECS['uroboros']['sty']['r'] = D(c=(236, 200, 48), n=0.08, d='veins')
 
+
+# ------------------------------------------------------------------ batch 2: Krauser blade arm, Miranda forms, Uroboros growth, Grave Digger arthropod look
+KB = D(c=(204, 208, 212), n=0.06); KF = D(c=(130, 70, 70), n=0.12, d='veins')
+spec(id='krauser', pkg='krauser', C='Krauser', ppkg='ganado', pm='GanadoModel', W=128, H0=64, sty=D(kb=KB, kf=KF),
+  parts=[A('base/torso/armR/foreR/mutBlade', Z, (-1.5, 2, -3, 3, 26, 6, 'kb'), (-0.5, 24, -5, 1, 6, 2, 'kb')), A('base/torso/armR/mutLump', Z, (-3.5, -1, -3.5, 7, 7, 7, 'kf'))])
+cm.VIS['krauser'] = [('base/torso/armR/foreR/mutBlade', 'mut == 1'), ('base/torso/armR/mutLump', 'mut == 1')]
+MWG = D(c=(40, 28, 56), n=0.1, d='veins'); MTN = D(c=(120, 40, 90), n=0.12, d='veins')
+SPECS['miranda']['sty'].update(dict(mwg=MWG, mtn=MTN))
+SPECS['miranda']['parts'] += [A('base/torso/wingL', 'PartPose.offsetAndRotation(3, -9, 3, 0.2f, 0.3f, -0.5f)', (0, -1, 0, 24, 1, 14, 'mwg'), (10, -1, 14, 12, 1, 8, 'mwg')), A('base/torso/wingR', 'PartPose.offsetAndRotation(-3, -9, 3, 0.2f, -0.3f, 0.5f)', (-24, -1, 0, 24, 1, 14, 'mwg'), (-22, -1, 14, 12, 1, 8, 'mwg')),
+  A('base/torso/mass', Z, (-9, -12, -5, 18, 14, 10, 'mtn'), (-5, -16, -3, 10, 5, 8, 'mtn')), A('base/torso/tentA', 'PartPose.offsetAndRotation(0, -8, 4, 0.5f, 0.6f, 0)', (-1.5, -1.5, 0, 3, 3, 14, 'mtn')), A('base/torso/tentB', 'PartPose.offsetAndRotation(0, -8, 4, 0.5f, -0.6f, 0)', (-1.5, -1.5, 0, 3, 3, 14, 'mtn'))]
+cm.VIS['miranda'] = [('base/torso/wingL', 'mut >= 1'), ('base/torso/wingR', 'mut >= 1'), ('base/torso/mass', 'mut == 2'), ('base/torso/tentA', 'mut == 2'), ('base/torso/tentB', 'mut == 2')]
+UG = D(c=(30, 24, 30), n=0.1, d='spike')
+SPECS['uroboros']['sty']['ug'] = UG
+SPECS['uroboros']['parts'] += [A('base/stem1/mutSpikes', Z, (-9, -20, -1, 18, 2, 2, 'ug'), (-1, -20, -9, 2, 2, 18, 'ug'), (-9, -10, -1, 18, 2, 2, 'ug'), (-1, -10, -9, 2, 2, 18, 'ug'), (-4, -26, -4, 3, 6, 3, 'ug'), (1, -22, 1, 3, 6, 3, 'ug')),
+  A('base/mutRoots', Z, (-20, -3, -2, 40, 3, 4, 'ug'), (-2, -3, -20, 4, 3, 40, 'ug'))]
+cm.VIS['uroboros'] = [('base/stem1/mutSpikes', 'mut >= 1'), ('base/mutRoots', 'mut >= 1')]
+PALE = D(c=(206, 198, 176), n=0.1, d='bruise'); LGS = D(c=(120, 104, 80), n=0.1)
+gd = SPECS['grave_digger']; gd['sty'].update(dict(lg=LGS, pale=PALE))
+gd['parts'] += [A('body/arthLegs', Z, (-9, 0, -6, 2, 5, 1, 'lg'), (7, 0, -6, 2, 5, 1, 'lg'), (-9, 0, -2, 2, 5, 1, 'lg'), (7, 0, -2, 2, 5, 1, 'lg'), (-9, 0, 2, 2, 5, 1, 'lg'), (7, 0, 2, 2, 5, 1, 'lg')),
+                A('body/neck1/neck2/neck3/head/mandibles', Z, (-5, 0, -9, 1, 1, 5, 'lg'), (4, 0, -9, 1, 1, 5, 'lg'), (-2.5, 1, -10, 1, 1, 4, 'lg'), (1.5, 1, -10, 1, 1, 4, 'lg'))]
+
 if __name__ == '__main__':
-    ids = sys.argv[1:] or ['gnezdo', 'daughter', 'marguerite', 'soldat', 'sturm', 'urias', 'adjule', 'javo', 'mendez', 'dimitrescu', 'heisenberg', 'moreau', 'reaper', 'ndesu', 'uroboros', 'drain_deimos']
+    ids = sys.argv[1:] or ['gnezdo', 'daughter', 'marguerite', 'soldat', 'sturm', 'urias', 'adjule', 'javo', 'mendez', 'dimitrescu', 'heisenberg', 'moreau', 'reaper', 'ndesu', 'uroboros', 'drain_deimos', 'krauser', 'miranda', 'grave_digger']
     for i in ids: vgen(SPECS[i])
     # persist the visuals map for canon_moves.py
     import json; json.dump({'VIS': cm.VIS, 'SPIN': cm.SPIN}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'canon_vis.json'), 'w'), indent=1)

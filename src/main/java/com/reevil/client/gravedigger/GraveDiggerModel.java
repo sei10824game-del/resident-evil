@@ -28,6 +28,20 @@ public class GraveDiggerModel extends YawnModel {
             .texOffs(20, 64).addBox(-1, -8, 0, 2, 3, 2)
             .texOffs(28, 64).addBox(-1, -8, 4, 2, 3, 2),
             PartPose.ZERO);
+        root.getChild("body").addOrReplaceChild("arthLegs", CubeListBuilder.create()
+            .texOffs(36, 64).addBox(-9, 0, -6, 2, 5, 1)
+            .texOffs(42, 64).addBox(7, 0, -6, 2, 5, 1)
+            .texOffs(48, 64).addBox(-9, 0, -2, 2, 5, 1)
+            .texOffs(54, 64).addBox(7, 0, -2, 2, 5, 1)
+            .texOffs(60, 64).addBox(-9, 0, 2, 2, 5, 1)
+            .texOffs(66, 64).addBox(7, 0, 2, 2, 5, 1),
+            PartPose.ZERO);
+        root.getChild("body").getChild("neck1").getChild("neck2").getChild("neck3").getChild("head").addOrReplaceChild("mandibles", CubeListBuilder.create()
+            .texOffs(72, 64).addBox(-5, 0, -9, 1, 1, 5)
+            .texOffs(84, 64).addBox(4, 0, -9, 1, 1, 5)
+            .texOffs(96, 64).addBox(-2.5f, 1, -10, 1, 1, 4)
+            .texOffs(106, 64).addBox(1.5f, 1, -10, 1, 1, 4),
+            PartPose.ZERO);
         return LayerDefinition.create(mesh, 256, 72);
     }
 }

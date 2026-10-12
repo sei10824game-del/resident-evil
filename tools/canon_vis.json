@@ -209,6 +209,48 @@
     "body/head/maw",
     "mut == 1"
    ]
+  ],
+  "krauser": [
+   [
+    "base/torso/armR/foreR/mutBlade",
+    "mut == 1"
+   ],
+   [
+    "base/torso/armR/mutLump",
+    "mut == 1"
+   ]
+  ],
+  "miranda": [
+   [
+    "base/torso/wingL",
+    "mut >= 1"
+   ],
+   [
+    "base/torso/wingR",
+    "mut >= 1"
+   ],
+   [
+    "base/torso/mass",
+    "mut == 2"
+   ],
+   [
+    "base/torso/tentA",
+    "mut == 2"
+   ],
+   [
+    "base/torso/tentB",
+    "mut == 2"
+   ]
+  ],
+  "uroboros": [
+   [
+    "base/stem1/mutSpikes",
+    "mut >= 1"
+   ],
+   [
+    "base/mutRoots",
+    "mut >= 1"
+   ]
   ]
  },
  "SPIN": {

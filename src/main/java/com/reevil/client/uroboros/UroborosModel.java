@@ -63,6 +63,18 @@ public class UroborosModel extends Plant42Model {
             .texOffs(212, 363).addBox(3, -22, -6, 3, 6, 3)
             .texOffs(0, 399).addBox(-8, -9, -10, 16, 2, 2),
             PartPose.offset(0, -22, 0));
-        return LayerDefinition.create(mesh, 256, 408);
+        root.getChild("base").getChild("stem1").addOrReplaceChild("mutSpikes", CubeListBuilder.create()
+            .texOffs(36, 399).addBox(-9, -20, -1, 18, 2, 2)
+            .texOffs(76, 399).addBox(-1, -20, -9, 2, 2, 18)
+            .texOffs(116, 399).addBox(-9, -10, -1, 18, 2, 2)
+            .texOffs(156, 399).addBox(-1, -10, -9, 2, 2, 18)
+            .texOffs(196, 399).addBox(-4, -26, -4, 3, 6, 3)
+            .texOffs(208, 399).addBox(1, -22, 1, 3, 6, 3),
+            PartPose.ZERO);
+        root.getChild("base").addOrReplaceChild("mutRoots", CubeListBuilder.create()
+            .texOffs(0, 419).addBox(-20, -3, -2, 40, 3, 4)
+            .texOffs(88, 419).addBox(-2, -3, -20, 4, 3, 40),
+            PartPose.ZERO);
+        return LayerDefinition.create(mesh, 256, 464);
     }
 }

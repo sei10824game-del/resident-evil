@@ -32,6 +32,24 @@ public class MirandaModel extends NemesisModel {
             .texOffs(66, 84).addBox(-6.5f, -12, -3.5f, 13, 4, 7)
             .texOffs(0, 101).addBox(-5.5f, -9, -3, 11, 3, 6),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 112);
+        root.getChild("base").getChild("torso").addOrReplaceChild("wingL", CubeListBuilder.create()
+            .texOffs(34, 101).addBox(0, -1, 0, 24, 1, 14)
+            .texOffs(0, 116).addBox(10, -1, 14, 12, 1, 8),
+            PartPose.offsetAndRotation(3, -9, 3, 0.2f, 0.3f, -0.5f));
+        root.getChild("base").getChild("torso").addOrReplaceChild("wingR", CubeListBuilder.create()
+            .texOffs(40, 116).addBox(-24, -1, 0, 24, 1, 14)
+            .texOffs(0, 131).addBox(-22, -1, 14, 12, 1, 8),
+            PartPose.offsetAndRotation(-3, -9, 3, 0.2f, -0.3f, 0.5f));
+        root.getChild("base").getChild("torso").addOrReplaceChild("mass", CubeListBuilder.create()
+            .texOffs(40, 131).addBox(-9, -12, -5, 18, 14, 10)
+            .texOffs(0, 155).addBox(-5, -16, -3, 10, 5, 8),
+            PartPose.ZERO);
+        root.getChild("base").getChild("torso").addOrReplaceChild("tentA", CubeListBuilder.create()
+            .texOffs(36, 155).addBox(-1.5f, -1.5f, 0, 3, 3, 14),
+            PartPose.offsetAndRotation(0, -8, 4, 0.5f, 0.6f, 0));
+        root.getChild("base").getChild("torso").addOrReplaceChild("tentB", CubeListBuilder.create()
+            .texOffs(70, 155).addBox(-1.5f, -1.5f, 0, 3, 3, 14),
+            PartPose.offsetAndRotation(0, -8, 4, 0.5f, -0.6f, 0));
+        return LayerDefinition.create(mesh, 128, 176);
     }
 }

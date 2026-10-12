@@ -203,6 +203,14 @@ public final class CanonMoves {
             ((ServerLevel) s.level()).sendParticles(ParticleTypes.EXPLOSION, s.getX(), s.getY() + s.getBbHeight() * 0.5, s.getZ(), 2, 0.3, 0.3, 0.3, 0);
         };
     }
+    /** advances mutation stage `from` -> `to` when HP drops under hpFrac (chained forms). */
+    public static Consumer<BioMonster> mutStep(int from, int to, float hpFrac) {
+        return s -> {
+            if (s.level().isClientSide || s.getMut() != from || !s.isAlive() || s.getHealth() >= s.getMaxHealth() * hpFrac) return;
+            s.cancelMove(); s.setMut(to); s.playVoice("attack", 1.2f);
+            ((ServerLevel) s.level()).sendParticles(ParticleTypes.EXPLOSION, s.getX(), s.getY() + s.getBbHeight() * 0.5, s.getZ(), 2, 0.3, 0.3, 0.3, 0);
+        };
+    }
     public static Consumer<BioMonster> regen(float perSecondFrac) {
         return s -> { if (!s.level().isClientSide && s.isAlive() && s.tickCount % 20 == 0 && !s.isOnFire() && s.getHealth() < s.getMaxHealth()) s.heal(s.getMaxHealth() * perSecondFrac); };
     }

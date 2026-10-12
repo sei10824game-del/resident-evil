@@ -57,6 +57,10 @@ public final class CanonVisuals {
                 { ModelPart p = part(root, "base/torso/mMag"); if (p != null) p.visible = ((mut >> 12) & 15) == 3; }
                 { ModelPart p = part(root, "base/mChr"); if (p != null) p.visible = ((mut >> 12) & 15) == 4; }
             }
+            case "krauser" -> {
+                { ModelPart p = part(root, "base/torso/armR/foreR/mutBlade"); if (p != null) p.visible = mut == 1; }
+                { ModelPart p = part(root, "base/torso/armR/mutLump"); if (p != null) p.visible = mut == 1; }
+            }
             case "marguerite" -> {
                 { ModelPart p = part(root, "base/hive"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/torso/armR/foreR/elong"); if (p != null) p.visible = mut == 1; }
@@ -70,6 +74,13 @@ public final class CanonVisuals {
                 { ModelPart p = part(root, "base/torso/armR/foreR/talonR"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/torso/armL/foreL/talonL"); if (p != null) p.visible = mut == 1; }
             }
+            case "miranda" -> {
+                { ModelPart p = part(root, "base/torso/wingL"); if (p != null) p.visible = mut >= 1; }
+                { ModelPart p = part(root, "base/torso/wingR"); if (p != null) p.visible = mut >= 1; }
+                { ModelPart p = part(root, "base/torso/mass"); if (p != null) p.visible = mut == 2; }
+                { ModelPart p = part(root, "base/torso/tentA"); if (p != null) p.visible = mut == 2; }
+                { ModelPart p = part(root, "base/torso/tentB"); if (p != null) p.visible = mut == 2; }
+            }
             case "moreau" -> {
                 { ModelPart p = part(root, "body/head/maw"); if (p != null) p.visible = mut == 1; }
             }
@@ -82,6 +93,10 @@ public final class CanonVisuals {
             }
             case "sturm" -> {
                 { ModelPart p = part(root, "base/torso/prop"); if (p != null) p.zRot = age * 0.9f; }
+            }
+            case "uroboros" -> {
+                { ModelPart p = part(root, "base/stem1/mutSpikes"); if (p != null) p.visible = mut >= 1; }
+                { ModelPart p = part(root, "base/mutRoots"); if (p != null) p.visible = mut >= 1; }
             }
             case "wesker" -> {
                 { ModelPart p = part(root, "base/torso/uroT1"); if (p != null) p.visible = mut == 1; }

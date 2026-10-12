@@ -146,5 +146,8 @@ final class CanonData {
         passive("javo", multiMutate(0.8f, 0.55f, 0.3f));
         passive("javo", chrysalis());
         passive("javo", gasEmitter());
+        passive("uroboros", mutateAt(0.5f, 1));
+        passive("miranda", mutateAt(0.6f, 1));
+        passive("miranda", mutStep(1, 2, 0.25f));
     }
 }
