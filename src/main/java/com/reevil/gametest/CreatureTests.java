@@ -51,6 +51,29 @@ public class CreatureTests {
         });
     }
 
+
+    private static void flat(GameTestHelper h) {
+        for (int x = 0; x < 24; x++) for (int z = 0; z < 24; z++) {
+            h.setBlock(new BlockPos(x, 0, z), Blocks.STONE);
+            for (int y = 1; y <= 5; y++) h.setBlock(new BlockPos(x, y, z), Blocks.AIR);
+        }
+    }
+    private static void fight(GameTestHelper h, net.minecraft.world.entity.LivingEntity a, net.minecraft.world.entity.LivingEntity b, boolean expectDamage) {
+        float ha = a.getMaxHealth(), hb = b.getMaxHealth();
+        h.runAfterDelay(400, () -> {
+            boolean dmg = a.getHealth() < ha || b.getHealth() < hb || !a.isAlive() || !b.isAlive();
+            System.out.println("[REEVIL-TEST] FACTION " + a.getType() + " vs " + b.getType() + " dmg=" + dmg);
+            if (dmg == expectDamage) h.succeed(); else h.fail("dmg=" + dmg);
+        });
+    }
+    @GameTest(template = "empty", timeoutTicks = 500) public static void factionCross(GameTestHelper h) {
+        flat(h); fight(h, h.spawn(ModEntities.ZOMBIE.get(), new BlockPos(8, 1, 12)), h.spawn(ModEntities.GANADO.get(), new BlockPos(14, 1, 12)), true); }
+    @GameTest(template = "empty", timeoutTicks = 500) public static void factionSame(GameTestHelper h) {
+        flat(h); fight(h, h.spawn(ModEntities.ZOMBIE.get(), new BlockPos(8, 1, 12)), h.spawn(ModEntities.HUNTER.get(), new BlockPos(14, 1, 12)), false); }
+    @GameTest(template = "empty", timeoutTicks = 500) public static void factionVanilla(GameTestHelper h) {
+        flat(h); fight(h, h.spawn(ModEntities.ZOMBIE.get(), new BlockPos(8, 1, 12)), h.spawn(net.minecraft.world.entity.EntityType.COW, new BlockPos(10, 1, 12)), true); }
+    @GameTest(template = "empty", timeoutTicks = 500) public static void factionVanillaAttacks(GameTestHelper h) {
+        flat(h); fight(h, h.spawn(ModEntities.GANADO.get(), new BlockPos(8, 1, 12)), h.spawn(net.minecraft.world.entity.EntityType.IRON_GOLEM, new BlockPos(14, 1, 12)), true); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void zombie(GameTestHelper h) { run(h, ModEntities.ZOMBIE.get(), false, 4); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void crimsonHead(GameTestHelper h) { run(h, ModEntities.CRIMSON_HEAD.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void cerberus(GameTestHelper h) { run(h, ModEntities.CERBERUS.get(), false, 8); }
