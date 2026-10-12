@@ -34,6 +34,7 @@ public abstract class BioMonster extends Monster {
     private static final EntityDataAccessor<Integer> DATA_MOVE_TICK = SynchedEntityData.defineId(BioMonster.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_MOVE_DUR = SynchedEntityData.defineId(BioMonster.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_FORM = SynchedEntityData.defineId(BioMonster.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_MUT = SynchedEntityData.defineId(BioMonster.class, EntityDataSerializers.INT);
 
     protected int moveCooldown = 20;
     private AttackMove current;
@@ -49,10 +50,18 @@ public abstract class BioMonster extends Monster {
         entityData.define(DATA_MOVE_TICK, 0);
         entityData.define(DATA_MOVE_DUR, 0);
         entityData.define(DATA_FORM, 0);
+        entityData.define(DATA_MUT, 0);
     }
 
     /** All moves of this creature in current form. */
     public abstract List<AttackMove> moves();
+
+    /** moves() plus data-driven canon extras (CanonMoves). */
+    public List<AttackMove> allMoves() { return CanonMoves.merge(this, moves()); }
+    public boolean canStart(AttackMove m) { return m.id >= 40 ? CanonMoves.can(this, m) && canStartMove(m) : canStartMove(m); }
+    /** mutation stage chosen by CanonMoves passives (0 = none); synced so models can show extra parts. */
+    public int getMut() { return entityData.get(DATA_MUT); }
+    public void setMut(int n) { entityData.set(DATA_MUT, n); }
 
     @Override
     protected void registerGoals() {
@@ -84,6 +93,7 @@ public abstract class BioMonster extends Monster {
         entityData.set(DATA_MOVE_TICK, 0);
         entityData.set(DATA_MOVE_DUR, m.duration);
         if (random.nextInt(3) == 0) playVoice("attack", 1.0f);
+        if (m.id >= 40) CanonMoves.start(this, m);
         onMoveStart(m);
     }
 
@@ -94,6 +104,7 @@ public abstract class BioMonster extends Monster {
         entityData.set(DATA_MOVE_TICK, 0);
         entityData.set(DATA_MOVE_DUR, 0);
         moveCooldown = m.cooldown;
+        if (m.id >= 40) CanonMoves.end(this, m);
         onMoveEnd(m);
     }
 
@@ -139,6 +150,7 @@ public abstract class BioMonster extends Monster {
     public void aiStep() {
         super.aiStep();
         if (level().isClientSide) return;
+        CanonMoves.passives(this);
         if (isAlive() && !isMoving() && random.nextInt(getTarget() != null ? 180 : 320) == 0) playVoice("ambient", getTarget() != null ? 1.0f : 0.7f);
         if (moveCooldown > 0 && current == null) moveCooldown--;
         if (current == null) return;
@@ -154,9 +166,9 @@ public abstract class BioMonster extends Monster {
             getLookControl().setLookAt(target, 60f, 60f);
             faceTarget(target);
         }
-        onMoveTick(current, t, target);
+        if (current.id >= 40) CanonMoves.tick(this, current, t, target); else onMoveTick(current, t, target);
         for (int i = 0; i < current.hitTicks.length; i++) {
-            if (current.hitTicks[i] == t) onMoveHit(current, i, target);
+            if (current.hitTicks[i] == t) { if (current.id >= 40) CanonMoves.hit(this, current, i, target); else onMoveHit(current, i, target); }
         }
         if (t >= current.duration) endMove();
     }
@@ -204,11 +216,13 @@ public abstract class BioMonster extends Monster {
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Form", getForm());
+        tag.putInt("Mut", getMut());
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         setForm(tag.getInt("Form"));
+        setMut(tag.getInt("Mut"));
     }
 }

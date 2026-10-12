@@ -435,5 +435,20 @@ spec(id='gnezdo', pkg='gnezdo', C='Gnezdo', ppkg='larva', pm='LarvaModel', W=64,
 spec(id='grave_digger', pkg='gravedigger', C='GraveDigger', ppkg='yawn', pm='YawnModel', W=256, H0=64, sty=dict(bn=BN),
   parts=[A('body/neck1/neck2/neck3/head/hornsX', Z, (-3, -5, -6, 1, 3, 1, 'bn'), (2, -5, -6, 1, 3, 1, 'bn'), (-0.5, -6, -3, 1, 4, 1, 'bn')), A('body/spk', Z, (-1, -8, -4, 2, 3, 2, 'bn'), (-1, -8, 0, 2, 3, 2, 'bn'), (-1, -8, 4, 2, 3, 2, 'bn'))])
 
+
+# ---- batch 7: mutation parts (shown by CanonVisuals while BioMonster.getMut() matches)
+MB = dict(c=(200, 205, 210), n=0.06); MF = dict(c=(120, 60, 60), n=0.12, d='veins'); MW = dict(c=(60, 40, 70), n=0.1, d='veins'); MS = dict(c=(190, 160, 70), n=0.08, d='spike')
+SPECS['javo']['sty'].update(dict(mb=MB, mf=MF, mw=MW, ms=MS))
+SPECS['javo']['parts'] += [
+  A('base/torso/armR/foreR/mutBlade', Z, (-1, 2, -2, 2, 22, 4, 'mb'), (-0.5, 20, -3, 1, 6, 2, 'mb')),
+  A('base/torso/mutWingL', 'PartPose.offsetAndRotation(3, -8, 2, 0.3f, 0, -0.5f)', (0, -1, 0, 14, 1, 9, 'mw')), A('base/torso/mutWingR', 'PartPose.offsetAndRotation(-3, -8, 2, 0.3f, 0, 0.5f)', (-14, -1, 0, 14, 1, 9, 'mw')),
+  A('base/mutTail', 'PartPose.offsetAndRotation(0, -1, 2, 0.9f, 0, 0)', (-1, -1, 0, 2, 2, 9, 'ms')), A('base/mutTail/t2', 'PartPose.offsetAndRotation(0, 0, 9, -0.6f, 0, 0)', (-1, -1, 0, 2, 2, 8, 'ms')),
+  A('base/mutTail/t2/t3', 'PartPose.offsetAndRotation(0, 0, 8, -0.9f, 0, 0)', (-0.5, -0.5, 0, 1, 1, 4, 'ms'), (-1, -1.5, 4, 2, 3, 2, 'mb')),
+  A('base/torso/armL/foreL/mutClaw', Z, (-3, 2, -3, 6, 9, 6, 'mf'), (-3, 10, -3, 1, 6, 1, 'mb'), (-1, 10, -3, 1, 7, 1, 'mb'), (1, 10, -3, 1, 6, 1, 'mb'))]
+URO = dict(c=(130, 30, 26), n=0.1, d='veins'); GLOW = dict(c=(250, 170, 50), n=0.05)
+def ut(n, x, rz, ry): return A('base/torso/uroT%d' % n, 'PartPose.offsetAndRotation(%s, -9, 3, 0.7f, %sf, %sf)' % (x, ry, rz), (-1.2, -1.2, 0, 2.4, 2.4, 14, 'u'), (-1, -1, 14, 2, 2, 3, 'g'))
+spec(clipfn='wesker', id='wesker', pkg='wesker', C='Wesker', ppkg='mrx', pm='MrXModel', W=128, H0=64, sty=dict(u=URO, g=GLOW),
+  parts=[ut(1, -3, 0.3, 0.5), ut(2, 3, -0.3, -0.5), ut(3, -1, 0.1, 0.1), ut(4, 1, -0.1, -0.1)])
+
 if __name__ == '__main__':
     for k in (sys.argv[1:] or SPECS): gen(SPECS[k])

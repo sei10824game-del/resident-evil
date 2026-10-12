@@ -35,15 +35,15 @@ public class BioCombatGoal extends Goal {
         if (mob.getMoveCooldown() > 0) return;
         List<AttackMove> ok = new ArrayList<>();
         int total = 0;
-        for (AttackMove m : mob.moves()) {
-            if (m.weight > 0 && dist >= m.minRange && dist <= m.maxRange && mob.hasLineOfSight(t) && mob.canStartMove(m)) { ok.add(m); total += m.weight; }
+        for (AttackMove m : mob.allMoves()) {
+            if (m.weight > 0 && dist >= m.minRange && dist <= m.maxRange && mob.hasLineOfSight(t) && mob.canStart(m)) { ok.add(m); total += m.weight; }
         }
         if (ok.isEmpty()) { // point-blank with only longer-range moves available: use the shortest-range ones anyway
             double best = Double.MAX_VALUE;
-            for (AttackMove m : mob.moves()) if (m.weight > 0 && dist < m.minRange && mob.canStartMove(m)) best = Math.min(best, m.minRange);
+            for (AttackMove m : mob.allMoves()) if (m.weight > 0 && dist < m.minRange && mob.canStart(m)) best = Math.min(best, m.minRange);
             if (best == Double.MAX_VALUE) return;
             total = 0;
-            for (AttackMove m : mob.moves()) if (m.weight > 0 && m.minRange <= best + 1.0e-6 && dist < m.minRange && mob.canStartMove(m)) { ok.add(m); total += m.weight; }
+            for (AttackMove m : mob.allMoves()) if (m.weight > 0 && m.minRange <= best + 1.0e-6 && dist < m.minRange && mob.canStart(m)) { ok.add(m); total += m.weight; }
             if (ok.isEmpty() || total <= 0) return;
         }
         int r = mob.getRandom().nextInt(total);

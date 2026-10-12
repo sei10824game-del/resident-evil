@@ -78,9 +78,11 @@ public abstract class BioModel<T extends BioMonster> extends EntityModel<T> {
         int id = e.getMoveId();
         if (id > 0) {
             float partial = age - e.tickCount;
-            applyClip(clip(e, id), moveProgress(e, partial));
+            AnimClip cc = id >= 40 ? com.reevil.client.canon.CanonClips.get(e, id) : null;
+            applyClip(cc != null ? cc : clip(e, id), moveProgress(e, partial));
         }
         extraAnim(e, limbSwing, limbSwingAmount, age, headYaw, headPitch);
+        com.reevil.client.canon.CanonVisuals.apply(root, e);
     }
 
     /** Hook after clip application (e.g. death pose, form-specific tweaks). */

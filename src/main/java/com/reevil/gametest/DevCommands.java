@@ -27,7 +27,7 @@ public final class DevCommands {
             int id = IntegerArgumentType.getInteger(c, "id");
             if (m == null) return 0;
             m.cancelMove();
-            for (AttackMove mv : m.moves()) if (mv.id == id) { m.startMove(mv); return 1; }
+            for (AttackMove mv : m.allMoves()) if (mv.id == id) { m.startMove(mv); return 1; }
             return 0;
         })));
         e.getDispatcher().register(Commands.literal("rform").requires(s -> s.hasPermission(2)).then(Commands.argument("n", IntegerArgumentType.integer()).executes(c -> {

@@ -33,6 +33,32 @@ public class JavoModel extends GanadoModel {
             .texOffs(82, 64).addBox(1.5f, -8, 2, 2, 4, 2)
             .texOffs(90, 64).addBox(-5.5f, -7, -2, 3, 4, 4),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 80);
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").addOrReplaceChild("mutBlade", CubeListBuilder.create()
+            .texOffs(104, 64).addBox(-1, 2, -2, 2, 22, 4)
+            .texOffs(116, 64).addBox(-0.5f, 20, -3, 1, 6, 2),
+            PartPose.ZERO);
+        root.getChild("base").getChild("torso").addOrReplaceChild("mutWingL", CubeListBuilder.create()
+            .texOffs(0, 90).addBox(0, -1, 0, 14, 1, 9),
+            PartPose.offsetAndRotation(3, -8, 2, 0.3f, 0, -0.5f));
+        root.getChild("base").getChild("torso").addOrReplaceChild("mutWingR", CubeListBuilder.create()
+            .texOffs(46, 90).addBox(-14, -1, 0, 14, 1, 9),
+            PartPose.offsetAndRotation(-3, -8, 2, 0.3f, 0, 0.5f));
+        root.getChild("base").addOrReplaceChild("mutTail", CubeListBuilder.create()
+            .texOffs(92, 90).addBox(-1, -1, 0, 2, 2, 9),
+            PartPose.offsetAndRotation(0, -1, 2, 0.9f, 0, 0));
+        root.getChild("base").getChild("mutTail").addOrReplaceChild("t2", CubeListBuilder.create()
+            .texOffs(0, 101).addBox(-1, -1, 0, 2, 2, 8),
+            PartPose.offsetAndRotation(0, 0, 9, -0.6f, 0, 0));
+        root.getChild("base").getChild("mutTail").getChild("t2").addOrReplaceChild("t3", CubeListBuilder.create()
+            .texOffs(20, 101).addBox(-0.5f, -0.5f, 0, 1, 1, 4)
+            .texOffs(30, 101).addBox(-1, -1.5f, 4, 2, 3, 2),
+            PartPose.offsetAndRotation(0, 0, 8, -0.9f, 0, 0));
+        root.getChild("base").getChild("torso").getChild("armL").getChild("foreL").addOrReplaceChild("mutClaw", CubeListBuilder.create()
+            .texOffs(38, 101).addBox(-3, 2, -3, 6, 9, 6)
+            .texOffs(62, 101).addBox(-3, 10, -3, 1, 6, 1)
+            .texOffs(66, 101).addBox(-1, 10, -3, 1, 7, 1)
+            .texOffs(70, 101).addBox(1, 10, -3, 1, 6, 1),
+            PartPose.ZERO);
+        return LayerDefinition.create(mesh, 128, 120);
     }
 }
