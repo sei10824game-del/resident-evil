@@ -12,4 +12,10 @@ public class WeskerModel extends MrXModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "wesker"), "main");
     public WeskerModel(ModelPart root) { super(root); }
     public static LayerDefinition createBodyLayer() { return MrXModel.createBodyLayer(); }
+
+    @Override
+    protected com.reevil.anim.AnimClip clip(com.reevil.entity.mrx.MrXEntity e, int id) {
+        com.reevil.anim.AnimClip c = com.reevil.client.mrx.SignatureClips.wesker(id);
+        return c != null ? c : super.clip(e, id);
+    }
 }
