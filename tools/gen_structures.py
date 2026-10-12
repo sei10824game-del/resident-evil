@@ -45,12 +45,16 @@ class T:
             for i in range(n):
                 for x in range(x0 + i, x0 + w - i): s.set(x, y + i, z, slab or stair.replace('_stairs', '_planks'))
     def torch(s, x, y, z): s.set(x, y, z, 'minecraft:lantern[hanging=false]')
-    def spawner(s, x, y, z, mobs):
+    def remap(s, m):
+        for k, v in list(s.b.items()):
+            b = v.split('[')[0]
+            if b in m: s.b[k] = m[b] + v[len(b):]
+    def spawner(s, x, y, z, mobs, nearby=6):
         s.set(x, y, z, 'minecraft:spawner')
         pot = List[Compound]([Compound({'weight': Int(1), 'data': Compound({'entity': Compound({'id': String(m)})})}) for m in mobs])
         s.nbt[(x, y, z)] = Compound({'id': String('minecraft:mob_spawner'), 'SpawnPotentials': pot,
             'SpawnData': Compound({'entity': Compound({'id': String(mobs[0])})}),
-            'MaxNearbyEntities': Short(6), 'SpawnCount': Short(2), 'SpawnRange': Short(5), 'RequiredPlayerRange': Short(14),
+            'MaxNearbyEntities': Short(nearby), 'SpawnCount': Short(2), 'SpawnRange': Short(5), 'RequiredPlayerRange': Short(14),
             'MinSpawnDelay': Short(300), 'MaxSpawnDelay': Short(900), 'Delay': Short(40)})
     def chest(s, x, y, z, facing='north'):
         s.set(x, y, z, f'minecraft:chest[facing={facing}]')
@@ -252,6 +256,93 @@ S = {
   'dimitrescu_castle': (dimitrescu, ['minecraft:snowy_taiga', 'minecraft:snowy_plains', 'minecraft:grove', 'minecraft:snowy_slopes'], ['lycan', 'daughter', 'soldat'], 61),
   'edonia_ruins': (edonia, ['minecraft:jungle', 'minecraft:sparse_jungle', 'minecraft:bamboo_jungle', 'minecraft:river'], ['javo', 'napad', 'gnezdo'], 67),
 }
+
+
+def mk_spencer_remake():
+    t, _, _ = spencer()
+    t.remap({'minecraft:stone_bricks': 'minecraft:mossy_stone_bricks', 'minecraft:polished_andesite': 'minecraft:polished_diorite', 'minecraft:dark_oak_planks': 'minecraft:spruce_planks',
+        'minecraft:dark_oak_log': 'minecraft:stripped_dark_oak_log', 'minecraft:dark_oak_stairs': 'minecraft:deepslate_tile_stairs'})
+    for b in list(t.b):  # swap mobs to remake zombies/hunters
+        pass
+    for pos, nbt in t.nbt.items():
+        if nbt.get('id') == 'minecraft:mob_spawner':
+            ms = [e['data']['entity']['id'] for e in nbt['SpawnPotentials']]
+            ms = [{'reevil:zombie': 'reevil:re1r_zombie', 'reevil:hunter': 'reevil:re1r_hunter'}.get(m, m) for m in ms]
+            t.spawner(pos[0], pos[1], pos[2], ms)
+    for x in range(0, 31, 2): t.set(x, BAR + 1, 0, 'minecraft:iron_bars'); t.set(x, BAR + 1, 24, 'minecraft:iron_bars') if False else None
+    return t, 'remake', None
+
+def mk_police():
+    W, D, H = 37, 31, 30; t = T(W, H, D); f = BAR
+    t.fill(0, 0, 0, W - 1, f - 1, D - 1, 'minecraft:stone_bricks'); t.fill(0, f, 0, W - 1, f, D - 1, 'minecraft:smooth_stone')
+    t.shell(4, f, 5, 29, 24, 21, 'minecraft:stone_bricks', 'minecraft:polished_andesite', 'minecraft:stone_brick_slab')
+    for y in (f + 8, f + 16): t.fill(5, y, 6, 31, y, 24, 'minecraft:polished_andesite')
+    t.fill(13, f + 8, 10, 23, f + 16, 20, 'minecraft:air'); t.fill(13, f + 9, 10, 23, f + 9, 10, 'minecraft:air')   # atrium void
+    for y in (f + 8, f + 16): t.fill(14, y, 11, 22, y, 19, 'minecraft:air')
+    t.fill(4, f + 20, 5, 32, f + 20, 25, 'minecraft:deepslate_brick_slab')
+    for x in range(4, 33, 4): t.fill(x, f + 1, 5, x, f + 20, 5, 'minecraft:deepslate_bricks'); t.fill(x, f + 1, 25, x, f + 20, 25, 'minecraft:deepslate_bricks')
+    t.hole(15, f + 1, 5, 21, f + 5, 5); t.fill(15, f + 6, 5, 21, f + 6, 5, 'minecraft:deepslate_bricks')
+    for x in range(7, 31, 3):
+        for y in (f + 3, f + 11, f + 19 - 4): t.set(x, y, 5, 'minecraft:oak_planks'); t.set(x, y + 1, 5, 'minecraft:oak_planks')
+    t.fill(17, f + 1, 15, 19, f + 1, 15, 'minecraft:quartz_block'); t.fill(18, f + 2, 15, 18, f + 8, 15, 'minecraft:quartz_pillar')   # statue
+    t.fill(16, f + 1, 8, 20, f + 1, 24, 'minecraft:red_carpet')
+    for i in range(7): t.fill(7 + i, f + 1 + i, 22, 7 + i, f + 1 + i, 24, 'minecraft:stone_brick_stairs[facing=east,half=bottom]')
+    t.set(18, f + 22, 4, 'minecraft:gold_block'); t.set(17, f + 21, 4, 'minecraft:gold_block'); t.set(19, f + 21, 4, 'minecraft:gold_block')   # clock
+    for (x, y, z, m, n) in [(8, 1, 10, 're2r_zombie', 6), (28, 1, 10, 're2r_zombie', 6), (10, 9, 20, 're2r_licker', 4), (26, 9, 20, 're2r_zombie', 6), (18, 17, 12, 're2r_licker', 4), (8, 17, 8, 're2r_zombie', 6)]:
+        t.spawner(x, f + y, z, ['reevil:' + m, 'reevil:re2r_zombie'], n)
+    t.spawner(18, f + 1, 22, ['reevil:re2r_mr_x'], 1)
+    t.chest(6, f + 1, 24, 'north'); t.chest(30, f + 9, 24, 'north')
+    ruin(t, random.Random(11), 0.05, 4, f + 1, 5, 32, f + 20, 25)
+    for cx in (4, 26): t.fill(cx, f + 1, 2, cx + 4, f + 1, 3, 'minecraft:black_concrete')
+    return t, 'rpd', None
+
+def mk_downtown():
+    W, D, H = 45, 37, 22; t = T(W, H, D); f = BAR; rnd = random.Random(21)
+    t.fill(0, 0, 0, W - 1, f - 1, D - 1, 'minecraft:stone'); t.fill(0, f, 0, W - 1, f, D - 1, 'minecraft:black_concrete')
+    for z in range(0, D): t.fill(0, f, z, W - 1, f, z, 'minecraft:gray_concrete') if 14 <= z <= 22 else None
+    for x in range(0, W, 4): t.set(x, f, 18, 'minecraft:white_concrete'); t.set(x + 1, f, 18, 'minecraft:white_concrete')
+    for (x0, w, h, mat) in [(1, 12, 15, 'minecraft:bricks'), (15, 12, 18, 'minecraft:gray_concrete'), (30, 14, 14, 'minecraft:red_terracotta')]:
+        t.shell(x0, f, 24, w, h, 12, mat, 'minecraft:stone', 'minecraft:stone')
+        for y in range(f + 5, f + h - 2, 5): t.fill(x0 + 1, y, 25, x0 + w - 2, y, 34, 'minecraft:stone')
+        t.windows(x0, f + 2, 24, w, 12, 3); t.windows(x0, f + 7, 24, w, 12, 3)
+        t.hole(x0 + w // 2 - 1, f + 1, 24, x0 + w // 2 + 1, f + 3, 24)
+        t.fill(x0 + 2, f + 1, 23, x0 + w - 3, f + 1, 23, 'minecraft:red_concrete') if mat == 'minecraft:gray_concrete' else None
+    t.shell(2, f, 2, 14, 7, 10, 'minecraft:light_gray_concrete', 'minecraft:smooth_stone', 'minecraft:smooth_stone'); t.fill(0, f + 7, 1, 17, f + 7, 13, 'minecraft:red_concrete')  # gas-station roof
+    t.hole(8, f + 1, 2, 10, f + 3, 2)
+    for cx in (20, 28, 36): t.fill(cx, f + 1, 15, cx + 3, f + 1, 16, 'minecraft:black_concrete'); t.fill(cx + 1, f + 2, 15, cx + 2, f + 2, 16, 'minecraft:gray_stained_glass')
+    for x in range(18, 36): t.set(x, f + 1, 20, 'minecraft:iron_bars') if x % 3 else None
+    ruin(t, rnd, 0.1, 1, f + 1, 24, 43, f + 14, 35)
+    for (x, z, m, n) in [(6, 28, 're3r_zombie', 6), (20, 28, 're3r_zombie', 6), (36, 28, 're3r_hunter_beta', 3), (8, 6, 're3r_zombie', 6), (24, 17, 're3r_zombie', 6), (40, 18, 're3r_pale_head', 3)]:
+        t.spawner(x, f + 1, z, ['reevil:' + m, 'reevil:re3r_zombie'], n)
+    t.spawner(22, f + 1, 8, ['reevil:re3r_nemesis'], 1); t.chest(5, f + 1, 33, 'north'); t.chest(16, f + 6, 33, 'north')
+    return t, 'downtown', None
+
+def mk_village_remake():
+    t = village('ganado', 'minecraft:stripped_spruce_log', 'minecraft:spruce_planks', 'minecraft:coarse_dirt',
+        ['reevil:re4r_ganado', 'reevil:re4r_ganado', 'reevil:re4r_krauser', 'reevil:re4r_regenerador'], 6, 31, True)
+    t.remap({'minecraft:stripped_spruce_log': 'minecraft:stripped_dark_oak_log', 'minecraft:spruce_planks': 'minecraft:dark_oak_planks'})
+    t.shell(16, BAR, 33, 9, 5, 7, 'minecraft:cobblestone', 'minecraft:stone', 'minecraft:stone')
+    t.fill(16, BAR + 5, 33, 24, BAR + 5, 39, 'minecraft:stone_brick_slab'); t.fill(19, BAR + 6, 35, 21, BAR + 15, 37, 'minecraft:cobblestone'); t.fill(20, BAR + 8, 36, 20, BAR + 9, 36, 'minecraft:air')   # church-ish tower
+    t.hole(19, BAR + 1, 33, 21, BAR + 3, 33); t.set(20, BAR + 16, 36, 'minecraft:bell')
+    t.spawner(20, BAR + 1, 36, ['reevil:re4r_ganado', 'reevil:re4r_ganado'])
+    t.spawner(36, BAR + 1, 36, ['reevil:re4r_el_gigante'], 1)
+    return t, 'village_r', None
+
+def mk_castle_remake():
+    t = castle('salazar_r', 51, 51, 44, 'minecraft:deepslate_bricks', 'minecraft:deepslate_brick_wall', 'minecraft:polished_deepslate',
+      ['reevil:re4r_ganado', 'reevil:re4r_armadura', 'reevil:re4r_iron_maiden', 'reevil:re4r_krauser', 'reevil:re4r_regenerador', 'reevil:re4r_verdugo', 'reevil:re4r_armadura'],
+      ['reevil:re4r_ganado', 'reevil:re4r_regenerador'], 'minecraft:cut_copper_stairs', 16)
+    t.set(25, BAR + 17, 25, 'minecraft:gold_block')
+    t.spawner(25, BAR + 1, 12, ['reevil:re4r_salazar'], 1)
+    return t, 'castle_r', None
+
+S.update({
+  'spencer_mansion_remake': (mk_spencer_remake, ['minecraft:birch_forest', 'minecraft:old_growth_birch_forest', 'minecraft:flower_forest'], ['re1r_zombie', 're1r_hunter', 'crimson_head', 'cerberus'], 71),
+  'raccoon_police_station': (mk_police, ['minecraft:plains', 'minecraft:sunflower_plains', 'minecraft:forest'], ['re2r_zombie', 're2r_licker'], 73),
+  'raccoon_downtown': (mk_downtown, ['minecraft:beach', 'minecraft:stony_shore', 'minecraft:savanna_plateau'], ['re3r_zombie', 're3r_hunter_beta', 're3r_pale_head'], 79),
+  'village_remake': (mk_village_remake, ['minecraft:old_growth_spruce_taiga', 'minecraft:dark_forest'], ['re4r_ganado', 're4r_krauser', 're4r_regenerador'], 83),
+  'salazar_castle_remake': (mk_castle_remake, ['minecraft:windswept_forest', 'minecraft:jagged_peaks', 'minecraft:frozen_peaks'], ['re4r_ganado', 're4r_armadura', 're4r_iron_maiden', 're4r_verdugo'], 89),
+})
 
 def main():
     for sub in ('structure', 'template_pool', 'structure_set'): os.makedirs(f'{R}/worldgen/{sub}', exist_ok=True)

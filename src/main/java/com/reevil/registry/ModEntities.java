@@ -76,6 +76,23 @@ import com.reevil.entity.marguerite.MargueriteEntity;
 import com.reevil.entity.miranda.MirandaEntity;
 import com.reevil.entity.haos.HaosEntity;
 import com.reevil.entity.gnezdo.GnezdoEntity;
+import com.reevil.entity.re1rzombie.Re1rZombieEntity;
+import com.reevil.entity.re1rhunter.Re1rHunterEntity;
+import com.reevil.entity.re2rzombie.Re2rZombieEntity;
+import com.reevil.entity.re2rlicker.Re2rLickerEntity;
+import com.reevil.entity.re2rmrx.Re2rMrXEntity;
+import com.reevil.entity.re3rzombie.Re3rZombieEntity;
+import com.reevil.entity.re3rnemesis.Re3rNemesisEntity;
+import com.reevil.entity.re3rpalehead.Re3rPaleHeadEntity;
+import com.reevil.entity.re3rhunterbeta.Re3rHunterBetaEntity;
+import com.reevil.entity.re4rganado.Re4rGanadoEntity;
+import com.reevil.entity.re4relgigante.Re4rElGiganteEntity;
+import com.reevil.entity.re4rverdugo.Re4rVerdugoEntity;
+import com.reevil.entity.re4rregenerador.Re4rRegeneradorEntity;
+import com.reevil.entity.re4rkrauser.Re4rKrauserEntity;
+import com.reevil.entity.re4rsalazar.Re4rSalazarEntity;
+import com.reevil.entity.re4rarmadura.Re4rArmaduraEntity;
+import com.reevil.entity.re4rironmaiden.Re4rIronMaidenEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -385,6 +402,74 @@ public final class ModEntities {
         () -> EntityType.Builder.of(GnezdoEntity::new, MobCategory.MONSTER).sized(1.2f, 0.9f).clientTrackingRange(10).build("gnezdo"));
     public static final RegistryObject<Item> GNEZDO_EGG = egg("gnezdo", GNEZDO, 0x606030, 0xc0c060);
 
+    public static final RegistryObject<EntityType<Re1rZombieEntity>> RE1R_ZOMBIE = ENTITIES.register("re1r_zombie",
+        () -> EntityType.Builder.of(Re1rZombieEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("re1r_zombie"));
+    public static final RegistryObject<Item> RE1R_ZOMBIE_EGG = egg("re1r_zombie", RE1R_ZOMBIE, 0x7a8a70, 0x3a2020);
+
+    public static final RegistryObject<EntityType<Re1rHunterEntity>> RE1R_HUNTER = ENTITIES.register("re1r_hunter",
+        () -> EntityType.Builder.of(Re1rHunterEntity::new, MobCategory.MONSTER).sized(0.8f, 1.8f).clientTrackingRange(10).build("re1r_hunter"));
+    public static final RegistryObject<Item> RE1R_HUNTER_EGG = egg("re1r_hunter", RE1R_HUNTER, 0x2f6a3a, 0xa03020);
+
+    public static final RegistryObject<EntityType<Re2rZombieEntity>> RE2R_ZOMBIE = ENTITIES.register("re2r_zombie",
+        () -> EntityType.Builder.of(Re2rZombieEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("re2r_zombie"));
+    public static final RegistryObject<Item> RE2R_ZOMBIE_EGG = egg("re2r_zombie", RE2R_ZOMBIE, 0x56624a, 0x1a2a4a);
+
+    public static final RegistryObject<EntityType<Re2rLickerEntity>> RE2R_LICKER = ENTITIES.register("re2r_licker",
+        () -> EntityType.Builder.of(Re2rLickerEntity::new, MobCategory.MONSTER).sized(1.0f, 1.4f).clientTrackingRange(10).build("re2r_licker"));
+    public static final RegistryObject<Item> RE2R_LICKER_EGG = egg("re2r_licker", RE2R_LICKER, 0xa04050, 0xd08090);
+
+    public static final RegistryObject<EntityType<Re2rMrXEntity>> RE2R_MR_X = ENTITIES.register("re2r_mr_x",
+        () -> EntityType.Builder.of(Re2rMrXEntity::new, MobCategory.MONSTER).sized(0.9f, 2.5f).clientTrackingRange(10).build("re2r_mr_x"));
+    public static final RegistryObject<Item> RE2R_MR_X_EGG = egg("re2r_mr_x", RE2R_MR_X, 0x2a2a2e, 0x8a7a60);
+
+    public static final RegistryObject<EntityType<Re3rZombieEntity>> RE3R_ZOMBIE = ENTITIES.register("re3r_zombie",
+        () -> EntityType.Builder.of(Re3rZombieEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("re3r_zombie"));
+    public static final RegistryObject<Item> RE3R_ZOMBIE_EGG = egg("re3r_zombie", RE3R_ZOMBIE, 0x6a6050, 0x8a2020);
+
+    public static final RegistryObject<EntityType<Re3rNemesisEntity>> RE3R_NEMESIS = ENTITIES.register("re3r_nemesis",
+        () -> EntityType.Builder.of(Re3rNemesisEntity::new, MobCategory.MONSTER).sized(0.9f, 2.5f).clientTrackingRange(10).build("re3r_nemesis"));
+    public static final RegistryObject<Item> RE3R_NEMESIS_EGG = egg("re3r_nemesis", RE3R_NEMESIS, 0x7a5048, 0xd0c090);
+
+    public static final RegistryObject<EntityType<Re3rPaleHeadEntity>> RE3R_PALE_HEAD = ENTITIES.register("re3r_pale_head",
+        () -> EntityType.Builder.of(Re3rPaleHeadEntity::new, MobCategory.MONSTER).sized(0.7f, 2.2f).clientTrackingRange(10).build("re3r_pale_head"));
+    public static final RegistryObject<Item> RE3R_PALE_HEAD_EGG = egg("re3r_pale_head", RE3R_PALE_HEAD, 0xc8c0b8, 0x903030);
+
+    public static final RegistryObject<EntityType<Re3rHunterBetaEntity>> RE3R_HUNTER_BETA = ENTITIES.register("re3r_hunter_beta",
+        () -> EntityType.Builder.of(Re3rHunterBetaEntity::new, MobCategory.MONSTER).sized(0.8f, 1.8f).clientTrackingRange(10).build("re3r_hunter_beta"));
+    public static final RegistryObject<Item> RE3R_HUNTER_BETA_EGG = egg("re3r_hunter_beta", RE3R_HUNTER_BETA, 0x2a4a6a, 0xc04030);
+
+    public static final RegistryObject<EntityType<Re4rGanadoEntity>> RE4R_GANADO = ENTITIES.register("re4r_ganado",
+        () -> EntityType.Builder.of(Re4rGanadoEntity::new, MobCategory.MONSTER).sized(0.6f, 1.9f).clientTrackingRange(10).build("re4r_ganado"));
+    public static final RegistryObject<Item> RE4R_GANADO_EGG = egg("re4r_ganado", RE4R_GANADO, 0x6a5a40, 0x303a50);
+
+    public static final RegistryObject<EntityType<Re4rElGiganteEntity>> RE4R_EL_GIGANTE = ENTITIES.register("re4r_el_gigante",
+        () -> EntityType.Builder.of(Re4rElGiganteEntity::new, MobCategory.MONSTER).sized(1.6f, 4.4f).clientTrackingRange(10).build("re4r_el_gigante"));
+    public static final RegistryObject<Item> RE4R_EL_GIGANTE_EGG = egg("re4r_el_gigante", RE4R_EL_GIGANTE, 0x8a7a68, 0x4a3a30);
+
+    public static final RegistryObject<EntityType<Re4rVerdugoEntity>> RE4R_VERDUGO = ENTITIES.register("re4r_verdugo",
+        () -> EntityType.Builder.of(Re4rVerdugoEntity::new, MobCategory.MONSTER).sized(0.9f, 2.5f).clientTrackingRange(10).build("re4r_verdugo"));
+    public static final RegistryObject<Item> RE4R_VERDUGO_EGG = egg("re4r_verdugo", RE4R_VERDUGO, 0x70402a, 0xd0d0c0);
+
+    public static final RegistryObject<EntityType<Re4rRegeneradorEntity>> RE4R_REGENERADOR = ENTITIES.register("re4r_regenerador",
+        () -> EntityType.Builder.of(Re4rRegeneradorEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("re4r_regenerador"));
+    public static final RegistryObject<Item> RE4R_REGENERADOR_EGG = egg("re4r_regenerador", RE4R_REGENERADOR, 0x5a5a60, 0xa03030);
+
+    public static final RegistryObject<EntityType<Re4rKrauserEntity>> RE4R_KRAUSER = ENTITIES.register("re4r_krauser",
+        () -> EntityType.Builder.of(Re4rKrauserEntity::new, MobCategory.MONSTER).sized(0.7f, 2.0f).clientTrackingRange(10).build("re4r_krauser"));
+    public static final RegistryObject<Item> RE4R_KRAUSER_EGG = egg("re4r_krauser", RE4R_KRAUSER, 0x3a4a36, 0xa0a0a0);
+
+    public static final RegistryObject<EntityType<Re4rSalazarEntity>> RE4R_SALAZAR = ENTITIES.register("re4r_salazar",
+        () -> EntityType.Builder.of(Re4rSalazarEntity::new, MobCategory.MONSTER).sized(1.6f, 3.0f).clientTrackingRange(10).build("re4r_salazar"));
+    public static final RegistryObject<Item> RE4R_SALAZAR_EGG = egg("re4r_salazar", RE4R_SALAZAR, 0x56305a, 0xc0a040);
+
+    public static final RegistryObject<EntityType<Re4rArmaduraEntity>> RE4R_ARMADURA = ENTITIES.register("re4r_armadura",
+        () -> EntityType.Builder.of(Re4rArmaduraEntity::new, MobCategory.MONSTER).sized(0.8f, 2.2f).clientTrackingRange(10).build("re4r_armadura"));
+    public static final RegistryObject<Item> RE4R_ARMADURA_EGG = egg("re4r_armadura", RE4R_ARMADURA, 0x7a7a82, 0xa05050);
+
+    public static final RegistryObject<EntityType<Re4rIronMaidenEntity>> RE4R_IRON_MAIDEN = ENTITIES.register("re4r_iron_maiden",
+        () -> EntityType.Builder.of(Re4rIronMaidenEntity::new, MobCategory.MONSTER).sized(0.8f, 2.0f).clientTrackingRange(10).build("re4r_iron_maiden"));
+    public static final RegistryObject<Item> RE4R_IRON_MAIDEN_EGG = egg("re4r_iron_maiden", RE4R_IRON_MAIDEN, 0x9a9aa2, 0xa03030);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -461,6 +546,23 @@ public final class ModEntities {
         e.put(MIRANDA.get(), MirandaEntity.createAttributes().build());
         e.put(HAOS.get(), HaosEntity.createAttributes().build());
         e.put(GNEZDO.get(), GnezdoEntity.createAttributes().build());
+        e.put(RE1R_ZOMBIE.get(), Re1rZombieEntity.createAttributes().build());
+        e.put(RE1R_HUNTER.get(), Re1rHunterEntity.createAttributes().build());
+        e.put(RE2R_ZOMBIE.get(), Re2rZombieEntity.createAttributes().build());
+        e.put(RE2R_LICKER.get(), Re2rLickerEntity.createAttributes().build());
+        e.put(RE2R_MR_X.get(), Re2rMrXEntity.createAttributes().build());
+        e.put(RE3R_ZOMBIE.get(), Re3rZombieEntity.createAttributes().build());
+        e.put(RE3R_NEMESIS.get(), Re3rNemesisEntity.createAttributes().build());
+        e.put(RE3R_PALE_HEAD.get(), Re3rPaleHeadEntity.createAttributes().build());
+        e.put(RE3R_HUNTER_BETA.get(), Re3rHunterBetaEntity.createAttributes().build());
+        e.put(RE4R_GANADO.get(), Re4rGanadoEntity.createAttributes().build());
+        e.put(RE4R_EL_GIGANTE.get(), Re4rElGiganteEntity.createAttributes().build());
+        e.put(RE4R_VERDUGO.get(), Re4rVerdugoEntity.createAttributes().build());
+        e.put(RE4R_REGENERADOR.get(), Re4rRegeneradorEntity.createAttributes().build());
+        e.put(RE4R_KRAUSER.get(), Re4rKrauserEntity.createAttributes().build());
+        e.put(RE4R_SALAZAR.get(), Re4rSalazarEntity.createAttributes().build());
+        e.put(RE4R_ARMADURA.get(), Re4rArmaduraEntity.createAttributes().build());
+        e.put(RE4R_IRON_MAIDEN.get(), Re4rIronMaidenEntity.createAttributes().build());
     }
 
     private ModEntities() {}

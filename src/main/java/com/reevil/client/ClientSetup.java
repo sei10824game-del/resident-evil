@@ -151,6 +151,40 @@ import com.reevil.client.haos.HaosModel;
 import com.reevil.client.haos.HaosRenderer;
 import com.reevil.client.gnezdo.GnezdoModel;
 import com.reevil.client.gnezdo.GnezdoRenderer;
+import com.reevil.client.re1rzombie.Re1rZombieModel;
+import com.reevil.client.re1rzombie.Re1rZombieRenderer;
+import com.reevil.client.re1rhunter.Re1rHunterModel;
+import com.reevil.client.re1rhunter.Re1rHunterRenderer;
+import com.reevil.client.re2rzombie.Re2rZombieModel;
+import com.reevil.client.re2rzombie.Re2rZombieRenderer;
+import com.reevil.client.re2rlicker.Re2rLickerModel;
+import com.reevil.client.re2rlicker.Re2rLickerRenderer;
+import com.reevil.client.re2rmrx.Re2rMrXModel;
+import com.reevil.client.re2rmrx.Re2rMrXRenderer;
+import com.reevil.client.re3rzombie.Re3rZombieModel;
+import com.reevil.client.re3rzombie.Re3rZombieRenderer;
+import com.reevil.client.re3rnemesis.Re3rNemesisModel;
+import com.reevil.client.re3rnemesis.Re3rNemesisRenderer;
+import com.reevil.client.re3rpalehead.Re3rPaleHeadModel;
+import com.reevil.client.re3rpalehead.Re3rPaleHeadRenderer;
+import com.reevil.client.re3rhunterbeta.Re3rHunterBetaModel;
+import com.reevil.client.re3rhunterbeta.Re3rHunterBetaRenderer;
+import com.reevil.client.re4rganado.Re4rGanadoModel;
+import com.reevil.client.re4rganado.Re4rGanadoRenderer;
+import com.reevil.client.re4relgigante.Re4rElGiganteModel;
+import com.reevil.client.re4relgigante.Re4rElGiganteRenderer;
+import com.reevil.client.re4rverdugo.Re4rVerdugoModel;
+import com.reevil.client.re4rverdugo.Re4rVerdugoRenderer;
+import com.reevil.client.re4rregenerador.Re4rRegeneradorModel;
+import com.reevil.client.re4rregenerador.Re4rRegeneradorRenderer;
+import com.reevil.client.re4rkrauser.Re4rKrauserModel;
+import com.reevil.client.re4rkrauser.Re4rKrauserRenderer;
+import com.reevil.client.re4rsalazar.Re4rSalazarModel;
+import com.reevil.client.re4rsalazar.Re4rSalazarRenderer;
+import com.reevil.client.re4rarmadura.Re4rArmaduraModel;
+import com.reevil.client.re4rarmadura.Re4rArmaduraRenderer;
+import com.reevil.client.re4rironmaiden.Re4rIronMaidenModel;
+import com.reevil.client.re4rironmaiden.Re4rIronMaidenRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -236,6 +270,23 @@ public final class ClientSetup {
         e.registerLayerDefinition(MirandaModel.LAYER, MirandaModel::createBodyLayer);
         e.registerLayerDefinition(HaosModel.LAYER, HaosModel::createBodyLayer);
         e.registerLayerDefinition(GnezdoModel.LAYER, GnezdoModel::createBodyLayer);
+        e.registerLayerDefinition(Re1rZombieModel.LAYER, Re1rZombieModel::createBodyLayer);
+        e.registerLayerDefinition(Re1rHunterModel.LAYER, Re1rHunterModel::createBodyLayer);
+        e.registerLayerDefinition(Re2rZombieModel.LAYER, Re2rZombieModel::createBodyLayer);
+        e.registerLayerDefinition(Re2rLickerModel.LAYER, Re2rLickerModel::createBodyLayer);
+        e.registerLayerDefinition(Re2rMrXModel.LAYER, Re2rMrXModel::createBodyLayer);
+        e.registerLayerDefinition(Re3rZombieModel.LAYER, Re3rZombieModel::createBodyLayer);
+        e.registerLayerDefinition(Re3rNemesisModel.LAYER, Re3rNemesisModel::createBodyLayer);
+        e.registerLayerDefinition(Re3rPaleHeadModel.LAYER, Re3rPaleHeadModel::createBodyLayer);
+        e.registerLayerDefinition(Re3rHunterBetaModel.LAYER, Re3rHunterBetaModel::createBodyLayer);
+        e.registerLayerDefinition(Re4rGanadoModel.LAYER, Re4rGanadoModel::createBodyLayer);
+        e.registerLayerDefinition(Re4rElGiganteModel.LAYER, Re4rElGiganteModel::createBodyLayer);
+        e.registerLayerDefinition(Re4rVerdugoModel.LAYER, Re4rVerdugoModel::createBodyLayer);
+        e.registerLayerDefinition(Re4rRegeneradorModel.LAYER, Re4rRegeneradorModel::createBodyLayer);
+        e.registerLayerDefinition(Re4rKrauserModel.LAYER, Re4rKrauserModel::createBodyLayer);
+        e.registerLayerDefinition(Re4rSalazarModel.LAYER, Re4rSalazarModel::createBodyLayer);
+        e.registerLayerDefinition(Re4rArmaduraModel.LAYER, Re4rArmaduraModel::createBodyLayer);
+        e.registerLayerDefinition(Re4rIronMaidenModel.LAYER, Re4rIronMaidenModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -315,6 +366,23 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.MIRANDA.get(), MirandaRenderer::new);
         e.registerEntityRenderer(ModEntities.HAOS.get(), HaosRenderer::new);
         e.registerEntityRenderer(ModEntities.GNEZDO.get(), GnezdoRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE1R_ZOMBIE.get(), Re1rZombieRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE1R_HUNTER.get(), Re1rHunterRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE2R_ZOMBIE.get(), Re2rZombieRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE2R_LICKER.get(), Re2rLickerRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE2R_MR_X.get(), Re2rMrXRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE3R_ZOMBIE.get(), Re3rZombieRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE3R_NEMESIS.get(), Re3rNemesisRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE3R_PALE_HEAD.get(), Re3rPaleHeadRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE3R_HUNTER_BETA.get(), Re3rHunterBetaRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE4R_GANADO.get(), Re4rGanadoRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE4R_EL_GIGANTE.get(), Re4rElGiganteRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE4R_VERDUGO.get(), Re4rVerdugoRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE4R_REGENERADOR.get(), Re4rRegeneradorRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE4R_KRAUSER.get(), Re4rKrauserRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE4R_SALAZAR.get(), Re4rSalazarRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE4R_ARMADURA.get(), Re4rArmaduraRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE4R_IRON_MAIDEN.get(), Re4rIronMaidenRenderer::new);
     }
 
     private ClientSetup() {}

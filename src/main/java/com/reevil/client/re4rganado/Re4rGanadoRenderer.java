@@ -1,0 +1,15 @@
+package com.reevil.client.re4rganado;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.reevil.client.BioRenderer;
+import com.reevil.entity.ganado.GanadoEntity;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+
+public class Re4rGanadoRenderer extends BioRenderer<GanadoEntity, Re4rGanadoModel> {
+    public Re4rGanadoRenderer(EntityRendererProvider.Context ctx) {
+        super(ctx, new Re4rGanadoModel(ctx.bakeLayer(Re4rGanadoModel.LAYER)), 0.6f, "re4r_ganado");
+    }
+
+    @Override protected void scale(GanadoEntity e, PoseStack ps, float partial) { ps.scale(1.0f, 1.0f, 1.0f); }
+    @Override protected float getFlipDegrees(GanadoEntity e) { return 0f; }
+}
