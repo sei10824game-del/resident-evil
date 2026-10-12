@@ -1,0 +1,14 @@
+{
+ "structures": [
+  {
+   "structure": "reevil:spencer_mansion",
+   "weight": 1
+  }
+ ],
+ "placement": {
+  "type": "minecraft:random_spread",
+  "spacing": 32,
+  "separation": 12,
+  "salt": 1000
+ }
+}

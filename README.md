@@ -19,3 +19,7 @@ Spawn eggs for all (creative tab: Spawn Eggs). New creatures: `tools/addentity.p
   `tools/ModelCheck.java` bakes every model and verifies clip bones.
 - Voices: six synthesised archetypes (groan/growl/hiss/roar/screech/squelch; `tools/synth_sounds.py`, layered on top of the vanilla sounds by `BioMonster.playVoice`). Replace the .ogg files in `assets/reevil/sounds/voice/` to use your own.
 - Natural spawning: `data/reevil/forge/biome_modifier/*.json` (bosses excluded).
+
+## Structures & factions
+- `tools/gen_structures.py` generates 8 natural structures (Spencer Mansion/forest, Raccoon City/plains, Salazar Castle/mountains, Ganado village/taiga, Majini village/desert-savanna-badlands, Baker house/swamp, Dimitrescu Castle/snow, Edonia ruins/jungle) with spawners + structure spawn overrides for that game's creatures. Test: `/place structure reevil:<name> x y z`, `/locate structure reevil:<name>`.
+- Factions (`entity/Factions.java`): same origin = allies, different origin = enemies, all non-mod mobs hostile both ways (`FactionEvents`). Edit `ALLIES` for confirmed alliances.
