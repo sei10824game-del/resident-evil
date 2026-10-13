@@ -198,7 +198,7 @@ public class ZombieEntity extends BioMonster {
     @Override
     public boolean hurt(DamageSource src, float amount) {
         int f = getForm();
-        if (f == FORM_CORPSE && !isTrueDeath(src)) return false; // only fire finishes a body
+        // a corpse can be destroyed by any damage (it has its own small health pool); if left alone it rises as a Crimson Head
         boolean legHit = false;
         if (src.getDirectEntity() instanceof Projectile p && f == FORM_STAND) {
             if (p.getY() > getY() + getBbHeight() * 0.72) amount *= 2f;          // headshot
@@ -221,7 +221,7 @@ public class ZombieEntity extends BioMonster {
     @Override
     public void die(DamageSource src) {
         if (revives() && !level().isClientSide && getForm() != FORM_CORPSE && !isTrueDeath(src) && !isOnFire()) {
-            setHealth(1f);
+            setHealth(Math.min(getMaxHealth(), 18f));
             cancelMove();
             grabbing = false;
             setForm(FORM_CORPSE);

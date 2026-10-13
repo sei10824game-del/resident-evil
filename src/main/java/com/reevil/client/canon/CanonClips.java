@@ -121,6 +121,8 @@ public final class CanonClips {
         CLIPS.computeIfAbsent("wesker", k -> new HashMap<>()).put(43, c_wesker_43());
         CLIPS.computeIfAbsent("krauser", k -> new HashMap<>()).put(42, c_krauser_42());
         CLIPS.computeIfAbsent("krauser", k -> new HashMap<>()).put(43, c_krauser_43());
+        CLIPS.computeIfAbsent("re3r_nemesis", k -> new HashMap<>()).put(40, c_re3r_nemesis_40());
+        CLIPS.computeIfAbsent("re2r_nemesis", k -> new HashMap<>()).put(40, c_re2r_nemesis_40());
     }
     public static AnimClip get(BioMonster e, int id) {
         Map<Integer, AnimClip> m = CLIPS.get(BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath());
@@ -1090,6 +1092,22 @@ public final class CanonClips {
         rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2308f, -16, 0, 0), k(0.5385f, -24, 0, 0), k(1.0f, 0, 0, 0));
         rot(b, "head", k(0.0f, 0, 0, 0), k(0.2308f, -26, 0, 0), k(0.5385f, 10, 0, 0, SNAP), k(1.0f, 0, 0, 0));
         pos(b, "base", k(0.0f, 0, 0, 0), k(0.2308f, 0, 1, 0), k(0.5385f, 0, -2, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_re3r_nemesis_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.1f, -88, -6, 0), k(0.9f, -88, -6, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.1f, -80, 14, 0), k(0.9f, -80, 14, 0), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.1f, 6, -14, 0), k(0.9f, 6, -14, 0), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.1f, 4, 10, 0), k(0.9f, 4, 10, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_re2r_nemesis_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.12f, -88, -6, 0), k(0.88f, -88, -6, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.12f, -80, 14, 0), k(0.88f, -80, 14, 0), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.12f, 6, -14, 0), k(0.88f, 6, -14, 0), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.12f, 4, 10, 0), k(0.88f, 4, 10, 0), k(1.0f, 0, 0, 0));
         return b.build();
     }
 }

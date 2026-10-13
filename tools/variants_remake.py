@@ -40,6 +40,7 @@ fam('re2r_zombie', 'Re2rZombie', PZ, 're2r', 'Zombie (RE2 Remake)', 'ゾンビ (
 fam('re2r_licker', 'Re2rLicker', PL, 're2r', 'Licker (RE2 Remake)', 'リッカー (RE2リメイク)', 1.0, 1.4, '0xa04050', '0xd08090', hpx=1.3, doc='RE2 Remake Licker: skinless bulk, back spikes, long claws.')
 fam('re2r_mr_x', 'Re2rMrX', PX, 're2r', 'Mr. X (RE2 Remake)', 'ミスターX (RE2リメイク)', 0.9, 2.5, '0x2a2a2e', '0x8a7a60', doc='RE2 Remake Tyrant T-103: long leather coat, wide fedora, scarred face.', scale='1.1f')
 # ---- RE3 remake
+fam('re2r_nemesis', 'Re2rNemesis', PN, 're2r', 'Nemesis (RE2 Remake)', 'ネメシス (RE2リメイク)', 0.9, 2.5, '0x3a2e2a', '0xd0c090', hpx=1.1, doc='Nemesis-T in the RE2 Remake roster: rocket launcher plus a machine gun.', scale='1.1f')
 fam('re3r_zombie', 'Re3rZombie', PZ, 're3r', 'Zombie (RE3 Remake)', 'ゾンビ (RE3リメイク)', 0.6, 1.9, '0x6a6050', '0x8a2020', doc='RE3 Remake zombie: torn civilian clothes, long hair.')
 fam('re3r_nemesis', 'Re3rNemesis', PN, 're3r', 'Nemesis (RE3 Remake)', 'ネメシス (RE3リメイク)', 0.9, 2.5, '0x7a5048', '0xd0c090', hpx=1.2, doc='RE3 Remake Nemesis: skinless bulk, no coat, stitched mouth.', scale='1.1f')
 fam('re3r_pale_head', 'Re3rPaleHead', PPH, 're3r', 'Pale Head (RE3 Remake)', 'ペイルヘッド (RE3リメイク)', 0.7, 2.2, '0xc8c0b8', '0x903030', doc='RE3 Remake Pale Head: gaunt, domed head, bone spines.')
@@ -101,6 +102,15 @@ S('re4r_armadura', PA, 0, [A(HD + '/helm', Z, (-4.5, -7, -4.5, 9, 8, 9, 'p'), (-
    A('body/waist/chest/leftArm/leftForearm/shield', Z, (2, -6, -5, 2, 14, 10, 's'), (4, -1, -2, 1, 4, 4, 'r')), A('body/waist/chest/rightArm/rightForearm/rightHand/halberd', 'PartPose.offsetAndRotation(0, 1, -1, -0.9f, 0, 0)', (-0.5, -8, -0.5, 1, 28, 1, 'w'), (-0.5, -14, -3, 1, 6, 6, 's'))], dict(p=PLATE, s=STEEL, d=DARK, r=D(c=(150, 30, 30), n=0.08), w=WOOD), W=128, H0=64)
 S('re4r_iron_maiden', PIM, 0, [A(CH + '/cage', Z, (-6.5, -9, -4.5, 13, 11, 9, 's')) ] + [A(CH + '/sp%d' % i, Z, (x, y, z, 1, 1, 3, 'r')) for i, (x, y, z) in enumerate([(-5, -7, -7.5), (-1, -7, -7.5), (3, -7, -7.5), (-3, -3, -7.5), (1, -3, -7.5), (-5, -7, 4.5), (3, -7, 4.5), (-1, -3, 4.5)])] +
    [A(HD + '/helm', Z, (-4.5, -7, -4.5, 9, 7, 9, 's'), (-3, -4, -4.6, 6, 1, 1, 'd')), A(CH + '/drip', Z, (-6.6, -2, -4.6, 13.2, 3, 9.2, 'bl'))], dict(s=D(c=(150, 150, 158), n=0.08), r=D(c=(120, 34, 30), n=0.1), d=DARK, bl=BLOOD), W=128, H0=64)
+
+
+MGUN = D(c=(40, 42, 48), n=0.06); MGUN2 = D(c=(90, 94, 102), n=0.06); TANK = D(c=(150, 60, 40), n=0.08); FLAME = D(c=(255, 170, 40), n=0.04)
+S('re2r_nemesis', PN, 0, [A('base/torso/muscle', Z, (-5.5, -11, -3, 11, 7, 6, 'm')), A('base/torso/neck/head/jaw', Z, (-3.7, -3, -4, 7.4, 3, 1.5, 'mo'), (-3.7, -3.2, -4.6, 7.4, 1, 1, 'b')),
+   A('base/torso/armR/foreR/handR/mgun', 'PartPose.offsetAndRotation(0, 2, -1, -1.5f, 0, 0)', (-1.2, -1.5, -9, 2.4, 3, 10, 'g'), (-0.8, 1.5, -3, 1.6, 4, 2, 'g'), (-0.5, -0.5, -14, 1, 1, 5, 'g2'), (-1.4, -1, -1, 2.8, 2, 3, 'g2'))],
+   dict(m=MUS, mo=MOUTH, b=RIB, g=MGUN, g2=MGUN2), W=128, H0=64)
+spec_ = vg.SPECS['re3r_nemesis']
+spec_['sty'].update(dict(tk=TANK, mt=MGUN2, fl=FLAME))
+spec_['parts'] += [A('base/torso/armR/foreR/handR/flamer', 'PartPose.offsetAndRotation(0, 2, -1, -1.5f, 0, 0)', (-1, -1, -11, 2, 2, 11, 'mt'), (-1.5, -1.5, -2, 3, 3, 4, 'mt'), (-0.7, -0.7, -13, 1.4, 1.4, 2, 'fl')), A('base/torso/tank', Z, (-3, -10, 2.6, 6, 10, 4, 'tk'), (-1, -11, 3.2, 2, 2, 2, 'mt'))]
 
 # ---- driver
 def parent_attrs(f):

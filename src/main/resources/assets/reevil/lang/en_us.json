@@ -202,5 +202,7 @@
  "itemGroup.reevil.re1r": "Resident Evil 1 (REmake)",
  "itemGroup.reevil.re2r": "Resident Evil 2 Remake",
  "itemGroup.reevil.re3r": "Resident Evil 3 Remake",
- "itemGroup.reevil.re4r": "Resident Evil 4 Remake"
+ "itemGroup.reevil.re4r": "Resident Evil 4 Remake",
+ "entity.reevil.re2r_nemesis": "Nemesis (RE2 Remake)",
+ "item.reevil.re2r_nemesis_spawn_egg": "Nemesis (RE2 Remake) Spawn Egg"
 }

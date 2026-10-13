@@ -32,6 +32,22 @@
     "mut != 1"
    ]
   ],
+  "re3r_nemesis": [
+   [
+    "base/torso/armR/foreR/handR/flamer",
+    "move == 40"
+   ],
+   [
+    "base/torso/tank",
+    "true"
+   ]
+  ],
+  "re2r_nemesis": [
+   [
+    "base/torso/armR/foreR/handR/mgun",
+    "move == 40"
+   ]
+  ],
   "gnezdo": [
    [
     "base/torso/queen",

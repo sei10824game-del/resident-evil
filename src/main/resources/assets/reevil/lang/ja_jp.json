@@ -194,5 +194,7 @@
  "itemGroup.reevil.re1r": "バイオハザード1 (REmake)",
  "itemGroup.reevil.re2r": "バイオハザード2 リメイク",
  "itemGroup.reevil.re3r": "バイオハザード3 リメイク",
- "itemGroup.reevil.re4r": "バイオハザード4 リメイク"
+ "itemGroup.reevil.re4r": "バイオハザード4 リメイク",
+ "entity.reevil.re2r_nemesis": "ネメシス (RE2リメイク)",
+ "item.reevil.re2r_nemesis_spawn_egg": "ネメシス (RE2リメイク)のスポーンエッグ"
 }

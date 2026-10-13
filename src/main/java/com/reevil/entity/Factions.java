@@ -24,7 +24,7 @@ public final class Factions {
     static {
         reg(F.UMBRELLA, "zombie", "crimson_head", "cerberus", "crow", "hunter", "chimera", "giant_spider", "web_spinner", "neptune", "yawn", "plant42", "tyrant", "lisa_trevor",
             "licker", "mr_x", "alligator", "ivy", "giant_moth", "larva", "nemesis", "grave_digger", "drain_deimos", "brain_sucker", "pale_head", "hunter_beta", "hunter_gamma");
-        reg(F.UMBRELLA, "re1r_zombie", "re1r_hunter", "re2r_zombie", "re2r_licker", "re2r_mr_x", "re3r_zombie", "re3r_nemesis", "re3r_pale_head", "re3r_hunter_beta");
+        reg(F.UMBRELLA, "re1r_zombie", "re1r_hunter", "re2r_zombie", "re2r_licker", "re2r_mr_x", "re2r_nemesis", "re3r_zombie", "re3r_nemesis", "re3r_pale_head", "re3r_hunter_beta");
         reg(F.PLAGA, "re4r_ganado", "re4r_el_gigante", "re4r_verdugo", "re4r_regenerador", "re4r_krauser", "re4r_salazar", "re4r_armadura", "re4r_iron_maiden");
         reg(F.G_VIRUS, "birkin");
         reg(F.PLAGA, "ganado", "salvador", "garrador", "colmillos", "novistador", "regenerador", "iron_maiden", "armadura", "zealot", "verdugo", "krauser", "el_gigante", "mendez",

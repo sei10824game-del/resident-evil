@@ -84,6 +84,13 @@ public final class CanonVisuals {
             case "moreau" -> {
                 { ModelPart p = part(root, "body/head/maw"); if (p != null) p.visible = mut == 1; }
             }
+            case "re2r_nemesis" -> {
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/mgun"); if (p != null) p.visible = move == 40; }
+            }
+            case "re3r_nemesis" -> {
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/flamer"); if (p != null) p.visible = move == 40; }
+                { ModelPart p = part(root, "base/torso/tank"); if (p != null) p.visible = true; }
+            }
             case "simmons" -> {
                 { ModelPart p = part(root, "base/torso/mass"); if (p != null) p.visible = form >= 1; }
                 { ModelPart p = part(root, "base/torso/armR/lump"); if (p != null) p.visible = form >= 1; }

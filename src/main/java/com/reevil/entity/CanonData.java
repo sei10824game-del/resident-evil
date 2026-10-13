@@ -113,6 +113,8 @@ final class CanonData {
         add("wesker", new AttackMove(43, "magnum_shot", 26, new int[]{10, 18}, 5f, 32f, 24, 8).dmg(13f).kb(0).face(10)).hit(0, shot("magnum", 13f)).hit(1, shot("magnum", 13f)).noDefault();
         add("krauser", new AttackMove(42, "tmp_burst", 34, new int[]{10, 13, 16, 19, 22, 25}, 5f, 18f, 50, 3).dmg(3f).kb(0).face(10)).hit(0, shot("arrow", 3f)).hit(1, shot("arrow", 3f)).hit(2, shot("arrow", 3f)).hit(3, shot("arrow", 3f)).hit(4, shot("arrow", 3f)).hit(5, shot("arrow", 3f)).noDefault();
         add("krauser", new AttackMove(43, "flash_grenade", 26, new int[]{14}, 4f, 14f, 140, 2).dmg(2f).kb(0).face(14)).hit(0, aoe(5, 2f, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 60, 2)).noDefault();
+        add("re3r_nemesis", new AttackMove(40, "flamethrower", 60, new int[]{10, 16, 22, 28, 34, 40, 46, 52}, 0f, 7f, 70, 5).dmg(4f).kb(0.1).face(10)).hit(0, cone(7, 4f, 6)).hit(1, cone(7, 4f, 6)).hit(2, cone(7, 4f, 6)).hit(3, cone(7, 4f, 6)).hit(4, cone(7, 4f, 6)).hit(5, cone(7, 4f, 6)).hit(6, cone(7, 4f, 6)).hit(7, cone(7, 4f, 6)).noDefault();
+        add("re2r_nemesis", new AttackMove(40, "machine_gun_burst", 50, new int[]{10, 14, 18, 22, 26, 30, 34, 38, 42, 46}, 5f, 28f, 50, 6).dmg(3f).kb(0).face(10)).hit(0, shot("arrow", 3.5f)).hit(1, shot("arrow", 3.5f)).hit(2, shot("arrow", 3.5f)).hit(3, shot("arrow", 3.5f)).hit(4, shot("arrow", 3.5f)).hit(5, shot("arrow", 3.5f)).hit(6, shot("arrow", 3.5f)).hit(7, shot("arrow", 3.5f)).hit(8, shot("arrow", 3.5f)).hit(9, shot("arrow", 3.5f)).noDefault();
         replaceBase("daughter");
         replaceBase("drain_deimos");
         replaceBase("executioner_majini");

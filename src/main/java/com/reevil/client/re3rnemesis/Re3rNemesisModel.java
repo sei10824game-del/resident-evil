@@ -39,6 +39,15 @@ public class Re3rNemesisModel extends NemesisModel {
             .texOffs(8, 77).addBox(-8.5f, -13.5f, -1, 2, 3, 2)
             .texOffs(16, 77).addBox(6.5f, -13.5f, -1, 2, 3, 2),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 88);
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("flamer", CubeListBuilder.create()
+            .texOffs(24, 77).addBox(-1, -1, -11, 2, 2, 11)
+            .texOffs(50, 77).addBox(-1.5f, -1.5f, -2, 3, 3, 4)
+            .texOffs(64, 77).addBox(-0.7f, -0.7f, -13, 1.4f, 1.4f, 2),
+            PartPose.offsetAndRotation(0, 2, -1, -1.5f, 0, 0));
+        root.getChild("base").getChild("torso").addOrReplaceChild("tank", CubeListBuilder.create()
+            .texOffs(72, 77).addBox(-3, -10, 2.6f, 6, 10, 4)
+            .texOffs(92, 77).addBox(-1, -11, 3.2f, 2, 2, 2),
+            PartPose.ZERO);
+        return LayerDefinition.create(mesh, 128, 96);
     }
 }

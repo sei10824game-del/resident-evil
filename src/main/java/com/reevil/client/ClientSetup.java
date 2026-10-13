@@ -185,6 +185,8 @@ import com.reevil.client.re4rarmadura.Re4rArmaduraModel;
 import com.reevil.client.re4rarmadura.Re4rArmaduraRenderer;
 import com.reevil.client.re4rironmaiden.Re4rIronMaidenModel;
 import com.reevil.client.re4rironmaiden.Re4rIronMaidenRenderer;
+import com.reevil.client.re2rnemesis.Re2rNemesisModel;
+import com.reevil.client.re2rnemesis.Re2rNemesisRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -287,6 +289,7 @@ public final class ClientSetup {
         e.registerLayerDefinition(Re4rSalazarModel.LAYER, Re4rSalazarModel::createBodyLayer);
         e.registerLayerDefinition(Re4rArmaduraModel.LAYER, Re4rArmaduraModel::createBodyLayer);
         e.registerLayerDefinition(Re4rIronMaidenModel.LAYER, Re4rIronMaidenModel::createBodyLayer);
+        e.registerLayerDefinition(Re2rNemesisModel.LAYER, Re2rNemesisModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -383,6 +386,7 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.RE4R_SALAZAR.get(), Re4rSalazarRenderer::new);
         e.registerEntityRenderer(ModEntities.RE4R_ARMADURA.get(), Re4rArmaduraRenderer::new);
         e.registerEntityRenderer(ModEntities.RE4R_IRON_MAIDEN.get(), Re4rIronMaidenRenderer::new);
+        e.registerEntityRenderer(ModEntities.RE2R_NEMESIS.get(), Re2rNemesisRenderer::new);
     }
 
     private ClientSetup() {}

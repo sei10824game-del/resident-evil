@@ -29,7 +29,7 @@ public final class ModTabs {
         Map.entry("re8", List.of("lycan", "daughter", "dimitrescu", "heisenberg", "moreau", "sturm", "urias", "soldat", "miranda")),
 
         Map.entry("re1r", List.of("re1r_zombie", "re1r_hunter", "crimson_head", "lisa_trevor", "cerberus", "crow", "neptune", "yawn")),
-        Map.entry("re2r", List.of("re2r_zombie", "re2r_licker", "re2r_mr_x", "birkin", "alligator", "ivy", "cerberus")),
+        Map.entry("re2r", List.of("re2r_zombie", "re2r_licker", "re2r_mr_x", "re2r_nemesis", "birkin", "alligator", "ivy", "cerberus")),
         Map.entry("re3r", List.of("re3r_zombie", "re3r_nemesis", "re3r_pale_head", "re3r_hunter_beta", "drain_deimos", "grave_digger", "brain_sucker", "cerberus")),
         Map.entry("re4r", List.of("re4r_ganado", "re4r_el_gigante", "re4r_verdugo", "re4r_regenerador", "re4r_krauser", "re4r_salazar", "re4r_armadura", "re4r_iron_maiden", "garrador", "novistador", "del_lago")));
     private static final Map<String, String> ICON = Map.ofEntries(Map.entry("re1r", "re1r_zombie"), Map.entry("re2r", "re2r_licker"), Map.entry("re3r", "re3r_nemesis"), Map.entry("re4r", "re4r_ganado"), Map.entry("re1", "zombie"), Map.entry("re2", "licker"), Map.entry("re3", "nemesis"), Map.entry("re4", "ganado"), Map.entry("re5", "majini"), Map.entry("re6", "javo"), Map.entry("re7", "molded"), Map.entry("re8", "lycan"));

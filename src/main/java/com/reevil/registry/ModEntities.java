@@ -93,6 +93,7 @@ import com.reevil.entity.re4rkrauser.Re4rKrauserEntity;
 import com.reevil.entity.re4rsalazar.Re4rSalazarEntity;
 import com.reevil.entity.re4rarmadura.Re4rArmaduraEntity;
 import com.reevil.entity.re4rironmaiden.Re4rIronMaidenEntity;
+import com.reevil.entity.re2rnemesis.Re2rNemesisEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -470,6 +471,10 @@ public final class ModEntities {
         () -> EntityType.Builder.of(Re4rIronMaidenEntity::new, MobCategory.MONSTER).sized(0.8f, 2.0f).clientTrackingRange(10).build("re4r_iron_maiden"));
     public static final RegistryObject<Item> RE4R_IRON_MAIDEN_EGG = egg("re4r_iron_maiden", RE4R_IRON_MAIDEN, 0x9a9aa2, 0xa03030);
 
+    public static final RegistryObject<EntityType<Re2rNemesisEntity>> RE2R_NEMESIS = ENTITIES.register("re2r_nemesis",
+        () -> EntityType.Builder.of(Re2rNemesisEntity::new, MobCategory.MONSTER).sized(0.9f, 2.5f).clientTrackingRange(10).build("re2r_nemesis"));
+    public static final RegistryObject<Item> RE2R_NEMESIS_EGG = egg("re2r_nemesis", RE2R_NEMESIS, 0x3a2e2a, 0xd0c090);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -563,6 +568,7 @@ public final class ModEntities {
         e.put(RE4R_SALAZAR.get(), Re4rSalazarEntity.createAttributes().build());
         e.put(RE4R_ARMADURA.get(), Re4rArmaduraEntity.createAttributes().build());
         e.put(RE4R_IRON_MAIDEN.get(), Re4rIronMaidenEntity.createAttributes().build());
+        e.put(RE2R_NEMESIS.get(), Re2rNemesisEntity.createAttributes().build());
     }
 
     private ModEntities() {}

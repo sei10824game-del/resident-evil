@@ -18,6 +18,7 @@ public final class CreatureSizes {
         Map.entry("mr_x", new float[]{0.9f, 2.3f, 1.294f, 0.996f}),
         Map.entry("re2r_mr_x", new float[]{0.97f, 2.4f, 1.063f, 0.945f}),
         Map.entry("nemesis", new float[]{1.01f, 2.5f, 1.406f, 1.042f}),
+        Map.entry("re2r_nemesis", new float[]{1.01f, 2.5f, 1.278f, 0.947f}),
         Map.entry("re3r_nemesis", new float[]{1.09f, 2.6f, 1.253f, 0.985f}),
         Map.entry("ustanak", new float[]{1.09f, 2.6f, 1.313f, 0.938f}),
         Map.entry("verdugo", new float[]{0.71f, 2.5f, 1.118f, 0.941f}),
