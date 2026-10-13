@@ -42,6 +42,7 @@ public abstract class BioMonster extends Monster {
 
     protected BioMonster(EntityType<? extends Monster> type, Level level) {
         super(type, level);
+        if (canonSize() != null) refreshDimensions();
     }
 
     @Override
@@ -187,6 +188,18 @@ public abstract class BioMonster extends Monster {
         double dx = target.getX() - getX(), dz = target.getZ() - getZ();
         float yaw = (float) (Math.toDegrees(Math.atan2(dz, dx)) - 90.0);
         setYRot(yaw); yBodyRot = yaw; yHeadRot = yaw;
+    }
+
+    private float[] sizeEntry; private boolean sizeLooked;
+    /** canonical size entry (CreatureSizes) or null */
+    public float[] canonSize() {
+        if (!sizeLooked) { sizeLooked = true; sizeEntry = CreatureSizes.of(BuiltInRegistries.ENTITY_TYPE.getKey(getType()).getPath()); }
+        return sizeEntry;
+    }
+    @Override
+    public net.minecraft.world.entity.EntityDimensions getDimensions(net.minecraft.world.entity.Pose pose) {
+        float[] s = canonSize();
+        return s != null ? net.minecraft.world.entity.EntityDimensions.scalable(s[0], s[1]) : super.getDimensions(pose);
     }
 
     // ---- target switching

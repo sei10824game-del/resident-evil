@@ -15,6 +15,17 @@ public class BioRenderer<T extends BioMonster, M extends BioModel<T>> extends Mo
         this.tex = texBase;
     }
 
+    /** canonical size: extra scale on top of the creature's own renderer scale (heights and builds from CreatureSizes) */
+    @Override
+    public void render(T e, float yaw, float partial, com.mojang.blaze3d.vertex.PoseStack ps, net.minecraft.client.renderer.MultiBufferSource buf, int light) {
+        float[] sz = e.canonSize();
+        if (sz == null) { super.render(e, yaw, partial, ps, buf, light); return; }
+        ps.pushPose();
+        ps.scale(sz[2], sz[3], sz[2]);
+        super.render(e, yaw, partial, ps, buf, light);
+        ps.popPose();
+    }
+
     @Override
     public ResourceLocation getTextureLocation(T e) {
         String suffix = e.getTextureSuffix();
