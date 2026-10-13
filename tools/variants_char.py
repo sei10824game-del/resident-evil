@@ -117,6 +117,10 @@ body = hum('mrx', hips=[(-4, -1.5, -2.2, 8, 3, 4.4, 'ct')],
   thigh=[(-2.2, 0, -2.2, 4.4, 7, 4.4, 'ct')], shin=[(-2.1, 0, -2.1, 4.2, 7, 4.2, 'ct')], foot=[(-2.2, 0, -4.8, 4.4, 2, 6.4, 'ct')], coat=[(-3, -1, -3.5, 6, 17, 7, 'ct'), (-3.1, 15, -3.6, 6.2, 1, 7.2, 'gl')])
 rebuild('wesker', body, D(ct=CT, wh=WSH, sk=WSK, hr=WHR, gl=GLV2, fc=face((226, 202, 186), (222, 200, 120), shades=True)), clear=HAT)
 
+SPECS['wesker']['sty'].update(dict(mg=P((150, 154, 162), 0.06), mg2=P((40, 40, 46), 0.06)))
+SPECS['wesker']['parts'] += [A('base/torso/armR/foreR/handR/magnum', 'PartPose.offsetAndRotation(0, 2, -1, -1.5f, 0, 0)', (-0.8, -1, -7, 1.6, 2.2, 8, 'mg'), (-0.6, 1, -2, 1.2, 4, 2, 'mg2'), (-0.5, -1.4, -6, 1, 0.6, 1, 'mg2'))]
+cm.VIS['wesker'] = cm.VIS.get('wesker', []) + [('base/torso/armR/foreR/handR/magnum', 'move == 43')]
+
 # ===================================================================== JILL (RE5): black bodysuit, blond bob, chest device, thigh-high boots
 BS = P((24, 24, 30), 0.08); JSK = P((226, 202, 186), 0.06); JHR = P((220, 198, 120), 0.08, 'fur')
 body = hum('mrx', hips=[(-3.8, -1.5, -2.2, 7.6, 3, 4.4, 'bs')],

@@ -14,7 +14,7 @@ public final class CanonVisuals {
     }
     public static void apply(ModelPart root, BioMonster e) {
         String id = BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath();
-        int mut = e.getMut(), form = e.getForm();
+        int mut = e.getMut(), form = e.getForm(), move = e.getMoveId();
         float age = e.tickCount;
         switch (id) {
             case "adjule" -> {
@@ -109,6 +109,8 @@ public final class CanonVisuals {
                 { ModelPart p = part(root, "base/torso/uroT2"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/torso/uroT3"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/torso/uroT4"); if (p != null) p.visible = mut == 1; }
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/magnum"); if (p != null) p.visible = move == 43; }
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/magnum"); if (p != null) p.visible = move == 43; }
             }
             default -> {}
         }

@@ -16,6 +16,14 @@
    [
     "base/torso/uroT4",
     "mut == 1"
+   ],
+   [
+    "base/torso/armR/foreR/handR/magnum",
+    "move == 43"
+   ],
+   [
+    "base/torso/armR/foreR/handR/magnum",
+    "move == 43"
    ]
   ],
   "fat_molded": [

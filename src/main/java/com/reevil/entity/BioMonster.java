@@ -36,6 +36,8 @@ public abstract class BioMonster extends Monster {
     private static final EntityDataAccessor<Integer> DATA_FORM = SynchedEntityData.defineId(BioMonster.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_MUT = SynchedEntityData.defineId(BioMonster.class, EntityDataSerializers.INT);
     private int persistentStage, chrysalisTicks;
+    /** next tick at which parry/dodge may trigger again */
+    public int canonCd;
 
     protected int moveCooldown = 20;
     private AttackMove current;

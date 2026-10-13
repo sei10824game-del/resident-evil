@@ -52,7 +52,8 @@ public class KrauserEntity extends GanadoEntity {
         Vec3 d = target.getEyePosition().subtract(a.position());
         double h = Math.sqrt(d.x * d.x + d.z * d.z);
         a.shoot(d.x, d.y + h * 0.16, d.z, 2.4f, 1.5f);
-        a.setBaseDamage(5.0);
+        a.setBaseDamage(2.0);
+        a.addTag("reevil_bomb");   // explosive arrows
         a.pickup = AbstractArrow.Pickup.DISALLOWED;
         level().addFreshEntity(a);
         playSound(SoundEvents.ARROW_SHOOT, 1.2f, 0.8f);

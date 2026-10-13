@@ -263,6 +263,49 @@ public final class CanonMoves {
                 sl.sendParticles(ParticleTypes.FLAME, s.getX() + look.x * 1.5, s.getY() + s.getBbHeight() * 0.6, s.getZ() + look.z * 1.5, 6, 0.6, 0.2, 0.6, 0.02);
         };
     }
+    /** Wesker-style evasion: sidesteps blows and bullets in a blink (chance, cooldown ticks). */
+    public static BiFunction<BioMonster, DamageSource, Float> dodge(float chance, int cd) {
+        return (s, src) -> {
+            if (s.level().isClientSide || s.tickCount < s.canonCd || s.getMoveId() == 10 || !(src.getEntity() instanceof LivingEntity || src.getDirectEntity() instanceof net.minecraft.world.entity.projectile.Projectile)) return 1f;
+            if (src.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY) || s.getRandom().nextFloat() > chance) return 1f;
+            Entity from = src.getEntity() != null ? src.getEntity() : src.getDirectEntity();
+            Vec3 away = from == null ? Vec3.ZERO : s.position().subtract(from.position()).multiply(1, 0, 1);
+            Vec3 side = new Vec3(-away.z, 0, away.x).normalize().scale(s.getRandom().nextBoolean() ? 2.8 : -2.8);
+            Vec3 to = s.position().add(side);
+            if (!s.level().noCollision(s, s.getBoundingBox().move(side))) return 1f;
+            ((ServerLevel) s.level()).sendParticles(ParticleTypes.POOF, s.getX(), s.getY() + 1, s.getZ(), 8, 0.3, 0.5, 0.3, 0.02);
+            s.teleportTo(to.x, to.y, to.z);
+            ((ServerLevel) s.level()).sendParticles(ParticleTypes.POOF, to.x, to.y + 1, to.z, 8, 0.3, 0.5, 0.3, 0.02);
+            s.canonCd = s.tickCount + cd;
+            s.level().playSound(null, s.getX(), s.getY(), s.getZ(), net.minecraft.sounds.SoundEvents.ENDERMAN_TELEPORT, s.getSoundSource(), 0.7f, 1.6f);
+            return 0f;
+        };
+    }
+    /** Krauser-style knife parry: blades and arrows are knocked aside, then a quick slash answers. */
+    public static BiFunction<BioMonster, DamageSource, Float> parry(float chance, int cd, String counterMove) {
+        return (s, src) -> {
+            if (s.level().isClientSide || s.tickCount < s.canonCd || s.isMoving() || src.getEntity() == null && !(src.getDirectEntity() instanceof net.minecraft.world.entity.projectile.Projectile)) return 1f;
+            if (src.is(net.minecraft.tags.DamageTypeTags.IS_EXPLOSION) || src.is(net.minecraft.tags.DamageTypeTags.IS_FIRE) || s.getRandom().nextFloat() > chance) return 1f;
+            Entity from = src.getEntity() != null ? src.getEntity() : src.getDirectEntity();
+            Vec3 look = Vec3.directionFromRotation(0, s.getYRot()); Vec3 d = from.position().subtract(s.position()).multiply(1, 0, 1);
+            if (d.lengthSqr() > 1.0e-4 && d.normalize().dot(look) < 0.0) return 1f;
+            if (src.getDirectEntity() instanceof net.minecraft.world.entity.projectile.Projectile pr) { pr.setDeltaMovement(pr.getDeltaMovement().scale(-0.5)); pr.hurtMarked = true; }
+            s.canonCd = s.tickCount + cd;
+            ((ServerLevel) s.level()).sendParticles(ParticleTypes.CRIT, s.getX() + look.x * 0.8, s.getY() + 1.3, s.getZ() + look.z * 0.8, 10, 0.2, 0.2, 0.2, 0.3);
+            s.level().playSound(null, s.getX(), s.getY(), s.getZ(), net.minecraft.sounds.SoundEvents.ANVIL_PLACE, s.getSoundSource(), 0.5f, 1.8f);
+            for (AttackMove m : s.allMoves()) if (m.name.equals(counterMove) && s.getTarget() != null) { s.startMove(m); break; }
+            return 0f;
+        };
+    }
+    /** blind / sound-hunters (lickers, garradors): a sneaking player beyond a few blocks is not noticed. */
+    public static Consumer<BioMonster> senseSound(double noticeRange) {
+        return s -> {
+            if (s.level().isClientSide || s.tickCount % 5 != 0) return;
+            LivingEntity t = s.getTarget();
+            if (t instanceof net.minecraft.world.entity.player.Player p && p.isCrouching() && s.distanceTo(p) > noticeRange && s.tickCount - s.getLastHurtByMobTimestamp() > 60 && !s.isMoving()) { s.setTarget(null); s.getNavigation().stop(); }
+        };
+    }
+
     /** ranged arrow-like shot with an optional effect on hit: kinds arrow, poison, slow, fire. */
     public static Fx shot(String kind, float dmg) {
         return (s, t) -> {
@@ -272,9 +315,12 @@ public final class CanonMoves {
             if (kind.equals("poison")) a.addEffect(new MobEffectInstance(net.minecraft.world.effect.MobEffects.POISON, 100, 1));
             if (kind.equals("slow")) a.addEffect(new MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 80, 1));
             if (kind.equals("fire")) a.setSecondsOnFire(6);
+            if (kind.equals("bomb")) a.addTag("reevil_bomb");
+            if (kind.equals("magnum")) { a.setNoGravity(true); a.setCritArrow(true); a.setKnockback(2); s.level().playSound(null, s.getX(), s.getY(), s.getZ(), net.minecraft.sounds.SoundEvents.GENERIC_EXPLODE, s.getSoundSource(), 0.45f, 1.9f);
+                if (s.level() instanceof ServerLevel sl) sl.sendParticles(ParticleTypes.SMOKE, s.getX(), s.getEyeY() - 0.2, s.getZ(), 4, 0.15, 0.1, 0.15, 0.01); }
             a.setPos(s.getX(), s.getEyeY() - 0.2, s.getZ());
             double dx = t.getX() - s.getX(), dy = t.getEyeY() - a.getY(), dz = t.getZ() - s.getZ();
-            a.shoot(dx, dy + Math.sqrt(dx * dx + dz * dz) * 0.04, dz, 2.0f, 2.0f);
+            a.shoot(dx, dy + (kind.equals("magnum") ? 0 : Math.sqrt(dx * dx + dz * dz) * 0.04), dz, kind.equals("magnum") ? 4.2f : 2.0f, kind.equals("magnum") ? 0.4f : 2.0f);
             s.level().addFreshEntity(a);
         };
     }

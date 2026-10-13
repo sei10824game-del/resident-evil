@@ -101,6 +101,11 @@ public class WeskerModel extends MrXModel {
             .texOffs(88, 156).addBox(-1.2f, -1.2f, 0, 2.4f, 2.4f, 14)
             .texOffs(0, 173).addBox(-1, -1, 14, 2, 2, 3),
             PartPose.offsetAndRotation(1, -9, 3, 0.7f, -0.1f, -0.1f));
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("magnum", CubeListBuilder.create()
+            .texOffs(10, 173).addBox(-0.8f, -1, -7, 1.6f, 2.2f, 8)
+            .texOffs(30, 173).addBox(-0.6f, 1, -2, 1.2f, 4, 2)
+            .texOffs(38, 173).addBox(-0.5f, -1.4f, -6, 1, 0.6f, 1),
+            PartPose.offsetAndRotation(0, 2, -1, -1.5f, 0, 0));
         return LayerDefinition.create(mesh, 128, 184);
     }
 }

@@ -26,6 +26,13 @@ public final class CanonEvents {
             if (r.nextInt(12) == 0) add(e, Items.IRON_NUGGET, 1);
         }
     }
+    @SubscribeEvent
+    public static void impact(net.minecraftforge.event.entity.ProjectileImpactEvent e) {
+        var pr = e.getProjectile();
+        if (pr.level().isClientSide || !pr.getTags().contains("reevil_bomb")) return;
+        pr.level().explode(pr.getOwner(), pr.getX(), pr.getY(), pr.getZ(), 2.4f, net.minecraft.world.level.Level.ExplosionInteraction.NONE);
+        pr.discard(); e.setCanceled(true);
+    }
     private static void add(LivingDropsEvent e, net.minecraft.world.item.Item item, int n) {
         if (n > 0) e.getDrops().add(new ItemEntity(e.getEntity().level(), e.getEntity().getX(), e.getEntity().getY() + 0.5, e.getEntity().getZ(), new ItemStack(item, n)));
     }

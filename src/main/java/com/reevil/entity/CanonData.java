@@ -17,9 +17,9 @@ final class CanonData {
         add("uroboros", new AttackMove(40, "tendril_mass_slam", 44, new int[]{24}, 0f, 7f, 60, 4).dmg(12f).kb(1.8).face(24)).hit(0, aoe(5.5, 10f, 1.6)).noDefault();
         add("uroboros", new AttackMove(41, "virus_burst", 48, new int[]{24}, 0f, 8f, 90, 3).dmg(4f).kb(0).face(24)).hit(0, aoe(8, 4f, 0.8)).hit(0, effect(net.minecraft.world.effect.MobEffects.POISON, 100, 1)).noDefault();
         add("uroboros", new AttackMove(42, "tendril_pull", 40, new int[]{18}, 4f, 12f, 70, 3).dmg(5f).kb(0).face(18)).hit(0, pull(2.0));
-        add("wesker", new AttackMove(40, "phantom_step_strike", 30, new int[]{16}, 3f, 9f, 50, 3).dmg(10f).kb(1.3).face(16)).tick(5, 5, blink());
-        add("wesker", new AttackMove(41, "lava_tentacle_lash", 40, new int[]{16, 26}, 0f, 7f, 50, 4).dmg(9f).kb(1.2).face(16)).can(mut(1)).hit(0, aoe(6, 8f, 1.4)).hit(0, fire(4)).hit(1, aoe(6, 8f, 1.4)).noDefault();
-        add("wesker", new AttackMove(42, "charge_rush", 36, new int[]{20}, 3f, 10f, 60, 3).dmg(14f).kb(2.4).face(20)).can(mut(1)).tick(6, 20, lunge(0.55, 0)).hit(0, launch(0.45));
+        add("wesker", new AttackMove(40, "phantom_step_strike", 20, new int[]{11}, 3f, 9f, 30, 3).dmg(10f).kb(1.3).face(11)).tick(3, 3, blink());
+        add("wesker", new AttackMove(41, "lava_tentacle_lash", 27, new int[]{11, 18}, 0f, 7f, 30, 4).dmg(9f).kb(1.2).face(11)).can(mut(1)).hit(0, aoe(6, 8f, 1.4)).hit(0, fire(4)).hit(1, aoe(6, 8f, 1.4)).noDefault();
+        add("wesker", new AttackMove(42, "charge_rush", 24, new int[]{13}, 3f, 10f, 40, 3).dmg(14f).kb(2.4).face(13)).can(mut(1)).tick(4, 13, lunge(0.7, 0)).hit(0, launch(0.45));
         add("jill", new AttackMove(40, "flip_kick", 30, new int[]{14}, 0f, 3.4f, 40, 3).dmg(9f).kb(1.6).face(14)).tick(8, 13, lunge(0.3, 0));
         add("napad", new AttackMove(40, "scythe_flurry", 36, new int[]{10, 16, 22, 28}, 0f, 3.2f, 36, 4).dmg(5f).kb(0.4).face(10));
         add("ogroman", new AttackMove(40, "charging_smash", 42, new int[]{24}, 3f, 9f, 70, 3).dmg(14f).kb(2.4).face(24)).tick(8, 24, lunge(0.45, 0)).hit(0, launch(0.5));
@@ -110,6 +110,9 @@ final class CanonData {
         add("drain_deimos", new AttackMove(42, "egg_implant", 40, new int[]{20}, 0f, 2.4f, 120, 2).dmg(4f).kb(0).face(20)).hit(0, effect(net.minecraft.world.effect.MobEffects.HUNGER, 200, 1)).hit(0, effect(net.minecraft.world.effect.MobEffects.WEAKNESS, 200, 1)).hit(0, effect(net.minecraft.world.effect.MobEffects.CONFUSION, 160, 0));
         add("drain_deimos", new AttackMove(43, "leaping_pounce", 34, new int[]{18}, 3f, 9f, 50, 3).dmg(7f).kb(0.8).face(18)).tick(6, 18, lunge(0.6, 0.4));
         add("hunter_gamma", new AttackMove(40, "acid_vomit", 40, new int[]{20}, 2f, 7f, 60, 3).dmg(4f).kb(0).face(20)).hit(0, cone(7, 4f, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.POISON, 80, 1)).noDefault();
+        add("wesker", new AttackMove(43, "magnum_shot", 26, new int[]{10, 18}, 5f, 32f, 24, 8).dmg(13f).kb(0).face(10)).hit(0, shot("magnum", 13f)).hit(1, shot("magnum", 13f)).noDefault();
+        add("krauser", new AttackMove(42, "tmp_burst", 34, new int[]{10, 13, 16, 19, 22, 25}, 5f, 18f, 50, 3).dmg(3f).kb(0).face(10)).hit(0, shot("arrow", 3f)).hit(1, shot("arrow", 3f)).hit(2, shot("arrow", 3f)).hit(3, shot("arrow", 3f)).hit(4, shot("arrow", 3f)).hit(5, shot("arrow", 3f)).noDefault();
+        add("krauser", new AttackMove(43, "flash_grenade", 26, new int[]{14}, 4f, 14f, 140, 2).dmg(2f).kb(0).face(14)).hit(0, aoe(5, 2f, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 60, 2)).noDefault();
         replaceBase("daughter");
         replaceBase("drain_deimos");
         replaceBase("executioner_majini");
@@ -125,6 +128,8 @@ final class CanonData {
         damage("soldat", rearWeak(1.5f));
         damage("sturm", rearWeak(1.6f));
         damage("javo", armorAndScales());
+        damage("wesker", dodge(0.65f, 22));
+        damage("krauser", parry(0.5f, 30, "knife_slash"));
         onHurt("fat_molded", counter(40, 0.35f));
         onDeath("majini", burstInto("kipepeo", 3, 0.12f));
         onDeath("chainsaw_majini", burstInto("kipepeo", 3, 0.12f));
@@ -149,5 +154,8 @@ final class CanonData {
         passive("uroboros", mutateAt(0.5f, 1));
         passive("miranda", mutateAt(0.6f, 1));
         passive("miranda", mutStep(1, 2, 0.25f));
+        passive("licker", senseSound(3.5));
+        passive("re2r_licker", senseSound(3.5));
+        passive("garrador", senseSound(3.5));
     }
 }

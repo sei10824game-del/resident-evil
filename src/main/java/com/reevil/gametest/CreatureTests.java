@@ -219,4 +219,22 @@ public class CreatureTests {
             if (!mob.isAlive() || tg == near || near.getHealth() < near.getMaxHealth()) h.succeed(); else h.fail("still on far target"); });
     }
     private static boolean t0(BioMonster m) { return m.tickCount < 6; }
+    private static void evade(GameTestHelper h, net.minecraft.world.entity.EntityType<? extends BioMonster> type, String name) {
+        flat(h);
+        BioMonster mob = (BioMonster) h.spawn(type, new BlockPos(12, 1, 12));
+        mob.addTag("reevil_iso");
+        net.minecraft.world.entity.monster.Zombie foe = (net.minecraft.world.entity.monster.Zombie) h.spawn(net.minecraft.world.entity.EntityType.ZOMBIE, new BlockPos(12, 1, 10));
+        foe.setNoAi(true);
+        int[] avoided = {0};
+        for (int i = 1; i <= 20; i++) h.runAfterDelay(i * 25, () -> {
+            mob.setTarget(null); mob.cancelMove();
+            net.minecraft.world.phys.Vec3 look = net.minecraft.world.phys.Vec3.directionFromRotation(0, mob.getYRot());
+            foe.moveTo(mob.getX() + look.x * 1.5, mob.getY(), mob.getZ() + look.z * 1.5);
+            float before = mob.getHealth(); mob.hurt(mob.damageSources().mobAttack(foe), 5f);
+            if (mob.getHealth() >= before) avoided[0]++;
+        });
+        h.runAfterDelay(560, () -> { System.out.println("[REEVIL-TEST] EVADE " + name + " avoided=" + avoided[0] + "/20"); if (avoided[0] >= 3) h.succeed(); else h.fail("avoided " + avoided[0]); });
+    }
+    @GameTest(template = "empty", timeoutTicks = 600) public static void weskerDodges(GameTestHelper h) { evade(h, ModEntities.WESKER.get(), "wesker"); }
+    @GameTest(template = "empty", timeoutTicks = 600) public static void krauserParries(GameTestHelper h) { evade(h, ModEntities.KRAUSER.get(), "krauser"); }
 }
