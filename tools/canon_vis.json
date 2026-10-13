@@ -251,6 +251,24 @@
     "base/mutRoots",
     "mut >= 1"
    ]
+  ],
+  "simmons": [
+   [
+    "base/torso/mass",
+    "form >= 1"
+   ],
+   [
+    "base/torso/armR/lump",
+    "form >= 1"
+   ],
+   [
+    "base/torso/spines",
+    "form >= 1"
+   ],
+   [
+    "base/torso/neck/head/jawmass",
+    "form >= 1"
+   ]
   ]
  },
  "SPIN": {

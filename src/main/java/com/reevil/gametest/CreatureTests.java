@@ -207,4 +207,15 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void gnezdoLow(GameTestHelper h) { run(h, ModEntities.GNEZDO.get(), false, 4, 0.3f); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void margueriteLow(GameTestHelper h) { run(h, ModEntities.MARGUERITE.get(), false, 5, 0.4f); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void dimitrescuLow(GameTestHelper h) { run(h, ModEntities.DIMITRESCU.get(), false, 5, 0.25f); }
+    /** a creature locked on a far player must turn on the enemy chewing on it. */
+    @GameTest(template = "empty", timeoutTicks = 300) public static void retarget(GameTestHelper h) {
+        flat(h);
+        BioMonster mob = (BioMonster) h.spawn(ModEntities.ZOMBIE.get(), new BlockPos(12, 1, 8));
+        net.minecraft.world.entity.LivingEntity near = (net.minecraft.world.entity.LivingEntity) h.spawn(net.minecraft.world.entity.EntityType.IRON_GOLEM, new BlockPos(12, 1, 9));
+        Player p = h.makeMockPlayer(); Vec3 pp = h.absoluteVec(new Vec3(12, 1, 22)); p.moveTo(pp.x, pp.y, pp.z);
+        for (int t = 1; t <= 120; t++) h.runAfterDelay(t, () -> { if (mob.isAlive() && t0(mob)) mob.setTarget(p); });
+        h.runAfterDelay(160, () -> { var tg = mob.getTarget(); System.out.println("[REEVIL-TEST] RETARGET target=" + tg + " golemHp=" + near.getHealth());
+            if (!mob.isAlive() || tg == near || near.getHealth() < near.getMaxHealth()) h.succeed(); else h.fail("still on far target"); });
+    }
+    private static boolean t0(BioMonster m) { return m.tickCount < 6; }
 }

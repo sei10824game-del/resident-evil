@@ -50,7 +50,7 @@ def paint_cube(t, u, v, w, h, d, sty, tint, rng):
         t.rect(fx + fw // 4, fy + int(fh * 0.8), max(2, fw // 2), 1, mc, 0.05)
         if sty.get('fringe'): t.rect(fx, fy, fw, max(2, int(fh * 0.5)), hc, 0.08)
     elif det == 'bruise':
-        t.blots(fx, fy, fw, fh, shade(base, 0.6), max(2, fw * fh // 10), 3)
+        t.blots(fx, fy, fw, fh, shade(base, 0.72), max(1, fw * fh // 30), 2)
     elif det == 'spike':
         for x, y, ww, hh in fc.values():
             for j in range(hh):

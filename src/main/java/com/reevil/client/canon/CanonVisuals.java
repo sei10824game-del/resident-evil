@@ -84,6 +84,12 @@ public final class CanonVisuals {
             case "moreau" -> {
                 { ModelPart p = part(root, "body/head/maw"); if (p != null) p.visible = mut == 1; }
             }
+            case "simmons" -> {
+                { ModelPart p = part(root, "base/torso/mass"); if (p != null) p.visible = form >= 1; }
+                { ModelPart p = part(root, "base/torso/armR/lump"); if (p != null) p.visible = form >= 1; }
+                { ModelPart p = part(root, "base/torso/spines"); if (p != null) p.visible = form >= 1; }
+                { ModelPart p = part(root, "base/torso/neck/head/jawmass"); if (p != null) p.visible = form >= 1; }
+            }
             case "soldat" -> {
                 { ModelPart p = part(root, "base/torso/armR/foreR/drillR"); if (p != null) p.visible = mut == 1 || mut == 3; }
                 { ModelPart p = part(root, "base/torso/armL/foreL/drillL2"); if (p != null) p.visible = mut == 3; }

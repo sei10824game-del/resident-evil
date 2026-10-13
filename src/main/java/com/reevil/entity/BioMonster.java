@@ -160,6 +160,7 @@ public abstract class BioMonster extends Monster {
         super.aiStep();
         if (level().isClientSide) return;
         CanonMoves.passives(this);
+        if (tickCount % 8 == 0 && !isMoving()) retarget();
         if (isAlive() && !isMoving() && random.nextInt(getTarget() != null ? 180 : 320) == 0) playVoice("ambient", getTarget() != null ? 1.0f : 0.7f);
         if (moveCooldown > 0 && current == null) moveCooldown--;
         if (current == null) return;
@@ -186,6 +187,27 @@ public abstract class BioMonster extends Monster {
         double dx = target.getX() - getX(), dz = target.getZ() - getZ();
         float yaw = (float) (Math.toDegrees(Math.atan2(dz, dx)) - 90.0);
         setYRot(yaw); yBodyRot = yaw; yHeadRot = yaw;
+    }
+
+    // ---- target switching
+    private int lastRetarget;
+    /**
+     * Picks the most pressing enemy so a creature does not keep chasing a far target while a nearer one beats on it:
+     * whoever hurt us recently and is close wins, otherwise a hostile within melee reach beats a distant target.
+     */
+    protected void retarget() {
+        LivingEntity cur = getTarget();
+        if (cur != null && !cur.isAlive()) cur = null;
+        if (cur != null && tickCount - lastRetarget < 24 && distanceToSqr(cur) < 36) return;
+        LivingEntity best = null; double bd = Double.MAX_VALUE;
+        for (LivingEntity e : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(9), x -> x != this && x.isAlive() && !(x instanceof Player p && (p.isCreative() || p.isSpectator())) && Factions.hostile(this, x))) {
+            double d = distanceToSqr(e);
+            boolean attacker = e == getLastHurtByMob() && tickCount - getLastHurtByMobTimestamp() < 100;
+            double score = attacker ? d * 0.35 : d;
+            if (score < bd) { bd = score; best = e; }
+        }
+        if (best == null || best == cur) return;
+        if (cur == null || bd + 6.0 < distanceToSqr(cur) || !hasLineOfSight(cur)) { setTarget(best); lastRetarget = tickCount; }
     }
 
     // ---- hooks
