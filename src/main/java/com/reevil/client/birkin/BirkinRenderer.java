@@ -12,7 +12,7 @@ public class BirkinRenderer extends BioRenderer<BirkinEntity, BirkinModel> {
 
     @Override
     protected void scale(BirkinEntity e, PoseStack ps, float partial) {
-        float s = new float[]{1.0f, 1.05f, 1.5f, 1.15f, 2.0f}[Math.min(4, e.getForm())];
+        float s = new float[]{0.85f, 0.9f, 1.4f, 0.95f, 2.2f}[Math.min(4, e.getForm())];
         ps.scale(s, s, s);
     }
 

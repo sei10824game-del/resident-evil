@@ -59,7 +59,18 @@ public final class CreatureSizes {
         Map.entry("pale_head", new float[]{0.6f, 2.1f, 0.907f, 0.955f}),
         Map.entry("re3r_pale_head", new float[]{0.63f, 2.2f, 1.045f, 1.1f}),
         Map.entry("del_lago", new float[]{6.0f, 5.0f, 2.1153846153846154f, 2.1153846153846154f}),
-        Map.entry("neptune", new float[]{1.8f, 1.5f, 1.4f, 1.4f})
+        Map.entry("neptune", new float[]{1.8f, 1.5f, 1.4f, 1.4f}),
+        Map.entry("alligator", new float[]{1.9f, 1.9f, 2.35f, 2.35f}),
+        Map.entry("chimera", new float[]{1.0f, 1.9f, 1.45f, 1.45f}),
+        Map.entry("yawn", new float[]{2.2f, 1.8f, 1.56f, 1.56f}),
+        Map.entry("cerberus", new float[]{0.6f, 0.95f, 0.65f, 0.65f}),
+        Map.entry("colmillos", new float[]{0.6f, 0.95f, 0.67f, 0.67f}),
+        Map.entry("adjule", new float[]{0.6f, 0.95f, 0.73f, 0.73f}),
+        Map.entry("hunter", new float[]{0.7f, 1.9f, 0.78f, 0.78f}),
+        Map.entry("hunter_beta", new float[]{0.7f, 1.85f, 0.82f, 0.82f}),
+        Map.entry("re1r_hunter", new float[]{0.7f, 1.9f, 0.78f, 0.78f}),
+        Map.entry("re3r_hunter_beta", new float[]{0.7f, 1.85f, 0.78f, 0.78f}),
+        Map.entry("lycan", new float[]{0.8f, 2.1f, 0.8f, 0.8f})
     );
     public static float[] of(String id) { return SIZES.get(id); }
 }

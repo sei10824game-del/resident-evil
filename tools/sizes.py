@@ -20,7 +20,10 @@ T = {
  'ganado': (1.8, 1.0, 1.0), 're4r_ganado': (1.85, 1.05, 1.0), 'zealot': (1.8, 1.0, 1.0), 'majini': (1.8, 1.0, 1.0), 'javo': (1.85, 1.0, 1.0), 'molded': (2.1, 0.95, 1.0),
  'zombie': (1.8, 1.0, 1.0), 're1r_zombie': (1.8, 1.0, 1.0), 're2r_zombie': (1.8, 1.0, 1.0), 're3r_zombie': (1.8, 1.0, 1.0), 'pale_head': (2.1, 0.95, 1.0), 're3r_pale_head': (2.2, 0.95, 1.0),
 }
-MANUAL = {'del_lago': (6.0, 5.0, 5.5 / 2.6, 5.5 / 2.6), 'neptune': (1.8, 1.5, 1.4, 1.4)}   # hitW, hitH, extraXZ, extraY (Del Lago >20 m long, Neptune 16 ft)
+MANUAL = {'del_lago': (6.0, 5.0, 5.5 / 2.6, 5.5 / 2.6), 'neptune': (1.8, 1.5, 1.4, 1.4),
+  # measured model bounds (tools/ModelBounds.java) vs canon: alligator 10 m, chimera 6.1 ft, Yawn 40 ft, doberman 70 cm, wolf ~1.7 m, hunters ~1.8 m
+  'alligator': (1.9, 1.9, 2.35, 2.35), 'chimera': (1.0, 1.9, 1.45, 1.45), 'yawn': (2.2, 1.8, 1.56, 1.56), 'cerberus': (0.6, 0.95, 0.65, 0.65), 'colmillos': (0.6, 0.95, 0.67, 0.67), 'adjule': (0.6, 0.95, 0.73, 0.73),
+  'hunter': (0.7, 1.9, 0.78, 0.78), 'hunter_beta': (0.7, 1.85, 0.82, 0.82), 're1r_hunter': (0.7, 1.9, 0.78, 0.78), 're3r_hunter_beta': (0.7, 1.85, 0.78, 0.78), 'lycan': (0.8, 2.1, 0.8, 0.8)}   # hitW, hitH, extraXZ, extraY (Del Lago >20 m long, Neptune 16 ft)
 
 def k0(i):
     pk = i.replace('_', ''); C = ''.join(x.capitalize() for x in i.split('_'))

@@ -84,7 +84,7 @@ public class BirkinEntity extends BioMonster {
 
     @Override
     public EntityDimensions getDimensions(Pose pose) {
-        return switch (getForm()) { case 1 -> EntityDimensions.scalable(1.5f, 2.6f); case 2 -> EntityDimensions.scalable(2.3f, 3.8f); case 3 -> EntityDimensions.scalable(1.6f, 2.1f); case 4 -> EntityDimensions.scalable(3.0f, 4.6f); default -> EntityDimensions.scalable(1.2f, 3.1f); };
+        return switch (getForm()) { case 1 -> EntityDimensions.scalable(1.4f, 2.4f); case 2 -> EntityDimensions.scalable(2.2f, 4.6f); case 3 -> EntityDimensions.scalable(1.5f, 2.4f); case 4 -> EntityDimensions.scalable(3.6f, 7.0f); default -> EntityDimensions.scalable(1.1f, 2.8f); };
     }
 
     @Override
