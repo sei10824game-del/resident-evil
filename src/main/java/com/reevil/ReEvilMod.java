@@ -9,6 +9,7 @@ public class ReEvilMod {
     public static final String MODID = "reevil";
 
     public ReEvilMod() {
+        net.minecraftforge.fml.ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, ReConfig.SPEC);
         var bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModEntities.ENTITIES.register(bus);
         ModEntities.ITEMS.register(bus);

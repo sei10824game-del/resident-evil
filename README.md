@@ -31,3 +31,4 @@ Spawn eggs for all (creative tab: Spawn Eggs). New creatures: `tools/addentity.p
 - Character bodies: `tools/variants_char.py` (Krauser, Saddler, Mendez, El Gigante, Ogroman, Executioner, Wesker, Jill, Simmons, Dimitrescu). Full regenerate order: `variantgen.py`, `variants_canon.py`, `variants_char.py`, `variants_remake.py`, `canon_moves.py`.
 - `BioMonster.retarget()`: creatures switch to whoever is hitting them / a closer enemy instead of chasing a far target.
 - Canonical sizes: `tools/sizes.py` -> `entity/CreatureSizes.java` (hitbox + extra render scale; heights from the wiki where given, e.g. Dimitrescu 2.9 m, Ogroman 30+ ft, El Gigante ~4x human).
+- Config `config/reevil-common.toml`: `factionHostility`, `smartRetarget`, `drops`, `damageScale`. Creatures drop vanilla loot by toughness (`CanonEvents`). Game tests tag mobs `reevil_iso` so neighbouring test cells do not fight.

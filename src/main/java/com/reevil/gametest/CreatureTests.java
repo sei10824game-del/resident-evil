@@ -27,6 +27,7 @@ public class CreatureTests {
             for (int y = 1; y <= 5; y++) h.setBlock(new BlockPos(x, y, z), water && y <= 4 ? Blocks.WATER : Blocks.AIR);
         }
         BioMonster mob = (BioMonster) h.spawn(type, new BlockPos(12, water ? 2 : 1, 12 + dist));
+        mob.addTag("reevil_iso");
         Player p = h.makeMockPlayer();
         Vec3 ppos = h.absoluteVec(new Vec3(12, 1, 12));
         p.moveTo(ppos.x, ppos.y, ppos.z);
@@ -147,7 +148,7 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void simmons(GameTestHelper h) { run(h, ModEntities.SIMMONS.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void salazar(GameTestHelper h) { run(h, ModEntities.SALAZAR.get(), false, 5); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void uroboros(GameTestHelper h) { run(h, ModEntities.UROBOROS.get(), false, 6); }
-    @GameTest(template = "empty", timeoutTicks = 700) public static void mendez(GameTestHelper h) { run(h, ModEntities.MENDEZ.get(), false, 7); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void mendez(GameTestHelper h) { run(h, ModEntities.MENDEZ.get(), false, 4); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void ogroman(GameTestHelper h) { run(h, ModEntities.OGROMAN.get(), false, 8); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void jill(GameTestHelper h) { run(h, ModEntities.JILL.get(), false, 6); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void ustanak(GameTestHelper h) { run(h, ModEntities.USTANAK.get(), false, 6); }

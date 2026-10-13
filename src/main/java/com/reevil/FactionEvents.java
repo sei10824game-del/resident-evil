@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 public class FactionEvents {
     @SubscribeEvent
     public static void join(EntityJoinLevelEvent e) {
-        if (e.getLevel().isClientSide || !(e.getEntity() instanceof Mob mob)) return;
+        if (e.getLevel().isClientSide || !(e.getEntity() instanceof Mob mob) || !ReConfig.FACTIONS.get()) return;
         if (mob instanceof BioMonster bio) {
             bio.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(bio, LivingEntity.class, 12, true, false,
                     t -> !(t instanceof Player) && Factions.hostile(bio, t)));

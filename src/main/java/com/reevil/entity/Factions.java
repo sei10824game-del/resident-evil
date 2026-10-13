@@ -44,6 +44,9 @@ public final class Factions {
     /** true if a and b should fight. Non-Resident-Evil entities are hostile to every creature (and vice versa). */
     public static boolean hostile(LivingEntity a, LivingEntity b) {
         if (a == b) return false;
+        boolean isoA = a.getTags().contains("reevil_iso"), isoB = b.getTags().contains("reevil_iso");   // game tests: only the test player counts
+        if (isoA || isoB) return (isoA ? b : a) instanceof Player;
+        if (!com.reevil.ReConfig.FACTIONS.get()) return (a instanceof Player) ^ (b instanceof Player) && (a instanceof BioMonster || b instanceof BioMonster);
         F fa = of(a), fb = of(b);
         if (fa == null || fb == null) return true;           // one side is not a bio creature
         if (fa == fb) return false;                          // same origin

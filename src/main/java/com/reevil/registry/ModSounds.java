@@ -35,6 +35,7 @@ public final class ModSounds {
     private static final Set<String> SQUELCH = Set.of("plant42", "ivy", "salazar", "uroboros", "haos", "yawn", "grave_digger", "neptune", "del_lago", "moreau", "eveline", "miranda", "saddler", "simmons");
 
     public static String archetype(String entityId) {
+        entityId = entityId.replaceFirst("^re[1-4]r_", "");   // remake variants sound like their originals
         if (GROAN.contains(entityId)) return "groan";
         if (GROWL.contains(entityId)) return "growl";
         if (HISS.contains(entityId)) return "hiss";

@@ -161,7 +161,7 @@ public abstract class BioMonster extends Monster {
         super.aiStep();
         if (level().isClientSide) return;
         CanonMoves.passives(this);
-        if (tickCount % 8 == 0 && !isMoving()) retarget();
+        if (tickCount % 8 == 0 && !isMoving() && com.reevil.ReConfig.RETARGET.get()) retarget();
         if (isAlive() && !isMoving() && random.nextInt(getTarget() != null ? 180 : 320) == 0) playVoice("ambient", getTarget() != null ? 1.0f : 0.7f);
         if (moveCooldown > 0 && current == null) moveCooldown--;
         if (current == null) return;
@@ -241,7 +241,7 @@ public abstract class BioMonster extends Monster {
     }
 
     protected boolean strike(LivingEntity target, float dmg, double kb) {
-        boolean ok = target.hurt(damageSources().mobAttack(this), dmg);
+        boolean ok = target.hurt(damageSources().mobAttack(this), dmg * (float) (double) com.reevil.ReConfig.DAMAGE_SCALE.get());
         if (ok) level().playSound(null, target.getX(), target.getY(), target.getZ(), ModSounds.IMPACT.get(), getSoundSource(), 0.6f + Math.min(0.8f, dmg / 20f), 1.15f - Math.min(0.5f, dmg / 40f));
         if (ok && kb > 0) {
             Vec3 d = target.position().subtract(position()).multiply(1, 0, 1).normalize().scale(kb);
