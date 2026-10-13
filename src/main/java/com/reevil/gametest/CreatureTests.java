@@ -44,7 +44,7 @@ public class CreatureTests {
             });
         }
         h.runAfterDelay(601, () -> {
-            System.out.println("[REEVIL-TEST] " + (hpFrac < 1f ? "LOWHP " : "") + type.builtInRegistryHolder().key().location() + " moves seen=" + seen + " alive=" + mob.isAlive() + " hp=" + mob.getHealth());
+            System.out.println("[REEVIL-TEST] " + (hpFrac < 1f ? "LOWHP " : "") + type.builtInRegistryHolder().key().location() + " moves seen=" + seen + " tgt=" + mob.getTarget() + " d=" + (int) mob.distanceTo(p) + " dim=" + mob.getBbWidth() + "x" + mob.getBbHeight() + " alive=" + mob.isAlive() + " hp=" + mob.getHealth());
             if (!mob.isAlive()) h.fail("died unprovoked");
             else if (seen.isEmpty()) h.fail("never started an attack");
             else h.succeed();

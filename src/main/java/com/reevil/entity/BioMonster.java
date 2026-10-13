@@ -177,10 +177,12 @@ public abstract class BioMonster extends Monster {
             getLookControl().setLookAt(target, 60f, 60f);
             faceTarget(target);
         }
-        if (current.id >= 40) CanonMoves.tick(this, current, t, target); else onMoveTick(current, t, target);
-        for (int i = 0; i < current.hitTicks.length; i++) {
-            if (current.hitTicks[i] == t) { if (current.id >= 40) CanonMoves.hit(this, current, i, target); else onMoveHit(current, i, target); }
+        AttackMove run = current;
+        if (run.id >= 40) CanonMoves.tick(this, run, t, target); else onMoveTick(run, t, target);
+        for (int i = 0; i < run.hitTicks.length && current == run; i++) {
+            if (run.hitTicks[i] == t) { if (run.id >= 40) CanonMoves.hit(this, run, i, target); else onMoveHit(run, i, target); }
         }
+        if (current != run) return; // the move cancelled itself (death, mutation, suicide)
         if (t >= current.duration) endMove();
     }
 
