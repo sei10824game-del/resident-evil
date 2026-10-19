@@ -94,6 +94,21 @@ public final class CanonClips {
         CLIPS.computeIfAbsent("fat_molded", k -> new HashMap<>()).put(42, c_fat_molded_42());
         CLIPS.computeIfAbsent("fat_molded", k -> new HashMap<>()).put(43, c_fat_molded_43());
         CLIPS.computeIfAbsent("fat_molded", k -> new HashMap<>()).put(44, c_fat_molded_44());
+        CLIPS.computeIfAbsent("jack_baker", k -> new HashMap<>()).put(42, c_jack_baker_42());
+        CLIPS.computeIfAbsent("jack_baker", k -> new HashMap<>()).put(43, c_jack_baker_43());
+        CLIPS.computeIfAbsent("jack_baker", k -> new HashMap<>()).put(44, c_jack_baker_44());
+        CLIPS.computeIfAbsent("jack_baker", k -> new HashMap<>()).put(45, c_jack_baker_45());
+        CLIPS.computeIfAbsent("jack_baker", k -> new HashMap<>()).put(46, c_jack_baker_46());
+        CLIPS.computeIfAbsent("quick_molded", k -> new HashMap<>()).put(40, c_quick_molded_40());
+        CLIPS.computeIfAbsent("quick_molded", k -> new HashMap<>()).put(41, c_quick_molded_41());
+        CLIPS.computeIfAbsent("blade_molded", k -> new HashMap<>()).put(40, c_blade_molded_40());
+        CLIPS.computeIfAbsent("arm_molded", k -> new HashMap<>()).put(40, c_arm_molded_40());
+        CLIPS.computeIfAbsent("arm_molded", k -> new HashMap<>()).put(41, c_arm_molded_41());
+        CLIPS.computeIfAbsent("molded_fang", k -> new HashMap<>()).put(40, c_molded_fang_40());
+        CLIPS.computeIfAbsent("molded_eyeless", k -> new HashMap<>()).put(40, c_molded_eyeless_40());
+        CLIPS.computeIfAbsent("insect_nest", k -> new HashMap<>()).put(40, c_insect_nest_40());
+        CLIPS.computeIfAbsent("insect_nest", k -> new HashMap<>()).put(41, c_insect_nest_41());
+        CLIPS.computeIfAbsent("mia", k -> new HashMap<>()).put(40, c_mia_40());
         CLIPS.computeIfAbsent("mendez", k -> new HashMap<>()).put(40, c_mendez_40());
         CLIPS.computeIfAbsent("mendez", k -> new HashMap<>()).put(41, c_mendez_41());
         CLIPS.computeIfAbsent("mendez", k -> new HashMap<>()).put(42, c_mendez_42());
@@ -852,6 +867,144 @@ public final class CanonClips {
         rot(b, "leftArm", k(0.0f, 0, 0, 0), k(0.1765f, 40, 0, -16), k(0.5294f, -86, 0, 0, SNAP), k(1.0f, 0, 0, 0));
         rot(b, "leftThigh", k(0.0f, 0, 0, 0), k(0.1765f, -34, 0, 0), k(0.3529f, 34, 0, 0), k(0.5294f, -30, 0, 0), k(1.0f, 0, 0, 0));
         rot(b, "rightThigh", k(0.0f, 0, 0, 0), k(0.1765f, 34, 0, 0), k(0.3529f, -34, 0, 0), k(0.5294f, 30, 0, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_jack_baker_42() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.1875f, -50, 0, 85), k(0.4375f, -40, 0, -85, SNAP), k(0.8125f, -20, 0, -20), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.1875f, -40, 0, -50), k(0.4375f, -30, 0, 20), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.1875f, 4, 52, 0), k(0.4375f, 12, -60, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.4375f, 6, -20, 0), k(1.0f, 0, 0, 0));
+        rot(b, "base", k(0.0f, 0, 0, 0), k(0.1875f, 0, 26, 0), k(0.4375f, 0, -30, 0, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_jack_baker_43() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2f, 28, 0, 0), k(0.5333f, 34, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.2f, -20, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.2f, 40, 0, 16), k(0.5333f, -86, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.2f, 40, 0, -16), k(0.5333f, -86, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "thighL", k(0.0f, 0, 0, 0), k(0.2f, -34, 0, 0), k(0.3667f, 34, 0, 0), k(0.5333f, -30, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighR", k(0.0f, 0, 0, 0), k(0.2f, 34, 0, 0), k(0.3667f, -34, 0, 0), k(0.5333f, 30, 0, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_jack_baker_44() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.2778f, -50, 0, 85), k(0.5f, -40, 0, -85, SNAP), k(0.8333f, -20, 0, -20), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.2778f, -40, 0, -50), k(0.5f, -30, 0, 20), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2778f, 4, 52, 0), k(0.5f, 12, -60, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.5f, 6, -20, 0), k(1.0f, 0, 0, 0));
+        rot(b, "base", k(0.0f, 0, 0, 0), k(0.2778f, 0, 26, 0), k(0.5f, 0, -30, 0, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_jack_baker_45() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.3f, -40, 24, 0), k(0.45f, -88, -6, 0, SNAP), k(0.7f, -50, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.3f, -50, -20, 0), k(0.45f, -20, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.3f, -4, 30, 0), k(0.45f, 20, -26, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.45f, 10, -14, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighR", k(0.0f, 0, 0, 0), k(0.3f, 26, 0, 0), k(0.45f, -30, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighL", k(0.0f, 0, 0, 0), k(0.3f, -20, 0, 0), k(0.45f, 22, 0, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_jack_baker_46() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.3864f, -165, 0, -14), k(0.5455f, -12, 0, -6, SNAP), k(0.7727f, -6, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.3864f, -165, 0, 14), k(0.5455f, -12, 0, 6, SNAP), k(0.7727f, -6, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.3864f, -26, 0, 0), k(0.5455f, 42, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.3864f, -20, 0, 0), k(0.5455f, 22, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighL", k(0.0f, 0, 0, 0), k(0.5455f, -28, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighR", k(0.0f, 0, 0, 0), k(0.5455f, -28, 0, 0), k(1.0f, 0, 0, 0));
+        pos(b, "base", k(0.0f, 0, 0, 0), k(0.3864f, 0, -2, 2), k(0.5455f, 0, 6, -3, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_quick_molded_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.1429f, -30, 0, 10), k(0.2857f, -98, 0, -10, SNAP), k(0.5f, -30, 0, 10), k(0.6429f, -98, 0, -10, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.3214f, -30, 0, 10), k(0.4643f, -98, 0, -10, SNAP), k(0.6786f, -30, 0, 10), k(0.8214f, -98, 0, -10, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2857f, 8, -22, 0, SNAP), k(0.4643f, 8, 22, 0, SNAP), k(0.6429f, 8, -22, 0, SNAP), k(0.8214f, 8, 22, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.2857f, 6, 12, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_quick_molded_41() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2308f, 28, 0, 0), k(0.5385f, 34, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.2308f, -20, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.2308f, 40, 0, 16), k(0.5385f, -86, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.2308f, 40, 0, -16), k(0.5385f, -86, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "thighL", k(0.0f, 0, 0, 0), k(0.2308f, -34, 0, 0), k(0.3846f, 34, 0, 0), k(0.5385f, -30, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighR", k(0.0f, 0, 0, 0), k(0.2308f, 34, 0, 0), k(0.3846f, -34, 0, 0), k(0.5385f, 30, 0, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_blade_molded_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.2941f, -30, 0, 10), k(0.4118f, -98, 0, -10, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.5294f, -30, 0, 10), k(0.6471f, -98, 0, -10, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.4118f, 8, -22, 0, SNAP), k(0.6471f, 8, 22, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.4118f, 6, 12, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_arm_molded_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.3864f, -165, 0, -14), k(0.5455f, -12, 0, -6, SNAP), k(0.7727f, -6, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.3864f, -165, 0, 14), k(0.5455f, -12, 0, 6, SNAP), k(0.7727f, -6, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.3864f, -26, 0, 0), k(0.5455f, 42, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.3864f, -20, 0, 0), k(0.5455f, 22, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighL", k(0.0f, 0, 0, 0), k(0.5455f, -28, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighR", k(0.0f, 0, 0, 0), k(0.5455f, -28, 0, 0), k(1.0f, 0, 0, 0));
+        pos(b, "base", k(0.0f, 0, 0, 0), k(0.3864f, 0, -2, 2), k(0.5455f, 0, 6, -3, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_arm_molded_41() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.2778f, -50, 0, 85), k(0.5f, -40, 0, -85, SNAP), k(0.8333f, -20, 0, -20), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.2778f, -40, 0, -50), k(0.5f, -30, 0, 20), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2778f, 4, 52, 0), k(0.5f, 12, -60, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.5f, 6, -20, 0), k(1.0f, 0, 0, 0));
+        rot(b, "base", k(0.0f, 0, 0, 0), k(0.2778f, 0, 26, 0), k(0.5f, 0, -30, 0, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_molded_fang_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2f, 28, 0, 0), k(0.5333f, 34, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.2f, -20, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.2f, 40, 0, 16), k(0.5333f, -86, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.2f, 40, 0, -16), k(0.5333f, -86, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "thighL", k(0.0f, 0, 0, 0), k(0.2f, -34, 0, 0), k(0.3667f, 34, 0, 0), k(0.5333f, -30, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighR", k(0.0f, 0, 0, 0), k(0.2f, 34, 0, 0), k(0.3667f, -34, 0, 0), k(0.5333f, 30, 0, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_molded_eyeless_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.2353f, -50, 0, 85), k(0.4706f, -40, 0, -85, SNAP), k(0.8235f, -20, 0, -20), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.2353f, -40, 0, -50), k(0.4706f, -30, 0, 20), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2353f, 4, 52, 0), k(0.4706f, 12, -60, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.4706f, 6, -20, 0), k(1.0f, 0, 0, 0));
+        rot(b, "base", k(0.0f, 0, 0, 0), k(0.2353f, 0, 26, 0), k(0.4706f, 0, -30, 0, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_insect_nest_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "stem2", k(0.0f, 0, 0, 0), k(0.3f, -120, 0, -60), k(0.5f, -150, 0, -70, SNAP), k(0.85f, -90, 0, -40), k(1.0f, 0, 0, 0));
+        rot(b, "stem1", k(0.0f, 0, 0, 0), k(0.3f, -16, 0, 0), k(0.5f, -24, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.3f, -26, 0, 0), k(0.5f, 10, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_insect_nest_41() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "stem2", k(0.0f, 0, 0, 0), k(0.3f, -120, 0, -60), k(0.5f, -150, 0, -70, SNAP), k(0.85f, -90, 0, -40), k(1.0f, 0, 0, 0));
+        rot(b, "stem1", k(0.0f, 0, 0, 0), k(0.3f, -16, 0, 0), k(0.5f, -24, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.3f, -26, 0, 0), k(0.5f, 10, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_mia_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.2667f, -40, 24, 0), k(0.4667f, -88, -6, 0, SNAP), k(0.8f, -50, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.2667f, -50, -20, 0), k(0.4667f, -20, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2667f, -4, 30, 0), k(0.4667f, 20, -26, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.4667f, 10, -14, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighR", k(0.0f, 0, 0, 0), k(0.2667f, 26, 0, 0), k(0.4667f, -30, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "thighL", k(0.0f, 0, 0, 0), k(0.2667f, -20, 0, 0), k(0.4667f, 22, 0, 0), k(1.0f, 0, 0, 0));
         return b.build();
     }
     private static AnimClip c_mendez_40() {

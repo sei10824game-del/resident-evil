@@ -26,6 +26,60 @@
      "weight": 1,
      "minCount": 1,
      "maxCount": 2
+    },
+    {
+     "type": "reevil:quick_molded",
+     "weight": 1,
+     "minCount": 1,
+     "maxCount": 2
+    },
+    {
+     "type": "reevil:blade_molded",
+     "weight": 1,
+     "minCount": 1,
+     "maxCount": 2
+    },
+    {
+     "type": "reevil:arm_molded",
+     "weight": 1,
+     "minCount": 1,
+     "maxCount": 2
+    },
+    {
+     "type": "reevil:molded_fang",
+     "weight": 1,
+     "minCount": 1,
+     "maxCount": 2
+    },
+    {
+     "type": "reevil:molded_eyeless",
+     "weight": 1,
+     "minCount": 1,
+     "maxCount": 2
+    },
+    {
+     "type": "reevil:bug_large",
+     "weight": 1,
+     "minCount": 1,
+     "maxCount": 2
+    },
+    {
+     "type": "reevil:small_spider",
+     "weight": 1,
+     "minCount": 1,
+     "maxCount": 2
+    },
+    {
+     "type": "reevil:insect_nest",
+     "weight": 1,
+     "minCount": 1,
+     "maxCount": 2
+    },
+    {
+     "type": "reevil:mia",
+     "weight": 1,
+     "minCount": 1,
+     "maxCount": 2
     }
    ]
   }

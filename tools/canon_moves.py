@@ -216,6 +216,32 @@ mv('fat_molded', 'zombie', 42, 'arm_swing', 30, [14], 0, 2.8, 30, 4, 8, 1.4, 'sw
 mv('fat_molded', 'zombie', 43, 'grapple_vomit', 44, [16, 32], 0, 1.8, 60, 3, 5, 0, 'grab', hit={0: [SLOW(50, 3)], 1: ['cone(2, 6f, 0)', PO(80, 0)]})
 mv('fat_molded', 'zombie', 44, 'headless_explosion', 34, [18], 0, 3, 10, 9, 14, 2.4, 'dash', can='mut(1)', tick=[(4, 17, 'lunge(0.45, 0)')], hit={0: ['aoe(4, 12f, 2.4)', 'suicide()']}, nodef=True)
 HURTS['fat_molded'] = ['counter(40, 0.35f)']; DEATHS['fat_molded'] = ['explodeOnDeath(4, 5f)']
+mv('jack_baker', 'mrx', 42, 'chainsaw_swing', 32, [14, 22], 0, 3.4, 30, 4, 11, 1.0, 'sweep', can='mutIn(1, 2)')
+mv('jack_baker', 'mrx', 43, 'chainsaw_lunge', 30, [16], 2, 8, 50, 3, 14, 1.8, 'dash', can='mutIn(1, 2)', tick=[(5, 16, 'lunge(0.55, 0)')], hit={0: ['launch(0.35)']})
+mv('jack_baker', 'mrx', 44, 'tendril_lash', 36, [18], 0, 6, 40, 4, 10, 1.4, 'sweep', can='mut(2)', hit={0: ['aoe(6, 8f, 1.4)']}, nodef=True)
+mv('jack_baker', 'mrx', 45, 'maw_snatch', 40, [18], 3, 9, 60, 3, 8, 0, 'thrust', can='mut(2)', hit={0: ['pull(2.2)', PO(80, 1)]})
+mv('jack_baker', 'mrx', 46, 'mutant_ground_slam', 44, [24], 0, 5.5, 70, 3, 14, 2.0, 'slam', can='mut(2)', hit={0: ['aoe(5.5, 11f, 1.8)']}, nodef=True)
+PASSIVES['jack_baker'] = ['mutateAt(0.66f, 1)', 'mutStep(1, 2, 0.33f)']
+VIS['jack_baker'] = [('base/torso/armR/foreR/handR/shovel', 'mut == 0'), ('base/torso/armR/foreR/handR/csaw', 'mut == 1'), ('base/torso/maw', 'mut == 2'), ('base/torso/tendL', 'mut == 2'), ('base/torso/tendR', 'mut == 2'), ('base/torso/lump', 'mut == 2')]
+# ---- RE7 additions
+mv('quick_molded', 'ganado', 40, 'ripper_flurry', 28, [8, 13, 18, 23], 0, 2.8, 24, 4, 4, 0.2, 'flurry')
+mv('quick_molded', 'ganado', 41, 'ripper_pounce', 26, [14], 2, 8, 40, 3, 6, 0.6, 'dash', tick=[(4, 14, 'lunge(0.6, 0.15)')])
+DMGS['quick_molded'] = ['weakSpots(1.5f, 1.3f)']
+mv('blade_molded', 'ganado', 40, 'double_blade_cross', 34, [14, 22], 0, 3.2, 36, 4, 8, 0.8, 'flurry')
+DMGS['blade_molded'] = ['weakSpots(1.5f, 1.3f)']
+mv('arm_molded', 'ganado', 40, 'giant_arm_smash', 44, [24], 0, 5.5, 60, 4, 11, 1.8, 'slam', hit={0: ['aoe(5, 9f, 1.6)']}, nodef=True)
+mv('arm_molded', 'ganado', 41, 'giant_arm_sweep', 36, [18], 0, 4, 40, 3, 9, 1.6, 'sweep')
+DMGS['arm_molded'] = ['weakSpots(1.5f, 1.3f)']
+mv('molded_fang', 'ganado', 40, 'fang_lunge_bite', 30, [16], 2, 7, 50, 3, 8, 0.6, 'dash', tick=[(5, 16, 'lunge(0.5, 0)')])
+DMGS['molded_fang'] = ['weakSpots(1.5f, 1.3f)']
+mv('molded_eyeless', 'ganado', 40, 'blind_swing', 34, [16], 0, 3.2, 40, 3, 8, 1.0, 'sweep')
+DMGS['molded_eyeless'] = ['weakSpots(1.5f, 1.3f)']; PASSIVES['molded_eyeless'] = ['senseSound(16)']
+DMGS['molded'] = ['weakSpots(1.5f, 1.3f)']
+for b_ in ('bug_larva', 'bug_adult', 'bug_large', 'bug_small', 'small_spider'): DMGS[b_] = ['bugWeak(2f, 2.5f)']
+REPL.add('insect_nest')
+mv('insect_nest', 'plant', 40, 'release_flyers', 40, [20], 0, 14, 120, 3, 0, 0, 'cast', hit={0: ['summon("bug_small", 3)']}, nodef=True)
+mv('insect_nest', 'plant', 41, 'release_bugs', 40, [20], 0, 14, 160, 2, 0, 0, 'cast', hit={0: ['summon("bug_larva", 2)']}, nodef=True)
+mv('mia', 'mrx', 40, 'desperate_claw', 30, [14], 0, 2.6, 36, 3, 5, 0.6, 'thrust')
 VIS['fat_molded'] = [('body/waist/chest/neck/head', 'mut != 1')]
 # ---- Mendez: back limbs, talons (2nd form)
 REPL.add('mendez') if False else None

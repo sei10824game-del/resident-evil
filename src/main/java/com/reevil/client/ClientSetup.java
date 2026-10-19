@@ -187,6 +187,30 @@ import com.reevil.client.re4rironmaiden.Re4rIronMaidenModel;
 import com.reevil.client.re4rironmaiden.Re4rIronMaidenRenderer;
 import com.reevil.client.re2rnemesis.Re2rNemesisModel;
 import com.reevil.client.re2rnemesis.Re2rNemesisRenderer;
+import com.reevil.client.quickmolded.QuickMoldedModel;
+import com.reevil.client.quickmolded.QuickMoldedRenderer;
+import com.reevil.client.blademolded.BladeMoldedModel;
+import com.reevil.client.blademolded.BladeMoldedRenderer;
+import com.reevil.client.armmolded.ArmMoldedModel;
+import com.reevil.client.armmolded.ArmMoldedRenderer;
+import com.reevil.client.moldedfang.MoldedFangModel;
+import com.reevil.client.moldedfang.MoldedFangRenderer;
+import com.reevil.client.moldedeyeless.MoldedEyelessModel;
+import com.reevil.client.moldedeyeless.MoldedEyelessRenderer;
+import com.reevil.client.buglarva.BugLarvaModel;
+import com.reevil.client.buglarva.BugLarvaRenderer;
+import com.reevil.client.bugadult.BugAdultModel;
+import com.reevil.client.bugadult.BugAdultRenderer;
+import com.reevil.client.buglarge.BugLargeModel;
+import com.reevil.client.buglarge.BugLargeRenderer;
+import com.reevil.client.bugsmall.BugSmallModel;
+import com.reevil.client.bugsmall.BugSmallRenderer;
+import com.reevil.client.smallspider.SmallSpiderModel;
+import com.reevil.client.smallspider.SmallSpiderRenderer;
+import com.reevil.client.insectnest.InsectNestModel;
+import com.reevil.client.insectnest.InsectNestRenderer;
+import com.reevil.client.mia.MiaModel;
+import com.reevil.client.mia.MiaRenderer;
 import com.reevil.registry.ModEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -290,6 +314,18 @@ public final class ClientSetup {
         e.registerLayerDefinition(Re4rArmaduraModel.LAYER, Re4rArmaduraModel::createBodyLayer);
         e.registerLayerDefinition(Re4rIronMaidenModel.LAYER, Re4rIronMaidenModel::createBodyLayer);
         e.registerLayerDefinition(Re2rNemesisModel.LAYER, Re2rNemesisModel::createBodyLayer);
+        e.registerLayerDefinition(QuickMoldedModel.LAYER, QuickMoldedModel::createBodyLayer);
+        e.registerLayerDefinition(BladeMoldedModel.LAYER, BladeMoldedModel::createBodyLayer);
+        e.registerLayerDefinition(ArmMoldedModel.LAYER, ArmMoldedModel::createBodyLayer);
+        e.registerLayerDefinition(MoldedFangModel.LAYER, MoldedFangModel::createBodyLayer);
+        e.registerLayerDefinition(MoldedEyelessModel.LAYER, MoldedEyelessModel::createBodyLayer);
+        e.registerLayerDefinition(BugLarvaModel.LAYER, BugLarvaModel::createBodyLayer);
+        e.registerLayerDefinition(BugAdultModel.LAYER, BugAdultModel::createBodyLayer);
+        e.registerLayerDefinition(BugLargeModel.LAYER, BugLargeModel::createBodyLayer);
+        e.registerLayerDefinition(BugSmallModel.LAYER, BugSmallModel::createBodyLayer);
+        e.registerLayerDefinition(SmallSpiderModel.LAYER, SmallSpiderModel::createBodyLayer);
+        e.registerLayerDefinition(InsectNestModel.LAYER, InsectNestModel::createBodyLayer);
+        e.registerLayerDefinition(MiaModel.LAYER, MiaModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -387,6 +423,18 @@ public final class ClientSetup {
         e.registerEntityRenderer(ModEntities.RE4R_ARMADURA.get(), Re4rArmaduraRenderer::new);
         e.registerEntityRenderer(ModEntities.RE4R_IRON_MAIDEN.get(), Re4rIronMaidenRenderer::new);
         e.registerEntityRenderer(ModEntities.RE2R_NEMESIS.get(), Re2rNemesisRenderer::new);
+        e.registerEntityRenderer(ModEntities.QUICK_MOLDED.get(), QuickMoldedRenderer::new);
+        e.registerEntityRenderer(ModEntities.BLADE_MOLDED.get(), BladeMoldedRenderer::new);
+        e.registerEntityRenderer(ModEntities.ARM_MOLDED.get(), ArmMoldedRenderer::new);
+        e.registerEntityRenderer(ModEntities.MOLDED_FANG.get(), MoldedFangRenderer::new);
+        e.registerEntityRenderer(ModEntities.MOLDED_EYELESS.get(), MoldedEyelessRenderer::new);
+        e.registerEntityRenderer(ModEntities.BUG_LARVA.get(), BugLarvaRenderer::new);
+        e.registerEntityRenderer(ModEntities.BUG_ADULT.get(), BugAdultRenderer::new);
+        e.registerEntityRenderer(ModEntities.BUG_LARGE.get(), BugLargeRenderer::new);
+        e.registerEntityRenderer(ModEntities.BUG_SMALL.get(), BugSmallRenderer::new);
+        e.registerEntityRenderer(ModEntities.SMALL_SPIDER.get(), SmallSpiderRenderer::new);
+        e.registerEntityRenderer(ModEntities.INSECT_NEST.get(), InsectNestRenderer::new);
+        e.registerEntityRenderer(ModEntities.MIA.get(), MiaRenderer::new);
     }
 
     private ClientSetup() {}

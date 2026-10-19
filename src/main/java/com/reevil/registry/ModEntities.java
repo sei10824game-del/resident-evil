@@ -94,6 +94,18 @@ import com.reevil.entity.re4rsalazar.Re4rSalazarEntity;
 import com.reevil.entity.re4rarmadura.Re4rArmaduraEntity;
 import com.reevil.entity.re4rironmaiden.Re4rIronMaidenEntity;
 import com.reevil.entity.re2rnemesis.Re2rNemesisEntity;
+import com.reevil.entity.quickmolded.QuickMoldedEntity;
+import com.reevil.entity.blademolded.BladeMoldedEntity;
+import com.reevil.entity.armmolded.ArmMoldedEntity;
+import com.reevil.entity.moldedfang.MoldedFangEntity;
+import com.reevil.entity.moldedeyeless.MoldedEyelessEntity;
+import com.reevil.entity.buglarva.BugLarvaEntity;
+import com.reevil.entity.bugadult.BugAdultEntity;
+import com.reevil.entity.buglarge.BugLargeEntity;
+import com.reevil.entity.bugsmall.BugSmallEntity;
+import com.reevil.entity.smallspider.SmallSpiderEntity;
+import com.reevil.entity.insectnest.InsectNestEntity;
+import com.reevil.entity.mia.MiaEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
@@ -475,6 +487,54 @@ public final class ModEntities {
         () -> EntityType.Builder.of(Re2rNemesisEntity::new, MobCategory.MONSTER).sized(0.9f, 2.5f).clientTrackingRange(10).build("re2r_nemesis"));
     public static final RegistryObject<Item> RE2R_NEMESIS_EGG = egg("re2r_nemesis", RE2R_NEMESIS, 0x3a2e2a, 0xd0c090);
 
+    public static final RegistryObject<EntityType<QuickMoldedEntity>> QUICK_MOLDED = ENTITIES.register("quick_molded",
+        () -> EntityType.Builder.of(QuickMoldedEntity::new, MobCategory.MONSTER).sized(0.6f, 1.8f).clientTrackingRange(10).build("quick_molded"));
+    public static final RegistryObject<Item> QUICK_MOLDED_EGG = egg("quick_molded", QUICK_MOLDED, 0x18181c, 0x707078);
+
+    public static final RegistryObject<EntityType<BladeMoldedEntity>> BLADE_MOLDED = ENTITIES.register("blade_molded",
+        () -> EntityType.Builder.of(BladeMoldedEntity::new, MobCategory.MONSTER).sized(0.6f, 2.0f).clientTrackingRange(10).build("blade_molded"));
+    public static final RegistryObject<Item> BLADE_MOLDED_EGG = egg("blade_molded", BLADE_MOLDED, 0x18181c, 0xa0a0a8);
+
+    public static final RegistryObject<EntityType<ArmMoldedEntity>> ARM_MOLDED = ENTITIES.register("arm_molded",
+        () -> EntityType.Builder.of(ArmMoldedEntity::new, MobCategory.MONSTER).sized(0.9f, 2.2f).clientTrackingRange(10).build("arm_molded"));
+    public static final RegistryObject<Item> ARM_MOLDED_EGG = egg("arm_molded", ARM_MOLDED, 0x18181c, 0x3a3a44);
+
+    public static final RegistryObject<EntityType<MoldedFangEntity>> MOLDED_FANG = ENTITIES.register("molded_fang",
+        () -> EntityType.Builder.of(MoldedFangEntity::new, MobCategory.MONSTER).sized(0.6f, 2.0f).clientTrackingRange(10).build("molded_fang"));
+    public static final RegistryObject<Item> MOLDED_FANG_EGG = egg("molded_fang", MOLDED_FANG, 0x18181c, 0xd6ceb4);
+
+    public static final RegistryObject<EntityType<MoldedEyelessEntity>> MOLDED_EYELESS = ENTITIES.register("molded_eyeless",
+        () -> EntityType.Builder.of(MoldedEyelessEntity::new, MobCategory.MONSTER).sized(0.6f, 2.0f).clientTrackingRange(10).build("molded_eyeless"));
+    public static final RegistryObject<Item> MOLDED_EYELESS_EGG = egg("molded_eyeless", MOLDED_EYELESS, 0x18181c, 0x101014);
+
+    public static final RegistryObject<EntityType<BugLarvaEntity>> BUG_LARVA = ENTITIES.register("bug_larva",
+        () -> EntityType.Builder.of(BugLarvaEntity::new, MobCategory.MONSTER).sized(0.6f, 0.4f).clientTrackingRange(10).build("bug_larva"));
+    public static final RegistryObject<Item> BUG_LARVA_EGG = egg("bug_larva", BUG_LARVA, 0xb8b070, 0x504830);
+
+    public static final RegistryObject<EntityType<BugAdultEntity>> BUG_ADULT = ENTITIES.register("bug_adult",
+        () -> EntityType.Builder.of(BugAdultEntity::new, MobCategory.MONSTER).sized(0.9f, 0.7f).clientTrackingRange(10).build("bug_adult"));
+    public static final RegistryObject<Item> BUG_ADULT_EGG = egg("bug_adult", BUG_ADULT, 0x60503a, 0xb89050);
+
+    public static final RegistryObject<EntityType<BugLargeEntity>> BUG_LARGE = ENTITIES.register("bug_large",
+        () -> EntityType.Builder.of(BugLargeEntity::new, MobCategory.MONSTER).sized(0.8f, 0.8f).clientTrackingRange(10).build("bug_large"));
+    public static final RegistryObject<Item> BUG_LARGE_EGG = egg("bug_large", BUG_LARGE, 0x4a5a30, 0xc8d080);
+
+    public static final RegistryObject<EntityType<BugSmallEntity>> BUG_SMALL = ENTITIES.register("bug_small",
+        () -> EntityType.Builder.of(BugSmallEntity::new, MobCategory.MONSTER).sized(0.3f, 0.3f).clientTrackingRange(10).build("bug_small"));
+    public static final RegistryObject<Item> BUG_SMALL_EGG = egg("bug_small", BUG_SMALL, 0x4a5a30, 0xc8d080);
+
+    public static final RegistryObject<EntityType<SmallSpiderEntity>> SMALL_SPIDER = ENTITIES.register("small_spider",
+        () -> EntityType.Builder.of(SmallSpiderEntity::new, MobCategory.MONSTER).sized(0.6f, 0.4f).clientTrackingRange(10).build("small_spider"));
+    public static final RegistryObject<Item> SMALL_SPIDER_EGG = egg("small_spider", SMALL_SPIDER, 0x20181a, 0x80302a);
+
+    public static final RegistryObject<EntityType<InsectNestEntity>> INSECT_NEST = ENTITIES.register("insect_nest",
+        () -> EntityType.Builder.of(InsectNestEntity::new, MobCategory.MONSTER).sized(1.0f, 1.6f).clientTrackingRange(10).build("insect_nest"));
+    public static final RegistryObject<Item> INSECT_NEST_EGG = egg("insect_nest", INSECT_NEST, 0x50402a, 0xc0b070);
+
+    public static final RegistryObject<EntityType<MiaEntity>> MIA = ENTITIES.register("mia",
+        () -> EntityType.Builder.of(MiaEntity::new, MobCategory.MONSTER).sized(0.6f, 1.7f).clientTrackingRange(10).build("mia"));
+    public static final RegistryObject<Item> MIA_EGG = egg("mia", MIA, 0xd8c8a0, 0x305080);
+
     public static void onAttributes(EntityAttributeCreationEvent e) {
         e.put(ZOMBIE.get(), ZombieEntity.createAttributes().build());
         e.put(CRIMSON_HEAD.get(), CrimsonHeadEntity.createAttributes().build());
@@ -569,6 +629,18 @@ public final class ModEntities {
         e.put(RE4R_ARMADURA.get(), Re4rArmaduraEntity.createAttributes().build());
         e.put(RE4R_IRON_MAIDEN.get(), Re4rIronMaidenEntity.createAttributes().build());
         e.put(RE2R_NEMESIS.get(), Re2rNemesisEntity.createAttributes().build());
+        e.put(QUICK_MOLDED.get(), QuickMoldedEntity.createAttributes().build());
+        e.put(BLADE_MOLDED.get(), BladeMoldedEntity.createAttributes().build());
+        e.put(ARM_MOLDED.get(), ArmMoldedEntity.createAttributes().build());
+        e.put(MOLDED_FANG.get(), MoldedFangEntity.createAttributes().build());
+        e.put(MOLDED_EYELESS.get(), MoldedEyelessEntity.createAttributes().build());
+        e.put(BUG_LARVA.get(), BugLarvaEntity.createAttributes().build());
+        e.put(BUG_ADULT.get(), BugAdultEntity.createAttributes().build());
+        e.put(BUG_LARGE.get(), BugLargeEntity.createAttributes().build());
+        e.put(BUG_SMALL.get(), BugSmallEntity.createAttributes().build());
+        e.put(SMALL_SPIDER.get(), SmallSpiderEntity.createAttributes().build());
+        e.put(INSECT_NEST.get(), InsectNestEntity.createAttributes().build());
+        e.put(MIA.get(), MiaEntity.createAttributes().build());
     }
 
     private ModEntities() {}

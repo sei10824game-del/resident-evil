@@ -20,10 +20,32 @@
    [
     "base/torso/armR/foreR/handR/magnum",
     "move == 43"
+   ]
+  ],
+  "jack_baker": [
+   [
+    "base/torso/armR/foreR/handR/shovel",
+    "mut == 0"
    ],
    [
-    "base/torso/armR/foreR/handR/magnum",
-    "move == 43"
+    "base/torso/armR/foreR/handR/csaw",
+    "mut == 1"
+   ],
+   [
+    "base/torso/maw",
+    "mut == 2"
+   ],
+   [
+    "base/torso/tendL",
+    "mut == 2"
+   ],
+   [
+    "base/torso/tendR",
+    "mut == 2"
+   ],
+   [
+    "base/torso/lump",
+    "mut == 2"
    ]
   ],
   "fat_molded": [
@@ -274,24 +296,6 @@
    [
     "base/mutRoots",
     "mut >= 1"
-   ]
-  ],
-  "simmons": [
-   [
-    "base/torso/mass",
-    "form >= 1"
-   ],
-   [
-    "base/torso/armR/lump",
-    "form >= 1"
-   ],
-   [
-    "base/torso/spines",
-    "form >= 1"
-   ],
-   [
-    "base/torso/neck/head/jawmass",
-    "form >= 1"
    ]
   ]
  },

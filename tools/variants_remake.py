@@ -17,8 +17,8 @@ CLOTHB = D(c=(120, 100, 80), n=0.12, d='bruise'); WOOLC = D(c=(110, 70, 60), n=0
 STEEL = vg.STEEL; PLATE = vg.PLATE; DARK = vg.DARK; SPK = vg.SPKB; BLOOD = vg.BLOOD; WOOD = vg.WOOD; HAIRB = vg.HAIRB; HAIRBR = vg.HAIRBR; MOUTH = vg.MOUTH
 
 R = []   # (id, C, parent dict, tab, en, ja, w, h, egg1, egg2, hpx, spx, dmx, faction)
-def fam(id, C, par, tab, en, ja, w, h, e1, e2, hpx=1.2, spx=1.08, dmx=1.15, scale='1.0f', shadow='0.6f', files=None, doc=''):
-    R.append(D(id=id, C=C, par=par, tab=tab, en=en, ja=ja, w=w, h=h, e1=e1, e2=e2, hpx=hpx, spx=spx, dmx=dmx, scale=scale, shadow=shadow, files=files, doc=doc or en))
+def fam(id, C, par, tab, en, ja, w, h, e1, e2, hpx=1.2, spx=1.08, dmx=1.15, scale='1.0f', shadow='0.6f', files=None, doc='', extra='', xp=60):
+    R.append(D(id=id, extra=extra, xp=xp, C=C, par=par, tab=tab, en=en, ja=ja, w=w, h=h, e1=e1, e2=e2, hpx=hpx, spx=spx, dmx=dmx, scale=scale, shadow=shadow, files=files, doc=doc or en))
 
 # parent: (pk, ParentClass, ModelClass, rootEntity(ret))
 P = lambda pk, C, ret, rk=None, tex=None: D(pk=pk, C=C, ret=ret, rk=rk or pk, tex=tex)
@@ -26,7 +26,7 @@ PZ = P('zombie', 'Zombie', 'ZombieEntity', tex='zombie'); PL = P('licker', 'Lick
 PH = P('hunter', 'Hunter', 'HunterEntity', tex='hunter'); PHB = P('hunterbeta', 'HunterBeta', 'HunterEntity', 'hunter', tex='hunter_beta'); PG = P('ganado', 'Ganado', 'GanadoEntity', tex='ganado'); PEG = P('elgigante', 'ElGigante', 'MrXEntity', 'mrx', tex='el_gigante')
 PV = P('verdugo', 'Verdugo', 'MrXEntity', 'mrx', tex='verdugo'); PRG = P('regenerador', 'Regenerador', 'ZombieEntity', 'zombie', tex='regenerador'); PK = P('krauser', 'Krauser', 'GanadoEntity', 'ganado', tex='krauser')
 PS = P('salazar', 'Salazar', 'Plant42Entity', 'plant42', tex='salazar'); PA = P('armadura', 'Armadura', 'ZombieEntity', 'zombie', tex='armadura'); PIM = P('ironmaiden', 'IronMaiden', 'ZombieEntity', 'zombie', tex='iron_maiden'); PPH = P('palehead', 'PaleHead', 'ZombieEntity', 'zombie', tex='pale_head')
-TEXFILES = {'zombie': ['zombie_civilian', 'zombie_labcoat', 'zombie_stars'], 'licker': ['licker', 'licker_beta'], 'mr_x': ['mr_x', 'mr_x_super'], 'nemesis': ['nemesis', 'nemesis_final', 'nemesis_mutated'],
+TEXFILES = {'molded': ['molded', 'molded_plaga'], 'larva': ['larva'], 'giant_moth': ['giant_moth'], 'giant_spider': ['giant_spider'], 'ivy': ['ivy', 'ivy_phase2'], 'jill': ['jill'], 'zombie': ['zombie_civilian', 'zombie_labcoat', 'zombie_stars'], 'licker': ['licker', 'licker_beta'], 'mr_x': ['mr_x', 'mr_x_super'], 'nemesis': ['nemesis', 'nemesis_final', 'nemesis_mutated'],
   'hunter': ['hunter', 'hunter_red'], 'hunter_beta': ['hunter_beta', 'hunter_beta_red'], 'ganado': ['ganado', 'ganado_plaga'], 'el_gigante': ['el_gigante'], 'verdugo': ['verdugo'], 'regenerador': ['regenerador'],
   'krauser': ['krauser'], 'salazar': ['salazar', 'salazar_phase2'], 'armadura': ['armadura'], 'iron_maiden': ['iron_maiden'], 'pale_head': ['pale_head']}
 PID = {'zombie': 'zombie', 'licker': 'licker', 'mr_x': 'mr_x', 'nemesis': 'nemesis', 'hunter': 'hunter', 'hunter_beta': 'hunter_beta', 'ganado': 'ganado', 'el_gigante': 'el_gigante', 'verdugo': 'verdugo',
@@ -127,8 +127,8 @@ def parent_attrs(f):
 def build(f):
     par = f['par']; pk = f['id'].replace('_', '')
     famgen(dict(id=f['id'], C=f['C'], pk=pk, pent='%s.%sEntity' % (par['pk'], par['C']), pe=par['C'] + 'Entity', pmod='%s.%sModel' % (par['pk'], par['C']), pm=par['C'] + 'Model',
-        ret=par['ret'], retimp='%s.%s' % (par['rk'], par['ret']), attrs=parent_attrs(f), scale=f['scale'], shadow=f['shadow'], xp=60, doc=f['doc'],
-        imports='import com.reevil.entity.AttackMove;\n', extra=rm.entity_extra(f['id']) if f['id'] in rm.MOV else ''))
+        ret=par['ret'], retimp='%s.%s' % (par['rk'], par['ret']), attrs=parent_attrs(f), scale=f['scale'], shadow=f['shadow'], xp=f.get('xp',60), doc=f['doc'],
+        imports='import com.reevil.entity.AttackMove;\n', extra=(rm.entity_extra(f['id']) if f['id'] in rm.MOV else '') + f.get('extra','')))
     subprocess.run([sys.executable, TOOLS + '/addentity.py', f['id'], f['C'], str(f['w']), str(f['h']), f['e1'], f['e2'], f['en'], f['ja']], check=True, capture_output=True)
     # textures: tinted copy of the parent's files
     pid = par['tex']

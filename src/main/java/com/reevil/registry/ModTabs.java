@@ -25,7 +25,7 @@ public final class ModTabs {
         Map.entry("re4", List.of("ganado", "zealot", "salvador", "garrador", "colmillos", "novistador", "regenerador", "iron_maiden", "armadura", "verdugo", "krauser", "el_gigante", "mendez", "del_lago", "saddler", "salazar")),
         Map.entry("re5", List.of("majini", "chainsaw_majini", "executioner_majini", "kipepeo", "reaper", "adjule", "ndesu", "gatling_majini", "wesker", "jill", "uroboros")),
         Map.entry("re6", List.of("javo", "ustanak", "napad", "ogroman", "simmons", "haos", "gnezdo")),
-        Map.entry("re7", List.of("molded", "fat_molded", "jack_baker", "marguerite", "eveline")),
+        Map.entry("re7", List.of("molded", "fat_molded", "jack_baker", "marguerite", "eveline", "molded_fang", "molded_eyeless", "quick_molded", "blade_molded", "arm_molded", "bug_larva", "bug_adult", "bug_large", "bug_small", "insect_nest", "small_spider", "mia")),
         Map.entry("re8", List.of("lycan", "daughter", "dimitrescu", "heisenberg", "moreau", "sturm", "urias", "soldat", "miranda")),
 
         Map.entry("re1r", List.of("re1r_zombie", "re1r_hunter", "crimson_head", "lisa_trevor", "cerberus", "crow", "neptune", "yawn")),

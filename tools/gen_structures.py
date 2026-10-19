@@ -241,7 +241,7 @@ def baker():
     t.shell(26, f, 6, 7, 6, 8, 'minecraft:oak_planks', 'minecraft:oak_planks', 'minecraft:oak_planks'); t.hole(26, f + 1, 9, 26, f + 3, 10)
     t.shell(26, f, 20, 7, 5, 6, 'minecraft:mossy_cobblestone', 'minecraft:cobblestone', 'minecraft:oak_planks')  # old house
     t.spawner(7, f + 1, 8, ['reevil:molded']); t.spawner(7, f + 1, 17, ['reevil:molded', 'reevil:fat_molded']); t.spawner(18, f + 1, 10, ['reevil:molded'])
-    t.spawner(18, f + 1, 17, ['reevil:fat_molded', 'reevil:molded']); t.spawner(12, f + 7, 8, ['reevil:molded', 'reevil:molded']); t.spawner(29, f + 1, 10, ['reevil:molded'])
+    t.spawner(18, f + 1, 17, ['reevil:fat_molded', 'reevil:molded']); t.spawner(12, f + 7, 8, ['reevil:molded_fang', 'reevil:quick_molded', 'reevil:bug_small']); t.spawner(4, f + 1, 4, ['reevil:insect_nest']); t.spawner(26, f + 1, 24, ['reevil:arm_molded', 'reevil:blade_molded', 'reevil:molded_eyeless']); t.spawner(29, f + 1, 10, ['reevil:molded'])
     t.chest(5, f + 1, 19, 'east'); t.chest(29, f + 1, 23, 'north')
     return t, 'swamp', None
 
@@ -252,7 +252,7 @@ S = {
   'salazar_castle': (salazar, ['#minecraft:is_mountain', 'minecraft:windswept_hills', 'minecraft:stony_peaks'], ['ganado', 'armadura', 'zealot', 'verdugo', 'garrador', 'colmillos'], 47),
   'ganado_village': (ganado_village, ['minecraft:taiga', 'minecraft:old_growth_pine_taiga', 'minecraft:birch_forest'], ['ganado', 'colmillos', 'salvador'], 53),
   'majini_village': (majini_village, ['minecraft:desert', 'minecraft:savanna', '#minecraft:is_badlands'], ['majini', 'chainsaw_majini', 'executioner_majini', 'kipepeo', 'gatling_majini'], 59),
-  'baker_house': (baker, ['minecraft:swamp', 'minecraft:mangrove_swamp'], ['molded', 'fat_molded'], 37),
+  'baker_house': (baker, ['minecraft:swamp', 'minecraft:mangrove_swamp'], ['molded', 'fat_molded', 'quick_molded', 'blade_molded', 'arm_molded', 'molded_fang', 'molded_eyeless', 'bug_large', 'small_spider', 'insect_nest', 'mia'], 37),
   'dimitrescu_castle': (dimitrescu, ['minecraft:snowy_taiga', 'minecraft:snowy_plains', 'minecraft:grove', 'minecraft:snowy_slopes'], ['lycan', 'daughter', 'soldat'], 61),
   'edonia_ruins': (edonia, ['minecraft:jungle', 'minecraft:sparse_jungle', 'minecraft:bamboo_jungle', 'minecraft:river'], ['javo', 'napad', 'gnezdo'], 67),
 }

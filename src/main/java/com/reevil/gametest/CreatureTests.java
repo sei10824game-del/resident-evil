@@ -237,4 +237,26 @@ public class CreatureTests {
     }
     @GameTest(template = "empty", timeoutTicks = 600) public static void weskerDodges(GameTestHelper h) { evade(h, ModEntities.WESKER.get(), "wesker"); }
     @GameTest(template = "empty", timeoutTicks = 600) public static void krauserParries(GameTestHelper h) { evade(h, ModEntities.KRAUSER.get(), "krauser"); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7QuickMolded(GameTestHelper h) { run(h, ent("quick_molded"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7BladeMolded(GameTestHelper h) { run(h, ent("blade_molded"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7ArmMolded(GameTestHelper h) { run(h, ent("arm_molded"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7MoldedFang(GameTestHelper h) { run(h, ent("molded_fang"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7MoldedEyeless(GameTestHelper h) { run(h, ent("molded_eyeless"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7BugAdult(GameTestHelper h) { run(h, ent("bug_adult"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7BugLarge(GameTestHelper h) { run(h, ent("bug_large"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7InsectNest(GameTestHelper h) { run(h, ent("insect_nest"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7SmallSpider(GameTestHelper h) { run(h, ent("small_spider"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7Mia(GameTestHelper h) { run(h, ent("mia"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7Re2rNemesis(GameTestHelper h) { run(h, ent("re2r_nemesis"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7Re3rNemesis(GameTestHelper h) { run(h, ent("re3r_nemesis"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void re7JackBaker(GameTestHelper h) { run(h, ent("jack_baker"), false, 4); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void jackLowHp(GameTestHelper h) { run(h, ent("jack_baker"), false, 4, 0.25f); }
+    @SuppressWarnings("unchecked") private static EntityType<? extends BioMonster> ent(String id) { return (EntityType<? extends BioMonster>) net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.get(new net.minecraft.resources.ResourceLocation("reevil", id)); }
+    @GameTest(template = "empty", timeoutTicks = 100) public static void corpseDestructible(GameTestHelper h) {
+        h.setBlock(new BlockPos(2, 0, 2), Blocks.STONE);
+        com.reevil.entity.zombie.ZombieEntity z = (com.reevil.entity.zombie.ZombieEntity) h.spawn(ModEntities.ZOMBIE.get(), new BlockPos(2, 1, 2));
+        z.die(z.damageSources().generic());
+        h.runAfterDelay(5, () -> { z.hurt(z.damageSources().generic(), 100f); });
+        h.runAfterDelay(15, () -> { if (!z.isAlive() || z.isRemoved()) h.succeed(); else h.fail("corpse survived hp=" + z.getHealth()); });
+    }
 }

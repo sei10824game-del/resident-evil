@@ -30,7 +30,7 @@ public final class Factions {
         reg(F.PLAGA, "ganado", "salvador", "garrador", "colmillos", "novistador", "regenerador", "iron_maiden", "armadura", "zealot", "verdugo", "krauser", "el_gigante", "mendez",
             "del_lago", "saddler", "salazar", "majini", "chainsaw_majini", "executioner_majini", "kipepeo", "reaper", "adjule", "ndesu", "gatling_majini", "wesker", "jill", "uroboros");
         reg(F.C_VIRUS, "javo", "ustanak", "napad", "ogroman", "simmons", "haos", "gnezdo");
-        reg(F.MOLD, "molded", "fat_molded", "jack_baker", "eveline", "marguerite");
+        reg(F.MOLD, "molded", "fat_molded", "jack_baker", "eveline", "marguerite", "quick_molded", "blade_molded", "arm_molded", "molded_fang", "molded_eyeless", "bug_larva", "bug_adult", "bug_large", "bug_small", "insect_nest", "small_spider", "mia");
         reg(F.CADOU, "lycan", "daughter", "dimitrescu", "heisenberg", "moreau", "sturm", "urias", "soldat", "miranda");
     }
 

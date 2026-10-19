@@ -6,7 +6,7 @@ NATIVE = {'mrx': 2.31, 'nem': 2.4, 'gan': 2.03, 'zom': 2.0}   # visual height (b
 RIGOF = {}
 for r, ids in {'mrx': 'wesker jill heisenberg jack_baker verdugo ustanak dimitrescu sturm urias ndesu ogroman mendez el_gigante executioner_majini gnezdo daughter marguerite soldat mr_x re2r_mr_x re4r_el_gigante re4r_verdugo',
                'nem': 'nemesis re2r_nemesis re3r_nemesis miranda saddler simmons eveline',
-               'gan': 'ganado zealot salvador chainsaw_majini majini gatling_majini javo molded krauser re4r_ganado re4r_krauser',
+               'gan': 'ganado zealot salvador chainsaw_majini majini gatling_majini javo molded quick_molded blade_molded arm_molded molded_fang molded_eyeless krauser re4r_ganado re4r_krauser',
                'zom': 'zombie re1r_zombie re2r_zombie re3r_zombie pale_head re3r_pale_head armadura re4r_armadura iron_maiden re4r_iron_maiden regenerador re4r_regenerador fat_molded'}.items():
     for i in ids.split(): RIGOF[i] = r
 # id: (T, G, Gm)
@@ -17,7 +17,7 @@ T = {
  'regenerador': (2.26, 1.0, 1.0), 're4r_regenerador': (2.3, 1.0, 1.0), 'armadura': (2.0, 1.2, 1.0), 're4r_armadura': (2.1, 1.25, 1.1), 'fat_molded': (2.3, 1.9, 1.45), 'gatling_majini': (1.9, 1.2, 1.0),
  'wesker': (1.83, 1.0, 1.0), 'jill': (1.7, 0.95, 1.0), 'heisenberg': (1.85, 1.1, 1.0), 'simmons': (1.87, 1.0, 1.0), 'marguerite': (1.68, 0.95, 1.0), 'daughter': (2.0, 0.95, 1.0), 'gnezdo': (1.7, 0.9, 0.9),
  'krauser': (1.9, 1.1, 1.0), 're4r_krauser': (1.95, 1.15, 1.0), 'saddler': (1.9, 1.2, 1.3), 'miranda': (1.7, 1.0, 1.0), 'eveline': (1.56, 0.9, 1.0), 'soldat': (1.9, 1.1, 1.1),
- 'ganado': (1.8, 1.0, 1.0), 're4r_ganado': (1.85, 1.05, 1.0), 'zealot': (1.8, 1.0, 1.0), 'majini': (1.8, 1.0, 1.0), 'javo': (1.85, 1.0, 1.0), 'molded': (2.1, 0.95, 1.0),
+ 'ganado': (1.8, 1.0, 1.0), 're4r_ganado': (1.85, 1.05, 1.0), 'zealot': (1.8, 1.0, 1.0), 'majini': (1.8, 1.0, 1.0), 'javo': (1.85, 1.0, 1.0), 'molded': (2.1, 0.95, 1.0), 'quick_molded': (1.75, 0.8, 1.0), 'blade_molded': (2.0, 1.0, 1.0), 'arm_molded': (2.3, 1.3, 1.0), 'molded_fang': (2.1, 0.95, 1.0), 'molded_eyeless': (2.1, 0.95, 1.0),
  'zombie': (1.8, 1.0, 1.0), 're1r_zombie': (1.8, 1.0, 1.0), 're2r_zombie': (1.8, 1.0, 1.0), 're3r_zombie': (1.8, 1.0, 1.0), 'pale_head': (2.1, 0.95, 1.0), 're3r_pale_head': (2.2, 0.95, 1.0),
 }
 MANUAL = {'del_lago': (6.0, 5.0, 5.5 / 2.6, 5.5 / 2.6), 'neptune': (1.8, 1.5, 1.4, 1.4),

@@ -88,6 +88,32 @@ public class JackBakerModel extends MrXModel {
         root.getChild("base").getChild("torso").addOrReplaceChild("stains", CubeListBuilder.create()
             .texOffs(22, 153).addBox(-6.3f, -10, -3.8f, 12.6f, 5, 7.6f),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 168);
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("csaw", CubeListBuilder.create()
+            .texOffs(64, 153).addBox(-1.8f, -3, -3, 3.6f, 5, 14)
+            .texOffs(0, 172).addBox(-1, -2, -17, 2, 3, 14)
+            .texOffs(32, 172).addBox(-1.5f, -2.5f, -17, 3, 1, 14)
+            .texOffs(66, 172).addBox(-1.5f, 0.5f, -17, 3, 1, 14),
+            PartPose.offsetAndRotation(0, 2, -1, -1.4f, 0, 0));
+        root.getChild("base").getChild("torso").addOrReplaceChild("maw", CubeListBuilder.create()
+            .texOffs(100, 172).addBox(-5, -9.5f, -4.1f, 10, 7, 1.2f)
+            .texOffs(0, 189).addBox(-4, -9, -4.5f, 8, 1, 1)
+            .texOffs(18, 189).addBox(-4, -4, -4.5f, 8, 1, 1)
+            .texOffs(36, 189).addBox(-3, -8, -4.5f, 1, 2, 1)
+            .texOffs(40, 189).addBox(-0.5f, -8, -4.5f, 1, 2, 1)
+            .texOffs(44, 189).addBox(2, -8, -4.5f, 1, 2, 1),
+            PartPose.ZERO);
+        root.getChild("base").getChild("torso").addOrReplaceChild("tendL", CubeListBuilder.create()
+            .texOffs(48, 189).addBox(-1.5f, 0, -1.5f, 3, 12, 3)
+            .texOffs(60, 189).addBox(-1, 12, -1, 2, 10, 2),
+            PartPose.offsetAndRotation(5, -8, 2, 0.5f, 0.4f, -0.5f));
+        root.getChild("base").getChild("torso").addOrReplaceChild("tendR", CubeListBuilder.create()
+            .texOffs(68, 189).addBox(-1.5f, 0, -1.5f, 3, 12, 3)
+            .texOffs(80, 189).addBox(-1, 12, -1, 2, 10, 2),
+            PartPose.offsetAndRotation(-5, -8, 2, 0.5f, -0.4f, 0.5f));
+        root.getChild("base").getChild("torso").addOrReplaceChild("lump", CubeListBuilder.create()
+            .texOffs(88, 189).addBox(-6.4f, -10.5f, -3.9f, 5, 5, 3)
+            .texOffs(104, 189).addBox(3, -4, 3.5f, 5, 6, 3),
+            PartPose.ZERO);
+        return LayerDefinition.create(mesh, 128, 208);
     }
 }

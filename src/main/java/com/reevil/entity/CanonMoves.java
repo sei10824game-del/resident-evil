@@ -176,6 +176,19 @@ public final class CanonMoves {
             return d.lengthSqr() > 1.0e-4 && d.normalize().dot(look) < -0.4 ? mult : 1f;
         };
     }
+    /** head / leg weak points: hit height relative to the body (projectile height, else attacker's eye height). */
+    public static BiFunction<BioMonster, DamageSource, Float> weakSpots(float head, float legs) {
+        return (s, src) -> {
+            Entity d = src.getDirectEntity(); if (d == null) return 1f;
+            double y = d instanceof LivingEntity ? d.getEyeY() : d.getY();
+            double rel = (y - s.getY()) / Math.max(0.1, s.getBbHeight());
+            return rel > 0.72 ? head : rel < 0.38 ? legs : 1f;
+        };
+    }
+    /** insects: knife (melee) and burner (fire) hurt far more than bullets. */
+    public static BiFunction<BioMonster, DamageSource, Float> bugWeak(float melee, float fire) {
+        return (s, src) -> src.is(net.minecraft.tags.DamageTypeTags.IS_FIRE) ? fire : src.getDirectEntity() instanceof LivingEntity ? melee : 1f;
+    }
     public static Fx suicide() { return (s, t) -> { s.kill(); }; }
     /** slows (stuns) every hostile around, e.g. acid bursts that disable other enemies. */
     public static Fx stunAoe(double r, int ticks) {

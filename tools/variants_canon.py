@@ -107,6 +107,17 @@ sl = lambda sh, v: '((mut >> %d) & 15) == %d' % (sh, v)
 cm.VIS['javo'] = [(H + 'mSluz', sl(8, 1)), (H + 'mSmech', sl(8, 2)), (H + 'mBeg', sl(8, 3)), (H + 'mDim', sl(8, 4)), ('base/torso/armR/foreR/mSrp', sl(0, 1)), ('base/torso/armL/foreL/mKhv', sl(0, 2)), ('base/torso/armL/foreL/mBed', sl(0, 3)),
   ('base/mTrch', sl(4, 1)), ('base/mLetL', sl(4, 2)), ('base/mLetR', sl(4, 2)), ('base/mLetT', sl(4, 2)), ('base/mSkak', sl(4, 3)), ('base/mOkl', sl(4, 4)), ('base/torso/mEks', sl(12, 1)), ('base/torso/mKrl', sl(12, 2)), ('base/torso/mMag', sl(12, 3)), ('base/mChr', sl(12, 4))]
 
+
+# ---- Jack Baker canon forms: 1 shovel/hands -> 2 chainsaw -> 3 mutated (maw + tendrils)
+JML = D(c=(30, 26, 22), n=0.12, d='veins'); JMT = D(c=(206, 196, 168), n=0.06); JSW = D(c=(200, 120, 30), n=0.08)
+SPECS['jack_baker']['sty'].update(dict(ml=JML, mt=JMT, sw=JSW))
+SPECS['jack_baker']['parts'] += [
+  A('base/torso/armR/foreR/handR/csaw', 'PartPose.offsetAndRotation(0, 2, -1, -1.4f, 0, 0)', (-1.8, -3, -3, 3.6, 5, 14, 'sw'), (-1, -2, -17, 2, 3, 14, 's'), (-1.5, -2.5, -17, 3, 1, 14, 'b'), (-1.5, 0.5, -17, 3, 1, 14, 'b')),
+  A('base/torso/maw', Z, (-5, -9.5, -4.1, 10, 7, 1.2, 'ml'), (-4, -9, -4.5, 8, 1, 1, 'mt'), (-4, -4, -4.5, 8, 1, 1, 'mt'), (-3, -8, -4.5, 1, 2, 1, 'mt'), (-0.5, -8, -4.5, 1, 2, 1, 'mt'), (2, -8, -4.5, 1, 2, 1, 'mt')),
+  A('base/torso/tendL', 'PartPose.offsetAndRotation(5, -8, 2, 0.5f, 0.4f, -0.5f)', (-1.5, 0, -1.5, 3, 12, 3, 'ml'), (-1, 12, -1, 2, 10, 2, 'ml')),
+  A('base/torso/tendR', 'PartPose.offsetAndRotation(-5, -8, 2, 0.5f, -0.4f, 0.5f)', (-1.5, 0, -1.5, 3, 12, 3, 'ml'), (-1, 12, -1, 2, 10, 2, 'ml')),
+  A('base/torso/lump', Z, (-6.4, -10.5, -3.9, 5, 5, 3, 'ml'), (3, -4, 3.5, 5, 6, 3, 'ml'))]
+
 # ------------------------------------------------------------------ extra forms on existing specs
 FL2 = D(c=(140, 70, 70), n=0.12, d='veins'); BNE = D(c=(214, 204, 172), n=0.08)
 SPECS['mendez']['sty'].update(dict(f2=FL2, bn=BNE))
