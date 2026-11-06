@@ -16,6 +16,9 @@ def build(sfx):
     p = P()
     def coat(pt, f, r, c):
         pt.fill(r, COAT, 0.1, 0.1); pt.streak(r, COAT, True, 0.08); pt.blots(r, (42, 40, 44), 3, 2)
+        if f == 'front' and c['name'] == 'torso':
+            for k in range(r[3]): pt.dot(r[0] + 1 + k * r[2] // max(1, r[3]) // 1 % (r[2] - 1), r[1] + k, (70, 70, 74))     # diagonal harness strap
+            pt.fill((r[0], r[1] + r[3] - 3, r[2], 1), (90, 84, 70), 0.05)                                                   # belt
         if f in ('front', 'back') and c['name'] == 'torso': pt.t.line(r[0] + r[2] // 2, r[1], r[0] + r[2] // 2, r[1] + r[3] - 1, (8, 8, 10))
         if lvl and pt.rng.random() < 0.4 * lvl + 0.3: pt.wound(r, shade(FLESH, 1.1), (80, 8, 14))
     def flesh(pt, f, r, c):
@@ -29,6 +32,12 @@ def build(sfx):
             pt.fill((x + 1, y + 2, 2, 1), (220, 30, 20) if lvl else (14, 14, 16), 0); pt.fill((x + w - 3, y + 2, 2, 1), (14, 14, 16), 0)
             for i in range(1, w - 1, 2): pt.dot(x + i, y + h - 2, (20, 14, 14))                     # stitched mouth
             pt.t.line(x + 1, y + h - 2, x + w - 2, y + h - 2, (50, 20, 24))
+            if c['name'] == 'head':
+                pt.fill((x, y, 3, 3), shade(FLESH, 0.9), 0.1); pt.fill((x + 1, y + 1, 2, 2), (14, 6, 8), 0)                     # exposed muscle + sunken left socket
+                pt.fill((x + w - 2, y + 3, 2, 2), shade(FLESH, 0.8), 0.1)
+                for i in range(1, w - 1): pt.dot(x + i, y + h - 3, (226, 218, 196) if i % 2 else (40, 14, 18))                  # bared teeth
+                pt.dot(x + 3, y + 3, shade(FLESH, 0.6)); pt.dot(x + 4, y + 4, shade(FLESH, 0.6))
+        if f in ('left', 'right') and c['name'] == 'head': pt.fill((r[0], r[1] + r[3] - 3, r[2], 2), shade(FLESH, 0.8), 0.1)
         if f == 'top': pt.fill(r, shade(SKIN, 0.9), 0.1)
     def hand(pt, f, r, c): pt.fill(r, SKIN, 0.06); pt.veins(r, shade(SKIN, 0.5), 1)
     def launcher(pt, f, r, c): pt.fill(r, (58, 62, 56), 0.1); pt.blots(r, (30, 32, 28), 3, 2); pt.blots(r, (150, 140, 60), 1, 2)
