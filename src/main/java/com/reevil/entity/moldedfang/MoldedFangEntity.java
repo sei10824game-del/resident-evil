@@ -19,4 +19,8 @@ public class MoldedFangEntity extends GanadoEntity {
         return Monster.createMonsterAttributes()
             .add(Attributes.MAX_HEALTH, 30.8).add(Attributes.MOVEMENT_SPEED, 0.264).add(Attributes.ATTACK_DAMAGE, 4.6).add(Attributes.FOLLOW_RANGE, 26);
     }
+
+    @Override protected int defaultWeapon() { return W_NONE; }
+    @Override public boolean hasHat() { return false; }
+    @Override public String getTextureSuffix() { return getForm() == 0 ? "" : "_plaga"; }
 }

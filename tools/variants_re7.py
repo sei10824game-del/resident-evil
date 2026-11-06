@@ -7,13 +7,14 @@ PMO = P('giantmoth', 'GiantMoth', 'GiantMothEntity', tex='giant_moth'); PSP = P(
 PIV = P('ivy', 'Ivy', 'Plant42Entity', 'plant42', tex='ivy'); PJ = P('jill', 'Jill', 'MrXEntity', 'mrx', tex='jill')
 for p_ in (PM,):  # parent class lives in the ganado package
     pass
-FORM = lambda n: '\n    { setForm(%d); }\n    @Override protected boolean canBurst() { return false; }\n' % n
-MOLD = D(c=(20, 20, 24), n=0.12, d='veins'); TOOTH = D(c=(214, 206, 180), n=0.05)
+NOHAT = '\n    @Override protected int defaultWeapon() { return W_NONE; }\n    @Override public boolean hasHat() { return false; }\n    @Override public String getTextureSuffix() { return getForm() == 0 ? "" : "_plaga"; }\n'
+FORM = lambda n: '\n    { setForm(%d); }\n    @Override protected boolean canBurst() { return false; }\n' % n + NOHAT
+MOLD = D(c=(22, 22, 26), n=0.12); TOOTH = D(c=(214, 206, 180), n=0.05)
 fam('quick_molded', 'QuickMolded', PM, 're7', 'Quick Molded', 'クイックモールデッド', 0.6, 1.8, '0x18181c', '0x707078', hpx=0.5, spx=1.7, dmx=0.9, scale='0.95f', xp=10, extra=FORM(2), doc='RE7 Quick Molded: ripper-type, low HP, very fast blade arms.')
 fam('blade_molded', 'BladeMolded', PM, 're7', 'Blade Molded', 'ブレードモールデッド', 0.6, 2.0, '0x18181c', '0xa0a0a8', hpx=1.5, spx=1.0, dmx=1.3, scale='1.05f', xp=18, extra=FORM(2), doc='RE7 Blade Molded: both arms are blades.')
-fam('arm_molded', 'ArmMolded', PM, 're7', 'Arm Molded', '腕変異モールデッド', 0.9, 2.2, '0x18181c', '0x3a3a44', hpx=2.2, spx=0.85, dmx=1.6, scale='1.1f', xp=25, extra='\n    @Override protected boolean canBurst() { return false; }\n', doc='RE7 Molded with one giant arm.')
-fam('molded_fang', 'MoldedFang', PM, 're7', 'Fang Molded', '牙モールデッド', 0.6, 2.0, '0x18181c', '0xd6ceb4', hpx=1.1, spx=1.1, doc='RE7 Molded with a fang-filled mouth.')
-fam('molded_eyeless', 'MoldedEyeless', PM, 're7', 'Eyeless Molded', '無眼モールデッド', 0.6, 2.0, '0x18181c', '0x101014', hpx=1.1, doc='RE7 Molded without eyes; hunts by sound.')
+fam('arm_molded', 'ArmMolded', PM, 're7', 'Arm Molded', '腕変異モールデッド', 0.9, 2.2, '0x18181c', '0x3a3a44', hpx=2.2, spx=0.85, dmx=1.6, scale='1.1f', xp=25, extra='\n    @Override protected boolean canBurst() { return false; }\n' + NOHAT, doc='RE7 Molded with one giant arm.')
+fam('molded_fang', 'MoldedFang', PM, 're7', 'Fang Molded', '牙モールデッド', 0.6, 2.0, '0x18181c', '0xd6ceb4', hpx=1.1, spx=1.1, extra=NOHAT, doc='RE7 Molded with a fang-filled mouth.')
+fam('molded_eyeless', 'MoldedEyeless', PM, 're7', 'Eyeless Molded', '無眼モールデッド', 0.6, 2.0, '0x18181c', '0x101014', hpx=1.1, extra=NOHAT, doc='RE7 Molded without eyes; hunts by sound.')
 fam('bug_larva', 'BugLarva', PLV, 're7', 'Cannibal Bug Larva', '人食い虫(幼虫)', 0.6, 0.4, '0xb8b070', '0x504830', hpx=0.5, scale='0.8f', xp=3, doc='RE7 cannibal bug larva.')
 fam('bug_adult', 'BugAdult', PLV, 're7', 'Cannibal Bug', '人食い虫(成虫)', 0.9, 0.7, '0x60503a', '0xb89050', hpx=1.5, spx=1.2, dmx=1.3, scale='1.3f', xp=8, doc='RE7 adult cannibal bug.')
 fam('bug_large', 'BugLarge', PMO, 're7', 'Large Flying Insect', '大型飛行昆虫', 0.8, 0.8, '0x4a5a30', '0xc8d080', hpx=0.9, scale='1.0f', xp=8, doc='RE7 large flying insect.')
@@ -21,13 +22,26 @@ fam('bug_small', 'BugSmall', PMO, 're7', 'Small Flying Insect', '小型飛行昆
 fam('small_spider', 'SmallSpider', PSP, 're7', 'Small Spider', '小型クモ', 0.6, 0.4, '0x20181a', '0x80302a', hpx=0.2, spx=1.2, dmx=0.5, scale='0.4f', shadow='0.3f', xp=3, doc='RE7 small spider.')
 fam('insect_nest', 'InsectNest', PIV, 're7', 'Insect Nest', '虫の巣', 1.0, 1.6, '0x50402a', '0xc0b070', hpx=0.9, scale='0.8f', xp=20, doc='RE7 insect nest: releases bugs until destroyed.')
 fam('mia', 'Mia', PJ, 're7', 'Mia Winters', 'ミア・ウィンターズ', 0.6, 1.7, '0xd8c8a0', '0x305080', hpx=0.5, spx=0.8, dmx=0.8, scale='0.95f', xp=40, doc='RE7 Mia: hostile when infected by Eveline.')
+HIVE = D(c=(104, 80, 50), n=0.16, d='bruise'); EGG = D(c=(214, 204, 160), n=0.08)
+S('insect_nest', PIV, 0, [A('base/hive', Z, (-11, -18, -11, 22, 18, 22, 'hv'), (-8, -24, -8, 16, 7, 16, 'hv'), (-12, -10, -3, 2, 5, 5, 'eg'), (10, -12, 0, 2, 5, 5, 'eg'), (-3, -14, 10, 5, 5, 2, 'eg'), (-2, -20, -12, 5, 5, 2, 'eg'))], dict(hv=HIVE, eg=EGG), W=128, H0=64)
 S('quick_molded', PM, 0, [A('base/torso/spikes', Z, (-1, -11, 2, 2, 4, 2, 'm'), (-1, -7, 2.5, 2, 4, 2, 'm'))], dict(m=MOLD), W=128, H0=64)
 S('blade_molded', PM, 0, [A('base/torso/shL', Z, (-7, -12, -2, 3, 3, 4, 'm'), (-9, -14, -1, 2, 4, 2, 'm')), A('base/torso/shR', Z, (4, -12, -2, 3, 3, 4, 'm'), (7, -14, -1, 2, 4, 2, 'm'))], dict(m=MOLD), W=128, H0=64)
 S('arm_molded', PM, 0, [A('base/torso/armR/giant', Z, (-4, 0, -4, 8, 14, 8, 'm'), (-5, 12, -5, 10, 9, 10, 'm'), (-5, 21, -4, 2, 4, 2, 'm'), (3, 21, -4, 2, 4, 2, 'm'))], dict(m=MOLD), W=128, H0=64)
 S('molded_fang', PM, 0, [A('base/torso/neck/head/fangs', Z, (-3.4, -2, -3.9, 1, 2, 1, 't'), (-1.5, -2, -3.9, 1, 2, 1, 't'), (0.5, -2, -3.9, 1, 2, 1, 't'), (2.4, -2, -3.9, 1, 2, 1, 't'), (-3.5, -3, -4, 7, 1, 1, 'mo'))], dict(t=TOOTH, mo=MOUTH), W=128, H0=64)
 S('molded_eyeless', PM, 0, [A('base/torso/neck/head/blank', Z, (-3.6, -6.5, -3.9, 7.2, 4, 0.5, 'm'))], dict(m=MOLD), W=128, H0=64)
+
+# Mia Winters: shoulder-length brown hair, white blouse, blue jeans
+from variants_char import hum, rebuild, face as cface, P as CP, HAT
+BL = CP((228, 224, 216), 0.06); JN = CP((52, 74, 112), 0.08); SKM = CP((228, 198, 178), 0.06); HRM = CP((96, 68, 46), 0.08, 'fur'); SH = CP((70, 60, 54), 0.08)
+S('mia', PJ, 0, [], dict(), W=128, H0=64)
+mbody = hum('mrx', hips=[(-3.8, -1.5, -2.2, 7.6, 3, 4.4, 'jn')],
+  torso=[(-3.8, -10, -2.2, 7.6, 10, 4.4, 'bl')], neck=[(-1.4, -1, -1.4, 2.8, 2, 2.8, 'sk')],
+  head=[(-3.3, -7, -3.3, 6.6, 7, 6.6, 'fc'), (-3.6, -8, -3.6, 7.2, 2.4, 7.2, 'hr'), (-3.6, -6, 2.4, 7.2, 8, 1.4, 'hr'), (-3.8, -7, -3.2, 1, 7, 6.4, 'hr'), (2.8, -7, -3.2, 1, 7, 6.4, 'hr')],
+  arm=[(-1.7, 0, -1.7, 3.4, 5, 3.4, 'bl'), (-1.8, 5, -1.8, 3.6, 4, 3.6, 'sk')], fore=[(-1.7, 0, -1.7, 3.4, 9, 3.4, 'sk')], hand=[(-1.7, 0, -1.7, 3.4, 3, 3.4, 'sk')],
+  thigh=[(-2, 0, -2, 4, 7, 4, 'jn')], shin=[(-1.9, 0, -1.9, 3.8, 7, 3.8, 'jn')], foot=[(-2, 0, -4.4, 4, 2.4, 6, 'sh')], coat=[(-0.1, 0, -0.1, 0.2, 0.2, 0.2, 'jn')])
+rebuild('mia', mbody, D(bl=BL, jn=JN, sk=SKM, hr=HRM, sh=SH, fc=cface((228, 198, 178), (96, 68, 46), (90, 70, 50), mc=(170, 80, 80))), clear=HAT)
 from PIL import Image, ImageChops
-TINT = {'bug_larva': (1.1, 1.0, 0.6), 'bug_adult': (0.8, 0.65, 0.45), 'bug_large': (0.7, 0.9, 0.5), 'bug_small': (0.6, 0.8, 0.45), 'small_spider': (0.5, 0.45, 0.5), 'insect_nest': (0.9, 0.75, 0.5), 'mia': (1.0, 1.0, 1.1)}
+TINT = {'bug_larva': (1.1, 1.0, 0.6), 'bug_adult': (0.8, 0.65, 0.45), 'bug_large': (0.7, 0.9, 0.5), 'bug_small': (0.6, 0.8, 0.45), 'small_spider': (0.5, 0.45, 0.5), 'insect_nest': (0.9, 0.75, 0.5)}
 def tint():
     for i, c in TINT.items():
         for fn in os.listdir(OUT):

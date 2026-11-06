@@ -21,4 +21,8 @@ public class ArmMoldedEntity extends GanadoEntity {
     }
 
     @Override protected boolean canBurst() { return false; }
+
+    @Override protected int defaultWeapon() { return W_NONE; }
+    @Override public boolean hasHat() { return false; }
+    @Override public String getTextureSuffix() { return getForm() == 0 ? "" : "_plaga"; }
 }
