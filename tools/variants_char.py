@@ -79,7 +79,7 @@ body = hum('mrx', hips=[(-4.2, -1.5, -2.4, 8.4, 3, 4.8, 'co2')],
 rebuild('mendez', body, D(co=CO, co2=CO2, bl=BELT, sk=SKM, sg=P((150, 150, 150), 0.1, 'fur'), ey=P((236, 236, 226), 0.04), fc=face((196, 168, 146), (150, 150, 150), (60, 40, 30), mc=(90, 40, 40))), clear=HAT)
 
 # ===================================================================== EL GIGANTE (RE4): hulking bald brute, bare scarred chest, ragged trousers, bare feet
-SKG = P((176, 150, 128), 0.12, 'bruise'); TRG = P((84, 62, 44), 0.12, 'bruise')
+SKG = P((186, 146, 116), 0.04); TRG = P((84, 62, 44), 0.12, 'bruise')
 body = hum('mrx', hips=[(-4.8, -1.5, -2.6, 9.6, 3, 5.2, 'tr')],
   torso=[(-6.2, -10, -3.6, 12.4, 10, 7.2, 'sk'), (-7.6, -11.5, -3.4, 3.4, 4.5, 6.8, 'sk'), (4.2, -11.5, -3.4, 3.4, 4.5, 6.8, 'sk'), (-5, -9.5, -3.9, 4.6, 3.5, 0.6, 'sk2'), (0.4, -9.5, -3.9, 4.6, 3.5, 0.6, 'sk2'), (-5.4, -2, -3.8, 10.8, 2, 7.6, 'bl')],
   neck=[(-2.6, -2, -2.4, 5.2, 3, 4.8, 'sk')],
@@ -87,7 +87,7 @@ body = hum('mrx', hips=[(-4.8, -1.5, -2.6, 9.6, 3, 5.2, 'tr')],
   arm=[(-3.6, 0, -3.6, 7.2, 9, 7.2, 'sk')], fore=[(-3.4, 0, -3.4, 6.8, 9, 6.8, 'sk')], hand=[(-3.2, 0, -3.2, 6.4, 5, 6.4, 'sk')],
   thigh=[(-3, 0, -3, 6, 7, 6, 'tr')], shin=[(-2.8, 0, -2.8, 5.6, 5, 5.6, 'tr'), (-2.9, 5, -2.9, 5.8, 2, 5.8, 'sk')], foot=[(-3, 0, -5.8, 6, 2, 8, 'sk')], coat=[(-0.1, 0, -0.1, 0.2, 0.2, 0.2, 'sk')])
 SPECS.setdefault('el_gigante', D(id='el_gigante', pkg='elgigante', C='ElGigante', ppkg='mrx', pm='MrXModel', W=128, H0=64, sty=D(), parts=[], clear=[]))
-rebuild('el_gigante', body + [A('base/torso/plaga', Z, (-3, -9, 3.6, 6, 6, 3, 'pl'), (-1.5, -11, 4.2, 3, 3, 2, 'pl'))], D(sk=SKG, sk2=P((150, 120, 100), 0.12, 'bruise'), tr=TRG, bl=P((40, 30, 22)), pl=P((150, 60, 60), 0.1, 'veins'), fc=face((176, 150, 128), (176, 150, 128), (30, 20, 20), mc=(80, 30, 30))), clear=HAT)
+rebuild('el_gigante', body + [A('base/torso/plaga', Z, (-3, -9, 3.6, 6, 6, 3, 'pl'), (-1.5, -11, 4.2, 3, 3, 2, 'pl'))], D(sk=SKG, sk2=P((150, 120, 100), 0.12, 'bruise'), tr=TRG, bl=P((40, 30, 22)), pl=P((150, 60, 60), 0.1, 'veins'), fc=face((186, 146, 116), (186, 146, 116), (30, 20, 20), mc=(80, 30, 30))), clear=HAT)
 
 # ===================================================================== OGROMAN (RE6): huge grey-teal brute with bone spurs and glowing C-virus nodules
 OSK = P((128, 150, 150), 0.12, 'veins'); OTR = P((58, 54, 50), 0.12, 'bruise'); NOD = P((236, 150, 40), 0.08)
