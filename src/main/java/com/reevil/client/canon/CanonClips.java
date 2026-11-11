@@ -152,6 +152,7 @@ public final class CanonClips {
         CLIPS.computeIfAbsent("ustanak", k -> new HashMap<>()).put(45, c_ustanak_45());
         CLIPS.computeIfAbsent("ustanak", k -> new HashMap<>()).put(46, c_ustanak_46());
         CLIPS.computeIfAbsent("ustanak", k -> new HashMap<>()).put(47, c_ustanak_47());
+        CLIPS.computeIfAbsent("ivy", k -> new HashMap<>()).put(40, c_ivy_40());
         CLIPS.computeIfAbsent("novistador", k -> new HashMap<>()).put(41, c_novistador_41());
         CLIPS.computeIfAbsent("novistador", k -> new HashMap<>()).put(42, c_novistador_42());
         CLIPS.computeIfAbsent("verdugo", k -> new HashMap<>()).put(41, c_verdugo_41());
@@ -1412,6 +1413,13 @@ public final class CanonClips {
         rot(b, "armL", k(0.0f, 0, 0, 0), k(0.1562f, -90, 0, -22), k(0.2188f, -92, 0, 26, SNAP), k(0.7812f, -92, 0, 30), k(1.0f, 0, 0, 0));
         rot(b, "armR", k(0.0f, 0, 0, 0), k(0.1562f, -90, 0, 22), k(0.2188f, -92, 0, -26, SNAP), k(0.7812f, -92, 0, -30), k(1.0f, 0, 0, 0));
         rot(b, "head", k(0.0f, 0, 0, 0), k(0.2188f, 20, 0, 0), k(0.7812f, 24, 0, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_ivy_40() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.2647f, -34, 0, 0), k(0.4706f, 18, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "stem1", k(0.0f, 0, 0, 0), k(0.2647f, -20, 0, 0), k(0.4706f, 16, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "stem2", k(0.0f, 0, 0, 0), k(0.2647f, -30, 0, -20), k(1.0f, 0, 0, 0));
         return b.build();
     }
     private static AnimClip c_novistador_41() {

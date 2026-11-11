@@ -34,3 +34,4 @@ Corrections found when auditing against the wiki (fandom pages are blocked for c
 - Third pass: Garrador's missed rush leaves it stuck (claws in the wall) for 3 s, and the rush only connects within reach (was 15 blocks); RE4R Verdugo has the bladed tail and tail moves;
   Mia picks up the chainsaw once wounded (mut 1: chainsaw swing / lunge). Del Lago's boat attack is Neptune's tail slap (ejects boat passengers), inherited.
 - Ustanak: attachments by mut (claw + cage / gun / needle claw) with the wiki attack table (Shot, Battering Ram, Grenade, Kick, Overhead Smash, Cage Deposit, Blood Drain, Extending Claw).
+- Ivy (Plant 43 page): ranged acid glob added; vine lash and grab-with-acid already present. Tyrant T-002, Mr. X: the wiki has no attack table beyond what is implemented; Salazar has no gameplay page.

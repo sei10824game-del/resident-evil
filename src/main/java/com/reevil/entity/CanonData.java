@@ -144,6 +144,7 @@ final class CanonData {
         add("ustanak", new AttackMove(45, "overhead_smash", 44, new int[]{24}, 0f, 4f, 50, 3).dmg(16f).kb(1.2).face(24));
         add("ustanak", new AttackMove(46, "cage_deposit", 64, new int[]{16, 34, 52}, 0f, 2.6f, 160, 2).dmg(4f).kb(0).face(16)).can(mut(0)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 120, 6));
         add("ustanak", new AttackMove(47, "blood_drain", 64, new int[]{14, 26, 38, 50}, 0f, 2.6f, 120, 4).dmg(5f).kb(0).face(14)).can(mut(2)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 80, 5)).hit(1, heal(6f)).hit(2, heal(6f)).hit(3, heal(6f));
+        add("ivy", new AttackMove(40, "acid_glob", 34, new int[]{16}, 5f, 14f, 50, 4).dmg(5f).kb(0).face(16)).hit(0, shot("poison", 5f)).noDefault();
         add("novistador", new AttackMove(41, "acid_vomit", 34, new int[]{16}, 0f, 4f, 50, 3).dmg(5f).kb(0).face(16)).hit(0, cone(5, 5f, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.POISON, 80, 0)).noDefault();
         add("novistador", new AttackMove(42, "flying_kick", 30, new int[]{16}, 2f, 7f, 40, 3).dmg(6f).kb(1.4).face(16)).tick(6, 16, lunge(0.5, 0.25));
         add("verdugo", new AttackMove(41, "tail_impale", 34, new int[]{16}, 2f, 6f, 50, 4).dmg(12f).kb(0.6).face(16)).hit(0, strike(12f, 0.6, 6.5)).hit(0, launch(0.4)).noDefault();

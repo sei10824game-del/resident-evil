@@ -344,6 +344,7 @@ mv('ustanak', 'mrx', 44, 'kick', 30, [14], 0, 3.2, 40, 3, 10, 1.6, 'kick', hit={
 mv('ustanak', 'mrx', 45, 'overhead_smash', 44, [24], 0, 4, 50, 3, 16, 1.2, 'slam')                                                                  # heavily telegraphed overhead swing of the attachment
 mv('ustanak', 'mrx', 46, 'cage_deposit', 64, [16, 34, 52], 0, 2.6, 160, 2, 4, 0, 'grab', can='mut(0)', hit={0: [SLOW(120, 6)]})                      # claw grab, victim dropped into the back cage (held, drained)
 mv('ustanak', 'mrx', 47, 'blood_drain', 64, [14, 26, 38, 50], 0, 2.6, 120, 4, 5, 0, 'grab', can='mut(2)', hit={0: [SLOW(80, 5)], 1: ['heal(6f)'], 2: ['heal(6f)'], 3: ['heal(6f)']})   # four hydraulic needles drain the victim
+mv('ivy', 'plant', 40, 'acid_glob', 34, [16], 5, 14, 50, 4, 5, 0, 'spit', hit={0: ['shot("poison", 5f)']}, nodef=True)                              # RE2: launches a glob of acid from afar (no real wind-up)
 # ---- gap audit: signature abilities the roster still lacked
 BLIND = 'effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)'
 mv('novistador', 'moth', 41, 'acid_vomit', 34, [16], 0, 4, 50, 3, 5, 0, 'spit', hit={0: ['cone(5, 5f, 0)', PO(80, 0)]}, nodef=True)               # RE4: vomits acid from a stationary position, close range only
