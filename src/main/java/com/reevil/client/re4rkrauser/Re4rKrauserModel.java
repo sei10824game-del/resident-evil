@@ -20,25 +20,27 @@ public class Re4rKrauserModel extends KrauserModel {
         com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re4r_krauser(id);
         return c != null ? c : super.clip(e, id);
     }
-    public static LayerDefinition createBodyLayer() {
-        MeshDefinition mesh = KrauserModel.mesh();
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 192); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
+        MeshDefinition mesh = KrauserModel.ownMesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").addOrReplaceChild("bandolier", CubeListBuilder.create()
-            .texOffs(0, 64).addBox(-4.6f, -9.5f, -2.6f, 9.2f, 2, 5.2f)
-            .texOffs(32, 64).addBox(-4.4f, -8.5f, -2.8f, 2, 7, 5.6f)
-            .texOffs(48, 64).addBox(-3.5f, -9, -2.9f, 1, 2, 1)
-            .texOffs(52, 64).addBox(-1.5f, -7, -2.9f, 1, 2, 1)
-            .texOffs(56, 64).addBox(0.5f, -5, -2.9f, 1, 2, 1),
+            .texOffs(0, 168).addBox(-4.6f, -9.5f, -2.6f, 9.2f, 2, 5.2f)
+            .texOffs(32, 168).addBox(-4.4f, -8.5f, -2.8f, 2, 7, 5.6f)
+            .texOffs(48, 168).addBox(-3.5f, -9, -2.9f, 1, 2, 1)
+            .texOffs(52, 168).addBox(-1.5f, -7, -2.9f, 1, 2, 1)
+            .texOffs(56, 168).addBox(0.5f, -5, -2.9f, 1, 2, 1),
             PartPose.ZERO);
         root.getChild("base").getChild("torso").getChild("neck").getChild("head").addOrReplaceChild("scar", CubeListBuilder.create()
-            .texOffs(60, 64).addBox(-3.6f, -5, -3.7f, 1, 4, 0.8f)
-            .texOffs(64, 64).addBox(-4, -8, -4, 8, 2, 8),
+            .texOffs(60, 168).addBox(-3.6f, -5, -3.7f, 1, 4, 0.8f)
+            .texOffs(64, 168).addBox(-4, -8, -4, 8, 2, 8),
             PartPose.ZERO);
         root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("blade", CubeListBuilder.create()
-            .texOffs(96, 64).addBox(-0.8f, -2, -1.5f, 1.6f, 4, 3)
-            .texOffs(106, 64).addBox(-0.4f, 2, -1, 0.8f, 22, 2)
-            .texOffs(112, 64).addBox(-0.4f, 20, -1.5f, 0.8f, 4, 1),
+            .texOffs(96, 168).addBox(-0.8f, -2, -1.5f, 1.6f, 4, 3)
+            .texOffs(106, 168).addBox(-0.4f, 2, -1, 0.8f, 22, 2)
+            .texOffs(112, 168).addBox(-0.4f, 20, -1.5f, 0.8f, 4, 1),
             PartPose.offsetAndRotation(0, 2, -1, -0.4f, 0, 0));
-        return LayerDefinition.create(mesh, 128, 88);
+        return mesh;
     }
 }

@@ -20,7 +20,9 @@ public class WeskerModel extends MrXModel {
         com.reevil.anim.AnimClip c = com.reevil.client.mrx.SignatureClips.wesker(id);
         return c != null ? c : super.clip(e, id);
     }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 184); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = MrXModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").getChild("neck").getChild("head").getChild("hatBrim").addOrReplaceChild("hatCrown", CubeListBuilder.create(), PartPose.ZERO);
@@ -106,6 +108,6 @@ public class WeskerModel extends MrXModel {
             .texOffs(30, 173).addBox(-0.6f, 1, -2, 1.2f, 4, 2)
             .texOffs(38, 173).addBox(-0.5f, -1.4f, -6, 1, 0.6f, 1),
             PartPose.offsetAndRotation(0, 2, -1, -1.5f, 0, 0));
-        return LayerDefinition.create(mesh, 128, 184);
+        return mesh;
     }
 }

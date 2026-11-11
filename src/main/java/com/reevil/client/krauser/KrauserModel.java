@@ -15,7 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 public class KrauserModel extends GanadoModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "krauser"), "main");
     public KrauserModel(ModelPart root) { super(root); }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 168); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = GanadoModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").getChild("neck").getChild("head").addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
@@ -101,6 +103,6 @@ public class KrauserModel extends GanadoModel {
         root.getChild("base").getChild("torso").getChild("armR").addOrReplaceChild("mutLump", CubeListBuilder.create()
             .texOffs(86, 129).addBox(-3.5f, -1, -3.5f, 7, 7, 7),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 168);
+        return mesh;
     }
 }

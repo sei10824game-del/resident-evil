@@ -41,7 +41,8 @@ def paint_cube(t, u, v, w, h, d, sty, tint, rng):
             x, y, ww, hh = fc[nm]; t.rect(x, y, ww, max(1, hh // 2), hc, 0.08)
         t.rect(fx, fy, fw, max(1, int(fh * 0.22)), hc, 0.08)
         ey = fy + int(fh * 0.45)
-        if sty.get('shades'): t.rect(fx, ey, fw, 2, (8, 8, 10), 0.02)
+        if sty.get('shades'):   # frame bar + two lenses with a skin bridge (a solid 2px band reads as an open mouth)
+            lw = max(1, (fw - 3) // 2); t.rect(fx, ey, fw, 1, (8, 8, 10), 0.02); t.rect(fx + 1, ey + 1, lw, 1, (8, 8, 10), 0.02); t.rect(fx + fw - 1 - lw, ey + 1, lw, 1, (8, 8, 10), 0.02)
         else:
             t.rect(fx + max(1, fw // 5), ey, max(1, fw // 5), 1, ec, 0); t.rect(fx + fw - 2 * max(1, fw // 5), ey, max(1, fw // 5), 1, ec, 0)
         if sty.get('beard'):
@@ -68,6 +69,9 @@ def pack(cubes, W, v0):
 def gen(s):
     import copy; s = copy.deepcopy(s)
     pkg, C = s['pkg'], s['C']; sty = s['sty']
+    if s.get('truepar'):   # build on the parent's own (generated) mesh: our cubes go below the parent's texture rows
+        ps = open(os.path.join(ROOT, s['ppkg'], s['pm'] + '.java')).read()
+        s['H0'] = int(re.search(r'LayerDefinition\.create\(ownMesh\(\), \d+, (\d+)\)', ps).group(1))
     cubes_all = [(pi, c) for pi, p in enumerate(s['parts']) for c in p['cubes']]
     flat = [c for _, c in cubes_all]
     dims = [tuple(math.ceil(v) for v in c[3:6]) for c in flat]
@@ -80,7 +84,7 @@ def gen(s):
         if x + fw > s['W']: x = 0; y += rowh; rowh = 0
         uv.append((x, s['H0'] + y)); x += fw; rowh = max(rowh, fh)
     lines = []
-    lines.append('        MeshDefinition mesh = %s.mesh();' % s['pm'])
+    lines.append('        MeshDefinition mesh = %s.%s();' % (s['pm'], 'ownMesh' if s.get('truepar') else 'mesh'))
     lines.append('        PartDefinition root = mesh.getRoot();')
     n = 0; k = 0
     for cl in s.get('clear', []):
@@ -92,7 +96,7 @@ def gen(s):
         for c in p['cubes']:
             cb += '\n            .texOffs(%d, %d).addBox(%s)' % (uv[k][0], uv[k][1], F(*c[:6])); k += 1
         lines.append('        %s.addOrReplaceChild("%s", %s,\n            %s);' % (par, path[-1], cb, re.sub(r'(?<![\w.])(-?\d+\.\d+)(?![\df])', r'\1f', p['pose'])))
-    lines.append('        return LayerDefinition.create(mesh, %d, %d);' % (s['W'], H))
+    lines.append('        return mesh;')
     cf = s.get('clipfn'); cc = s.get('clipcls', 'com.reevil.client.mrx.SignatureClips'); ce = s.get('clipent', 'com.reevil.entity.mrx.MrXEntity')
     clipsrc = ('    @Override\n    protected com.reevil.anim.AnimClip clip(%s e, int id) {\n        com.reevil.anim.AnimClip c = %s.%s(id);\n        return c != null ? c : super.clip(e, id);\n    }\n' % (ce, cc, cf)) if cf else ''
     src = '''package com.reevil.client.%(pkg)s;
@@ -112,11 +116,13 @@ import net.minecraft.resources.ResourceLocation;
 public class %(C)sModel extends %(pm)s {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "%(id)s"), "main");
     public %(C)sModel(ModelPart root) { super(root); }
-%(clip)s    public static LayerDefinition createBodyLayer() {
+%(clip)s    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), %(W)d, %(H)d); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
 %(body)s
     }
 }
-''' % dict(clip=clipsrc, pkg=pkg, ppkg=s['ppkg'], pm=s['pm'], C=C, id=s['id'], body='\n'.join(lines))
+''' % dict(W=s['W'], H=H, clip=clipsrc, pkg=pkg, ppkg=s['ppkg'], pm=s['pm'], C=C, id=s['id'], body='\n'.join(lines))
     open(os.path.join(ROOT, pkg, C + 'Model.java'), 'w').write(src)
     # textures
     for suf in s.get('svar', {}):
@@ -125,6 +131,8 @@ public class %(C)sModel extends %(pm)s {
     if s.get('texfrom'):   # seed the base texture from another PNG (recoloured)
         src = Image.open(os.path.join(OUT, s['texfrom'][0] + '.png')).convert('RGBA'); s['texfrom'][1](src).save(os.path.join(OUT, s['id'] + '.png'))
     files = sorted(glob.glob(os.path.join(OUT, s['id'] + '.png')) + glob.glob(os.path.join(OUT, s['id'] + '_*.png')))
+    also = {os.path.join(OUT, n + '.png'): st for n, st in s.get('also', {}).items()}   # other creatures rendered with this exact model class: same extension, own colours
+    files += sorted(also)
     for fi, f in enumerate(files):
         old = Image.open(f).convert('RGBA')
         if old.size[0] != s['W']: print('width mismatch -> blank base', f, old.size); old = Image.new('RGBA', (s['W'], s['H0']), (0, 0, 0, 0))
@@ -135,6 +143,7 @@ public class %(C)sModel extends %(pm)s {
         suf = os.path.basename(f)[len(s['id']):-4]
         sty2 = dict(sty); sty2.update(s.get('svar', {}).get(suf, {}))
         if suf in s.get('svar', {}): tint = 1.0
+        if f in also: sty2 = dict(sty); sty2.update(also[f]); tint = 1.0
         for c, dm, (u, v) in zip(flat, dims, uv): paint_cube(t, u, v, dm[0], dm[1], dm[2], sty2[c[6]], tint, rng)
         t.img.save(f)
     print('generated', s['id'], 'H=', H, 'cubes', len(flat), 'textures', len(files))
@@ -234,7 +243,7 @@ spec(id='zealot', pkg='zealot', C='Zealot', ppkg='ganado', pm='GanadoModel', W=1
   parts=[A('base/robe', Z, (-5, -1.5, -2.5, 10, 8, 5, 'r'), (-6, 5, -3, 12, 7, 6, 'r')), A('base/torso/neck/head/hood', Z, (-4.5, -8, -1, 9, 9, 5, 'r'), (-4.5, -8, -4.5, 1.5, 7, 4, 'r'), (3, -8, -4.5, 1.5, 7, 4, 'r'), (-4, -9, -4.5, 8, 1.5, 6, 'r')),
          A('base/torso/sash', Z, (-4.5, -10.5, -2.5, 9, 3, 5, 'g'), (-4.4, -7, -2.5, 1, 7, 5, 'c'))])
 spec(id='salvador', pkg='salvador', C='Salvador', ppkg='ganado', pm='GanadoModel', W=128, H0=64,
-  sty=dict(s=SACK, d=DARK, a=APRON),
+  sty=dict(s=SACK, d=DARK, a=APRON), also=dict(chainsaw_majini=dict(s=dict(c=(40, 36, 34), n=0.1, d='cloth'), d=dict(c=(200, 40, 30), n=0.05))),
   parts=[A('base/torso/neck/head/sack', Z, (-4, -8, -4, 8, 8, 8, 's'), (-3.5, -9, -3.5, 7, 1, 7, 's'), (-2.5, -5, -4.2, 2, 2, 1, 'd'), (0.5, -5, -4.2, 2, 2, 1, 'd')),
          A('base/torso/apron', Z, (-4.5, -9, -2.6, 9, 11, 1, 'a'))])
 spec(id='majini', pkg='majini', C='Majini', ppkg='ganado', pm='GanadoModel', W=128, H0=64,

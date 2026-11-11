@@ -74,6 +74,16 @@
     "move == 40"
    ]
   ],
+  "re4r_krauser": [
+   [
+    "base/torso/armR/foreR/mutBlade",
+    "mut == 1"
+   ],
+   [
+    "base/torso/armR/mutLump",
+    "mut == 1"
+   ]
+  ],
   "gnezdo": [
    [
     "base/torso/queen",

@@ -17,6 +17,8 @@ Spawn eggs for all (creative tab: Spawn Eggs). New creatures: `tools/addentity.p
 - Dev: `/rmove <id>`, `/rform <n>`, `/rstop` (dev runs only) play a move of the nearest creature for animation review.
 - Checks: `tools/jc.sh` fast javac; dev GameTests in `com.reevil.gametest` (`/test runall`, excluded from the jar);
   `tools/ModelCheck.java` bakes every model and verifies clip bones.
+- Look check: `tools/shots.sh <outDir> [nameFilter] [mut] [form]` software-renders every creature (idle pose via the real `setupAnim`, back + front 3/4, no GL/game needed) to PNG and fails on a texture whose size does not match its model layer.
+  Variants that must keep their parent's generated body set `truepar=True` in their spec (`Parent.ownMesh()`); plain `Parent.mesh()` is the base rig's mesh.
 - Voices: six synthesised archetypes (groan/growl/hiss/roar/screech/squelch; `tools/synth_sounds.py`, layered on top of the vanilla sounds by `BioMonster.playVoice`). Replace the .ogg files in `assets/reevil/sounds/voice/` to use your own.
 - Natural spawning: `data/reevil/forge/biome_modifier/*.json` (bosses excluded).
 

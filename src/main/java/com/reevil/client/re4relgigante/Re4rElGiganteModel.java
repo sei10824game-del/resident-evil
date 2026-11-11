@@ -20,26 +20,28 @@ public class Re4rElGiganteModel extends ElGiganteModel {
         com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re4r_el_gigante(id);
         return c != null ? c : super.clip(e, id);
     }
-    public static LayerDefinition createBodyLayer() {
-        MeshDefinition mesh = ElGiganteModel.mesh();
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 200); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
+        MeshDefinition mesh = ElGiganteModel.ownMesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").getChild("neck").getChild("head").addOrReplaceChild("hair", CubeListBuilder.create()
-            .texOffs(0, 64).addBox(-4, -8.5f, -4, 8, 3, 8)
-            .texOffs(32, 64).addBox(-4.5f, -7, 1.5f, 9, 14, 3)
-            .texOffs(56, 64).addBox(-4.2f, -3, -4, 8.4f, 7, 2),
+            .texOffs(0, 160).addBox(-4, -8.5f, -4, 8, 3, 8)
+            .texOffs(32, 160).addBox(-4.5f, -7, 1.5f, 9, 14, 3)
+            .texOffs(56, 160).addBox(-4.2f, -3, -4, 8.4f, 7, 2),
             PartPose.ZERO);
         root.getChild("base").getChild("torso").addOrReplaceChild("tumor2", CubeListBuilder.create()
-            .texOffs(78, 64).addBox(-6, -9, 2.5f, 10, 8, 6)
-            .texOffs(110, 64).addBox(-3, -12, 3, 5, 4, 4),
+            .texOffs(78, 160).addBox(-6, -9, 2.5f, 10, 8, 6)
+            .texOffs(110, 160).addBox(-3, -12, 3, 5, 4, 4),
             PartPose.ZERO);
         root.getChild("base").addOrReplaceChild("loin", CubeListBuilder.create()
-            .texOffs(0, 81).addBox(-5, 0, -3, 10, 6, 1)
-            .texOffs(22, 81).addBox(-5, 0, 2, 10, 6, 1),
+            .texOffs(0, 177).addBox(-5, 0, -3, 10, 6, 1)
+            .texOffs(22, 177).addBox(-5, 0, 2, 10, 6, 1),
             PartPose.ZERO);
         root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("club", CubeListBuilder.create()
-            .texOffs(44, 81).addBox(-0.8f, -2, -0.8f, 1.6f, 20, 1.6f)
-            .texOffs(52, 81).addBox(-2.5f, 14, -2.5f, 5, 10, 5),
+            .texOffs(44, 177).addBox(-0.8f, -2, -0.8f, 1.6f, 20, 1.6f)
+            .texOffs(52, 177).addBox(-2.5f, 14, -2.5f, 5, 10, 5),
             PartPose.offsetAndRotation(0, 2, -1, -0.5f, 0, 0));
-        return LayerDefinition.create(mesh, 128, 104);
+        return mesh;
     }
 }

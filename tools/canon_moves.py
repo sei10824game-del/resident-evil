@@ -311,6 +311,7 @@ mv('re3r_nemesis', 'nemesis', 40, 'flamethrower', 60, [10, 16, 22, 28, 34, 40, 4
 mv('re2r_nemesis', 'nemesis', 40, 'machine_gun_burst', 50, [10, 14, 18, 22, 26, 30, 34, 38, 42, 46], 5, 28, 50, 6, 3, 0, 'aimhold', hit={i: ['shot("arrow", 3.5f)'] for i in range(10)}, nodef=True)
 VIS['re3r_nemesis'] = [('base/torso/armR/foreR/handR/flamer', 'move == 40'), ('base/torso/tank', 'true')]
 VIS['re2r_nemesis'] = [('base/torso/armR/foreR/handR/mgun', 'move == 40')]
+VIS['re4r_krauser'] = [('base/torso/armR/foreR/mutBlade', 'mut == 1'), ('base/torso/armR/mutLump', 'mut == 1')]   # built on Krauser's own mesh (truepar): same mutation parts
 
 def f(x): return ('%sf' % x)
 def data_java():

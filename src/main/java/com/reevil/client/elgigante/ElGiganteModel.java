@@ -15,7 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 public class ElGiganteModel extends MrXModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "el_gigante"), "main");
     public ElGiganteModel(ModelPart root) { super(root); }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 160); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = MrXModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").getChild("neck").getChild("head").getChild("hatBrim").addOrReplaceChild("hatCrown", CubeListBuilder.create(), PartPose.ZERO);
@@ -87,6 +89,6 @@ public class ElGiganteModel extends MrXModel {
             .texOffs(80, 144).addBox(-3, -9, 3.6f, 6, 6, 3)
             .texOffs(98, 144).addBox(-1.5f, -11, 4.2f, 3, 3, 2),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 160);
+        return mesh;
     }
 }

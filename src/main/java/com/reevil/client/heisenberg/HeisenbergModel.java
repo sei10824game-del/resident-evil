@@ -20,7 +20,9 @@ public class HeisenbergModel extends MrXModel {
         com.reevil.anim.AnimClip c = com.reevil.client.mrx.SignatureClips.heisenberg(id);
         return c != null ? c : super.clip(e, id);
     }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 200); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = MrXModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").getChild("neck").getChild("head").getChild("hatBrim").addOrReplaceChild("hatCrown", CubeListBuilder.create(), PartPose.ZERO);
@@ -98,6 +100,6 @@ public class HeisenbergModel extends MrXModel {
             .texOffs(60, 176).addBox(-9, 0, -14, 2, 2, 8)
             .texOffs(80, 176).addBox(7, 0, -14, 2, 2, 8),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 200);
+        return mesh;
     }
 }
