@@ -7,7 +7,7 @@ final class CanonData {
     private CanonData() {}
     static void register() {
         add("novistador", new AttackMove(40, "cloak_vanish", 24, new int[]{}, 0f, 30f, 180, 2).dmg(0f).kb(0).face(12)).onEnd(selfEffect(net.minecraft.world.effect.MobEffects.INVISIBILITY, 200, 0)).onEnd(selfEffect(net.minecraft.world.effect.MobEffects.MOVEMENT_SPEED, 200, 1));
-        add("colmillos", new AttackMove(40, "spike_burst", 36, new int[]{18}, 0f, 4f, 70, 3).dmg(7f).kb(1.2).face(18)).hit(0, aoe(4, 7f, 1.2)).hit(0, effect(net.minecraft.world.effect.MobEffects.POISON, 60, 0)).noDefault();
+        add("colmillos", new AttackMove(40, "plaga_tentacle_whip", 36, new int[]{18}, 0f, 4f, 70, 3).dmg(7f).kb(1.2).face(18)).hit(0, aoe(4, 7f, 1.2)).noDefault();
         add("armadura", new AttackMove(40, "sword_cleave", 36, new int[]{18}, 0f, 3.8f, 44, 4).dmg(12f).kb(1.4).face(18)).tick(12, 17, lunge(0.2, 0));
         add("zealot", new AttackMove(40, "sickle_rush", 34, new int[]{18}, 2f, 7f, 50, 3).dmg(7f).kb(1.0).face(18)).tick(6, 18, lunge(0.5, 0));
         add("krauser", new AttackMove(40, "arm_blade_cleave", 36, new int[]{18}, 0f, 4f, 44, 4).dmg(14f).kb(1.4).face(18)).can(mut(1)).tick(12, 17, lunge(0.25, 0));
@@ -131,6 +131,8 @@ final class CanonData {
         add("re3r_nemesis", new AttackMove(40, "flamethrower", 60, new int[]{10, 16, 22, 28, 34, 40, 46, 52}, 0f, 7f, 70, 5).dmg(4f).kb(0.1).face(10)).hit(0, cone(7, 4f, 6)).hit(1, cone(7, 4f, 6)).hit(2, cone(7, 4f, 6)).hit(3, cone(7, 4f, 6)).hit(4, cone(7, 4f, 6)).hit(5, cone(7, 4f, 6)).hit(6, cone(7, 4f, 6)).hit(7, cone(7, 4f, 6)).noDefault();
         add("re2r_nemesis", new AttackMove(40, "machine_gun_burst", 50, new int[]{10, 14, 18, 22, 26, 30, 34, 38, 42, 46}, 5f, 28f, 50, 6).dmg(3f).kb(0).face(10)).hit(0, shot("arrow", 3.5f)).hit(1, shot("arrow", 3.5f)).hit(2, shot("arrow", 3.5f)).hit(3, shot("arrow", 3.5f)).hit(4, shot("arrow", 3.5f)).hit(5, shot("arrow", 3.5f)).hit(6, shot("arrow", 3.5f)).hit(7, shot("arrow", 3.5f)).hit(8, shot("arrow", 3.5f)).hit(9, shot("arrow", 3.5f)).noDefault();
         add("lycan", new AttackMove(42, "bow_shot", 36, new int[]{20}, 7f, 20f, 60, 5).dmg(5f).kb(0).face(20)).can(s -> s.getId() % 4 == 0).hit(0, shot("arrow", 5f)).noDefault();
+        add("miranda", new AttackMove(42, "mold_spike_eruption", 40, new int[]{22}, 6f, 18f, 70, 3).dmg(9f).kb(0).face(22)).hit(0, aoeAt(2.5, 9f)).noDefault();
+        add("miranda", new AttackMove(43, "fireball_torrent", 50, new int[]{14, 20, 26, 32, 38}, 5f, 18f, 110, 2).dmg(5f).kb(0).face(14)).hit(0, shot("fire", 5f)).hit(1, shot("fire", 5f)).hit(2, shot("fire", 5f)).hit(3, shot("fire", 5f)).hit(4, shot("fire", 5f)).noDefault();
         add("novistador", new AttackMove(41, "acid_vomit", 34, new int[]{16}, 0f, 4f, 50, 3).dmg(5f).kb(0).face(16)).hit(0, cone(5, 5f, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.POISON, 80, 0)).noDefault();
         add("novistador", new AttackMove(42, "flying_kick", 30, new int[]{16}, 2f, 7f, 40, 3).dmg(6f).kb(1.4).face(16)).tick(6, 16, lunge(0.5, 0.25));
         add("verdugo", new AttackMove(41, "tail_impale", 34, new int[]{16}, 2f, 6f, 50, 4).dmg(12f).kb(0.6).face(16)).hit(0, strike(12f, 0.6, 6.5)).hit(0, launch(0.4)).noDefault();
@@ -177,6 +179,8 @@ final class CanonData {
         damage("javo", armorAndScales());
         damage("wesker", dodge(0.65f, 22));
         damage("krauser", parry(0.5f, 30, "knife_slash"));
+        damage("ogroman", rearWeak(1.6f));
+        damage("uroboros", (s, src) -> src.is(net.minecraft.tags.DamageTypeTags.IS_FIRE) ? 2.5f : 1f);
         damage("napad", rearWeak(1.6f));
         damage("reaper", rearWeak(1.8f));
         onHurt("fat_molded", counter(40, 0.35f));

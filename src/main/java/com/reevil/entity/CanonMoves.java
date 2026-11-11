@@ -252,6 +252,15 @@ public final class CanonMoves {
             s.getNavigation().stop();
         };
     }
+    /** eruption under the target (ground spikes): damages hostiles within r of where the target stands, tossing them up. */
+    public static Fx aoeAt(double r, float dmg) {
+        return (s, t) -> {
+            if (t == null) return;
+            if (s.level() instanceof ServerLevel sl) sl.sendParticles(ParticleTypes.LARGE_SMOKE, t.getX(), t.getY() + 0.3, t.getZ(), 24, r * 0.4, 0.4, r * 0.4, 0.02);
+            for (LivingEntity e : s.level().getEntitiesOfClass(LivingEntity.class, t.getBoundingBox().inflate(r), x -> x != s && x.isAlive() && Factions.hostile(s, x)))
+                if (e.hurt(s.damageSources().mobAttack(s), dmg)) { e.push(0, 0.5, 0); e.hurtMarked = true; }
+        };
+    }
     public static Fx aoe(double r, float dmg, double kb) {
         return (s, t) -> {
             for (LivingEntity e : s.level().getEntitiesOfClass(LivingEntity.class, s.getBoundingBox().inflate(r), x -> x != s && x.isAlive() && Factions.hostile(s, x))) {

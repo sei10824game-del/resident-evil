@@ -100,7 +100,7 @@ SPD = 'selfEffect(net.minecraft.world.effect.MobEffects.MOVEMENT_SPEED, %d, 1)'
 
 # ---- RE4
 mv('novistador', 'moth', 40, 'cloak_vanish', 24, [], 0, 30, 180, 2, 0, 0, 'cast', end=[INV % 200, SPD % 200])
-mv('colmillos', 'cerb', 40, 'spike_burst', 36, [18], 0, 4, 70, 3, 7, 1.2, 'bite', hit={0: ['aoe(4, 7f, 1.2)', PO(60, 0)]}, nodef=True)
+mv('colmillos', 'cerb', 40, 'plaga_tentacle_whip', 36, [18], 0, 4, 70, 3, 7, 1.2, 'bite', hit={0: ['aoe(4, 7f, 1.2)']}, nodef=True)   # RE4: the Plaga on its back whips with its tentacles
 mv('armadura', 'zombie', 40, 'sword_cleave', 36, [18], 0, 3.8, 44, 4, 12, 1.4, 'slam', tick=[(12, 17, 'lunge(0.2, 0)')])
 mv('zealot', 'ganado', 40, 'sickle_rush', 34, [18], 2, 7, 50, 3, 7, 1.0, 'dash', tick=[(6, 18, 'lunge(0.5, 0)')])
 mv('krauser', 'ganado', 40, 'arm_blade_cleave', 36, [18], 0, 4, 44, 4, 14, 1.4, 'sweep', can='mut(1)', tick=[(12, 17, 'lunge(0.25, 0)')])
@@ -323,6 +323,10 @@ VIS['insect_nest'] = [('base/stem1', 'false')] + [('base/root%d' % k, 'false') f
 SWING['verdugo'] = [('base/tail1', 0.3, 1.0, {41: 1, 42: 4}), ('base/tail1/tail2', 0.25, 0.8, {41: 1, 42: 4}), ('base/tail1/tail2/tail3', 0.25, 0.7, {41: 1, 42: 4})]   # trails behind, whips over the head on a strike
 VIS['lycan'] = [('base/hips/chest/armR/foreR/handR/axe', 'e.getId() % 4 != 0'), ('base/hips/chest/armL/foreL/handL/bow', 'e.getId() % 4 == 0')]   # RE8: a few Lycans are archers
 mv('lycan', 'hunter', 42, 'bow_shot', 36, [20], 7, 20, 60, 5, 5, 0, 'bow', can='s -> s.getId() % 4 == 0', hit={0: ['shot("arrow", 5f)']}, nodef=True)
+mv('miranda', 'nemesis', 42, 'mold_spike_eruption', 40, [22], 6, 18, 70, 3, 9, 0, 'cast', hit={0: ['aoeAt(2.5, 9f)']}, nodef=True)                       # RE8: raises giant mold spikes from the ground under a distant target
+mv('miranda', 'nemesis', 43, 'fireball_torrent', 50, [14, 20, 26, 32, 38], 5, 18, 110, 2, 5, 0, 'cast', hit={i: ['shot("fire", 5f)'] for i in range(5)}, nodef=True)   # RE8: fireball torrent
+DMGS['ogroman'] = DMGS.get('ogroman', []) + ['rearWeak(1.6f)']                                                                                    # RE6: exposed organs on its back
+DMGS['uroboros'] = DMGS.get('uroboros', []) + ['(s, src) -> src.is(net.minecraft.tags.DamageTypeTags.IS_FIRE) ? 2.5f : 1f']                      # RE5: sensitive to extreme heat (flamethrower)
 # ---- gap audit: signature abilities the roster still lacked
 BLIND = 'effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)'
 mv('novistador', 'moth', 41, 'acid_vomit', 34, [16], 0, 4, 50, 3, 5, 0, 'spit', hit={0: ['cone(5, 5f, 0)', PO(80, 0)]}, nodef=True)               # RE4: vomits acid from a stationary position, close range only

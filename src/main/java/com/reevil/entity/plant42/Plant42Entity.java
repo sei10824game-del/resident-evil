@@ -42,7 +42,7 @@ public class Plant42Entity extends BioMonster {
 
     private static final AttackMove M_WHIP = new AttackMove(WHIP, "tentacle_whip", 24, new int[]{12}, 1.0, 7, 20, 5).dmg(7f).kb(0.8).face(11);
     private static final AttackMove M_GRAB = new AttackMove(GRAB, "vine_grab", 60, new int[]{14, 30, 46}, 3, 8, 60, 3).dmg(3f).kb(0).face(14);
-    private static final AttackMove M_GAS = new AttackMove(GAS, "spore_cloud", 50, new int[]{25}, 0, 9, 200, 2).face(0);
+    private static final AttackMove M_GAS = new AttackMove(GAS, "acid_spray", 50, new int[]{25}, 0, 9, 200, 2).face(0);
     private static final AttackMove M_DEVOUR = new AttackMove(DEVOUR, "maw_bite", 36, new int[]{20}, 0, 3.0, 30, 6).dmg(14f).kb(0.3).face(18);
     private static final AttackMove M_SLAM = new AttackMove(SLAM, "tentacle_slam", 40, new int[]{22}, 0, 6, 90, 3).dmg(8f).kb(1.2).face(14);
     private static final AttackMove M_FLURRY = new AttackMove(FLURRY, "thrash_flurry", 44, new int[]{10, 20, 30}, 1.0, 8, 40, 4).dmg(4.5f).kb(0.5).face(28);

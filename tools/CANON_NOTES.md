@@ -29,3 +29,5 @@ Corrections found when auditing against the wiki (fandom pages are blocked for c
   Tyrant kneeling at spawn is intended (dormant until approached).
   Verdugo has a bladed tail (CanonVisuals SWING whips it on tail moves); one Lycan in four is an archer (bow instead of axe, by entity id).
 - Known gaps left: Del Lago boat ram (uses Neptune's lunge/drag), Ustanak arm attachments and cage, Mia chainsaw, Garrador claws stuck in walls after a rush.
+- Second wiki pass (~45 /gameplay pages): Colmillos' Plaga whips with tentacles (was a poison spike burst); Miranda raises mold spikes under a distant target and fires a fireball torrent;
+  Plant 42 sprays acid (move renamed); Ogroman weak on its back; Uroboros weak to fire. Checked and already matching: Hunter, Chimera, Neptune, Yawn, El Gigante, Executioner, Krauser, Nemesis, Kipepeo, Wesker, Dimitrescu, Moreau, Crow, Mendez.

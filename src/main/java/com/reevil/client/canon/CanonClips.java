@@ -139,6 +139,8 @@ public final class CanonClips {
         CLIPS.computeIfAbsent("re3r_nemesis", k -> new HashMap<>()).put(40, c_re3r_nemesis_40());
         CLIPS.computeIfAbsent("re2r_nemesis", k -> new HashMap<>()).put(40, c_re2r_nemesis_40());
         CLIPS.computeIfAbsent("lycan", k -> new HashMap<>()).put(42, c_lycan_42());
+        CLIPS.computeIfAbsent("miranda", k -> new HashMap<>()).put(42, c_miranda_42());
+        CLIPS.computeIfAbsent("miranda", k -> new HashMap<>()).put(43, c_miranda_43());
         CLIPS.computeIfAbsent("novistador", k -> new HashMap<>()).put(41, c_novistador_41());
         CLIPS.computeIfAbsent("novistador", k -> new HashMap<>()).put(42, c_novistador_42());
         CLIPS.computeIfAbsent("verdugo", k -> new HashMap<>()).put(41, c_verdugo_41());
@@ -1287,6 +1289,24 @@ public final class CanonClips {
         rot(b, "head", k(0.0f, 0, 0, 0), k(0.1667f, 10, 16, 0), k(0.8333f, 10, 16, 0), k(1.0f, 0, 0, 0));
         rot(b, "armL", k(0.0f, 0, 0, 0), k(0.1667f, -42, 12, 0), k(0.8333f, -42, 12, 0), k(1.0f, 0, 0, 0));
         rot(b, "armR", k(0.0f, 0, 0, 0), k(0.1667f, -30, -30, 0), k(0.5278f, -22, -50, 0), k(0.5556f, -34, -20, 0, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_miranda_42() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.35f, -120, 0, -60), k(0.55f, -150, 0, -70, SNAP), k(0.85f, -90, 0, -40), k(1.0f, 0, 0, 0));
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.35f, -120, 0, 60), k(0.55f, -150, 0, 70, SNAP), k(0.85f, -90, 0, 40), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.35f, -16, 0, 0), k(0.55f, -24, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.35f, -26, 0, 0), k(0.55f, 10, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        pos(b, "base", k(0.0f, 0, 0, 0), k(0.35f, 0, 1, 0), k(0.55f, 0, -2, 0), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
+    private static AnimClip c_miranda_43() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.12f, -120, 0, -60), k(0.28f, -150, 0, -70, SNAP), k(0.88f, -90, 0, -40), k(1.0f, 0, 0, 0));
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.12f, -120, 0, 60), k(0.28f, -150, 0, 70, SNAP), k(0.88f, -90, 0, 40), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.12f, -16, 0, 0), k(0.28f, -24, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.12f, -26, 0, 0), k(0.28f, 10, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        pos(b, "base", k(0.0f, 0, 0, 0), k(0.12f, 0, 1, 0), k(0.28f, 0, -2, 0), k(1.0f, 0, 0, 0));
         return b.build();
     }
     private static AnimClip c_novistador_41() {
