@@ -15,7 +15,7 @@ import java.util.regex.*;
 /**
  * Offline look check: software-renders every creature model (rest pose, back 3/4 + front 3/4) with its texture to PNG, no GL / no game needed.
  * Parts that CanonVisuals only shows for a mutation/form are hidden by evaluating its conditions for mut/form/move = the given values (default 0).
- * usage (repo root, after ./gradlew classes): tools/shots.sh <outDir> [nameFilter] [mut] [form]
+ * usage (repo root, after ./gradlew classes): tools/shots.sh <outDir> [nameFilter] [mut] [form] [moveId] [clip%]
  */
 public class ModelShot {
     static final int S = 320;
@@ -94,13 +94,14 @@ public class ModelShot {
     }
 
     static sun.misc.Unsafe unsafe;
-    static int bad;
+    static int bad, pct;
 
     public static void main(String[] a) throws Exception {
         Field uf = sun.misc.Unsafe.class.getDeclaredField("theUnsafe"); uf.setAccessible(true); unsafe = (sun.misc.Unsafe) uf.get(null);
         net.minecraft.SharedConstants.tryDetectVersion(); net.minecraft.server.Bootstrap.bootStrap();
         Path src = Paths.get("src/main/java/com/reevil/client"), texDir = Paths.get("src/main/resources/assets/reevil/textures/entity");
-        vars = Map.of("mut", a.length > 2 ? Integer.parseInt(a[2]) : 0, "form", a.length > 3 ? Integer.parseInt(a[3]) : 0, "move", 0);
+        vars = Map.of("mut", a.length > 2 ? Integer.parseInt(a[2]) : 0, "form", a.length > 3 ? Integer.parseInt(a[3]) : 0, "move", a.length > 4 ? Integer.parseInt(a[4]) : 0);
+        pct = a.length > 5 ? Integer.parseInt(a[5]) : 50;
         Map<String, List<String[]>> vis = new HashMap<>(); // id -> {path, condition}
         String cur = null;
         for (String line : Files.readAllLines(src.resolve("canon/CanonVisuals.java"))) {
@@ -150,6 +151,11 @@ public class ModelShot {
                     Method dm = null;
                     for (Class<?> k = ec; dm == null; k = k.getSuperclass()) try { dm = k.getDeclaredMethod("defineSynchedData"); } catch (NoSuchMethodException x) { }
                     dm.setAccessible(true); dm.invoke(e);
+                    ((com.reevil.entity.BioMonster) e).setMut(vars.get("mut")); ((com.reevil.entity.BioMonster) e).setForm(vars.get("form"));
+                    if (vars.get("move") > 0) {   // attack pose: move id at pct% of its clip
+                        var ed = ((net.minecraft.world.entity.Entity) e).getEntityData(); int[] val = {vars.get("move"), pct, 100}; String[] fn = {"DATA_MOVE", "DATA_MOVE_TICK", "DATA_MOVE_DUR"};
+                        for (int i = 0; i < 3; i++) { Field f = com.reevil.entity.BioMonster.class.getDeclaredField(fn[i]); f.setAccessible(true); ed.set((net.minecraft.network.syncher.EntityDataAccessor<Integer>) f.get(null), val[i]); }
+                    }
                     Object model = Class.forName(cls).getConstructor(ModelPart.class).newInstance(root);
                     for (Method sm : model.getClass().getMethods()) if (sm.getName().equals("setupAnim") && sm.getParameterCount() == 6 && sm.getParameterTypes()[0] == com.reevil.entity.BioMonster.class) { sm.invoke(model, e, 0f, 0f, 0f, 0f, 0f); break; }
                 } catch (Throwable x) { System.out.println("bind pose only: " + id + " " + (x.getCause() != null ? x.getCause() : x)); }

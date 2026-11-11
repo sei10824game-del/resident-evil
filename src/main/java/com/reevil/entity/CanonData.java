@@ -130,6 +130,14 @@ final class CanonData {
         add("krauser", new AttackMove(43, "flash_grenade", 26, new int[]{14}, 4f, 14f, 140, 2).dmg(2f).kb(0).face(14)).hit(0, aoe(5, 2f, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 60, 2)).noDefault();
         add("re3r_nemesis", new AttackMove(40, "flamethrower", 60, new int[]{10, 16, 22, 28, 34, 40, 46, 52}, 0f, 7f, 70, 5).dmg(4f).kb(0.1).face(10)).hit(0, cone(7, 4f, 6)).hit(1, cone(7, 4f, 6)).hit(2, cone(7, 4f, 6)).hit(3, cone(7, 4f, 6)).hit(4, cone(7, 4f, 6)).hit(5, cone(7, 4f, 6)).hit(6, cone(7, 4f, 6)).hit(7, cone(7, 4f, 6)).noDefault();
         add("re2r_nemesis", new AttackMove(40, "machine_gun_burst", 50, new int[]{10, 14, 18, 22, 26, 30, 34, 38, 42, 46}, 5f, 28f, 50, 6).dmg(3f).kb(0).face(10)).hit(0, shot("arrow", 3.5f)).hit(1, shot("arrow", 3.5f)).hit(2, shot("arrow", 3.5f)).hit(3, shot("arrow", 3.5f)).hit(4, shot("arrow", 3.5f)).hit(5, shot("arrow", 3.5f)).hit(6, shot("arrow", 3.5f)).hit(7, shot("arrow", 3.5f)).hit(8, shot("arrow", 3.5f)).hit(9, shot("arrow", 3.5f)).noDefault();
+        add("novistador", new AttackMove(41, "acid_spit", 34, new int[]{16}, 4f, 14f, 60, 3).dmg(4f).kb(0).face(16)).hit(0, shot("poison", 4f)).noDefault();
+        add("verdugo", new AttackMove(41, "tail_impale", 34, new int[]{16}, 2f, 6f, 50, 4).dmg(12f).kb(0.6).face(16)).hit(0, strike(12f, 0.6, 6.5)).hit(0, launch(0.4)).noDefault();
+        add("jill", new AttackMove(41, "machine_pistol_burst", 34, new int[]{10, 14, 18, 22, 26}, 5f, 16f, 60, 3).dmg(3f).kb(0).face(10)).hit(0, shot("arrow", 3f)).hit(1, shot("arrow", 3f)).hit(2, shot("arrow", 3f)).hit(3, shot("arrow", 3f)).hit(4, shot("arrow", 3f)).noDefault();
+        add("simmons", new AttackMove(41, "bone_quill_volley", 40, new int[]{12, 16, 20, 24, 28}, 5f, 18f, 70, 3).dmg(4f).kb(0).face(12)).can(form(1, 2)).hit(0, shot("arrow", 4f)).hit(1, shot("arrow", 4f)).hit(2, shot("arrow", 4f)).hit(3, shot("arrow", 4f)).hit(4, shot("arrow", 4f)).noDefault();
+        add("napad", new AttackMove(41, "charging_tackle", 40, new int[]{24}, 4f, 12f, 70, 4).dmg(12f).kb(2.2).face(24)).tick(8, 24, lunge(0.6, 0)).hit(0, launch(0.4));
+        add("reaper", new AttackMove(43, "blinding_gas", 36, new int[]{16}, 0f, 6f, 160, 2).dmg(0f).kb(0).face(16)).hit(0, aoe(6, 1f, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)).noDefault();
+        add("hunter_gamma", new AttackMove(41, "swallow_whole", 56, new int[]{16, 30, 44}, 0f, 2.4f, 90, 2).dmg(8f).kb(0).face(16)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 70, 4));
+        add("iron_maiden", new AttackMove(40, "spike_impale", 52, new int[]{16, 30, 44}, 0f, 2.2f, 70, 4).dmg(7f).kb(0).face(16)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 60, 4));
         replaceBase("daughter");
         replaceBase("drain_deimos");
         replaceBase("executioner_majini");
@@ -159,6 +167,7 @@ final class CanonData {
         damage("javo", armorAndScales());
         damage("wesker", dodge(0.65f, 22));
         damage("krauser", parry(0.5f, 30, "knife_slash"));
+        damage("napad", rearWeak(1.6f));
         onHurt("fat_molded", counter(40, 0.35f));
         onDeath("majini", burstInto("kipepeo", 3, 0.12f));
         onDeath("chainsaw_majini", burstInto("kipepeo", 3, 0.12f));
@@ -189,5 +198,7 @@ final class CanonData {
         passive("licker", senseSound(3.5));
         passive("re2r_licker", senseSound(3.5));
         passive("garrador", senseSound(3.5));
+        passive("pale_head", regen(0.02f));
+        passive("re3r_pale_head", regen(0.02f));
     }
 }

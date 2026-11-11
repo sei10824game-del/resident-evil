@@ -1,5 +1,5 @@
 #!/bin/bash
-# usage: tools/shots.sh <outDir> [nameFilter] [mut] [form]   (needs ./gradlew classes printCp first; classpath cached in build/cp.txt)
+# usage: tools/shots.sh <outDir> [nameFilter] [mut] [form] [moveId] [clip%]   (needs ./gradlew classes printCp first; classpath cached in build/cp.txt)
 cd "$(dirname "$0")/.." || exit 1
 [ -f build/cp.txt ] || ./gradlew -q printCp | grep '^CP=' | sed 's/^CP=//' > build/cp.txt
 CP="$(cat build/cp.txt):build/classes/java/main"

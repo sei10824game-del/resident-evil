@@ -333,7 +333,7 @@ spec(id='mendez', pkg='mendez', C='Mendez', ppkg='elgigante', pm='ElGiganteModel
 spec(id='soldat', pkg='soldat', C='Soldat', ppkg='krauser', pm='KrauserModel', W=128, H0=64, sty=dict(o=OLIVE, d=DARK, s=STEEL),
   parts=[A('base/torso/neck/head/helm', Z, (-4, -8, -4, 8, 4, 8, 'o'), (-3, -5, -4.4, 6, 3, 1, 'd'), (-2, -3, -5, 4, 3, 2, 's')), A('base/torso/vest', Z, (-4.6, -10, -2.6, 9.2, 8, 5.2, 'o'), (-3, -9, -2.9, 2, 2, 1, 's'), (1, -9, -2.9, 2, 2, 1, 's'))])
 spec(id='gatling_majini', pkg='gatlingmajini', C='GatlingMajini', ppkg='krauser', pm='KrauserModel', W=128, H0=64, sty=dict(s=STEEL, d=DARK, t=TAN),
-  parts=[A('base/torso/armR/foreR/handR/gatling', 'PartPose.offsetAndRotation(0, 2, 0, -1.4f, 0, 0)', (-2, -2, -4, 4, 4, 6, 'd'), (-1.5, -1.5, -14, 1, 1, 10, 's'), (0.5, -1.5, -14, 1, 1, 10, 's'), (-0.5, 0.5, -14, 1, 1, 10, 's'), (-0.5, -2.5, -14, 1, 1, 10, 's')),
+  parts=[A('base/torso/armR/foreR/handR/gatling', 'PartPose.offsetAndRotation(0, 2, 0, 1.74f, 0, 0)', (-3, -3, -5, 6, 6, 9, 'd'), (-2.5, 3, -3, 5, 5, 6, 't'), (-2, -2, -17, 2, 2, 12, 's'), (0, -2, -17, 2, 2, 12, 's'), (-2, 0, -17, 2, 2, 12, 's'), (0, 0, -17, 2, 2, 12, 's'), (-2.5, -2.5, -18, 5, 5, 1, 'd')),
          A('base/torso/ammo', Z, (-4.6, -9, -2.6, 9.2, 2, 5.2, 't'), (-3, -7, 2.5, 6, 6, 3, 'd'))])
 
 

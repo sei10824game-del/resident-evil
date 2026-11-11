@@ -38,6 +38,13 @@ public final class CanonVisuals {
                 { ModelPart p = part(root, "base/slug"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/slugGun"); if (p != null) p.visible = mut == 1; }
             }
+            case "insect_nest" -> {
+                { ModelPart p = part(root, "base/stem1"); if (p != null) p.visible = false; }
+                { ModelPart p = part(root, "base/root0"); if (p != null) p.visible = false; }
+                { ModelPart p = part(root, "base/root1"); if (p != null) p.visible = false; }
+                { ModelPart p = part(root, "base/root2"); if (p != null) p.visible = false; }
+                { ModelPart p = part(root, "base/root3"); if (p != null) p.visible = false; }
+            }
             case "jack_baker" -> {
                 { ModelPart p = part(root, "base/torso/armR/foreR/handR/shovel"); if (p != null) p.visible = mut == 0; }
                 { ModelPart p = part(root, "base/torso/armR/foreR/handR/csaw"); if (p != null) p.visible = mut == 1; }

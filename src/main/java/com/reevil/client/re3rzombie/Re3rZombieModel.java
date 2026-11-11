@@ -20,22 +20,24 @@ public class Re3rZombieModel extends ZombieModel {
         com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re3r_zombie(id);
         return c != null ? c : super.clip(e, id);
     }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 96); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = ZombieModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("body").getChild("waist").getChild("chest").getChild("neck").getChild("head").addOrReplaceChild("hair", CubeListBuilder.create()
-            .texOffs(0, 64).addBox(-4.5f, -7, -4.5f, 9, 2, 9)
-            .texOffs(36, 64).addBox(-4.5f, -6, 1, 9, 12, 3)
-            .texOffs(60, 64).addBox(-4.8f, -6, -4, 1.5f, 9, 4)
-            .texOffs(72, 64).addBox(3.3f, -6, -4, 1.5f, 9, 4),
+            .texOffs(0, 64).addBox(-4.5f, -6.6f, -4.5f, 9, 2, 9)
+            .texOffs(36, 64).addBox(-4.5f, -5, 1.7f, 9, 11, 3)
+            .texOffs(60, 64).addBox(-4.7f, -5, -3.5f, 1.2f, 7, 5.5f)
+            .texOffs(76, 64).addBox(3.5f, -5, -3.5f, 1.2f, 7, 5.5f),
             PartPose.ZERO);
         root.getChild("body").addOrReplaceChild("skirt", CubeListBuilder.create()
-            .texOffs(84, 64).addBox(-4.8f, -1, -2.8f, 9.6f, 6, 5.6f)
-            .texOffs(0, 79).addBox(-5.2f, 4, -3.2f, 10.4f, 5, 6.4f),
+            .texOffs(92, 64).addBox(-4.8f, -1, -2.8f, 9.6f, 6, 5.6f)
+            .texOffs(0, 78).addBox(-5.2f, 4, -3.2f, 10.4f, 5, 6.4f),
             PartPose.ZERO);
         root.getChild("body").getChild("waist").getChild("chest").addOrReplaceChild("top", CubeListBuilder.create()
-            .texOffs(36, 79).addBox(-4.8f, -6, -2.8f, 9.6f, 4, 5.6f),
+            .texOffs(36, 78).addBox(-4.8f, -6, -2.8f, 9.6f, 4, 5.6f),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 96);
+        return mesh;
     }
 }

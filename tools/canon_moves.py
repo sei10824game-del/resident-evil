@@ -311,6 +311,19 @@ mv('re3r_nemesis', 'nemesis', 40, 'flamethrower', 60, [10, 16, 22, 28, 34, 40, 4
 mv('re2r_nemesis', 'nemesis', 40, 'machine_gun_burst', 50, [10, 14, 18, 22, 26, 30, 34, 38, 42, 46], 5, 28, 50, 6, 3, 0, 'aimhold', hit={i: ['shot("arrow", 3.5f)'] for i in range(10)}, nodef=True)
 VIS['re3r_nemesis'] = [('base/torso/armR/foreR/handR/flamer', 'move == 40'), ('base/torso/tank', 'true')]
 VIS['re2r_nemesis'] = [('base/torso/armR/foreR/handR/mgun', 'move == 40')]
+VIS['insect_nest'] = [('base/stem1', 'false')] + [('base/root%d' % k, 'false') for k in range(4)]   # Plant 42 rig: only the hive is the nest
+# ---- gap audit: signature abilities the roster still lacked
+BLIND = 'effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)'
+mv('novistador', 'moth', 41, 'acid_spit', 34, [16], 4, 14, 60, 3, 4, 0, 'spit', hit={0: ['shot("poison", 4f)']}, nodef=True)                      # RE4: spits corrosive acid
+mv('verdugo', 'mrx', 41, 'tail_impale', 34, [16], 2, 6, 50, 4, 12, 0.6, 'thrust', hit={0: ['strike(12f, 0.6, 6.5)', 'launch(0.4)']}, nodef=True)   # RE4: bladed tail stab (from vents / at range)
+mv('jill', 'mrx', 41, 'machine_pistol_burst', 34, [10, 14, 18, 22, 26], 5, 16, 60, 3, 3, 0, 'aimhold', hit={i: ['shot("arrow", 3f)'] for i in range(5)}, nodef=True)   # RE5: twin machine pistols
+mv('simmons', 'nemesis', 41, 'bone_quill_volley', 40, [12, 16, 20, 24, 28], 5, 18, 70, 3, 4, 0, 'aimhold', can='form(1, 2)', hit={i: ['shot("arrow", 4f)'] for i in range(5)}, nodef=True)   # RE6: mutated forms fire bone quills
+mv('napad', 'licker', 41, 'charging_tackle', 40, [24], 4, 12, 70, 4, 12, 2.2, 'dash', tick=[(8, 24, 'lunge(0.6, 0)')], hit={0: ['launch(0.4)']})   # RE6: armoured brute's charge
+DMGS['napad'] = ['rearWeak(1.6f)']                                                                                                               # RE6: shell protects the front, weak spot on the back
+mv('reaper', 'licker', 43, 'blinding_gas', 36, [16], 0, 6, 160, 2, 0, 0, 'cast', hit={0: ['aoe(6, 1f, 0)', BLIND]}, nodef=True)                     # RE5: sight-obscuring gas cloud
+mv('hunter_gamma', 'licker', 41, 'swallow_whole', 56, [16, 30, 44], 0, 2.4, 90, 2, 8, 0, 'grab', hit={0: [SLOW(70, 4)]})                           # RE3: engulfs prey in its toothless maw
+mv('iron_maiden', 'zombie', 40, 'spike_impale', 52, [16, 30, 44], 0, 2.2, 70, 4, 7, 0, 'grab', hit={0: [SLOW(60, 4)]})                             # RE4: extends its body spikes through a grabbed victim
+PASSIVES['pale_head'] = ['regen(0.02f)']; PASSIVES['re3r_pale_head'] = ['regen(0.02f)']                                                          # RE3R: regenerates rapidly
 VIS['re4r_krauser'] = [('base/torso/armR/foreR/mutBlade', 'mut == 1'), ('base/torso/armR/mutLump', 'mut == 1')]   # built on Krauser's own mesh (truepar): same mutation parts
 
 def f(x): return ('%sf' % x)
