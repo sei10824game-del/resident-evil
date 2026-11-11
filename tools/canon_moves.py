@@ -62,6 +62,13 @@ def arche(kind, rig, dur, hits):
     elif kind == 'aimhold':
         row('aR', (0, 0, 0, 0), (6, -88, -6, 0), (dur - 6, -88, -6, 0), (dur, 0, 0, 0)); row('aL', (0, 0, 0, 0), (6, -80, 14, 0), (dur - 6, -80, 14, 0), (dur, 0, 0, 0))
         row('torso', (0, 0, 0, 0), (6, 6, -14, 0), (dur - 6, 6, -14, 0), (dur, 0, 0, 0)); row('head', (0, 0, 0, 0), (6, 4, 10, 0), (dur - 6, 4, 10, 0), (dur, 0, 0, 0))
+    elif kind == 'lean':   # body only (tail / tongue strikes): bow forward on each hit
+        ts = [(0, 0, 0, 0)]
+        for t in hits: ts += [(t - 5, -10, 0, 0), (t, 24, 0, 0, S)]
+        ts.append((dur, 0, 0, 0)); put('torso', ts); row('head', (0, 0, 0, 0), (hits[0], -14, 0, 0), (dur, 0, 0, 0))
+    elif kind == 'bow':   # hunched rigs (arms already forward, chest bent): straighten up, bow arm out, draw and loose
+        row('torso', (0, 0, 0, 0), (6, -24, -18, 0), (dur - 6, -24, -18, 0), (dur, 0, 0, 0)); row('head', (0, 0, 0, 0), (6, 10, 16, 0), (dur - 6, 10, 16, 0), (dur, 0, 0, 0))
+        row('aL', (0, 0, 0, 0), (6, -42, 12, 0), (dur - 6, -42, 12, 0), (dur, 0, 0, 0)); row('aR', (0, 0, 0, 0), (6, -30, -30, 0), (h - 1, -22, -50, 0), (h, -34, -20, 0, S), (dur, 0, 0, 0))
     elif kind == 'bite':
         row('torso', (0, 0, 0, 0), (h - 6, -18, 0, 0), (h, 28, 0, 0, S), (h + 10, 10, 0, 0), (dur, 0, 0, 0)); row('head', (0, 0, 0, 0), (h - 6, -22, 0, 0), (h, 20, 0, 0, S), (dur, 0, 0, 0)); row('jaw', (0, 0, 0, 0), (h - 6, 42, 0, 0), (h, 3, 0, 0, S), (dur, 0, 0, 0))
         row('aL', (0, 0, 0, 0), (h - 6, -70, 0, -20), (h, -100, 0, -10, S), (dur, 0, 0, 0)); row('aR', (0, 0, 0, 0), (h - 6, -70, 0, 20), (h, -100, 0, 10, S), (dur, 0, 0, 0))
@@ -140,6 +147,7 @@ PASSIVES0 = {'javo': ['mutateAt(0.65f, 1, 2, 3, 4)'], 'krauser': ['mutateAt(0.5f
 # entity -> {mut stage: [part paths]} (parts exist in the model; shown only while getMut()==stage)
 VIS = {'wesker': [('base/torso/uroT%d' % i, 'mut == 1') for i in (1, 2, 3, 4)]}
 SPIN = {}
+SWING = {}   # ent -> [(path, rest xRot, amplitude, {moveId: swings})]: unregistered parts (tails) whipped during those moves, gently swaying otherwise
 
 
 # ===================================================== canon v2 (wiki-verified, see CANON_NOTES.md)
@@ -312,12 +320,15 @@ mv('re2r_nemesis', 'nemesis', 40, 'machine_gun_burst', 50, [10, 14, 18, 22, 26, 
 VIS['re3r_nemesis'] = [('base/torso/armR/foreR/handR/flamer', 'move == 40'), ('base/torso/tank', 'true')]
 VIS['re2r_nemesis'] = [('base/torso/armR/foreR/handR/mgun', 'move == 40')]
 VIS['insect_nest'] = [('base/stem1', 'false')] + [('base/root%d' % k, 'false') for k in range(4)]   # Plant 42 rig: only the hive is the nest
+SWING['verdugo'] = [('base/tail1', 0.3, 1.0, {41: 1, 42: 4}), ('base/tail1/tail2', 0.25, 0.8, {41: 1, 42: 4}), ('base/tail1/tail2/tail3', 0.25, 0.7, {41: 1, 42: 4})]   # trails behind, whips over the head on a strike
+VIS['lycan'] = [('base/hips/chest/armR/foreR/handR/axe', 'e.getId() % 4 != 0'), ('base/hips/chest/armL/foreL/handL/bow', 'e.getId() % 4 == 0')]   # RE8: a few Lycans are archers
+mv('lycan', 'hunter', 42, 'bow_shot', 36, [20], 7, 20, 60, 5, 5, 0, 'bow', can='s -> s.getId() % 4 == 0', hit={0: ['shot("arrow", 5f)']}, nodef=True)
 # ---- gap audit: signature abilities the roster still lacked
 BLIND = 'effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)'
 mv('novistador', 'moth', 41, 'acid_vomit', 34, [16], 0, 4, 50, 3, 5, 0, 'spit', hit={0: ['cone(5, 5f, 0)', PO(80, 0)]}, nodef=True)               # RE4: vomits acid from a stationary position, close range only
 mv('novistador', 'moth', 42, 'flying_kick', 30, [16], 2, 7, 40, 3, 6, 1.4, 'dash', tick=[(6, 16, 'lunge(0.5, 0.25)')])                             # RE4: jumps into the air and kicks
-mv('verdugo', 'mrx', 41, 'tail_impale', 34, [16], 2, 6, 50, 4, 12, 0.6, 'thrust', hit={0: ['strike(12f, 0.6, 6.5)', 'launch(0.4)']}, nodef=True)   # RE4: tail stab through floor / ceiling grates
-mv('verdugo', 'mrx', 42, 'tail_flurry', 44, [12, 20, 28, 36], 1, 5, 60, 3, 6, 0.4, 'flurry', hit={i: ['strike(6f, 0.4, 5.5)'] for i in range(4)}, nodef=True)   # RE4: throws its tail at Leon four times
+mv('verdugo', 'mrx', 41, 'tail_impale', 34, [16], 2, 6, 50, 4, 12, 0.6, 'lean', hit={0: ['strike(12f, 0.6, 6.5)', 'launch(0.4)']}, nodef=True)   # RE4: tail stab through floor / ceiling grates
+mv('verdugo', 'mrx', 42, 'tail_flurry', 44, [12, 20, 28, 36], 1, 5, 60, 3, 6, 0.4, 'lean', hit={i: ['strike(6f, 0.4, 5.5)'] for i in range(4)}, nodef=True)   # RE4: throws its tail at Leon four times
 mv('verdugo', 'mrx', 43, 'leap_slash', 36, [22], 3, 9, 50, 3, 11, 1.2, 'dash', tick=[(8, 20, 'lunge(0.55, 0.45)')])                                # RE4: jumps into the air and slashes on landing
 mv('jill', 'mrx', 41, 'machine_pistol_burst', 34, [10, 14, 18, 22, 26], 5, 16, 60, 3, 3, 0, 'aimhold', hit={i: ['shot("arrow", 3f)'] for i in range(5)}, nodef=True)   # RE5: twin machine pistols
 mv('simmons', 'nemesis', 41, 'bone_quill_volley', 40, [12, 16, 20, 24, 28], 5, 18, 70, 3, 4, 0, 'aimhold', can='form(1, 2)', hit={i: ['shot("arrow", 4f)'] for i in range(5)}, nodef=True)   # RE6: mutated forms fire bone quills
@@ -389,13 +400,16 @@ def clips_java():
 def vis_java():
     L = ['package com.reevil.client.canon;', '', 'import com.reevil.entity.BioMonster;', 'import net.minecraft.client.model.geom.ModelPart;', 'import net.minecraft.core.registries.BuiltInRegistries;', '', '/** Generated by tools/canon_moves.py: shows mutation/form parts only while their condition holds; spins propellers. */',
          'public final class CanonVisuals {', '    private CanonVisuals() {}', '    private static ModelPart part(ModelPart root, String path) {', '        ModelPart p = root;', '        for (String s : path.split("/")) { if (!p.hasChild(s)) return null; p = p.getChild(s); }', '        return p;', '    }',
-         '    public static void apply(ModelPart root, BioMonster e) {', '        String id = BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath();', '        int mut = e.getMut(), form = e.getForm(), move = e.getMoveId();', '        float age = e.tickCount;', '        switch (id) {']
-    for ent in sorted(set(list(VIS) + list(SPIN))):
+         '    public static void apply(ModelPart root, BioMonster e) {', '        String id = BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath();', '        int mut = e.getMut(), form = e.getForm(), move = e.getMoveId();', '        float age = e.tickCount;', '        float prog = e.getMoveDuration() > 0 ? (float) e.getMoveTick() / e.getMoveDuration() : 0f;', '        switch (id) {']
+    for ent in sorted(set(list(VIS) + list(SPIN) + list(SWING))):
         L.append('            case "%s" -> {' % ent)
         for pth, expr in VIS.get(ent, []):
             L.append('                { ModelPart p = part(root, "%s"); if (p != null) p.visible = %s; }' % (pth, expr))
         for pth, axis, rate in SPIN.get(ent, []):
             L.append('                { ModelPart p = part(root, "%s"); if (p != null) p.%sRot = age * %sf; }' % (pth, axis, rate))
+        for pth, rest, amp, mvs in SWING.get(ent, []):
+            ex = ''.join('move == %d ? %sf * (float) Math.abs(Math.sin(prog * Math.PI * %d)) : ' % (m, amp, k) for m, k in sorted(mvs.items()))
+            L.append('                { ModelPart p = part(root, "%s"); if (p != null) p.xRot = %sf + (%s0.05f * (float) Math.sin(age * 0.08f)); }' % (pth, rest, ex))
         L.append('            }')
     L += ['            default -> {}', '        }', '    }', '}']
     return '\n'.join(L) + '\n'

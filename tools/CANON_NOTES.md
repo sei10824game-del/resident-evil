@@ -27,4 +27,5 @@ Corrections found when auditing against the wiki (fandom pages are blocked for c
   Hunter Gamma: swallows prey whole. Iron Maiden: arms extend and pull onto the spikes; spikes extend with almost no warning. Regenerador: arms stretch out to pull the victim into a neck bite.
   Pale Head: regenerates, moves and attacks FASTER than a normal zombie (was slower). Brain Sucker: poisons at close range. Simmons: fires bone shards in mutated forms. Jill (RE5): machine pistols.
   Tyrant kneeling at spawn is intended (dormant until approached).
-- Known gaps left: Lycan archers (no bow model), Del Lago boat ram (uses Neptune's lunge/drag), Ustanak arm attachments and cage, Mia chainsaw, Garrador claws stuck in walls after a rush.
+  Verdugo has a bladed tail (CanonVisuals SWING whips it on tail moves); one Lycan in four is an archer (bow instead of axe, by entity id).
+- Known gaps left: Del Lago boat ram (uses Neptune's lunge/drag), Ustanak arm attachments and cage, Mia chainsaw, Garrador claws stuck in walls after a rush.

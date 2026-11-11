@@ -138,6 +138,7 @@ public final class CanonClips {
         CLIPS.computeIfAbsent("krauser", k -> new HashMap<>()).put(43, c_krauser_43());
         CLIPS.computeIfAbsent("re3r_nemesis", k -> new HashMap<>()).put(40, c_re3r_nemesis_40());
         CLIPS.computeIfAbsent("re2r_nemesis", k -> new HashMap<>()).put(40, c_re2r_nemesis_40());
+        CLIPS.computeIfAbsent("lycan", k -> new HashMap<>()).put(42, c_lycan_42());
         CLIPS.computeIfAbsent("novistador", k -> new HashMap<>()).put(41, c_novistador_41());
         CLIPS.computeIfAbsent("novistador", k -> new HashMap<>()).put(42, c_novistador_42());
         CLIPS.computeIfAbsent("verdugo", k -> new HashMap<>()).put(41, c_verdugo_41());
@@ -1280,6 +1281,14 @@ public final class CanonClips {
         rot(b, "head", k(0.0f, 0, 0, 0), k(0.12f, 4, 10, 0), k(0.88f, 4, 10, 0), k(1.0f, 0, 0, 0));
         return b.build();
     }
+    private static AnimClip c_lycan_42() {
+        AnimClip.Builder b = AnimClip.create();
+        rot(b, "chest", k(0.0f, 0, 0, 0), k(0.1667f, -24, -18, 0), k(0.8333f, -24, -18, 0), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.1667f, 10, 16, 0), k(0.8333f, 10, 16, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.1667f, -42, 12, 0), k(0.8333f, -42, 12, 0), k(1.0f, 0, 0, 0));
+        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.1667f, -30, -30, 0), k(0.5278f, -22, -50, 0), k(0.5556f, -34, -20, 0, SNAP), k(1.0f, 0, 0, 0));
+        return b.build();
+    }
     private static AnimClip c_novistador_41() {
         AnimClip.Builder b = AnimClip.create();
         rot(b, "head", k(0.0f, 0, 0, 0), k(0.2647f, -34, 0, 0), k(0.4706f, 18, 0, 0, SNAP), k(1.0f, 0, 0, 0));
@@ -1298,20 +1307,14 @@ public final class CanonClips {
     }
     private static AnimClip c_verdugo_41() {
         AnimClip.Builder b = AnimClip.create();
-        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.2941f, -40, 24, 0), k(0.4706f, -88, -6, 0, SNAP), k(0.7647f, -50, 0, 0), k(1.0f, 0, 0, 0));
-        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.2941f, -50, -20, 0), k(0.4706f, -20, 0, 0), k(1.0f, 0, 0, 0));
-        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2941f, -4, 30, 0), k(0.4706f, 20, -26, 0, SNAP), k(1.0f, 0, 0, 0));
-        rot(b, "head", k(0.0f, 0, 0, 0), k(0.4706f, 10, -14, 0), k(1.0f, 0, 0, 0));
-        rot(b, "thighR", k(0.0f, 0, 0, 0), k(0.2941f, 26, 0, 0), k(0.4706f, -30, 0, 0), k(1.0f, 0, 0, 0));
-        rot(b, "thighL", k(0.0f, 0, 0, 0), k(0.2941f, -20, 0, 0), k(0.4706f, 22, 0, 0), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.3235f, -10, 0, 0), k(0.4706f, 24, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.4706f, -14, 0, 0), k(1.0f, 0, 0, 0));
         return b.build();
     }
     private static AnimClip c_verdugo_42() {
         AnimClip.Builder b = AnimClip.create();
-        rot(b, "armR", k(0.0f, 0, 0, 0), k(0.1818f, -30, 0, 10), k(0.2727f, -98, 0, -10, SNAP), k(0.5455f, -30, 0, 10), k(0.6364f, -98, 0, -10, SNAP), k(1.0f, 0, 0, 0));
-        rot(b, "armL", k(0.0f, 0, 0, 0), k(0.3636f, -30, 0, 10), k(0.4545f, -98, 0, -10, SNAP), k(0.7273f, -30, 0, 10), k(0.8182f, -98, 0, -10, SNAP), k(1.0f, 0, 0, 0));
-        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.2727f, 8, -22, 0, SNAP), k(0.4545f, 8, 22, 0, SNAP), k(0.6364f, 8, -22, 0, SNAP), k(0.8182f, 8, 22, 0, SNAP), k(1.0f, 0, 0, 0));
-        rot(b, "head", k(0.0f, 0, 0, 0), k(0.2727f, 6, 12, 0), k(1.0f, 0, 0, 0));
+        rot(b, "torso", k(0.0f, 0, 0, 0), k(0.1591f, -10, 0, 0), k(0.2727f, 24, 0, 0, SNAP), k(0.3409f, -10, 0, 0), k(0.4545f, 24, 0, 0, SNAP), k(0.5227f, -10, 0, 0), k(0.6364f, 24, 0, 0, SNAP), k(0.7045f, -10, 0, 0), k(0.8182f, 24, 0, 0, SNAP), k(1.0f, 0, 0, 0));
+        rot(b, "head", k(0.0f, 0, 0, 0), k(0.2727f, -14, 0, 0), k(1.0f, 0, 0, 0));
         return b.build();
     }
     private static AnimClip c_verdugo_43() {

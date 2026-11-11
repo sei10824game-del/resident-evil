@@ -20,7 +20,9 @@ public class VerdugoModel extends MrXModel {
         com.reevil.anim.AnimClip c = com.reevil.client.mrx.SignatureClips.claws(id);
         return c != null ? c : super.clip(e, id);
     }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 136); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = MrXModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").getChild("neck").getChild("head").getChild("hatBrim").addOrReplaceChild("hatCrown", CubeListBuilder.create(), PartPose.ZERO);
@@ -95,6 +97,18 @@ public class VerdugoModel extends MrXModel {
             .texOffs(14, 106).addBox(-0.5f, 1, -3, 1, 15, 3)
             .texOffs(22, 106).addBox(-0.5f, 13, -5, 1, 4, 2),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 128);
+        root.getChild("base").addOrReplaceChild("tail1", CubeListBuilder.create()
+            .texOffs(28, 106).addBox(-1.2f, -1.2f, 0, 2.4f, 2.4f, 9)
+            .texOffs(52, 106).addBox(-0.5f, -2, 2, 1, 1, 5),
+            PartPose.offsetAndRotation(0, -1, 2, 0.3f, 0, 0));
+        root.getChild("base").getChild("tail1").addOrReplaceChild("tail2", CubeListBuilder.create()
+            .texOffs(64, 106).addBox(-1, -1, 0, 2, 2, 9)
+            .texOffs(86, 106).addBox(-0.5f, -1.8f, 2, 1, 1, 5),
+            PartPose.offsetAndRotation(0, 0, 9, 0.25f, 0, 0));
+        root.getChild("base").getChild("tail1").getChild("tail2").addOrReplaceChild("tail3", CubeListBuilder.create()
+            .texOffs(98, 106).addBox(-0.8f, -0.8f, 0, 1.6f, 1.6f, 8)
+            .texOffs(0, 124).addBox(-0.4f, -1.6f, 7, 0.8f, 3.2f, 7),
+            PartPose.offsetAndRotation(0, 0, 9, 0.25f, 0, 0));
+        return mesh;
     }
 }

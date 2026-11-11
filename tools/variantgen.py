@@ -360,6 +360,7 @@ def lycan_parts():
               A('base/thigh%s/shin%s/foot%s' % (n, n, n), 'PartPose.offsetAndRotation(0, 6, 0, -0.7f, 0, 0)', (-2.8, 0, -2.8, 5.6, 6, 5.6, 'sk')),
               A('base/thigh%s/shin%s/foot%s/toes%s' % (n, n, n, n), 'PartPose.offsetAndRotation(0, 4.5f, 0, 0.15f, 0, 0)', (-3.2, 0, -6, 6.4, 2, 8, 'sk'))]
     P.append(A('base/hips/chest/armR/foreR/handR/axe', 'PartPose.offsetAndRotation(0, 3, -1, -1.2f, 0, 0)', (-0.7, -3, -0.7, 1.4, 20, 1.4, 'wd'), (-0.6, 14, -7, 1.2, 8, 8, 'st')))
+    P.append(A('base/hips/chest/armL/foreL/handL/bow', 'PartPose.offset(0, 3, 0)', (-0.6, -0.6, -9, 1.2, 1.2, 18, 'wd'), (-0.6, 0.6, -9, 1.2, 2, 2, 'wd'), (-0.6, 0.6, 7, 1.2, 2, 2, 'wd'), (-0.2, 2.4, -8, 0.4, 0.4, 16, 'st')))   # archers only (CanonVisuals)
     return P
 LY_CLEAR = ['base/hips/tail', 'base/hips/tail/tail2', 'base/hips/chest/armL/foreL/handL/clawL1', 'base/hips/chest/armL/foreL/handL/clawL2', 'base/hips/chest/armL/foreL/handL/clawL3', 'base/hips/chest/armR/foreR/handR/clawR1', 'base/hips/chest/armR/foreR/handR/clawR2', 'base/hips/chest/armR/foreR/handR/clawR3']
 spec(id='lycan', pkg='lycan', C='Lycan', ppkg='hunter', pm='HunterModel', W=128, H0=128, clear=LY_CLEAR,
@@ -415,7 +416,9 @@ vd = humanoid(torso=[(-3.5, -10, -2, 7, 10, 4, 'mu'), (-3.7, -9, -2.2, 7.4, 1, 4
   thigh=[(-1.7, 0, -1.7, 3.4, 8, 3.4, 'mu')], shin=[(-1.5, 0, -1.5, 3, 8, 3, 'sk')], foot=[(-2, 0, -5, 4, 2, 6, 'sk')], coat=[(-0.1, 0, -0.1, 0.2, 0.2, 0.2, 'sk')])
 spec(id='verdugo', pkg='verdugo', C='Verdugo', ppkg='mrx', pm='MrXModel', W=128, H0=64, clipfn='claws', clear=['base/torso/neck/head/hatBrim/hatCrown', 'base/torso/neck/head/hatBrim'],
   sty=dict(sk=VSKIN, mu=VMUS, bn=VBONE, fc=VFACE, s=STEEL),
-  parts=vd + [A('base/torso/armR/foreR/blade', Z, (-0.5, 1, -3, 1, 15, 3, 's'), (-0.5, 13, -5, 1, 4, 2, 's')), A('base/torso/armL/foreL/blade', Z, (-0.5, 1, -3, 1, 15, 3, 's'), (-0.5, 13, -5, 1, 4, 2, 's'))])
+  parts=vd + [A('base/torso/armR/foreR/blade', Z, (-0.5, 1, -3, 1, 15, 3, 's'), (-0.5, 13, -5, 1, 4, 2, 's')), A('base/torso/armL/foreL/blade', Z, (-0.5, 1, -3, 1, 15, 3, 's'), (-0.5, 13, -5, 1, 4, 2, 's')),
+         A('base/tail1', 'PartPose.offsetAndRotation(0, -1, 2, 0.3f, 0, 0)', (-1.2, -1.2, 0, 2.4, 2.4, 9, 'sk'), (-0.5, -2, 2, 1, 1, 5, 'bn')), A('base/tail1/tail2', 'PartPose.offsetAndRotation(0, 0, 9, 0.25f, 0, 0)', (-1, -1, 0, 2, 2, 9, 'sk'), (-0.5, -1.8, 2, 1, 1, 5, 'bn')),
+         A('base/tail1/tail2/tail3', 'PartPose.offsetAndRotation(0, 0, 9, 0.25f, 0, 0)', (-0.8, -0.8, 0, 1.6, 1.6, 8, 'sk'), (-0.4, -1.6, 7, 0.8, 3.2, 7, 's'))])   # bladed tail, swung by CanonVisuals (SWING)
 
 
 # ---- batch 6: moths, Neptune family, Colmillos, Gnezdo, Grave Digger

@@ -15,7 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 public class LycanModel extends HunterModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "lycan"), "main");
     public LycanModel(ModelPart root) { super(root); }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 256); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = HunterModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("hips").addOrReplaceChild("tail", CubeListBuilder.create(), PartPose.ZERO);
@@ -101,6 +103,12 @@ public class LycanModel extends HunterModel {
             .texOffs(114, 213).addBox(-0.7f, -3, -0.7f, 1.4f, 20, 1.4f)
             .texOffs(0, 235).addBox(-0.6f, 14, -7, 1.2f, 8, 8),
             PartPose.offsetAndRotation(0, 3, -1, -1.2f, 0, 0));
-        return LayerDefinition.create(mesh, 128, 256);
+        root.getChild("base").getChild("hips").getChild("chest").getChild("armL").getChild("foreL").getChild("handL").addOrReplaceChild("bow", CubeListBuilder.create()
+            .texOffs(20, 235).addBox(-0.6f, -0.6f, -9, 1.2f, 1.2f, 18)
+            .texOffs(60, 235).addBox(-0.6f, 0.6f, -9, 1.2f, 2, 2)
+            .texOffs(68, 235).addBox(-0.6f, 0.6f, 7, 1.2f, 2, 2)
+            .texOffs(76, 235).addBox(-0.2f, 2.4f, -8, 0.4f, 0.4f, 16),
+            PartPose.offset(0, 3, 0));
+        return mesh;
     }
 }

@@ -16,6 +16,7 @@ public final class CanonVisuals {
         String id = BuiltInRegistries.ENTITY_TYPE.getKey(e.getType()).getPath();
         int mut = e.getMut(), form = e.getForm(), move = e.getMoveId();
         float age = e.tickCount;
+        float prog = e.getMoveDuration() > 0 ? (float) e.getMoveTick() / e.getMoveDuration() : 0f;
         switch (id) {
             case "adjule" -> {
                 { ModelPart p = part(root, "body/chest/neck/head/splitL"); if (p != null) p.visible = mut == 1; }
@@ -76,6 +77,10 @@ public final class CanonVisuals {
                 { ModelPart p = part(root, "base/torso/armR/foreR/mutBlade"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/torso/armR/mutLump"); if (p != null) p.visible = mut == 1; }
             }
+            case "lycan" -> {
+                { ModelPart p = part(root, "base/hips/chest/armR/foreR/handR/axe"); if (p != null) p.visible = e.getId() % 4 != 0; }
+                { ModelPart p = part(root, "base/hips/chest/armL/foreL/handL/bow"); if (p != null) p.visible = e.getId() % 4 == 0; }
+            }
             case "marguerite" -> {
                 { ModelPart p = part(root, "base/hive"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/torso/armR/foreR/elong"); if (p != null) p.visible = mut == 1; }
@@ -129,6 +134,11 @@ public final class CanonVisuals {
             case "uroboros" -> {
                 { ModelPart p = part(root, "base/stem1/mutSpikes"); if (p != null) p.visible = mut >= 1; }
                 { ModelPart p = part(root, "base/mutRoots"); if (p != null) p.visible = mut >= 1; }
+            }
+            case "verdugo" -> {
+                { ModelPart p = part(root, "base/tail1"); if (p != null) p.xRot = 0.3f + (move == 41 ? 1.0f * (float) Math.abs(Math.sin(prog * Math.PI * 1)) : move == 42 ? 1.0f * (float) Math.abs(Math.sin(prog * Math.PI * 4)) : 0.05f * (float) Math.sin(age * 0.08f)); }
+                { ModelPart p = part(root, "base/tail1/tail2"); if (p != null) p.xRot = 0.25f + (move == 41 ? 0.8f * (float) Math.abs(Math.sin(prog * Math.PI * 1)) : move == 42 ? 0.8f * (float) Math.abs(Math.sin(prog * Math.PI * 4)) : 0.05f * (float) Math.sin(age * 0.08f)); }
+                { ModelPart p = part(root, "base/tail1/tail2/tail3"); if (p != null) p.xRot = 0.25f + (move == 41 ? 0.7f * (float) Math.abs(Math.sin(prog * Math.PI * 1)) : move == 42 ? 0.7f * (float) Math.abs(Math.sin(prog * Math.PI * 4)) : 0.05f * (float) Math.sin(age * 0.08f)); }
             }
             case "wesker" -> {
                 { ModelPart p = part(root, "base/torso/uroT1"); if (p != null) p.visible = mut == 1; }

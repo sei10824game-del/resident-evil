@@ -163,7 +163,7 @@ public class ModelShot {
                     Object model = Class.forName(cls).getConstructor(ModelPart.class).newInstance(root);
                     for (Method sm : model.getClass().getMethods()) if (sm.getName().equals("setupAnim") && sm.getParameterCount() == 6 && sm.getParameterTypes()[0] == com.reevil.entity.BioMonster.class) { sm.invoke(model, e, 0f, 0f, 0f, 0f, 0f); break; }
                 } catch (Throwable x) { System.out.println("bind pose only: " + id + " " + (x.getCause() != null ? x.getCause() : x)); }
-                for (String[] v : vis.getOrDefault(id, List.of())) { ModelPart p = part(root, v[0]); if (p != null) p.visible = cond(v[1]); }
+                for (String[] v : vis.getOrDefault(id, List.of())) { ModelPart p = part(root, v[0]); if (p != null) try { p.visible = cond(v[1]); } catch (RuntimeException x) { /* condition on the live entity (e.g. e.getId()): keep the part visible */ } }
                 Q q = new Q();
                 root.render(new PoseStack(), q, 0, 0);
                 Path t = texDir.resolve(m.group(2) + ".png");
