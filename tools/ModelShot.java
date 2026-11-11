@@ -152,6 +152,10 @@ public class ModelShot {
                     for (Class<?> k = ec; dm == null; k = k.getSuperclass()) try { dm = k.getDeclaredMethod("defineSynchedData"); } catch (NoSuchMethodException x) { }
                     dm.setAccessible(true); dm.invoke(e);
                     ((com.reevil.entity.BioMonster) e).setMut(vars.get("mut")); ((com.reevil.entity.BioMonster) e).setForm(vars.get("form"));
+                    if (vars.get("move") >= 40) {   // canon clips are keyed by entity id; the world-less entity resolves to the registry default ("pig")
+                        Field cf = Class.forName("com.reevil.client.canon.CanonClips").getDeclaredField("CLIPS"); cf.setAccessible(true);
+                        Map<String, Object> cl = (Map<String, Object>) cf.get(null); cl.remove("pig"); if (cl.containsKey(id)) cl.put("pig", cl.get(id));
+                    }
                     if (vars.get("move") > 0) {   // attack pose: move id at pct% of its clip
                         var ed = ((net.minecraft.world.entity.Entity) e).getEntityData(); int[] val = {vars.get("move"), pct, 100}; String[] fn = {"DATA_MOVE", "DATA_MOVE_TICK", "DATA_MOVE_DUR"};
                         for (int i = 0; i < 3; i++) { Field f = com.reevil.entity.BioMonster.class.getDeclaredField(fn[i]); f.setAccessible(true); ed.set((net.minecraft.network.syncher.EntityDataAccessor<Integer>) f.get(null), val[i]); }

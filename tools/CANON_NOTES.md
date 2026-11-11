@@ -21,5 +21,10 @@ Corrections found when auditing against the wiki (fandom pages are blocked for c
 - Fat Molded: projectile corrosive vomit, charge, arm swing, grapple+vomit, headless exploding variant, counterattack when shot idle, acid stuns other enemies, explodes on death.
 - J'avo mutations: Glava-Sluz(web spit) -Smech(mandibles lift/bisect) -Begunats(berserk) -Dim(poison gas); Ruka-Srp(sickle arm) -Khvatanje(stretch grab) -Bedem(armour arm/shield); Noga-Trchanje(insect body pounce) -Let(moth wings+stinger) -Skakanje(insect legs kick) -Oklop(armoured legs jump kick); Telo-Eksplozija(cocoon, explodes) -Krljusht(scales, bullet immune) -Magla(immobile gas); Chrysalid (stasis then random).
 - Garrador: claws, hearing; bell rage -> charges bell, exposes back; armoured variant. Verdugo: cloaked (red butler / black maid). Armadura: Plaga-possessed armour, swords+halberds, silver/black variants. Colmillos: need to spot you; Plaga emerges to attack. Novistador: camouflage.
-- Gap audit (added in canon_moves.py "gap audit" block): Novistador acid spit; Verdugo tail impale; Jill (RE5) twin machine pistols; Simmons bone-quill volley (mutated forms); Napad charge + back weak spot; Reaper blinding gas; Hunter Gamma swallow; Iron Maiden spike impale; Pale Head regeneration.
-- Known gaps left: Brain Sucker poison spit and Del Lago boat ram/swallow (own rigs, not in the canon_moves RIGS table); Ustanak arm attachments; Mia chainsaw; Lycan archers.
+- Gap audit, checked against the wiki /gameplay pages (canon_moves.py "gap audit" block):
+  Novistador: acid is a close-range stationary vomit (not a ranged spit) + jump kick. Verdugo: tail stab through grates, 4x tail throw, leap slash.
+  Napad: Ram (wind-up charge, knockdown), Throw (two swings to grab, throws down), weak flesh on the back. Reaper: vents gas = blur cloak, weak point on the back; instakill grab.
+  Hunter Gamma: swallows prey whole. Iron Maiden: arms extend and pull onto the spikes; spikes extend with almost no warning. Regenerador: arms stretch out to pull the victim into a neck bite.
+  Pale Head: regenerates, moves and attacks FASTER than a normal zombie (was slower). Brain Sucker: poisons at close range. Simmons: fires bone shards in mutated forms. Jill (RE5): machine pistols.
+  Tyrant kneeling at spawn is intended (dormant until approached).
+- Known gaps left: Lycan archers (no bow model), Del Lago boat ram (uses Neptune's lunge/drag), Ustanak arm attachments and cage, Mia chainsaw, Garrador claws stuck in walls after a rush.

@@ -7,7 +7,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 
-/** Pale Head (RE3 remake): bloated-skulled, slow, very tough zombie with heavy blows. Zombie behaviour (swipe, grab-bite, vomit, crawl) with far more health; it does not rise again. */
+/** Pale Head (RE3 remake): bloated-skulled, very tough zombie that regenerates (CanonData) and moves and attacks faster than a normal zombie. Zombie behaviour (swipe, grab-bite, vomit, crawl) with far more health; it does not rise again. */
 public class PaleHeadEntity extends ZombieEntity {
     public PaleHeadEntity(EntityType<PaleHeadEntity> type, Level level) {
         super(unchecked(type), level);
@@ -20,7 +20,7 @@ public class PaleHeadEntity extends ZombieEntity {
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
             .add(Attributes.MAX_HEALTH, 90.0)
-            .add(Attributes.MOVEMENT_SPEED, 0.15)
+            .add(Attributes.MOVEMENT_SPEED, 0.21)
             .add(Attributes.ATTACK_DAMAGE, 6.0)
             .add(Attributes.FOLLOW_RANGE, 24.0)
             .add(Attributes.KNOCKBACK_RESISTANCE, 0.7)

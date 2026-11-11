@@ -20,7 +20,9 @@ public class Re3rPaleHeadModel extends PaleHeadModel {
         com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re3r_pale_head(id);
         return c != null ? c : super.clip(e, id);
     }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 88); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = PaleHeadModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("body").getChild("waist").getChild("chest").getChild("neck").getChild("head").addOrReplaceChild("dome", CubeListBuilder.create()
@@ -35,6 +37,6 @@ public class Re3rPaleHeadModel extends PaleHeadModel {
             .texOffs(84, 64).addBox(-4.6f, -5.5f, -2.7f, 9.2f, 1, 5.4f)
             .texOffs(0, 78).addBox(-4.6f, -3.5f, -2.7f, 9.2f, 1, 5.4f),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 88);
+        return mesh;
     }
 }

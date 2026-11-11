@@ -17,7 +17,7 @@ public class Re3rPaleHeadEntity extends PaleHeadEntity {
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-            .add(Attributes.MAX_HEALTH, 108.0).add(Attributes.MOVEMENT_SPEED, 0.162).add(Attributes.ATTACK_DAMAGE, 6.9).add(Attributes.FOLLOW_RANGE, 24).add(Attributes.KNOCKBACK_RESISTANCE, 0.7).add(Attributes.ARMOR, 3.0);
+            .add(Attributes.MAX_HEALTH, 108.0).add(Attributes.MOVEMENT_SPEED, 0.227).add(Attributes.ATTACK_DAMAGE, 6.9).add(Attributes.FOLLOW_RANGE, 24).add(Attributes.KNOCKBACK_RESISTANCE, 0.7).add(Attributes.ARMOR, 3.0);
     }
 
     // ---- remake-only moves (ids 30+; clips in client/remake/RemakeClips)

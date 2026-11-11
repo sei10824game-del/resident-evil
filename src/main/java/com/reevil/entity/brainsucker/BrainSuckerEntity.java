@@ -129,7 +129,7 @@ public class BrainSuckerEntity extends BioMonster {
             }
             case SWOOP -> { if (target != null && distanceTo(target) <= 2.6) strike(target, m.damage, m.knockback); }
             default -> {
-                if (target != null && distanceTo(target) <= m.maxRange + 0.8 && strike(target, m.damage, m.knockback)) { target.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, 0)); playSound(SoundEvents.BEE_STING, 1.2f, 0.5f); }
+                if (target != null && distanceTo(target) <= m.maxRange + 0.8 && strike(target, m.damage, m.knockback)) { target.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, 0)); target.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 0)); /* RE3: releases poison on its prey at close range */ playSound(SoundEvents.BEE_STING, 1.2f, 0.5f); }
             }
         }
     }

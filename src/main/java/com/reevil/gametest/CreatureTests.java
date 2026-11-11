@@ -222,6 +222,32 @@ public class CreatureTests {
             if (!mob.isAlive() || tg == near || near.getHealth() < near.getMaxHealth()) h.succeed(); else h.fail("still on far target"); });
     }
     private static boolean t0(BioMonster m) { return m.tickCount < 6; }
+    /** Every creature plays every one of its moves (base + canon extras, conditions ignored) against a target: any exception in a move hook crashes the run. */
+    @GameTest(template = "empty", timeoutTicks = 4000) public static void allMoves(GameTestHelper h) {
+        flat(h);
+        Player p = h.makeMockPlayer(); Vec3 pp = h.absoluteVec(new Vec3(12, 1, 12)); p.moveTo(pp.x, pp.y, pp.z);
+        java.util.Map<BioMonster, java.util.Iterator<com.reevil.entity.AttackMove>> todo = new java.util.LinkedHashMap<>();
+        int n = 0, total = 0;
+        for (EntityType<?> t : net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE) {
+            if (!net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(t).getNamespace().equals("reevil")) continue;
+            if (!(h.spawn(t, new BlockPos(2 + (n % 10) * 2, 1, 2 + (n / 10) * 2)) instanceof BioMonster mob)) continue;
+            n++; mob.addTag("reevil_iso"); mob.setNoAi(true); mob.setInvulnerable(true);
+            java.util.List<com.reevil.entity.AttackMove> mv = new java.util.ArrayList<>(mob.allMoves());
+            total += mv.size(); todo.put(mob, mv.iterator());
+        }
+        final int count = n, moves = total;
+        for (int t = 1; t < 3900; t++) h.runAfterDelay(t, () -> {
+            p.setHealth(20f); p.moveTo(pp.x, pp.y, pp.z);
+            todo.entrySet().removeIf(en -> {
+                BioMonster mob = en.getKey();
+                if (mob.isMoving()) return false;
+                if (!en.getValue().hasNext()) { mob.discard(); return true; }
+                mob.setTarget(p); mob.startMove(en.getValue().next());
+                return false;
+            });
+        });
+        h.succeedWhen(() -> { if (!todo.isEmpty()) throw new net.minecraft.gametest.framework.GameTestAssertException(todo.size() + " creatures still running moves"); System.out.println("[REEVIL-TEST] ALLMOVES creatures=" + count + " moves=" + moves); });
+    }
     private static void evade(GameTestHelper h, net.minecraft.world.entity.EntityType<? extends BioMonster> type, String name) {
         flat(h);
         BioMonster mob = (BioMonster) h.spawn(type, new BlockPos(12, 1, 12));
