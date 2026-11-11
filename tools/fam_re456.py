@@ -47,6 +47,8 @@ fams = [
     {{ setForm(1); }}   // always the clawed Super Tyrant frame
     @Override public List<AttackMove> moves() { return MOVES; }
     @Override protected boolean canTransform() { return false; }
+    /** arm attachment (mut): 0 claw + cage, 1 gun, 2 needle claw - the bare claw moves are unavailable while the gun is fitted. */
+    @Override public boolean canStartMove(AttackMove m) { return (getMut() != 1 || (m != U_STAB && m != U_SWEEP && m != U_CHOKE)) && super.canStartMove(m); }
     @Override public String getTextureSuffix() { return ""; }
 '''.replace('{{ setForm(1); }}', '@Override public void aiStep() { if (getForm() != 1 && !level().isClientSide) setForm(1); super.aiStep(); }'),
       doc='Ustanak (RE6): the relentless bounty hunter with the great claw. Born in the clawed Super Tyrant frame - punch, claw stab, claw sweep, ground pound and claw grab - and never stops hunting.'),

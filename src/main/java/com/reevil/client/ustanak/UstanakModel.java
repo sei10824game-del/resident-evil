@@ -15,7 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 public class UstanakModel extends MrXModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "ustanak"), "main");
     public UstanakModel(ModelPart root) { super(root); }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 104); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = MrXModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").addOrReplaceChild("plate", CubeListBuilder.create()
@@ -29,6 +31,27 @@ public class UstanakModel extends MrXModel {
             .texOffs(102, 64).addBox(-3, -4.5f, -4.8f, 6, 1, 1)
             .texOffs(0, 74).addBox(-4.5f, -8, -4.5f, 9, 2, 9),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 88);
+        root.getChild("base").getChild("torso").addOrReplaceChild("cage", CubeListBuilder.create()
+            .texOffs(36, 74).addBox(-5, -11, 3, 10, 1, 6)
+            .texOffs(68, 74).addBox(-5, -1, 3, 10, 1, 6)
+            .texOffs(100, 74).addBox(-5, -10, 8, 1, 9, 1)
+            .texOffs(104, 74).addBox(-2, -10, 8, 1, 9, 1)
+            .texOffs(108, 74).addBox(1, -10, 8, 1, 9, 1)
+            .texOffs(112, 74).addBox(4, -10, 8, 1, 9, 1)
+            .texOffs(116, 74).addBox(-5, -10, 5, 1, 9, 1)
+            .texOffs(120, 74).addBox(4, -10, 5, 1, 9, 1),
+            PartPose.ZERO);
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").addOrReplaceChild("gun", CubeListBuilder.create()
+            .texOffs(0, 85).addBox(-2.5f, 3, -2.5f, 5, 8, 5)
+            .texOffs(20, 85).addBox(-1.5f, 11, -1.5f, 3, 10, 3)
+            .texOffs(32, 85).addBox(-2, 20, -2, 4, 1, 4),
+            PartPose.ZERO);
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("needles", CubeListBuilder.create()
+            .texOffs(48, 85).addBox(-1.6f, 3, -1.6f, 0.8f, 10, 0.8f)
+            .texOffs(52, 85).addBox(0.8f, 3, -1.6f, 0.8f, 10, 0.8f)
+            .texOffs(56, 85).addBox(-1.6f, 3, 0.8f, 0.8f, 10, 0.8f)
+            .texOffs(60, 85).addBox(0.8f, 3, 0.8f, 0.8f, 10, 0.8f),
+            PartPose.ZERO);
+        return mesh;
     }
 }

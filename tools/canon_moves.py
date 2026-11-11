@@ -122,7 +122,7 @@ mv('ogroman', 'mrx', 41, 'overhead_pound', 44, [24], 0, 5.5, 60, 3, 12, 1.8, 'sl
 mv('simmons', 'nemesis', 40, 'mutant_leap_slam', 40, [24], 3, 9, 70, 3, 13, 2.0, 'dash', tick=[(8, 22, 'lunge(0.55, 0.3)')], hit={0: ['aoe(4, 9f, 1.6)']}, nodef=True)
 mv('haos', 'plant', 40, 'absorb_pull', 44, [20], 3, 10, 80, 3, 6, 0, 'cast', hit={0: ['pull(2.4)', SLOW(60, 1)]})
 mv('haos', 'plant', 41, 'mass_slam', 44, [24], 0, 6, 60, 3, 10, 1.6, 'slam', hit={0: ['aoe(5, 9f, 1.5)']}, nodef=True)
-mv('ustanak', 'mrx', 40, 'chain_hook_pull', 40, [18], 4, 10, 70, 3, 6, 0, 'thrust', hit={0: ['pull(1.8)', SLOW(40, 1)]})
+mv('ustanak', 'mrx', 40, 'chain_hook_pull', 40, [18], 4, 10, 70, 3, 6, 0, 'thrust', can='mutIn(0, 2)', hit={0: ['pull(1.8)', SLOW(40, 1)]})   # RE6 "Extending Claw"
 # ---- RE7
 mv('molded', 'ganado', 40, 'blade_arm_slash', 30, [14], 0, 3.2, 34, 3, 8, 1.0, 'thrust')
 mv('molded', 'ganado', 41, 'crawl_lunge', 34, [18], 2, 7, 50, 3, 7, 1.0, 'dash', tick=[(6, 18, 'lunge(0.5, 0)')])
@@ -334,6 +334,16 @@ mv('re4r_verdugo', 'mrx', 41, 'tail_flurry', 44, [12, 20, 28, 36], 1, 5, 60, 3, 
 VIS['mia'] = [('base/torso/armR/foreR/handR/csaw', 'mut == 1')]; PASSIVES['mia'] = PASSIVES.get('mia', []) + ['mutateAt(0.6f, 1)']
 mv('mia', 'mrx', 41, 'chainsaw_swing', 34, [16], 0, 3.6, 34, 5, 11, 1.2, 'sweep', can='mut(1)')
 mv('mia', 'mrx', 42, 'chainsaw_lunge', 36, [18], 2, 7, 50, 4, 13, 1.0, 'dash', can='mut(1)', tick=[(6, 18, 'lunge(0.5, 0)')])
+# Ustanak (RE6, wiki attack table): swaps its arm attachment mid-battle - claw + back cage (mut 0), gun (1), needle claw (2)
+PASSIVES['ustanak'] = ['mutateAt(0.66f, 1)', 'mutStep(1, 2, 0.33f)']
+VIS['ustanak'] = [('base/torso/armR/foreR/gun', 'mut == 1'), ('base/torso/armR/foreR/handR/needles', 'mut == 2')] + [('base/torso/armR/foreR/handR/claw' + c_, 'mut != 1') for c_ in 'ABCD']
+mv('ustanak', 'mrx', 41, 'shot', 36, [20], 6, 22, 50, 5, 10, 0, 'aimhold', can='mut(1)', hit={0: ['shot("magnum", 10f)']}, nodef=True)                # takes a stance and fires the gun attachment
+mv('ustanak', 'mrx', 42, 'battering_ram', 44, [26], 4, 12, 80, 3, 14, 2.4, 'dash', tick=[(10, 26, 'lunge(0.6, 0)')], hit={0: ['launch(0.45)']})     # crouches, then a shoulder charge that tramples
+mv('ustanak', 'mrx', 43, 'grenade', 40, [20], 6, 16, 160, 2, 6, 0, 'cast', hit={0: ['shot("bomb", 6f)']}, nodef=True)                                # three-grenade cluster from its pouch
+mv('ustanak', 'mrx', 44, 'kick', 30, [14], 0, 3.2, 40, 3, 10, 1.6, 'kick', hit={0: [SLOW(100, 4)]})                                                  # powerful kick, 5 s stun
+mv('ustanak', 'mrx', 45, 'overhead_smash', 44, [24], 0, 4, 50, 3, 16, 1.2, 'slam')                                                                  # heavily telegraphed overhead swing of the attachment
+mv('ustanak', 'mrx', 46, 'cage_deposit', 64, [16, 34, 52], 0, 2.6, 160, 2, 4, 0, 'grab', can='mut(0)', hit={0: [SLOW(120, 6)]})                      # claw grab, victim dropped into the back cage (held, drained)
+mv('ustanak', 'mrx', 47, 'blood_drain', 64, [14, 26, 38, 50], 0, 2.6, 120, 4, 5, 0, 'grab', can='mut(2)', hit={0: [SLOW(80, 5)], 1: ['heal(6f)'], 2: ['heal(6f)'], 3: ['heal(6f)']})   # four hydraulic needles drain the victim
 # ---- gap audit: signature abilities the roster still lacked
 BLIND = 'effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)'
 mv('novistador', 'moth', 41, 'acid_vomit', 34, [16], 0, 4, 50, 3, 5, 0, 'spit', hit={0: ['cone(5, 5f, 0)', PO(80, 0)]}, nodef=True)               # RE4: vomits acid from a stationary position, close range only

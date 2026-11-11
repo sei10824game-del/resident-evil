@@ -143,6 +143,14 @@ public final class CanonVisuals {
                 { ModelPart p = part(root, "base/stem1/mutSpikes"); if (p != null) p.visible = mut >= 1; }
                 { ModelPart p = part(root, "base/mutRoots"); if (p != null) p.visible = mut >= 1; }
             }
+            case "ustanak" -> {
+                { ModelPart p = part(root, "base/torso/armR/foreR/gun"); if (p != null) p.visible = mut == 1; }
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/needles"); if (p != null) p.visible = mut == 2; }
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/clawA"); if (p != null) p.visible = mut != 1; }
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/clawB"); if (p != null) p.visible = mut != 1; }
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/clawC"); if (p != null) p.visible = mut != 1; }
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/clawD"); if (p != null) p.visible = mut != 1; }
+            }
             case "verdugo" -> {
                 { ModelPart p = part(root, "base/tail1"); if (p != null) p.xRot = 0.3f + (move == 41 ? 1.0f * (float) Math.abs(Math.sin(prog * Math.PI * 1)) : move == 42 ? 1.0f * (float) Math.abs(Math.sin(prog * Math.PI * 4)) : 0.05f * (float) Math.sin(age * 0.08f)); }
                 { ModelPart p = part(root, "base/tail1/tail2"); if (p != null) p.xRot = 0.25f + (move == 41 ? 0.8f * (float) Math.abs(Math.sin(prog * Math.PI * 1)) : move == 42 ? 0.8f * (float) Math.abs(Math.sin(prog * Math.PI * 4)) : 0.05f * (float) Math.sin(age * 0.08f)); }

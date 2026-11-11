@@ -31,5 +31,7 @@ public class UstanakEntity extends MrXEntity {
     @Override public void aiStep() { if (getForm() != 1 && !level().isClientSide) setForm(1); super.aiStep(); }   // always the clawed Super Tyrant frame
     @Override public List<AttackMove> moves() { return MOVES; }
     @Override protected boolean canTransform() { return false; }
+    /** arm attachment (mut): 0 claw + cage, 1 gun, 2 needle claw - the bare claw moves are unavailable while the gun is fitted. */
+    @Override public boolean canStartMove(AttackMove m) { return (getMut() != 1 || (m != U_STAB && m != U_SWEEP && m != U_CHOKE)) && super.canStartMove(m); }
     @Override public String getTextureSuffix() { return ""; }
 }

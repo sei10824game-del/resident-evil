@@ -27,7 +27,7 @@ final class CanonData {
         add("simmons", new AttackMove(40, "mutant_leap_slam", 40, new int[]{24}, 3f, 9f, 70, 3).dmg(13f).kb(2.0).face(24)).tick(8, 22, lunge(0.55, 0.3)).hit(0, aoe(4, 9f, 1.6)).noDefault();
         add("haos", new AttackMove(40, "absorb_pull", 44, new int[]{20}, 3f, 10f, 80, 3).dmg(6f).kb(0).face(20)).hit(0, pull(2.4)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
         add("haos", new AttackMove(41, "mass_slam", 44, new int[]{24}, 0f, 6f, 60, 3).dmg(10f).kb(1.6).face(24)).hit(0, aoe(5, 9f, 1.5)).noDefault();
-        add("ustanak", new AttackMove(40, "chain_hook_pull", 40, new int[]{18}, 4f, 10f, 70, 3).dmg(6f).kb(0).face(18)).hit(0, pull(1.8)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 40, 1));
+        add("ustanak", new AttackMove(40, "chain_hook_pull", 40, new int[]{18}, 4f, 10f, 70, 3).dmg(6f).kb(0).face(18)).can(mutIn(0, 2)).hit(0, pull(1.8)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 40, 1));
         add("molded", new AttackMove(40, "blade_arm_slash", 30, new int[]{14}, 0f, 3.2f, 34, 3).dmg(8f).kb(1.0).face(14));
         add("molded", new AttackMove(41, "crawl_lunge", 34, new int[]{18}, 2f, 7f, 50, 3).dmg(7f).kb(1.0).face(18)).tick(6, 18, lunge(0.5, 0));
         add("jack_baker", new AttackMove(40, "door_slam_rush", 40, new int[]{22}, 3f, 8f, 60, 3).dmg(12f).kb(2.2).face(22)).tick(6, 22, lunge(0.5, 0)).hit(0, launch(0.45));
@@ -137,6 +137,13 @@ final class CanonData {
         add("re4r_verdugo", new AttackMove(41, "tail_flurry", 44, new int[]{12, 20, 28, 36}, 1f, 5f, 60, 3).dmg(7f).kb(0.4).face(12)).hit(0, strike(7f, 0.4, 5.5)).hit(1, strike(7f, 0.4, 5.5)).hit(2, strike(7f, 0.4, 5.5)).hit(3, strike(7f, 0.4, 5.5)).noDefault();
         add("mia", new AttackMove(41, "chainsaw_swing", 34, new int[]{16}, 0f, 3.6f, 34, 5).dmg(11f).kb(1.2).face(16)).can(mut(1));
         add("mia", new AttackMove(42, "chainsaw_lunge", 36, new int[]{18}, 2f, 7f, 50, 4).dmg(13f).kb(1.0).face(18)).can(mut(1)).tick(6, 18, lunge(0.5, 0));
+        add("ustanak", new AttackMove(41, "shot", 36, new int[]{20}, 6f, 22f, 50, 5).dmg(10f).kb(0).face(20)).can(mut(1)).hit(0, shot("magnum", 10f)).noDefault();
+        add("ustanak", new AttackMove(42, "battering_ram", 44, new int[]{26}, 4f, 12f, 80, 3).dmg(14f).kb(2.4).face(26)).tick(10, 26, lunge(0.6, 0)).hit(0, launch(0.45));
+        add("ustanak", new AttackMove(43, "grenade", 40, new int[]{20}, 6f, 16f, 160, 2).dmg(6f).kb(0).face(20)).hit(0, shot("bomb", 6f)).noDefault();
+        add("ustanak", new AttackMove(44, "kick", 30, new int[]{14}, 0f, 3.2f, 40, 3).dmg(10f).kb(1.6).face(14)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 100, 4));
+        add("ustanak", new AttackMove(45, "overhead_smash", 44, new int[]{24}, 0f, 4f, 50, 3).dmg(16f).kb(1.2).face(24));
+        add("ustanak", new AttackMove(46, "cage_deposit", 64, new int[]{16, 34, 52}, 0f, 2.6f, 160, 2).dmg(4f).kb(0).face(16)).can(mut(0)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 120, 6));
+        add("ustanak", new AttackMove(47, "blood_drain", 64, new int[]{14, 26, 38, 50}, 0f, 2.6f, 120, 4).dmg(5f).kb(0).face(14)).can(mut(2)).hit(0, effect(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 80, 5)).hit(1, heal(6f)).hit(2, heal(6f)).hit(3, heal(6f));
         add("novistador", new AttackMove(41, "acid_vomit", 34, new int[]{16}, 0f, 4f, 50, 3).dmg(5f).kb(0).face(16)).hit(0, cone(5, 5f, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.POISON, 80, 0)).noDefault();
         add("novistador", new AttackMove(42, "flying_kick", 30, new int[]{16}, 2f, 7f, 40, 3).dmg(6f).kb(1.4).face(16)).tick(6, 16, lunge(0.5, 0.25));
         add("verdugo", new AttackMove(41, "tail_impale", 34, new int[]{16}, 2f, 6f, 50, 4).dmg(12f).kb(0.6).face(16)).hit(0, strike(12f, 0.6, 6.5)).hit(0, launch(0.4)).noDefault();
@@ -218,6 +225,8 @@ final class CanonData {
         passive("re2r_licker", senseSound(3.5));
         passive("garrador", senseSound(3.5));
         passive("mia", mutateAt(0.6f, 1));
+        passive("ustanak", mutateAt(0.66f, 1));
+        passive("ustanak", mutStep(1, 2, 0.33f));
         passive("pale_head", regen(0.02f));
         passive("re3r_pale_head", regen(0.02f));
     }
