@@ -15,7 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 public class MiaModel extends JillModel {
     public static final ModelLayerLocation LAYER = new ModelLayerLocation(new ResourceLocation(ReEvilMod.MODID, "mia"), "main");
     public MiaModel(ModelPart root) { super(root); }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 144); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = JillModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").getChild("neck").getChild("head").getChild("hatBrim").addOrReplaceChild("hatCrown", CubeListBuilder.create(), PartPose.ZERO);
@@ -80,6 +82,11 @@ public class MiaModel extends JillModel {
         root.getChild("base").getChild("thighR").addOrReplaceChild("coatR", CubeListBuilder.create()
             .texOffs(52, 106).addBox(-0.1f, 0, -0.1f, 0.2f, 0.2f, 0.2f),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 120);
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("csaw", CubeListBuilder.create()
+            .texOffs(56, 106).addBox(-1.8f, -3, -3, 3.6f, 5, 10)
+            .texOffs(84, 106).addBox(-1, -2, -17, 2, 3, 14)
+            .texOffs(0, 123).addBox(-1.5f, -2.5f, -17, 3, 1, 14),
+            PartPose.offsetAndRotation(0, 2, -1, 1.74f, 0, 0));
+        return mesh;
     }
 }

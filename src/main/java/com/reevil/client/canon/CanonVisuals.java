@@ -94,6 +94,9 @@ public final class CanonVisuals {
                 { ModelPart p = part(root, "base/torso/armR/foreR/talonR"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/torso/armL/foreL/talonL"); if (p != null) p.visible = mut == 1; }
             }
+            case "mia" -> {
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/csaw"); if (p != null) p.visible = mut == 1; }
+            }
             case "miranda" -> {
                 { ModelPart p = part(root, "base/torso/wingL"); if (p != null) p.visible = mut >= 1; }
                 { ModelPart p = part(root, "base/torso/wingR"); if (p != null) p.visible = mut >= 1; }
@@ -114,6 +117,11 @@ public final class CanonVisuals {
             case "re4r_krauser" -> {
                 { ModelPart p = part(root, "base/torso/armR/foreR/mutBlade"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/torso/armR/mutLump"); if (p != null) p.visible = mut == 1; }
+            }
+            case "re4r_verdugo" -> {
+                { ModelPart p = part(root, "base/tail1"); if (p != null) p.xRot = 0.3f + (move == 40 ? 1.0f * (float) Math.abs(Math.sin(prog * Math.PI * 1)) : move == 41 ? 1.0f * (float) Math.abs(Math.sin(prog * Math.PI * 4)) : 0.05f * (float) Math.sin(age * 0.08f)); }
+                { ModelPart p = part(root, "base/tail1/tail2"); if (p != null) p.xRot = 0.25f + (move == 40 ? 0.8f * (float) Math.abs(Math.sin(prog * Math.PI * 1)) : move == 41 ? 0.8f * (float) Math.abs(Math.sin(prog * Math.PI * 4)) : 0.05f * (float) Math.sin(age * 0.08f)); }
+                { ModelPart p = part(root, "base/tail1/tail2/tail3"); if (p != null) p.xRot = 0.25f + (move == 40 ? 0.7f * (float) Math.abs(Math.sin(prog * Math.PI * 1)) : move == 41 ? 0.7f * (float) Math.abs(Math.sin(prog * Math.PI * 4)) : 0.05f * (float) Math.sin(age * 0.08f)); }
             }
             case "simmons" -> {
                 { ModelPart p = part(root, "base/torso/mass"); if (p != null) p.visible = form >= 1; }

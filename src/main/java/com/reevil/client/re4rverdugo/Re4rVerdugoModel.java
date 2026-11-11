@@ -20,7 +20,9 @@ public class Re4rVerdugoModel extends VerdugoModel {
         com.reevil.anim.AnimClip c = com.reevil.client.remake.RemakeClips.re4r_verdugo(id);
         return c != null ? c : super.clip(e, id);
     }
-    public static LayerDefinition createBodyLayer() {
+    public static LayerDefinition createBodyLayer() { return LayerDefinition.create(ownMesh(), 128, 112); }
+    /** this model's full mesh; variants that set truepar build on it (the inherited static mesh() is the base rig's). */
+    public static MeshDefinition ownMesh() {
         MeshDefinition mesh = VerdugoModel.mesh();
         PartDefinition root = mesh.getRoot();
         root.getChild("base").getChild("torso").getChild("neck").getChild("head").addOrReplaceChild("hood", CubeListBuilder.create()
@@ -45,6 +47,18 @@ public class Re4rVerdugoModel extends VerdugoModel {
         root.getChild("base").getChild("torso").getChild("armL").getChild("foreL").addOrReplaceChild("blade", CubeListBuilder.create()
             .texOffs(100, 78).addBox(-0.5f, 1, -3, 1, 14, 3),
             PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 96);
+        root.getChild("base").addOrReplaceChild("tail1", CubeListBuilder.create()
+            .texOffs(0, 95).addBox(-1.2f, -1.2f, 0, 2.4f, 2.4f, 9)
+            .texOffs(24, 95).addBox(-0.5f, -2, 2, 1, 1, 5),
+            PartPose.offsetAndRotation(0, -1, 2, 0.3f, 0, 0));
+        root.getChild("base").getChild("tail1").addOrReplaceChild("tail2", CubeListBuilder.create()
+            .texOffs(36, 95).addBox(-1, -1, 0, 2, 2, 9)
+            .texOffs(58, 95).addBox(-0.5f, -1.8f, 2, 1, 1, 5),
+            PartPose.offsetAndRotation(0, 0, 9, 0.25f, 0, 0));
+        root.getChild("base").getChild("tail1").getChild("tail2").addOrReplaceChild("tail3", CubeListBuilder.create()
+            .texOffs(70, 95).addBox(-0.8f, -0.8f, 0, 1.6f, 1.6f, 8)
+            .texOffs(90, 95).addBox(-0.4f, -1.6f, 7, 0.8f, 3.2f, 7),
+            PartPose.offsetAndRotation(0, 0, 9, 0.25f, 0, 0));
+        return mesh;
     }
 }

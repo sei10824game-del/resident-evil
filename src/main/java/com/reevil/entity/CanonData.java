@@ -133,6 +133,10 @@ final class CanonData {
         add("lycan", new AttackMove(42, "bow_shot", 36, new int[]{20}, 7f, 20f, 60, 5).dmg(5f).kb(0).face(20)).can(s -> s.getId() % 4 == 0).hit(0, shot("arrow", 5f)).noDefault();
         add("miranda", new AttackMove(42, "mold_spike_eruption", 40, new int[]{22}, 6f, 18f, 70, 3).dmg(9f).kb(0).face(22)).hit(0, aoeAt(2.5, 9f)).noDefault();
         add("miranda", new AttackMove(43, "fireball_torrent", 50, new int[]{14, 20, 26, 32, 38}, 5f, 18f, 110, 2).dmg(5f).kb(0).face(14)).hit(0, shot("fire", 5f)).hit(1, shot("fire", 5f)).hit(2, shot("fire", 5f)).hit(3, shot("fire", 5f)).hit(4, shot("fire", 5f)).noDefault();
+        add("re4r_verdugo", new AttackMove(40, "tail_impale", 34, new int[]{16}, 2f, 6f, 50, 4).dmg(13f).kb(0.6).face(16)).hit(0, strike(13f, 0.6, 6.5)).hit(0, launch(0.4)).noDefault();
+        add("re4r_verdugo", new AttackMove(41, "tail_flurry", 44, new int[]{12, 20, 28, 36}, 1f, 5f, 60, 3).dmg(7f).kb(0.4).face(12)).hit(0, strike(7f, 0.4, 5.5)).hit(1, strike(7f, 0.4, 5.5)).hit(2, strike(7f, 0.4, 5.5)).hit(3, strike(7f, 0.4, 5.5)).noDefault();
+        add("mia", new AttackMove(41, "chainsaw_swing", 34, new int[]{16}, 0f, 3.6f, 34, 5).dmg(11f).kb(1.2).face(16)).can(mut(1));
+        add("mia", new AttackMove(42, "chainsaw_lunge", 36, new int[]{18}, 2f, 7f, 50, 4).dmg(13f).kb(1.0).face(18)).can(mut(1)).tick(6, 18, lunge(0.5, 0));
         add("novistador", new AttackMove(41, "acid_vomit", 34, new int[]{16}, 0f, 4f, 50, 3).dmg(5f).kb(0).face(16)).hit(0, cone(5, 5f, 0)).hit(0, effect(net.minecraft.world.effect.MobEffects.POISON, 80, 0)).noDefault();
         add("novistador", new AttackMove(42, "flying_kick", 30, new int[]{16}, 2f, 7f, 40, 3).dmg(6f).kb(1.4).face(16)).tick(6, 16, lunge(0.5, 0.25));
         add("verdugo", new AttackMove(41, "tail_impale", 34, new int[]{16}, 2f, 6f, 50, 4).dmg(12f).kb(0.6).face(16)).hit(0, strike(12f, 0.6, 6.5)).hit(0, launch(0.4)).noDefault();
@@ -213,6 +217,7 @@ final class CanonData {
         passive("licker", senseSound(3.5));
         passive("re2r_licker", senseSound(3.5));
         passive("garrador", senseSound(3.5));
+        passive("mia", mutateAt(0.6f, 1));
         passive("pale_head", regen(0.02f));
         passive("re3r_pale_head", regen(0.02f));
     }

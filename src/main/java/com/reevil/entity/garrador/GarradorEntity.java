@@ -39,6 +39,7 @@ public class GarradorEntity extends BioMonster {
         new AttackMove(SLAM, "ground_slam", 40, new int[]{22}, 0, 4.5, 60, 4).dmg(10f).kb(1.4).face(14)
     );
     private LivingEntity held;
+    private boolean rushHit;
 
     public GarradorEntity(EntityType<GarradorEntity> type, Level level) { super(type, level); xpReward = 50; setMaxUpStep(1.1f); }
 
@@ -79,8 +80,14 @@ public class GarradorEntity extends BioMonster {
         return super.hurt(src, amount);
     }
 
-    @Override protected void onMoveStart(AttackMove m) { held = null; playSound(m.id == SLAM || m.id == RUSH ? SoundEvents.RAVAGER_ROAR : SoundEvents.PLAYER_ATTACK_SWEEP, 1.5f, 0.5f); }
-    @Override protected void onMoveEnd(AttackMove m) { held = null; }
+    @Override protected void onMoveStart(AttackMove m) { held = null; rushHit = false; playSound(m.id == SLAM || m.id == RUSH ? SoundEvents.RAVAGER_ROAR : SoundEvents.PLAYER_ATTACK_SWEEP, 1.5f, 0.5f); }
+    @Override protected void onMoveEnd(AttackMove m) {
+        held = null;
+        if (m.id == RUSH && !rushHit) { // RE4: a missed rush buries the claws in a wall - it struggles to pull free, back exposed
+            addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.MOVEMENT_SLOWDOWN, 60, 10));
+            playSound(SoundEvents.ANVIL_LAND, 0.8f, 0.6f);
+        }
+    }
     @Override public void cancelMove() { super.cancelMove(); held = null; }
 
     @Override
@@ -118,7 +125,7 @@ public class GarradorEntity extends BioMonster {
                 playSound(SoundEvents.GENERIC_EXPLODE, 1.6f, 0.7f);
             }
             default -> {
-                if (target != null && distanceTo(target) <= m.maxRange + 1.0 && strike(target, m.damage, m.knockback)) playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 1.2f, 0.6f);
+                if (target != null && distanceTo(target) <= (m.id == RUSH ? 3.2 : m.maxRange + 1.0) && strike(target, m.damage, m.knockback)) { rushHit = true; playSound(SoundEvents.PLAYER_ATTACK_KNOCKBACK, 1.2f, 0.6f); }
             }
         }
     }

@@ -327,6 +327,13 @@ mv('miranda', 'nemesis', 42, 'mold_spike_eruption', 40, [22], 6, 18, 70, 3, 9, 0
 mv('miranda', 'nemesis', 43, 'fireball_torrent', 50, [14, 20, 26, 32, 38], 5, 18, 110, 2, 5, 0, 'cast', hit={i: ['shot("fire", 5f)'] for i in range(5)}, nodef=True)   # RE8: fireball torrent
 DMGS['ogroman'] = DMGS.get('ogroman', []) + ['rearWeak(1.6f)']                                                                                    # RE6: exposed organs on its back
 DMGS['uroboros'] = DMGS.get('uroboros', []) + ['(s, src) -> src.is(net.minecraft.tags.DamageTypeTags.IS_FIRE) ? 2.5f : 1f']                      # RE5: sensitive to extreme heat (flamethrower)
+SWING['re4r_verdugo'] = [(p_, r_, a_, {40: 1, 41: 4}) for p_, r_, a_, _ in SWING['verdugo']]
+mv('re4r_verdugo', 'mrx', 40, 'tail_impale', 34, [16], 2, 6, 50, 4, 13, 0.6, 'lean', hit={0: ['strike(13f, 0.6, 6.5)', 'launch(0.4)']}, nodef=True)
+mv('re4r_verdugo', 'mrx', 41, 'tail_flurry', 44, [12, 20, 28, 36], 1, 5, 60, 3, 7, 0.4, 'lean', hit={i: ['strike(7f, 0.4, 5.5)'] for i in range(4)}, nodef=True)
+# Mia (RE7): comes back with a chainsaw once wounded
+VIS['mia'] = [('base/torso/armR/foreR/handR/csaw', 'mut == 1')]; PASSIVES['mia'] = PASSIVES.get('mia', []) + ['mutateAt(0.6f, 1)']
+mv('mia', 'mrx', 41, 'chainsaw_swing', 34, [16], 0, 3.6, 34, 5, 11, 1.2, 'sweep', can='mut(1)')
+mv('mia', 'mrx', 42, 'chainsaw_lunge', 36, [18], 2, 7, 50, 4, 13, 1.0, 'dash', can='mut(1)', tick=[(6, 18, 'lunge(0.5, 0)')])
 # ---- gap audit: signature abilities the roster still lacked
 BLIND = 'effect(net.minecraft.world.effect.MobEffects.BLINDNESS, 80, 0)'
 mv('novistador', 'moth', 41, 'acid_vomit', 34, [16], 0, 4, 50, 3, 5, 0, 'spit', hit={0: ['cone(5, 5f, 0)', PO(80, 0)]}, nodef=True)               # RE4: vomits acid from a stationary position, close range only
