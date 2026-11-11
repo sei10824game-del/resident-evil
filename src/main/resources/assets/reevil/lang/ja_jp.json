@@ -220,5 +220,13 @@
  "entity.reevil.insect_nest": "虫の巣",
  "item.reevil.insect_nest_spawn_egg": "虫の巣のスポーンエッグ",
  "entity.reevil.mia": "ミア・ウィンターズ",
- "item.reevil.mia_spawn_egg": "ミア・ウィンターズのスポーンエッグ"
+ "item.reevil.mia_spawn_egg": "ミア・ウィンターズのスポーンエッグ",
+ "subtitles.reevil.voice.groan": "クリーチャーのうめき声",
+ "subtitles.reevil.voice.growl": "クリーチャーの唸り声",
+ "subtitles.reevil.voice.hiss": "クリーチャーの威嚇音",
+ "subtitles.reevil.voice.roar": "クリーチャーの咆哮",
+ "subtitles.reevil.voice.screech": "クリーチャーの金切り声",
+ "subtitles.reevil.voice.squelch": "クリーチャーのぬめる音",
+ "subtitles.reevil.misc.impact": "クリーチャーの打撃",
+ "subtitles.reevil.misc.step": "重い足音"
 }

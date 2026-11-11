@@ -22,11 +22,13 @@ public class CreatureTests {
     private static void run(GameTestHelper h, EntityType<? extends BioMonster> type, boolean water, int dist) { run(h, type, water, dist, 1f); }
 
     private static void run(GameTestHelper h, EntityType<? extends BioMonster> type, boolean water, int dist, float hpFrac) {
+        int wd = Math.max(4, (int) Math.ceil(type.getHeight()) + 4); // pool deep enough for big swimmers (Del Lago)
         for (int x = 0; x < 24; x++) for (int z = 0; z < 24; z++) {
             h.setBlock(new BlockPos(x, 0, z), Blocks.STONE);
-            for (int y = 1; y <= 5; y++) h.setBlock(new BlockPos(x, y, z), water && y <= 4 ? Blocks.WATER : Blocks.AIR);
+            boolean edge = x == 0 || z == 0 || x == 23 || z == 23;
+            for (int y = 1; y <= wd + 1; y++) h.setBlock(new BlockPos(x, y, z), water && edge ? Blocks.STONE : water && y <= wd ? Blocks.WATER : Blocks.AIR); // walled pool: leaking water drowns mobs in neighbouring cells
         }
-        BioMonster mob = (BioMonster) h.spawn(type, new BlockPos(12, water ? 2 : 1, 12 + dist));
+        BioMonster mob = (BioMonster) h.spawn(type, new BlockPos(12, water ? 2 : 1, water ? 12 - dist : 12 + dist));
         mob.addTag("reevil_iso");
         Player p = h.makeMockPlayer();
         Vec3 ppos = h.absoluteVec(new Vec3(12, 1, 12));
@@ -37,6 +39,7 @@ public class CreatureTests {
             final int tick = t;
             h.runAfterDelay(t, () -> {
                 p.setHealth(20f);
+                if (tick % 10 == 0) for (net.minecraft.world.entity.animal.IronGolem g : mob.level().getEntitiesOfClass(net.minecraft.world.entity.animal.IronGolem.class, mob.getBoundingBox().inflate(48))) if (!g.getTags().contains("reevil_iso")) g.discard(); // world-gen village golems kill mod mobs -> flaky
                 p.moveTo(ppos.x, ppos.y, ppos.z);
                 if (mob.isAlive()) {
                     if (tick % 10 == 0) mob.setTarget(p);
@@ -46,7 +49,7 @@ public class CreatureTests {
         }
         h.runAfterDelay(601, () -> {
             System.out.println("[REEVIL-TEST] " + (hpFrac < 1f ? "LOWHP " : "") + type.builtInRegistryHolder().key().location() + " moves seen=" + seen + " tgt=" + mob.getTarget() + " d=" + (int) mob.distanceTo(p) + " dim=" + mob.getBbWidth() + "x" + mob.getBbHeight() + " alive=" + mob.isAlive() + " hp=" + mob.getHealth());
-            if (!mob.isAlive()) h.fail("died unprovoked");
+            if (!mob.isAlive()) h.fail("died unprovoked, last damage: " + mob.getLastDamageSource());
             else if (seen.isEmpty()) h.fail("never started an attack");
             else h.succeed();
         });
@@ -96,7 +99,7 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 700) public static void tyrantLow(GameTestHelper h) { run(h, ModEntities.TYRANT.get(), false, 5, 0.5f); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void tyrantLow2(GameTestHelper h) { run(h, ModEntities.TYRANT.get(), false, 5, 0.2f); }
     @GameTest(template = "empty", timeoutTicks = 700) public static void lisaLow(GameTestHelper h) { run(h, ModEntities.LISA_TREVOR.get(), false, 6, 0.4f); }
-    @GameTest(template = "empty", timeoutTicks = 700) public static void neptuneLow(GameTestHelper h) { run(h, ModEntities.NEPTUNE.get(), true, 6, 0.2f); }
+    @GameTest(template = "empty", timeoutTicks = 700) public static void neptuneLow(GameTestHelper h) { run(h, ModEntities.NEPTUNE.get(), true, 6, 0.5f); } // <30% hp = intended retreat form, so test at 50%
     @GameTest(template = "empty", timeoutTicks = 700) public static void zombieLow(GameTestHelper h) { run(h, ModEntities.ZOMBIE.get(), false, 4, 0.2f); }
 
     @GameTest(template = "empty", timeoutTicks = 700) public static void licker(GameTestHelper h) { run(h, ModEntities.LICKER.get(), false, 6); }
@@ -212,7 +215,7 @@ public class CreatureTests {
     @GameTest(template = "empty", timeoutTicks = 300) public static void retarget(GameTestHelper h) {
         flat(h);
         BioMonster mob = (BioMonster) h.spawn(ModEntities.ZOMBIE.get(), new BlockPos(12, 1, 8));
-        net.minecraft.world.entity.LivingEntity near = (net.minecraft.world.entity.LivingEntity) h.spawn(net.minecraft.world.entity.EntityType.IRON_GOLEM, new BlockPos(12, 1, 9));
+        net.minecraft.world.entity.LivingEntity near = (net.minecraft.world.entity.LivingEntity) h.spawn(net.minecraft.world.entity.EntityType.IRON_GOLEM, new BlockPos(12, 1, 9)); near.addTag("reevil_iso");
         Player p = h.makeMockPlayer(); Vec3 pp = h.absoluteVec(new Vec3(12, 1, 22)); p.moveTo(pp.x, pp.y, pp.z);
         for (int t = 1; t <= 120; t++) h.runAfterDelay(t, () -> { if (mob.isAlive() && t0(mob)) mob.setTarget(p); });
         h.runAfterDelay(160, () -> { var tg = mob.getTarget(); System.out.println("[REEVIL-TEST] RETARGET target=" + tg + " golemHp=" + near.getHealth());

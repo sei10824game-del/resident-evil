@@ -21,6 +21,7 @@ minecraft {
             mods { "reevil" { source sourceSets.main } }
         }
         client { property 'forge.enabledGameTestNamespaces', 'reevil'; args '--username', 'Dev', '--width', '1280', '--height', '720' }
+        gameTestServer { property 'forge.enabledGameTestNamespaces', 'reevil' }
         server { property 'forge.enabledGameTestNamespaces', 'reevil'; args '--nogui' }
     }
 }
