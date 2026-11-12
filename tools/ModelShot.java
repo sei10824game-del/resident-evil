@@ -14,7 +14,7 @@ import java.util.regex.*;
 
 /**
  * Offline look check: software-renders every creature model (rest pose, back 3/4 + front 3/4) with its texture to PNG, no GL / no game needed.
- * Parts that CanonVisuals only shows for a mutation/form are hidden by evaluating its conditions for mut/form/move = the given values (default 0).
+ * The entity is constructor-less but carries its real type, so CanonVisuals / CanonClips (mutation parts, swung tails, 40+ move clips) apply as in game.
  * usage (repo root, after ./gradlew classes): tools/shots.sh <outDir> [nameFilter] [mut] [form] [moveId] [clip%]
  */
 public class ModelShot {
@@ -78,21 +78,18 @@ public class ModelShot {
 
     static ModelPart part(ModelPart p, String path) { for (String s : path.split("/")) { if (!p.hasChild(s)) return null; p = p.getChild(s); } return p; }
 
-    /** tiny evaluator for the generated conditions: ints, mut/form/move, >> & == != ! && || and parentheses */
-    static String[] tk; static int ti; static Map<String, Integer> vars;
-    static boolean cond(String ex) { tk = ex.replaceAll("(>>|==|!=|&&|\\|\\||[()&!])", " $1 ").trim().split("\\s+"); ti = 0; return or() != 0; }
-    static int or() { int v = and(); while (ti < tk.length && tk[ti].equals("||")) { ti++; int r = and(); v = (v != 0 || r != 0) ? 1 : 0; } return v; }
-    static int and() { int v = eq(); while (ti < tk.length && tk[ti].equals("&&")) { ti++; int r = eq(); v = (v != 0 && r != 0) ? 1 : 0; } return v; }
-    static int eq() { int v = band(); while (ti < tk.length && (tk[ti].equals("==") || tk[ti].equals("!="))) { boolean e = tk[ti++].equals("=="); int r = band(); v = ((v == r) == e) ? 1 : 0; } return v; }
-    static int band() { int v = sh(); while (ti < tk.length && tk[ti].equals("&")) { ti++; v &= sh(); } return v; }
-    static int sh() { int v = un(); while (ti < tk.length && tk[ti].equals(">>")) { ti++; v >>= un(); } return v; }
-    static int un() {
-        String t = tk[ti++];
-        if (t.equals("!")) return un() == 0 ? 1 : 0;
-        if (t.equals("(")) { int v = or(); ti++; return v; }
-        return vars.containsKey(t) ? vars.get(t) : t.equals("true") ? 1 : t.equals("false") ? 0 : Integer.parseInt(t);
+    /** a real registered EntityType for the creature, so id-keyed client code (CanonVisuals, CanonClips) sees the world-less entity as itself */
+    static net.minecraft.world.entity.EntityType<?> typeFor(String id) throws Exception {
+        var reg = net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE; var rl = new net.minecraft.resources.ResourceLocation("reevil", id);
+        if (reg.containsKey(rl)) return reg.get(rl);
+        for (Class<?> k = reg.getClass(); k != null; k = k.getSuperclass()) for (Field f : k.getDeclaredFields()) {   // the registry is frozen after bootstrap: reopen it
+            if (f.getName().equals("frozen") || f.getName().equals("locked")) { f.setAccessible(true); f.setBoolean(reg, false); }
+            if (f.getName().equals("unregisteredIntrusiveHolders")) { f.setAccessible(true); if (f.get(reg) == null) f.set(reg, new IdentityHashMap<>()); }
+        }
+        return net.minecraft.core.Registry.register(reg, rl, net.minecraft.world.entity.EntityType.Builder.createNothing(net.minecraft.world.entity.MobCategory.MONSTER).build(id));
     }
 
+    static Map<String, Integer> vars;
     static sun.misc.Unsafe unsafe;
     static int bad, pct;
 
@@ -102,13 +99,6 @@ public class ModelShot {
         Path src = Paths.get("src/main/java/com/reevil/client"), texDir = Paths.get("src/main/resources/assets/reevil/textures/entity");
         vars = Map.of("mut", a.length > 2 ? Integer.parseInt(a[2]) : 0, "form", a.length > 3 ? Integer.parseInt(a[3]) : 0, "move", a.length > 4 ? Integer.parseInt(a[4]) : 0);
         pct = a.length > 5 ? Integer.parseInt(a[5]) : 50;
-        Map<String, List<String[]>> vis = new HashMap<>(); // id -> {path, condition}
-        String cur = null;
-        for (String line : Files.readAllLines(src.resolve("canon/CanonVisuals.java"))) {
-            Matcher c = Pattern.compile("case \"(\\w+)\" ->").matcher(line); if (c.find()) cur = c.group(1);
-            Matcher v = Pattern.compile("part\\(root, \"([^\"]+)\"\\).*p\\.visible = ([^;]+);").matcher(line);
-            if (v.find() && cur != null) vis.computeIfAbsent(cur, k -> new ArrayList<>()).add(new String[]{v.group(1), v.group(2)});
-        }
         String setup = Files.readString(src.resolve("ClientSetup.java"));
         Map<String, Path> renderers = new HashMap<>();
         try (var st = Files.walk(src)) { st.filter(f -> f.toString().endsWith("Renderer.java")).forEach(f -> renderers.put(f.getFileName().toString().replace(".java", ""), f)); }
@@ -146,16 +136,13 @@ public class ModelShot {
                     Class<?> ec;   // the creature's own entity class (it may override what its renderer's generic parent shows, e.g. hasHat)
                     try { ec = Class.forName("com.reevil.entity." + id.replace("_", "") + "." + reg.group(2).replace("Renderer", "Entity")); } catch (ClassNotFoundException x) { ec = Class.forName(em.group(1)); }
                     Object e = unsafe.allocateInstance(ec);
+                    Field tf = net.minecraft.world.entity.Entity.class.getDeclaredField("type"); tf.setAccessible(true); tf.set(e, typeFor(id));
                     Field df = net.minecraft.world.entity.Entity.class.getDeclaredField("entityData"); df.setAccessible(true);
                     df.set(e, new net.minecraft.network.syncher.SynchedEntityData((net.minecraft.world.entity.Entity) e));
                     Method dm = null;
                     for (Class<?> k = ec; dm == null; k = k.getSuperclass()) try { dm = k.getDeclaredMethod("defineSynchedData"); } catch (NoSuchMethodException x) { }
                     dm.setAccessible(true); dm.invoke(e);
                     ((com.reevil.entity.BioMonster) e).setMut(vars.get("mut")); ((com.reevil.entity.BioMonster) e).setForm(vars.get("form"));
-                    if (vars.get("move") >= 40) {   // canon clips are keyed by entity id; the world-less entity resolves to the registry default ("pig")
-                        Field cf = Class.forName("com.reevil.client.canon.CanonClips").getDeclaredField("CLIPS"); cf.setAccessible(true);
-                        Map<String, Object> cl = (Map<String, Object>) cf.get(null); cl.remove("pig"); if (cl.containsKey(id)) cl.put("pig", cl.get(id));
-                    }
                     if (vars.get("move") > 0) {   // attack pose: move id at pct% of its clip
                         var ed = ((net.minecraft.world.entity.Entity) e).getEntityData(); int[] val = {vars.get("move"), pct, 100}; String[] fn = {"DATA_MOVE", "DATA_MOVE_TICK", "DATA_MOVE_DUR"};
                         for (int i = 0; i < 3; i++) { Field f = com.reevil.entity.BioMonster.class.getDeclaredField(fn[i]); f.setAccessible(true); ed.set((net.minecraft.network.syncher.EntityDataAccessor<Integer>) f.get(null), val[i]); }
@@ -163,7 +150,6 @@ public class ModelShot {
                     Object model = Class.forName(cls).getConstructor(ModelPart.class).newInstance(root);
                     for (Method sm : model.getClass().getMethods()) if (sm.getName().equals("setupAnim") && sm.getParameterCount() == 6 && sm.getParameterTypes()[0] == com.reevil.entity.BioMonster.class) { sm.invoke(model, e, 0f, 0f, 0f, 0f, 0f); break; }
                 } catch (Throwable x) { System.out.println("bind pose only: " + id + " " + (x.getCause() != null ? x.getCause() : x)); }
-                for (String[] v : vis.getOrDefault(id, List.of())) { ModelPart p = part(root, v[0]); if (p != null) try { p.visible = cond(v[1]); } catch (RuntimeException x) { /* condition on the live entity (e.g. e.getId()): keep the part visible */ } }
                 Q q = new Q();
                 root.render(new PoseStack(), q, 0, 0);
                 Path t = texDir.resolve(m.group(2) + ".png");
