@@ -304,7 +304,7 @@ spec(id='ustanak', pkg='ustanak', C='Ustanak', ppkg='mrx', pm='MrXModel', W=128,
   parts=[A('base/torso/plate', Z, (-5, -10.5, -3, 10, 6, 1, 'p'), (-8, -12, -3, 4, 4, 6, 'p'), (4, -12, -3, 4, 4, 6, 'p'), (-4.5, -4, -3, 9, 3, 1, 's')),
          A('base/torso/neck/head/mask', Z, (-4, -7.5, -4.4, 8, 5, 1.2, 'p'), (-3, -4.5, -4.8, 6, 1, 1, 'd'), (-4.5, -8, -4.5, 9, 2, 9, 'p')),
          A('base/torso/cage', Z, (-5, -11, 3, 10, 1, 6, 's'), (-5, -1, 3, 10, 1, 6, 's'), (-5, -10, 8, 1, 9, 1, 's'), (-2, -10, 8, 1, 9, 1, 's'), (1, -10, 8, 1, 9, 1, 's'), (4, -10, 8, 1, 9, 1, 's'), (-5, -10, 5, 1, 9, 1, 's'), (4, -10, 5, 1, 9, 1, 's')),
-         A('base/torso/armR/foreR/gun', Z, (-2.5, 3, -2.5, 5, 8, 5, 'd'), (-1.5, 11, -1.5, 3, 10, 3, 's'), (-2, 20, -2, 4, 1, 4, 'd')),
+         A('base/torso/armR/foreR/handR/gun', 'PartPose.offsetAndRotation(0, 2, 0, 1.74f, 0, 0)', (-3, -3, -4, 6, 6, 9, 'p'), (-2, 3, -3, 4, 4, 5, 'd'), (-1.5, -1.5, -20, 3, 3, 16, 's'), (-2, -2, -21, 4, 4, 2, 'p')),
          A('base/torso/armR/foreR/handR/needles', Z, (-1.6, 3, -1.6, 0.8, 10, 0.8, 's'), (0.8, 3, -1.6, 0.8, 10, 0.8, 's'), (-1.6, 3, 0.8, 0.8, 10, 0.8, 's'), (0.8, 3, 0.8, 0.8, 10, 0.8, 's'))])
 spec(clipfn='claws', id='dimitrescu', pkg='dimitrescu', C='Dimitrescu', ppkg='mrx', pm='MrXModel', W=128, H0=64, sty=dict(w=WHT, d=DARK, h=HAIRB, p=PINK),
   parts=[A('base/torso/neck/head/hat', Z, (-8, -8.5, -8, 16, 1, 16, 'w'), (-4.5, -12, -4.5, 9, 4, 9, 'w'), (-4.6, -9.5, -4.6, 9.2, 1, 9.2, 'p')),

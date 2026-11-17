@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * Dev only (excluded from the jar): real in-game screenshots. Run the client with -Dreevil.autoshot=<jobs file> -Dreevil.shotdir=<dir>
- * (e.g. under xvfb with LIBGL_ALWAYS_SOFTWARE=1). Each jobs line: "<id> <mut> <form> <moveId|0> <clipPercent>"; the creature is spawned
+ * (e.g. under xvfb with LIBGL_ALWAYS_SOFTWARE=1). Each jobs line: "<id> <mut> <form> <moveId|0> <clipPercent> [healthFraction]"; the creature is spawned
  * in front of the player (AI off, the move played through the real server tick), photographed, removed; the game exits after the last job.
  */
 @Mod.EventBusSubscriber(modid = ReEvilMod.MODID, value = Dist.CLIENT)
@@ -64,17 +64,18 @@ public final class DevShots {
                 }
                 lv.addFreshEntity(en);
                 p.teleportTo(lv, x, y, z, 0f, (float) Math.toDegrees(Math.atan2(-(ey + en.getBbHeight() * 0.5 - (y + 1.62)), d)));
+                if (j.length > 5 && en instanceof BioMonster b) b.setHealth(b.getMaxHealth() * Float.parseFloat(j[5]));   // optional 6th column: health fraction (passives such as mutations then trigger on the real tick)
                 cur = en;
                 int mv = Integer.parseInt(j[3]);
                 if (mv > 0 && en instanceof BioMonster b) for (AttackMove m : b.allMoves()) if (m.id == mv) { b.startMove(m); break; }
             });
-            phase = 1; wait = 12;
+            phase = 1; wait = j.length > 5 ? 50 : 12;
         } else if (phase == 1) {   // let the move run to the requested point, then capture
             int pct = Integer.parseInt(j[4]);
             if (cur instanceof BioMonster b && b.isMoving() && b.getMoveDuration() > 0 && b.getMoveTick() * 100 < pct * b.getMoveDuration()) return;
             phase = 2;
             File dir = new File(System.getProperty("reevil.shotdir", "shots")); dir.mkdirs();
-            String name = j[0] + "_m" + j[3] + "_u" + j[1] + "_f" + j[2] + ".png";
+            String name = j[0] + "_m" + j[3] + "_u" + j[1] + "_f" + j[2] + (j.length > 5 ? "_h" + j[5] : "") + ".png";
             Screenshot.grab(dir, name, mc.getMainRenderTarget(), c -> {});
             wait = 6;
         } else {                   // clean up

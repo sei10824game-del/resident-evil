@@ -336,7 +336,7 @@ mv('mia', 'mrx', 41, 'chainsaw_swing', 34, [16], 0, 3.6, 34, 5, 11, 1.2, 'sweep'
 mv('mia', 'mrx', 42, 'chainsaw_lunge', 36, [18], 2, 7, 50, 4, 13, 1.0, 'dash', can='mut(1)', tick=[(6, 18, 'lunge(0.5, 0)')])
 # Ustanak (RE6, wiki attack table): swaps its arm attachment mid-battle - claw + back cage (mut 0), gun (1), needle claw (2)
 PASSIVES['ustanak'] = ['mutateAt(0.66f, 1)', 'mutStep(1, 2, 0.33f)']
-VIS['ustanak'] = [('base/torso/armR/foreR/gun', 'mut == 1'), ('base/torso/armR/foreR/handR/needles', 'mut == 2')] + [('base/torso/armR/foreR/handR/claw' + c_, 'mut != 1') for c_ in 'ABCD']
+VIS['ustanak'] = [('base/torso/armR/foreR/handR/gun', 'mut == 1'), ('base/torso/armR/foreR/handR/needles', 'mut == 2')] + [('base/torso/armR/foreR/handR/claw' + c_, 'mut != 1') for c_ in 'ABCD']
 mv('ustanak', 'mrx', 41, 'shot', 36, [20], 6, 22, 50, 5, 10, 0, 'aimhold', can='mut(1)', hit={0: ['shot("magnum", 10f)']}, nodef=True)                # takes a stance and fires the gun attachment
 mv('ustanak', 'mrx', 42, 'battering_ram', 44, [26], 4, 12, 80, 3, 14, 2.4, 'dash', tick=[(10, 26, 'lunge(0.6, 0)')], hit={0: ['launch(0.45)']})     # crouches, then a shoulder charge that tramples
 mv('ustanak', 'mrx', 43, 'grenade', 40, [20], 6, 16, 160, 2, 6, 0, 'cast', hit={0: ['shot("bomb", 6f)']}, nodef=True)                                # three-grenade cluster from its pouch

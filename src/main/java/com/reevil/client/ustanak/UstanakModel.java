@@ -41,16 +41,17 @@ public class UstanakModel extends MrXModel {
             .texOffs(116, 74).addBox(-5, -10, 5, 1, 9, 1)
             .texOffs(120, 74).addBox(4, -10, 5, 1, 9, 1),
             PartPose.ZERO);
-        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").addOrReplaceChild("gun", CubeListBuilder.create()
-            .texOffs(0, 85).addBox(-2.5f, 3, -2.5f, 5, 8, 5)
-            .texOffs(20, 85).addBox(-1.5f, 11, -1.5f, 3, 10, 3)
-            .texOffs(32, 85).addBox(-2, 20, -2, 4, 1, 4),
-            PartPose.ZERO);
+        root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("gun", CubeListBuilder.create()
+            .texOffs(0, 85).addBox(-3, -3, -4, 6, 6, 9)
+            .texOffs(30, 85).addBox(-2, 3, -3, 4, 4, 5)
+            .texOffs(48, 85).addBox(-1.5f, -1.5f, -20, 3, 3, 16)
+            .texOffs(86, 85).addBox(-2, -2, -21, 4, 4, 2),
+            PartPose.offsetAndRotation(0, 2, 0, 1.74f, 0, 0));
         root.getChild("base").getChild("torso").getChild("armR").getChild("foreR").getChild("handR").addOrReplaceChild("needles", CubeListBuilder.create()
-            .texOffs(48, 85).addBox(-1.6f, 3, -1.6f, 0.8f, 10, 0.8f)
-            .texOffs(52, 85).addBox(0.8f, 3, -1.6f, 0.8f, 10, 0.8f)
-            .texOffs(56, 85).addBox(-1.6f, 3, 0.8f, 0.8f, 10, 0.8f)
-            .texOffs(60, 85).addBox(0.8f, 3, 0.8f, 0.8f, 10, 0.8f),
+            .texOffs(98, 85).addBox(-1.6f, 3, -1.6f, 0.8f, 10, 0.8f)
+            .texOffs(102, 85).addBox(0.8f, 3, -1.6f, 0.8f, 10, 0.8f)
+            .texOffs(106, 85).addBox(-1.6f, 3, 0.8f, 0.8f, 10, 0.8f)
+            .texOffs(110, 85).addBox(0.8f, 3, 0.8f, 0.8f, 10, 0.8f),
             PartPose.ZERO);
         return mesh;
     }

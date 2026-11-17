@@ -144,7 +144,7 @@ public final class CanonVisuals {
                 { ModelPart p = part(root, "base/mutRoots"); if (p != null) p.visible = mut >= 1; }
             }
             case "ustanak" -> {
-                { ModelPart p = part(root, "base/torso/armR/foreR/gun"); if (p != null) p.visible = mut == 1; }
+                { ModelPart p = part(root, "base/torso/armR/foreR/handR/gun"); if (p != null) p.visible = mut == 1; }
                 { ModelPart p = part(root, "base/torso/armR/foreR/handR/needles"); if (p != null) p.visible = mut == 2; }
                 { ModelPart p = part(root, "base/torso/armR/foreR/handR/clawA"); if (p != null) p.visible = mut != 1; }
                 { ModelPart p = part(root, "base/torso/armR/foreR/handR/clawB"); if (p != null) p.visible = mut != 1; }
