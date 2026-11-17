@@ -20,7 +20,13 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
             mods { "reevil" { source sourceSets.main } }
         }
-        client { property 'forge.enabledGameTestNamespaces', 'reevil'; args '--username', 'Dev', '--width', '1280', '--height', '720' }
+        client {
+            property 'forge.enabledGameTestNamespaces', 'reevil'
+            args '--username', 'Dev', '--width', '1280', '--height', '720'
+            // in-game screenshots (src/main/java/com/reevil/gametest/DevShots.java): ./gradlew runClient -Preevil.autoshot=<jobs> -Preevil.shotdir=<dir> -Preevil.world=<saves/name>
+            ['autoshot', 'shotdir'].each { k -> if (project.hasProperty('reevil.' + k)) property 'reevil.' + k, project.property('reevil.' + k) as String }
+            if (project.hasProperty('reevil.world')) args '--quickPlaySingleplayer', project.property('reevil.world') as String
+        }
         gameTestServer { property 'forge.enabledGameTestNamespaces', 'reevil' }
         server { property 'forge.enabledGameTestNamespaces', 'reevil'; args '--nogui' }
     }
