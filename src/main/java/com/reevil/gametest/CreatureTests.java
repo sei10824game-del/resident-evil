@@ -26,7 +26,7 @@ public class CreatureTests {
         for (int x = 0; x < 24; x++) for (int z = 0; z < 24; z++) {
             h.setBlock(new BlockPos(x, 0, z), Blocks.STONE);
             boolean edge = x == 0 || z == 0 || x == 23 || z == 23;
-            for (int y = 1; y <= wd + 1; y++) h.setBlock(new BlockPos(x, y, z), water && edge ? Blocks.STONE : water && y <= wd ? Blocks.WATER : Blocks.AIR); // walled pool: leaking water drowns mobs in neighbouring cells
+            for (int y = 1; y <= wd + 1; y++) h.setBlock(new BlockPos(x, y, z), edge ? Blocks.STONE : water && y <= wd ? Blocks.WATER : Blocks.AIR); // walled cell: water leaking from neighbouring pools drowns mobs
         }
         BioMonster mob = (BioMonster) h.spawn(type, new BlockPos(12, water ? 2 : 1, water ? 12 - dist : 12 + dist));
         mob.addTag("reevil_iso");
